@@ -1,0 +1,734 @@
+2017-11-21 19:31:19 DEBUG BaseController:122 - In Search Screen
+2017-11-21 19:31:25 DEBUG BaseController:137 - In Orders Screen
+2017-11-21 19:31:29 DEBUG BaseController:182 - In Cards Screen
+2017-11-21 19:31:32 DEBUG BaseController:197 - In Profile Screen
+2017-11-21 19:31:45 DEBUG BaseController:212 - In Signout Screen
+2017-11-21 19:31:48 DEBUG BaseController:22 - Closing app
+2017-11-21 19:39:52 DEBUG BaseController:22 - Closing app
+2017-11-21 20:11:50 DEBUG ParentController:45 - In Signout Screen
+2017-11-21 20:13:31 DEBUG ParentController:45 - Login Screen
+2017-11-21 20:13:53 DEBUG ParentController:45 - Login Screen
+2017-11-21 20:14:20 DEBUG BaseController:22 - Closing app
+2017-11-21 20:17:18 DEBUG BaseController:237 - Home Screen
+2017-11-21 20:17:19 DEBUG BaseController:237 - Home Screen
+2017-11-21 20:25:08 DEBUG BaseController:151 - Home Screen
+2017-11-21 20:25:09 DEBUG BaseController:151 - Basket Screen
+2017-11-21 20:25:10 DEBUG BaseController:151 - Orders Screen
+2017-11-21 20:25:11 DEBUG BaseController:151 - Address Screen
+2017-11-21 20:25:12 DEBUG BaseController:151 - Cards Screen
+2017-11-21 20:25:12 DEBUG BaseController:151 - Profile Screen
+2017-11-21 20:25:14 DEBUG BaseController:151 - Home Screen
+2017-11-21 20:25:15 DEBUG BaseController:151 - Basket Screen
+2017-11-21 20:25:15 DEBUG BaseController:151 - Orders Screen
+2017-11-21 20:25:17 DEBUG BaseController:151 - Login Screen
+2017-11-21 20:25:20 DEBUG BaseController:26 - Closing app
+2017-11-21 20:26:38 DEBUG BaseController:154 - Login Screen
+2017-11-21 20:26:41 DEBUG BaseController:29 - Closing app
+2017-11-21 20:37:43 DEBUG BaseController:29 - Closing app
+2017-11-21 20:39:30 DEBUG SignupController:126 - Registration start for the member
+2017-11-21 20:39:30 DEBUG SignupController:127 - 
+2017-11-21 20:39:30 DEBUG CustomerOperations:30 - addUserDetails
+2017-11-21 20:39:30 DEBUG CustomerDB:25 - Fetched Customer
+2017-11-21 20:39:30 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-21 20:39:30 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-21 20:39:30 INFO  AbstractDB:19 - DB Connection created
+2017-11-21 20:39:30 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-21 20:39:30 INFO  AbstractDB:25 - Connection closed.
+2017-11-21 20:39:30 DEBUG CustomerDB:48 - Added Customer - 6fa5d56c-3ee7-4250-8ee2-384248f10231
+2017-11-21 20:39:30 DEBUG CustomerOperations:42 - addAddress
+2017-11-21 20:39:30 DEBUG AddressDB:24 - Fetched Address
+2017-11-21 20:39:30 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-21 20:39:30 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-21 20:39:30 INFO  AbstractDB:19 - DB Connection created
+2017-11-21 20:39:30 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-21 20:39:30 INFO  AbstractDB:25 - Connection closed.
+2017-11-21 20:39:30 DEBUG AddressDB:47 - Added Address - 8404d73f-4041-48a8-8815-959e75df7580
+2017-11-21 20:39:30 INFO  SignupController:141 - Successfully registered the member: 6fa5d56c-3ee7-4250-8ee2-384248f10231
+2017-11-21 20:44:32 DEBUG SignupController:126 - Registration start for the member
+2017-11-21 20:44:32 DEBUG SignupController:127 - 
+2017-11-21 20:44:32 DEBUG CustomerOperations:30 - addUserDetails
+2017-11-21 20:44:32 DEBUG CustomerDB:25 - Fetched Customer
+2017-11-21 20:44:32 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-21 20:44:32 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-21 20:44:32 INFO  AbstractDB:19 - DB Connection created
+2017-11-21 20:44:32 ERROR CustomerDB:43 - Duplicate entry 'test' for key 'USERNAME_UNIQUE'
+2017-11-21 20:44:32 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-21 20:44:32 INFO  AbstractDB:25 - Connection closed.
+2017-11-21 20:44:32 ERROR CustomerOperations:33 - ERROR: Duplicate entry 'test' for key 'USERNAME_UNIQUE'
+2017-11-21 20:46:27 DEBUG SignupController:126 - Registration start for the member
+2017-11-21 20:46:27 DEBUG SignupController:127 - 
+2017-11-21 20:46:27 DEBUG CustomerOperations:30 - addUserDetails
+2017-11-21 20:46:27 DEBUG CustomerDB:25 - Fetched Customer
+2017-11-21 20:46:27 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-21 20:46:27 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-21 20:46:27 INFO  AbstractDB:19 - DB Connection created
+2017-11-21 20:46:27 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-21 20:46:27 INFO  AbstractDB:25 - Connection closed.
+2017-11-21 20:46:27 DEBUG CustomerDB:48 - Added Customer - 8082357c-0e69-4599-b2fd-371b11d5c37a
+2017-11-21 20:46:27 DEBUG CustomerOperations:42 - addAddress
+2017-11-21 20:46:27 DEBUG AddressDB:24 - Fetched Address
+2017-11-21 20:46:27 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-21 20:46:27 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-21 20:46:27 INFO  AbstractDB:19 - DB Connection created
+2017-11-21 20:46:27 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-21 20:46:27 INFO  AbstractDB:25 - Connection closed.
+2017-11-21 20:46:27 DEBUG AddressDB:47 - Added Address - bd2d4dbc-b036-49bb-8045-729c6ccff54a
+2017-11-21 20:46:27 INFO  SignupController:141 - Successfully registered the member: 8082357c-0e69-4599-b2fd-371b11d5c37a
+2017-11-21 21:20:13 DEBUG BaseController:29 - Closing app
+2017-11-21 23:28:09 DEBUG BaseController:158 - Basket Screen
+2017-11-21 23:30:45 DEBUG BaseController:158 - Basket Screen
+2017-11-21 23:31:48 DEBUG BaseController:158 - Login Screen
+2017-11-22 00:30:58 DEBUG BaseController:167 - Home Screen
+2017-11-22 00:31:02 DEBUG BaseController:31 - Closing app
+2017-11-22 00:32:14 DEBUG BaseController:167 - Home Screen
+2017-11-22 00:32:18 DEBUG BaseController:31 - Closing app
+2017-11-22 00:35:42 DEBUG BaseController:31 - Closing app
+2017-11-22 00:48:25 DEBUG BaseController:31 - Closing app
+2017-11-22 00:58:32 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 00:58:32 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 00:58:33 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 00:58:33 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 00:58:33 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 00:58:33 DEBUG CustomerOperations:139 - CO-custid:6fa5d56c-3ee7-4250-8ee2-384248f10231
+2017-11-22 00:58:33 DEBUG BaseController:171 - Home Screen
+2017-11-22 00:58:38 DEBUG BaseController:35 - Closing app
+2017-11-22 00:59:20 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 00:59:20 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 00:59:20 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 00:59:20 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 00:59:20 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 00:59:20 DEBUG CustomerOperations:139 - CO-custid:6fa5d56c-3ee7-4250-8ee2-384248f10231
+2017-11-22 00:59:20 DEBUG BaseController:171 - Home Screen
+2017-11-22 00:59:23 DEBUG BaseController:35 - Closing app
+2017-11-22 00:59:39 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 00:59:39 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 00:59:39 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 00:59:39 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 00:59:39 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 00:59:39 DEBUG CustomerOperations:139 - CO-custid:6fa5d56c-3ee7-4250-8ee2-384248f10231
+2017-11-22 00:59:39 DEBUG BaseController:171 - Home Screen
+2017-11-22 00:59:43 DEBUG BaseController:35 - Closing app
+2017-11-22 00:59:53 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 00:59:53 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 00:59:54 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 00:59:54 ERROR CustomerDB:90 - Username not found
+2017-11-22 00:59:54 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 00:59:54 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 00:59:54 DEBUG CustomerOperations:139 - CO-custid:null
+2017-11-22 01:00:11 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 01:00:11 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 01:00:11 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 01:00:11 ERROR CustomerDB:90 - Username not found
+2017-11-22 01:00:11 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 01:00:11 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 01:00:11 DEBUG CustomerOperations:139 - CO-custid:null
+2017-11-22 01:00:23 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 01:00:23 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 01:00:23 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 01:00:23 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 01:00:23 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 01:00:23 DEBUG CustomerOperations:139 - CO-custid:6fa5d56c-3ee7-4250-8ee2-384248f10231
+2017-11-22 01:00:23 DEBUG BaseController:171 - Home Screen
+2017-11-22 01:01:10 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 01:01:10 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 01:01:10 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 01:01:10 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 01:01:10 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 01:01:10 DEBUG CustomerOperations:139 - CO-custid:6fa5d56c-3ee7-4250-8ee2-384248f10231
+2017-11-22 01:01:10 DEBUG BaseController:171 - Home Screen
+2017-11-22 01:01:13 DEBUG BaseController:35 - Closing app
+2017-11-22 01:01:24 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 01:01:24 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 01:01:25 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 01:01:25 ERROR CustomerDB:90 - Username not found
+2017-11-22 01:01:25 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 01:01:25 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 01:01:25 DEBUG CustomerOperations:139 - CO-custid:null
+2017-11-22 01:01:31 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 01:01:31 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 01:01:31 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 01:01:31 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 01:01:31 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 01:01:31 DEBUG CustomerOperations:139 - CO-custid:6fa5d56c-3ee7-4250-8ee2-384248f10231
+2017-11-22 01:01:31 DEBUG BaseController:171 - Home Screen
+2017-11-22 01:01:34 DEBUG BaseController:35 - Closing app
+2017-11-22 01:04:46 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 01:04:46 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 01:04:46 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 01:04:46 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 01:04:46 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 01:04:46 DEBUG CustomerOperations:138 - CO-custid:6fa5d56c-3ee7-4250-8ee2-384248f10231
+2017-11-22 01:04:46 DEBUG BaseController:171 - Home Screen
+2017-11-22 01:04:51 DEBUG BaseController:35 - Closing app
+2017-11-22 01:06:02 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 01:06:02 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 01:06:03 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 01:06:03 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 01:06:03 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 01:06:03 DEBUG CustomerOperations:138 - CO-custid:6fa5d56c-3ee7-4250-8ee2-384248f10231
+2017-11-22 01:06:03 DEBUG BaseController:171 - Home Screen
+2017-11-22 01:06:18 DEBUG BaseController:171 - Login Screen
+2017-11-22 01:06:30 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 01:06:30 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 01:06:30 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 01:06:30 ERROR CustomerDB:90 - Username not found
+2017-11-22 01:06:30 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 01:06:30 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 01:06:30 DEBUG CustomerOperations:138 - CO-custid:null
+2017-11-22 01:06:41 DEBUG BaseController:35 - Closing app
+2017-11-22 01:07:41 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 01:07:41 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 01:07:42 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 01:07:46 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 01:07:46 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 01:07:46 DEBUG CustomerOperations:138 - CO-custid:6fa5d56c-3ee7-4250-8ee2-384248f10231
+2017-11-22 01:08:29 DEBUG BaseController:171 - Home Screen
+2017-11-22 01:08:33 DEBUG BaseController:35 - Closing app
+2017-11-22 01:10:28 DEBUG BaseController:35 - Closing app
+2017-11-22 01:12:26 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 01:12:26 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 01:12:26 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 01:12:26 ERROR CustomerDB:90 - Username not found
+2017-11-22 01:12:26 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 01:12:26 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 01:12:26 DEBUG CustomerOperations:138 - CO-custid:null
+2017-11-22 01:12:33 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 01:12:33 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 01:12:33 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 01:12:33 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 01:12:33 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 01:12:33 DEBUG CustomerOperations:138 - CO-custid:8082357c-0e69-4599-b2fd-371b11d5c37a
+2017-11-22 01:12:33 DEBUG BaseController:171 - Home Screen
+2017-11-22 01:12:36 DEBUG BaseController:171 - Login Screen
+2017-11-22 01:12:49 DEBUG BaseController:171 - Signup Screen
+2017-11-22 01:13:08 DEBUG SignupController:126 - Registration start for the member
+2017-11-22 01:13:08 DEBUG SignupController:127 - 
+2017-11-22 01:13:08 DEBUG CustomerOperations:30 - addUserDetails
+2017-11-22 01:13:08 DEBUG CustomerDB:25 - Fetched Customer
+2017-11-22 01:13:08 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 01:13:08 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 01:13:08 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 01:13:08 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 01:13:08 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 01:13:08 DEBUG CustomerDB:48 - Added Customer - c2a33c1c-7405-4414-9572-ee1bd0869d7c
+2017-11-22 01:13:08 DEBUG CustomerOperations:42 - addAddress
+2017-11-22 01:13:08 DEBUG AddressDB:24 - Fetched Address
+2017-11-22 01:13:08 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 01:13:08 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 01:13:08 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 01:13:08 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 01:13:08 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 01:13:08 DEBUG AddressDB:47 - Added Address - bbe80183-2e3f-4151-9949-966bd2ea9d1b
+2017-11-22 01:13:08 INFO  SignupController:141 - Successfully registered the member: c2a33c1c-7405-4414-9572-ee1bd0869d7c
+2017-11-22 01:13:15 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 01:13:15 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 01:13:15 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 01:13:15 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 01:13:15 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 01:13:15 DEBUG CustomerOperations:138 - CO-custid:c2a33c1c-7405-4414-9572-ee1bd0869d7c
+2017-11-22 01:13:15 DEBUG BaseController:171 - Home Screen
+2017-11-22 01:13:17 DEBUG BaseController:171 - Login Screen
+2017-11-22 01:48:45 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 01:48:45 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 01:48:45 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 01:48:46 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 01:48:46 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 01:48:46 DEBUG CustomerOperations:135 - CO-custid:6fa5d56c-3ee7-4250-8ee2-384248f10231
+2017-11-22 01:48:46 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 01:48:46 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 01:48:46 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 01:48:46 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 01:48:46 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 01:48:46 DEBUG BaseController:177 - Home Screen
+2017-11-22 01:49:16 DEBUG BaseController:41 - Closing app
+2017-11-22 01:50:01 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 01:50:01 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 01:50:01 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 01:50:01 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 01:50:01 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 01:50:01 DEBUG CustomerOperations:135 - CO-custid:6fa5d56c-3ee7-4250-8ee2-384248f10231
+2017-11-22 01:50:01 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 01:50:01 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 01:50:01 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 01:50:01 DEBUG CustomerDB:76 - Customer Loaded Successfully.
+2017-11-22 01:50:01 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 01:50:01 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 01:50:01 DEBUG BaseController:177 - Home Screen
+2017-11-22 01:51:51 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 01:51:51 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 01:51:52 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 01:51:56 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 01:51:56 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 01:51:56 DEBUG CustomerOperations:135 - CO-custid:6fa5d56c-3ee7-4250-8ee2-384248f10231
+2017-11-22 01:51:56 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 01:51:56 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 01:51:56 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 01:51:56 DEBUG CustomerDB:76 - Customer Loaded Successfully.
+2017-11-22 01:51:56 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 01:51:56 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 01:54:27 DEBUG BaseController:41 - Closing app
+2017-11-22 01:54:45 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 01:54:45 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 01:54:46 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 01:54:50 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 01:54:50 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 01:54:50 DEBUG CustomerOperations:135 - CO-custid:6fa5d56c-3ee7-4250-8ee2-384248f10231
+2017-11-22 01:54:50 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 01:54:50 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 01:54:50 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 01:54:50 DEBUG CustomerDB:76 - Customer Loaded Successfully.
+2017-11-22 01:54:50 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 01:54:50 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 01:55:16 DEBUG BaseController:177 - Home Screen
+2017-11-22 01:58:22 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 01:58:22 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 01:58:22 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 01:58:22 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 01:58:22 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 01:58:22 DEBUG CustomerOperations:135 - CO-custid:6fa5d56c-3ee7-4250-8ee2-384248f10231
+2017-11-22 01:58:22 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 01:58:22 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 01:58:22 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 01:58:22 DEBUG CustomerDB:76 - Customer Loaded Successfully.
+2017-11-22 01:58:22 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 01:58:22 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 01:58:22 DEBUG BaseController:177 - Home Screen
+2017-11-22 01:59:00 DEBUG BaseController:41 - Closing app
+2017-11-22 10:09:23 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 10:09:23 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 10:09:24 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 10:09:24 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 10:09:24 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 10:09:24 DEBUG CustomerOperations:135 - CO-custid:6fa5d56c-3ee7-4250-8ee2-384248f10231
+2017-11-22 10:09:24 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 10:09:24 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 10:09:24 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 10:09:24 DEBUG CustomerDB:76 - Customer Loaded Successfully.
+2017-11-22 10:09:24 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 10:09:24 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 10:09:24 DEBUG BaseController:177 - Home Screen
+2017-11-22 10:09:30 DEBUG BaseController:177 - Login Screen
+2017-11-22 10:09:32 DEBUG BaseController:41 - Closing app
+2017-11-22 12:07:17 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 12:07:17 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 12:07:17 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 12:07:17 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 12:07:17 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 12:07:17 DEBUG CustomerOperations:135 - CO-custid:6fa5d56c-3ee7-4250-8ee2-384248f10231
+2017-11-22 12:07:17 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 12:07:17 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 12:07:17 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 12:07:17 DEBUG CustomerDB:76 - Customer Loaded Successfully.
+2017-11-22 12:07:17 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 12:07:17 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 12:07:17 DEBUG BaseController:185 - Home Screen
+2017-11-22 12:08:13 DEBUG BaseController:44 - Closing app
+2017-11-22 12:08:15 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 12:08:15 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 12:08:16 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 12:08:16 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 12:08:16 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 12:08:16 DEBUG CustomerOperations:135 - CO-custid:6fa5d56c-3ee7-4250-8ee2-384248f10231
+2017-11-22 12:08:16 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 12:08:16 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 12:08:16 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 12:08:16 DEBUG CustomerDB:76 - Customer Loaded Successfully.
+2017-11-22 12:08:16 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 12:08:16 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 12:08:23 DEBUG BaseController:185 - Home Screen
+2017-11-22 12:09:17 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 12:09:17 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 12:09:17 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 12:09:17 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 12:09:17 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 12:09:17 DEBUG CustomerOperations:135 - CO-custid:6fa5d56c-3ee7-4250-8ee2-384248f10231
+2017-11-22 12:09:17 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 12:09:17 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 12:09:17 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 12:09:17 DEBUG CustomerDB:76 - Customer Loaded Successfully.
+2017-11-22 12:09:17 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 12:09:17 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 12:09:17 DEBUG BaseController:185 - Home Screen
+2017-11-22 12:09:17 ERROR BaseController:198 - Error in launching scene: null
+2017-11-22 12:09:26 DEBUG BaseController:44 - Closing app
+2017-11-22 12:09:41 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 12:09:41 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 12:09:41 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 12:09:41 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 12:09:41 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 12:09:41 DEBUG CustomerOperations:135 - CO-custid:6fa5d56c-3ee7-4250-8ee2-384248f10231
+2017-11-22 12:09:41 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 12:09:41 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 12:09:41 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 12:09:41 DEBUG CustomerDB:76 - Customer Loaded Successfully.
+2017-11-22 12:09:41 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 12:09:41 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 12:10:05 DEBUG BaseController:185 - Home Screen
+2017-11-22 12:11:15 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 12:11:15 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 12:11:15 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 12:11:15 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 12:11:15 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 12:11:15 DEBUG CustomerOperations:135 - CO-custid:6fa5d56c-3ee7-4250-8ee2-384248f10231
+2017-11-22 12:11:15 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 12:11:15 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 12:11:15 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 12:11:15 DEBUG CustomerDB:76 - Customer Loaded Successfully.
+2017-11-22 12:11:15 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 12:11:15 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 12:11:15 DEBUG BaseController:185 - Home Screen
+2017-11-22 12:11:15 ERROR BaseController:198 - Error in launching scene: null
+2017-11-22 12:11:19 DEBUG BaseController:44 - Closing app
+2017-11-22 12:12:40 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 12:12:40 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 12:12:40 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 12:12:40 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 12:12:40 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 12:12:40 DEBUG CustomerOperations:135 - CO-custid:6fa5d56c-3ee7-4250-8ee2-384248f10231
+2017-11-22 12:12:40 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 12:12:40 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 12:12:40 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 12:12:40 DEBUG CustomerDB:76 - Customer Loaded Successfully.
+2017-11-22 12:12:40 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 12:12:40 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 12:12:40 DEBUG BaseController:185 - Home Screen
+2017-11-22 12:12:45 DEBUG BaseController:44 - Closing app
+2017-11-22 12:16:47 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 12:16:47 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 12:16:47 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 12:16:47 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 12:16:47 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 12:16:47 DEBUG CustomerOperations:135 - CO-custid:6fa5d56c-3ee7-4250-8ee2-384248f10231
+2017-11-22 12:16:47 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 12:16:47 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 12:16:47 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 12:16:47 DEBUG CustomerDB:76 - Customer Loaded Successfully.
+2017-11-22 12:16:47 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 12:16:47 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 12:17:18 DEBUG BaseController:185 - Home Screen
+2017-11-22 12:20:21 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 12:20:21 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 12:20:21 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 12:20:22 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 12:20:22 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 12:20:22 DEBUG CustomerOperations:135 - CO-custid:6fa5d56c-3ee7-4250-8ee2-384248f10231
+2017-11-22 12:20:22 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 12:20:22 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 12:20:22 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 12:20:22 DEBUG CustomerDB:76 - Customer Loaded Successfully.
+2017-11-22 12:20:22 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 12:20:22 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 12:21:21 DEBUG BaseController:185 - Home Screen
+2017-11-22 12:23:58 DEBUG BaseController:185 - Login Screen
+2017-11-22 12:24:13 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 12:24:13 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 12:24:13 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 12:24:13 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 12:24:13 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 12:24:13 DEBUG CustomerOperations:135 - CO-custid:6fa5d56c-3ee7-4250-8ee2-384248f10231
+2017-11-22 12:24:13 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 12:24:13 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 12:24:13 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 12:24:13 DEBUG CustomerDB:76 - Customer Loaded Successfully.
+2017-11-22 12:24:13 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 12:24:13 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 12:24:13 DEBUG BaseController:185 - Home Screen
+2017-11-22 12:24:16 DEBUG BaseController:185 - Login Screen
+2017-11-22 12:24:22 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 12:24:22 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 12:24:22 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 12:24:22 ERROR CustomerDB:116 - Username not found
+2017-11-22 12:24:22 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 12:24:22 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 12:24:22 DEBUG CustomerOperations:135 - CO-custid:null
+2017-11-22 12:24:27 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 12:24:27 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 12:24:27 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 12:24:27 ERROR CustomerDB:116 - Username not found
+2017-11-22 12:24:27 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 12:24:27 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 12:24:27 DEBUG CustomerOperations:135 - CO-custid:null
+2017-11-22 12:24:33 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 12:24:33 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 12:24:33 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 12:24:33 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 12:24:33 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 12:24:33 DEBUG CustomerOperations:135 - CO-custid:8082357c-0e69-4599-b2fd-371b11d5c37a
+2017-11-22 12:24:33 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 12:24:33 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 12:24:33 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 12:24:33 DEBUG CustomerDB:76 - Customer Loaded Successfully.
+2017-11-22 12:24:33 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 12:24:33 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 12:24:33 DEBUG BaseController:185 - Home Screen
+2017-11-22 12:24:37 DEBUG BaseController:185 - Login Screen
+2017-11-22 12:24:40 DEBUG BaseController:44 - Closing app
+2017-11-22 12:28:26 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 12:28:26 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 12:28:27 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 12:28:27 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 12:28:27 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 12:28:27 DEBUG CustomerOperations:135 - CO-custid:6fa5d56c-3ee7-4250-8ee2-384248f10231
+2017-11-22 12:28:27 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 12:28:27 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 12:28:27 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 12:28:27 DEBUG CustomerDB:76 - Customer Loaded Successfully.
+2017-11-22 12:28:27 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 12:28:27 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 12:28:27 DEBUG BaseController:193 - Home Screen
+2017-11-22 12:28:32 DEBUG BaseController:193 - Login Screen
+2017-11-22 12:28:36 DEBUG BaseController:44 - Closing app
+2017-11-22 12:29:36 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 12:29:36 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 12:29:36 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 12:29:36 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 12:29:36 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 12:29:36 DEBUG CustomerOperations:135 - CO-custid:6fa5d56c-3ee7-4250-8ee2-384248f10231
+2017-11-22 12:29:36 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 12:29:36 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 12:29:36 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 12:29:36 DEBUG CustomerDB:76 - Customer Loaded Successfully.
+2017-11-22 12:29:36 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 12:29:36 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 12:29:36 DEBUG BaseController:195 - Home Screen
+2017-11-22 12:29:39 DEBUG BaseController:181 - Session cleaned.
+2017-11-22 12:29:39 DEBUG BaseController:195 - Login Screen
+2017-11-22 12:29:39 DEBUG BaseController:174 - User successfully logged out.
+2017-11-22 12:29:42 DEBUG BaseController:44 - Closing app
+2017-11-22 12:42:36 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 12:42:36 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 12:42:36 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 12:42:36 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 12:42:36 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 12:42:36 DEBUG CustomerOperations:135 - CO-custid:6fa5d56c-3ee7-4250-8ee2-384248f10231
+2017-11-22 12:42:36 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 12:42:36 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 12:42:36 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 12:42:36 DEBUG CustomerDB:76 - Customer Loaded Successfully.
+2017-11-22 12:42:36 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 12:42:36 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 12:42:36 DEBUG BaseController:195 - Home Screen
+2017-11-22 12:42:44 DEBUG BaseController:181 - Session cleaned.
+2017-11-22 12:42:44 DEBUG BaseController:195 - Login Screen
+2017-11-22 12:42:45 DEBUG BaseController:174 - User successfully logged out.
+2017-11-22 13:42:09 DEBUG BaseController:44 - Closing app
+2017-11-22 15:10:14 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 15:10:14 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 15:10:15 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 15:10:15 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 15:10:15 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 15:10:15 DEBUG CustomerOperations:135 - CO-custid:6fa5d56c-3ee7-4250-8ee2-384248f10231
+2017-11-22 15:10:15 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 15:10:15 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 15:10:15 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 15:10:15 DEBUG CustomerDB:76 - Customer Loaded Successfully.
+2017-11-22 15:10:15 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 15:10:15 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 15:10:15 DEBUG BaseController:195 - Home Screen
+2017-11-22 15:10:18 DEBUG BaseController:195 - Home Screen
+2017-11-22 15:10:18 ERROR BaseController:208 - Error in launching scene: null
+2017-11-22 15:10:59 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 15:10:59 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 15:10:59 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 15:10:59 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 15:10:59 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 15:10:59 DEBUG CustomerOperations:135 - CO-custid:6fa5d56c-3ee7-4250-8ee2-384248f10231
+2017-11-22 15:10:59 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 15:10:59 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 15:10:59 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 15:10:59 DEBUG CustomerDB:76 - Customer Loaded Successfully.
+2017-11-22 15:10:59 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 15:10:59 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 15:10:59 DEBUG BaseController:195 - Home Screen
+2017-11-22 15:11:01 DEBUG BaseController:195 - Home Screen
+2017-11-22 15:11:42 DEBUG BaseController:195 - Home Screen
+2017-11-22 15:11:43 DEBUG BaseController:195 - Home Screen
+2017-11-22 15:11:45 DEBUG BaseController:181 - Session cleaned.
+2017-11-22 15:11:45 DEBUG BaseController:195 - Login Screen
+2017-11-22 15:11:45 DEBUG BaseController:174 - User successfully logged out.
+2017-11-22 15:11:52 DEBUG BaseController:44 - Closing app
+2017-11-22 15:15:48 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 15:15:48 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 15:15:48 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 15:15:48 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 15:15:48 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 15:15:48 DEBUG CustomerOperations:135 - CO-custid:6fa5d56c-3ee7-4250-8ee2-384248f10231
+2017-11-22 15:15:48 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 15:15:48 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 15:15:48 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 15:15:48 DEBUG CustomerDB:76 - Customer Loaded Successfully.
+2017-11-22 15:15:48 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 15:15:48 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 15:15:48 DEBUG BaseController:195 - Home Screen
+2017-11-22 15:15:51 DEBUG BaseController:195 - Home Screen
+2017-11-22 15:15:53 DEBUG BaseController:195 - Basket Screen
+2017-11-22 15:15:55 DEBUG BaseController:195 - Orders Screen
+2017-11-22 15:16:00 DEBUG BaseController:195 - Orders Screen
+2017-11-22 15:16:02 DEBUG BaseController:195 - Address Screen
+2017-11-22 15:16:04 DEBUG BaseController:195 - Cards Screen
+2017-11-22 15:16:06 DEBUG BaseController:195 - Profile Screen
+2017-11-22 15:16:08 DEBUG BaseController:195 - Cards Screen
+2017-11-22 15:16:09 DEBUG BaseController:195 - Profile Screen
+2017-11-22 15:16:11 DEBUG BaseController:195 - Cards Screen
+2017-11-22 15:17:03 DEBUG BaseController:195 - Profile Screen
+2017-11-22 15:17:06 DEBUG BaseController:195 - Home Screen
+2017-11-22 15:17:08 DEBUG BaseController:181 - Session cleaned.
+2017-11-22 15:17:08 DEBUG BaseController:195 - Login Screen
+2017-11-22 15:17:08 ERROR BaseController:208 - Error in launching scene: null
+2017-11-22 15:17:08 DEBUG BaseController:174 - User successfully logged out.
+2017-11-22 15:17:13 DEBUG BaseController:181 - Session cleaned.
+2017-11-22 15:17:13 DEBUG BaseController:195 - Login Screen
+2017-11-22 15:17:13 ERROR BaseController:208 - Error in launching scene: null
+2017-11-22 15:17:13 DEBUG BaseController:174 - User successfully logged out.
+2017-11-22 15:17:40 DEBUG BaseController:195 - Basket Screen
+2017-11-22 15:17:45 DEBUG BaseController:195 - Home Screen
+2017-11-22 15:17:46 DEBUG BaseController:181 - Session cleaned.
+2017-11-22 15:17:46 DEBUG BaseController:195 - Login Screen
+2017-11-22 15:17:46 ERROR BaseController:208 - Error in launching scene: null
+2017-11-22 15:17:46 DEBUG BaseController:174 - User successfully logged out.
+2017-11-22 15:17:49 DEBUG BaseController:195 - Home Screen
+2017-11-22 15:17:50 DEBUG BaseController:181 - Session cleaned.
+2017-11-22 15:17:50 DEBUG BaseController:195 - Login Screen
+2017-11-22 15:17:50 ERROR BaseController:208 - Error in launching scene: null
+2017-11-22 15:17:50 DEBUG BaseController:174 - User successfully logged out.
+2017-11-22 15:17:51 DEBUG BaseController:195 - Profile Screen
+2017-11-22 15:17:52 DEBUG BaseController:181 - Session cleaned.
+2017-11-22 15:17:52 DEBUG BaseController:195 - Login Screen
+2017-11-22 15:17:52 ERROR BaseController:208 - Error in launching scene: null
+2017-11-22 15:17:52 DEBUG BaseController:174 - User successfully logged out.
+2017-11-22 15:17:54 DEBUG BaseController:195 - Home Screen
+2017-11-22 15:17:55 DEBUG BaseController:181 - Session cleaned.
+2017-11-22 15:17:55 DEBUG BaseController:195 - Login Screen
+2017-11-22 15:17:55 ERROR BaseController:208 - Error in launching scene: null
+2017-11-22 15:17:55 DEBUG BaseController:174 - User successfully logged out.
+2017-11-22 15:21:09 DEBUG BaseController:44 - Closing app
+2017-11-22 15:21:20 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 15:21:20 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 15:21:21 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 15:21:21 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 15:21:21 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 15:21:21 DEBUG CustomerOperations:135 - CO-custid:6fa5d56c-3ee7-4250-8ee2-384248f10231
+2017-11-22 15:21:21 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 15:21:21 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 15:21:21 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 15:21:21 DEBUG CustomerDB:76 - Customer Loaded Successfully.
+2017-11-22 15:21:21 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 15:21:21 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 15:21:21 DEBUG BaseController:195 - Home Screen
+2017-11-22 15:21:22 DEBUG BaseController:195 - Home Screen
+2017-11-22 15:22:16 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 15:22:16 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 15:22:16 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 15:22:16 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 15:22:16 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 15:22:16 DEBUG CustomerOperations:135 - CO-custid:6fa5d56c-3ee7-4250-8ee2-384248f10231
+2017-11-22 15:22:16 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 15:22:16 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 15:22:16 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 15:22:16 DEBUG CustomerDB:76 - Customer Loaded Successfully.
+2017-11-22 15:22:16 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 15:22:16 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 15:22:16 DEBUG BaseController:195 - Home Screen
+2017-11-22 15:22:18 DEBUG BaseController:195 - Home Screen
+2017-11-22 15:25:17 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 15:25:17 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 15:25:17 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 15:25:17 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 15:25:17 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 15:25:17 DEBUG CustomerOperations:135 - CO-custid:6fa5d56c-3ee7-4250-8ee2-384248f10231
+2017-11-22 15:25:17 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 15:25:17 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 15:25:17 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 15:25:17 DEBUG CustomerDB:76 - Customer Loaded Successfully.
+2017-11-22 15:25:17 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 15:25:17 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 15:25:17 DEBUG BaseController:195 - Home Screen
+2017-11-22 15:25:19 DEBUG BaseController:195 - Home Screen
+2017-11-22 15:25:29 DEBUG BaseController:181 - Session cleaned.
+2017-11-22 15:25:29 DEBUG BaseController:195 - Login Screen
+2017-11-22 15:25:29 ERROR BaseController:208 - Error in launching scene: null
+2017-11-22 15:25:29 DEBUG BaseController:174 - User successfully logged out.
+2017-11-22 15:26:33 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 15:26:33 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 15:26:34 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 15:26:34 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 15:26:34 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 15:26:34 DEBUG CustomerOperations:135 - CO-custid:6fa5d56c-3ee7-4250-8ee2-384248f10231
+2017-11-22 15:26:34 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 15:26:34 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 15:26:34 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 15:26:34 DEBUG CustomerDB:76 - Customer Loaded Successfully.
+2017-11-22 15:26:34 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 15:26:34 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 15:26:40 DEBUG BaseController:195 - Home Screen
+2017-11-22 15:26:50 DEBUG BaseController:181 - Session cleaned.
+2017-11-22 15:26:50 DEBUG BaseController:195 - Login Screen
+2017-11-22 15:26:59 ERROR BaseController:208 - Error in launching scene: null
+2017-11-22 15:26:59 DEBUG BaseController:174 - User successfully logged out.
+2017-11-22 15:27:29 DEBUG BaseController:181 - Session cleaned.
+2017-11-22 15:27:33 DEBUG BaseController:195 - Login Screen
+2017-11-22 15:34:16 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 15:34:16 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 15:34:17 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 15:34:17 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 15:34:17 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 15:34:17 DEBUG CustomerOperations:135 - CO-custid:6fa5d56c-3ee7-4250-8ee2-384248f10231
+2017-11-22 15:34:17 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 15:34:17 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 15:34:17 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 15:34:17 DEBUG CustomerDB:76 - Customer Loaded Successfully.
+2017-11-22 15:34:17 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 15:34:17 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 15:34:17 DEBUG BaseController:197 - Home Screen
+2017-11-22 15:34:20 DEBUG BaseController:183 - Session cleaned.
+2017-11-22 15:34:20 DEBUG BaseController:197 - Login Screen
+2017-11-22 15:34:20 DEBUG BaseController:176 - User successfully logged out.
+2017-11-22 15:35:01 DEBUG BaseController:44 - Closing app
+2017-11-22 16:12:36 DEBUG BaseController:197 - Signup Screen
+2017-11-22 16:13:39 DEBUG BaseController:44 - Closing app
+2017-11-22 16:14:15 DEBUG BaseController:44 - Closing app
+2017-11-22 16:14:47 DEBUG BaseController:197 - Signup Screen
+2017-11-22 16:14:48 DEBUG BaseController:44 - Closing app
+2017-11-22 16:16:12 DEBUG BaseController:197 - Signup Screen
+2017-11-22 16:17:57 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 16:17:57 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 16:17:58 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 16:17:58 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 16:17:58 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 16:17:58 DEBUG SignupController:158 - Registration start for the member
+2017-11-22 16:17:59 DEBUG CustomerOperations:28 - addUserDetails
+2017-11-22 16:17:59 DEBUG CustomerDB:25 - Fetched Customer
+2017-11-22 16:17:59 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 16:17:59 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 16:17:59 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 16:17:59 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 16:17:59 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 16:17:59 DEBUG CustomerDB:48 - Added Customer - 4b90f2d5-6db4-4211-9504-9ebb8232629f
+2017-11-22 16:17:59 DEBUG CustomerOperations:40 - addAddress
+2017-11-22 16:17:59 DEBUG AddressDB:24 - Fetched Address
+2017-11-22 16:17:59 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 16:17:59 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 16:17:59 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 16:17:59 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 16:17:59 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 16:17:59 DEBUG AddressDB:47 - Added Address - ab217b99-f751-4ba7-b9ae-e39395c88803
+2017-11-22 16:17:59 INFO  SignupController:172 - Successfully registered the member: 4b90f2d5-6db4-4211-9504-9ebb8232629f
+2017-11-22 16:18:16 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 16:18:16 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 16:18:16 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 16:18:16 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 16:18:16 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 16:18:16 DEBUG CustomerOperations:135 - CO-custid:4b90f2d5-6db4-4211-9504-9ebb8232629f
+2017-11-22 16:18:16 INFO  AbstractDB:17 - Getting DB Connection.
+2017-11-22 16:18:16 DEBUG MySQLDBConnector:21 - Connection URL - jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+2017-11-22 16:18:16 INFO  AbstractDB:19 - DB Connection created
+2017-11-22 16:18:16 DEBUG CustomerDB:77 - Customer Loaded Successfully.
+2017-11-22 16:18:16 DEBUG MySQLDBConnector:48 - Connection closed
+2017-11-22 16:18:16 INFO  AbstractDB:25 - Connection closed.
+2017-11-22 16:18:16 DEBUG BaseController:197 - Home Screen
+2017-11-22 16:18:26 DEBUG BaseController:183 - Session cleaned.
+2017-11-22 16:18:26 DEBUG BaseController:197 - Login Screen
+2017-11-22 16:18:26 DEBUG BaseController:176 - User successfully logged out.
+2017-11-22 16:18:30 DEBUG BaseController:44 - Closing app
+2017-11-22 16:22:39 DEBUG BaseController:197 - Signup Screen
+2017-11-22 16:22:48 DEBUG BaseController:44 - Closing app

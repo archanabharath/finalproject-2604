@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="900.0" style="-fx-background-color: aliceblue;" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.itm.food.controller.SignupController">
+	<children>
+      		<AnchorPane layoutX="150.0" layoutY="102.0" prefHeight="770.0" prefWidth="797.0" style="-fx-background-color: steelblue; -fx-border-color: white;" AnchorPane.bottomAnchor="48.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="102.0">
+         <children>
+            <Label layoutX="249.0" layoutY="27.0" prefHeight="29.0" prefWidth="102.0" text="Sign up" textFill="WHITE">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="txtFirstname" focusColor="WHITE" labelFloat="true" layoutX="65.0" layoutY="101.0" prefHeight="40.0" prefWidth="230.0" promptText="Firstname" style="-fx-background-color: steelblue;" unFocusColor="#4c4d4d" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="309.0">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="txtLastname" focusColor="WHITE" labelFloat="true" layoutX="330.0" layoutY="101.0" prefHeight="40.0" prefWidth="230.0" promptText="Lastname" style="-fx-background-color: steelblue;" unFocusColor="#4c4d4d">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="txtEmail" focusColor="WHITE" labelFloat="true" layoutX="63.0" layoutY="184.0" prefHeight="40.0" prefWidth="500.0" promptText="Email" style="-fx-background-color: steelblue;" unFocusColor="#4c4d4d">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="txtUsername" focusColor="WHITE" labelFloat="true" layoutX="63.0" layoutY="265.0" prefHeight="40.0" prefWidth="500.0" promptText="Username" style="-fx-background-color: steelblue;" unFocusColor="#4c4d4d" AnchorPane.bottomAnchor="444.0" AnchorPane.leftAnchor="63.0" AnchorPane.rightAnchor="36.0" AnchorPane.topAnchor="265.0">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </JFXTextField>
+            <JFXPasswordField fx:id="txtPassword" focusColor="WHITE" labelFloat="true" layoutX="63.0" layoutY="355.0" prefHeight="40.0" prefWidth="230.0" promptText="Password" style="-fx-background-color: steelblue;">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </JFXPasswordField>
+            <JFXPasswordField fx:id="txtReEnterPassword" focusColor="WHITE" labelFloat="true" layoutX="330.0" layoutY="355.0" prefHeight="40.0" prefWidth="230.0" promptText="Re Enter password" style="-fx-background-color: steelblue;">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </JFXPasswordField>
+            <JFXTextField fx:id="txtAddress1" focusColor="WHITE" labelFloat="true" layoutX="66.0" layoutY="439.0" prefHeight="40.0" prefWidth="230.0" promptText="Address 1" style="-fx-background-color: steelblue;" unFocusColor="#4c4d4d" AnchorPane.bottomAnchor="271.0">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="txtAddress2" focusColor="WHITE" labelFloat="true" layoutX="331.0" layoutY="439.0" prefHeight="40.0" prefWidth="230.0" promptText="Address 2" style="-fx-background-color: steelblue;" unFocusColor="#4c4d4d">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="txtCity" focusColor="WHITE" labelFloat="true" layoutX="66.0" layoutY="520.0" prefHeight="40.0" prefWidth="230.0" promptText="City" style="-fx-background-color: steelblue;" unFocusColor="#4c4d4d">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="txtZip" focusColor="WHITE" labelFloat="true" layoutX="331.0" layoutY="520.0" prefHeight="40.0" prefWidth="230.0" promptText="Zip" style="-fx-background-color: steelblue;" unFocusColor="#4c4d4d">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="txtMobile" focusColor="WHITE" labelFloat="true" layoutX="63.0" layoutY="596.0" prefHeight="40.0" prefWidth="230.0" promptText="Mobile no" style="-fx-background-color: steelblue;" unFocusColor="#4c4d4d">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </JFXTextField>
+            <JFXDatePicker fx:id="txtDob" defaultColor="DARKGRAY" layoutX="331.0" layoutY="596.0" prefHeight="40.0" prefWidth="230.0" promptText="Date of Birth" />
+            <JFXButton fx:id="btnSignup" layoutX="363.0" layoutY="681.0" onKeyPressed="#handleKeySignup" onMouseReleased="#handleMouseSignup" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: white;" text="Sign Up" textFill="STEELBLUE" AnchorPane.bottomAnchor="30.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
+            <AnchorPane fx:id="errorPane" prefHeight="50.0" prefWidth="300.0" visible="false" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0">
+               <children>
+                  <ImageView fitHeight="35.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0">
+                     <image>
+                        <Image url="@../../../../../asserts/icons8-error-96.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="lblErrorMsg" layoutX="60.0" prefHeight="30.0" prefWidth="237.0" text="##Errormsg##" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="10.0">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="usernameep" layoutX="271.0" layoutY="267.0" prefHeight="39.0" prefWidth="121.0" visible="false" AnchorPane.bottomAnchor="445.0" AnchorPane.leftAnchor="270.0" AnchorPane.topAnchor="266.0">
+               <children>
+                  <ImageView fitHeight="35.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0">
+                     <image>
+                        <Image url="@../../../../../asserts/icons8-error-96.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="lblErrorMsgun" layoutX="60.0" prefHeight="30.0" prefWidth="237.0" text="##Errormsg##" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="10.0">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="53.0" prefWidth="900.0" style="-fx-background-color: steelblue;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Label layoutX="892.0" layoutY="16.0" prefHeight="20.0" prefWidth="80.0" text="FoodHub" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="15.0">
+         <font>
+            <Font name="Arial Bold" size="18.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="imgExit" blendMode="DARKEN" fitHeight="25.0" fitWidth="25.0" layoutX="879.0" layoutY="10.0" onMouseReleased="#handleApplicationClose" opacity="0.5" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="10.0">
+         <image>
+            <Image url="@../../../../../asserts/icons8-shutdown-96.png" />
+         </image>
+      </ImageView>
+	</children>
+	<cursor>
+		<Cursor fx:constant="DEFAULT" />
+	</cursor>
+</AnchorPane>
