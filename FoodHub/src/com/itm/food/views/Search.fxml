@@ -146,7 +146,6 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="searchResultsPane" layoutX="283.0" layoutY="233.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="250.0" />
    </children>
    <cursor>
       <Cursor fx:constant="DEFAULT" />
