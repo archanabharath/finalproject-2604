@@ -4,6 +4,7 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.effect.GaussianBlur?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
@@ -146,6 +147,11 @@
             </ImageView>
          </children>
       </AnchorPane>
+      <ScrollPane layoutX="281.0" layoutY="234.0" prefHeight="656.0" prefWidth="983.0">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+        </content>
+      </ScrollPane>
    </children>
    <cursor>
       <Cursor fx:constant="DEFAULT" />
