@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 
 import com.itm.food.dao.Address;
 import com.itm.food.dao.Customer;
+import com.itm.food.dao.Restaurant;
 import com.itm.food.model.AddressDB;
 import com.itm.food.model.CustomerDB;
 import com.itm.food.model.RestaurantDB;
@@ -20,6 +21,8 @@ public class CustomerOperations implements IUserOperations, ICustomerPreferences
 
 	CustomerDB customerDB = new CustomerDB();
 	AddressDB addressDB = new AddressDB();
+	RestaurantDB restaurantDB = new RestaurantDB();
+	
 
 	@Override
 	public String addUserDetails(Customer newcustomer) throws Exception {
@@ -124,10 +127,8 @@ public class CustomerOperations implements IUserOperations, ICustomerPreferences
 	void deleteAddress(int addrId) {
 	}
 
-	public ArrayList<String> searchRestaurants(int zipcode) throws Exception {
-		RestaurantDB callrestaurant = new RestaurantDB();
-		return callrestaurant.searchByZip(zipcode);
-
+	public ArrayList<Restaurant> searchRestaurants(int zipcode) throws Exception {
+		return restaurantDB.searchByZip(zipcode);
 	}
 
 	public String validateCustomer(String username, String password) throws SQLException {

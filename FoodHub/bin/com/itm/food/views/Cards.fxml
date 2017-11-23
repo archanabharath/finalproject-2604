@@ -4,6 +4,7 @@
 <?import com.jfoenix.controls.JFXListView?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.GaussianBlur?>
 <?import javafx.scene.image.Image?>
@@ -11,7 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1500.0" style="-fx-background-color: aliceblue;" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.itm.food.controller.CardsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1500.0" style="-fx-background-color: aliceblue;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.itm.food.controller.CardsController">
    <children>
       <ImageView fitHeight="945.0" fitWidth="1500.0" layoutX="10.0" layoutY="10.0" opacity="0.2" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="55.0">
          <image>
@@ -136,56 +137,63 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <JFXTextField focusColor="DEEPSKYBLUE" labelFloat="true" layoutX="38.0" layoutY="208.0" prefHeight="40.0" prefWidth="165.0" promptText="Name on Card" style="-fx-background-color: aliceblue;" unFocusColor="GREY" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0">
+            <JFXTextField fx:id="nameOnCard" focusColor="DEEPSKYBLUE" labelFloat="true" layoutX="38.0" layoutY="208.0" prefHeight="40.0" prefWidth="165.0" promptText="Name on Card" style="-fx-background-color: aliceblue;" unFocusColor="GREY" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </JFXTextField>
-            <JFXTextField focusColor="DEEPSKYBLUE" labelFloat="true" layoutX="38.0" layoutY="283.0" prefHeight="40.0" prefWidth="350.0" promptText="Enter 10 digit card no" style="-fx-background-color: aliceblue;" unFocusColor="GREY" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0">
+            <JFXTextField fx:id="cardNo" focusColor="DEEPSKYBLUE" labelFloat="true" layoutX="38.0" layoutY="283.0" prefHeight="40.0" prefWidth="350.0" promptText="Enter 16 digit card no" style="-fx-background-color: aliceblue;" unFocusColor="GREY" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </JFXTextField>
-            <JFXTextField focusColor="DEEPSKYBLUE" labelFloat="true" layoutX="38.0" layoutY="360.0" prefHeight="40.0" prefWidth="165.0" promptText="Expiry MM" style="-fx-background-color: aliceblue;" unFocusColor="GREY" AnchorPane.leftAnchor="25.0">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </JFXTextField>
-            <JFXTextField focusColor="DEEPSKYBLUE" labelFloat="true" layoutX="223.0" layoutY="361.0" prefHeight="40.0" prefWidth="165.0" promptText="Expiry YYYY" style="-fx-background-color: aliceblue;" unFocusColor="GREY" AnchorPane.rightAnchor="25.0">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </JFXTextField>
-            <JFXButton layoutX="78.0" layoutY="669.0" onMouseReleased="#handleMouseAddPayment" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: white;" text="Add Payment Card" textFill="STEELBLUE" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="75.0">
+            <JFXButton fx:id="addCardBtn" layoutX="78.0" layoutY="669.0" onAction="#handleAddNewCard" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: white;" text="Add  Card" textFill="STEELBLUE" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="669.0">
                <font>
                   <Font size="18.0" />
                </font>
             </JFXButton>
-            <ImageView fitHeight="55.0" fitWidth="45.0" layoutX="47.0" layoutY="439.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="175.0" AnchorPane.topAnchor="430.0">
+            <ImageView fitHeight="55.0" fitWidth="45.0" layoutX="47.0" layoutY="439.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="175.0" AnchorPane.topAnchor="531.0">
                <image>
                   <Image url="@../../../../../asserts/icons8-visa-96.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="55.0" fitWidth="45.0" layoutX="348.0" layoutY="439.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="430.0">
+            <ImageView fitHeight="55.0" fitWidth="45.0" layoutX="348.0" layoutY="439.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="531.0">
                <image>
                   <Image url="@../../../../../asserts/icons8-american-express-96.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="55.0" fitWidth="45.0" layoutX="142.0" layoutY="439.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="125.0" AnchorPane.topAnchor="430.0">
+            <ImageView fitHeight="55.0" fitWidth="45.0" layoutX="142.0" layoutY="439.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="125.0" AnchorPane.topAnchor="531.0">
                <image>
                   <Image url="@../../../../../asserts/icons8-mastercard-96.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="55.0" fitWidth="45.0" layoutX="253.0" layoutY="439.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="430.0">
+            <ImageView fitHeight="55.0" fitWidth="45.0" layoutX="253.0" layoutY="439.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="531.0">
                <image>
                   <Image url="@../../../../../asserts/icons8-discover-96.png" />
                </image>
             </ImageView>
-            <Label layoutX="27.0" layoutY="432.0" prefHeight="40.0" prefWidth="143.0" text="Accepted Payments" textAlignment="CENTER" textFill="STEELBLUE" AnchorPane.leftAnchor="26.0" AnchorPane.topAnchor="431.0">
+            <Label layoutX="27.0" layoutY="432.0" prefHeight="40.0" prefWidth="143.0" text="Accepted Payments" textAlignment="CENTER" textFill="STEELBLUE" AnchorPane.leftAnchor="26.0" AnchorPane.topAnchor="531.0">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
+            <ChoiceBox fx:id="cardtypepicker" layoutX="104.0" layoutY="457.0" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="430.0" />
+            <ChoiceBox fx:id="monthpicker" layoutX="39.0" layoutY="363.0" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="209.0" AnchorPane.topAnchor="360.0" />
+            <ChoiceBox fx:id="yearpicker" layoutX="227.0" layoutY="374.0" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="209.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="360.0" />
+            <AnchorPane fx:id="errorPane" layoutX="10.0" layoutY="10.0" prefHeight="50.0" prefWidth="300.0" visible="false" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="600.0">
+               <children>
+                  <ImageView fitHeight="35.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0">
+                     <image>
+                        <Image url="@../../../../../asserts/icons8-error-96.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="lblErrorMsg" layoutX="60.0" prefHeight="30.0" prefWidth="174.0" text="##Errormsg##" textFill="STEELBLUE" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="10.0">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
    </children>

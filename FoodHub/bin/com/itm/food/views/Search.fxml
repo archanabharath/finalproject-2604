@@ -122,12 +122,12 @@
       </AnchorPane>
       <AnchorPane layoutX="254.0" layoutY="88.0" prefHeight="100.0" prefWidth="1188.0" AnchorPane.bottomAnchor="825.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="75.0">
          <children>
-            <JFXTextField focusColor="DEEPSKYBLUE" labelFloat="true" layoutX="183.0" layoutY="22.0" prefHeight="50.0" prefWidth="750.0" promptText="Enter Address, Zip or City" unFocusColor="GREY" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="25.0">
+            <JFXTextField fx:id="txtSearch" focusColor="DEEPSKYBLUE" labelFloat="true" layoutX="183.0" layoutY="22.0" prefHeight="50.0" prefWidth="750.0" promptText="Enter Address, Zip or City" unFocusColor="GREY" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="25.0">
                <font>
                   <Font size="24.0" />
                </font>
             </JFXTextField>
-            <JFXButton layoutX="921.0" layoutY="24.0" onMouseReleased="#handleMouseSearch" prefHeight="50.0" prefWidth="135.0" style="-fx-background-color: aliceblue;" text="Search" textAlignment="RIGHT" textFill="STEELBLUE" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="25.0">
+            <JFXButton fx:id="btnSearch" layoutX="921.0" layoutY="24.0" onAction="#handleSearch" prefHeight="50.0" prefWidth="135.0" style="-fx-background-color: aliceblue;" text="Search" textAlignment="RIGHT" textFill="STEELBLUE" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="25.0">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
@@ -147,7 +147,7 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <ScrollPane fx:id="scrollPaneRest" layoutX="280.0" layoutY="235.0" prefHeight="656.0" prefWidth="983.0" style="-fx-background-color: ivory;" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="225.0">
+      <ScrollPane fx:id="scrollPaneRest" layoutX="280.0" layoutY="235.0" prefHeight="210.0" prefWidth="1200.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="225.0">
         <content>
           <AnchorPane fx:id="anchorPaneRestList" minHeight="0.0" minWidth="0.0" prefHeight="210.0" prefWidth="1180.0" style="-fx-background-color: ivory;" />
         </content>
