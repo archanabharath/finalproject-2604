@@ -7,8 +7,6 @@ import org.apache.log4j.Logger;
 import com.itm.food.dao.Customer;
 import com.itm.food.dao.Restaurant;
 import com.itm.food.dao.operation.CustomerOperations;
-import com.itm.food.model.RestaurantDB;
-import com.mysql.fabric.xmlrpc.base.Array;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

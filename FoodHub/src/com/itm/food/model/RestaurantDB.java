@@ -71,11 +71,12 @@ public class RestaurantDB extends AbstractDB implements IDBAccess {
 				newRestaurant.setAddress1(restaurantsResultSet.getString(4));
 				newRestaurant.setAddress2(restaurantsResultSet.getString(5));
 				newRestaurant.setCity(restaurantsResultSet.getString(6));
-				newRestaurant.setRating(restaurantsResultSet.getInt(7));
-				newRestaurant.setPhone(restaurantsResultSet.getString(8));
-				newRestaurant.setEmail(restaurantsResultSet.getString(9));
-				newRestaurant.setLatitude(restaurantsResultSet.getDouble(10));
-				newRestaurant.setLongitude(restaurantsResultSet.getDouble(11));
+				newRestaurant.setZipcode(restaurantsResultSet.getInt(7));
+				newRestaurant.setRating(restaurantsResultSet.getInt(8));
+				newRestaurant.setPhone(restaurantsResultSet.getString(9));
+				newRestaurant.setEmail(restaurantsResultSet.getString(10));
+				newRestaurant.setLatitude(restaurantsResultSet.getDouble(11));
+				newRestaurant.setLongitude(restaurantsResultSet.getDouble(12));
 
 				// add all restaurants to the RestaurantsList ArrayList
 				restaurantsList.add(newRestaurant);

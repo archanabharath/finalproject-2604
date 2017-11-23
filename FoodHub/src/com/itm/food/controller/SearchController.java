@@ -3,8 +3,6 @@ package com.itm.food.controller;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
-import java.util.Map.Entry;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
@@ -17,6 +15,7 @@ import com.jfoenix.controls.JFXTextField;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
@@ -72,7 +71,7 @@ public class SearchController extends BaseController {
 			GeoLocator geoLocator = new GeoLocator();
 			geoLocator.getDistanceMatrix(distanceTimeMap);
 
-			// Set the Distance & TimeToTravel to Resturant object.
+			// Set the Distance & TimeToTravel to Restaurant object.
 			for (Restaurant restaurant : BaseController.preferredRestaurants) {
 				restaurant.setDistance(distanceTimeMap.get(restaurant.getRestaurantId()).getMiles());
 				restaurant.setTimeToTravel(distanceTimeMap.get(restaurant.getRestaurantId()).getDuration());
@@ -124,7 +123,7 @@ public class SearchController extends BaseController {
 		// Add a image view for restaurant
 		ImageView imageView = new ImageView();
 		imageView.setFitHeight(150.0);
-		imageView.setFitWidth(200.0);
+		imageView.setFitWidth(180.0);
 		imageView.setLayoutX(45.0);
 		imageView.setLayoutY(25.0);
 		imageView.setPickOnBounds(true);
@@ -167,7 +166,7 @@ public class SearchController extends BaseController {
 		// </font>
 		// </Label>
 		Label lblRestDesc = new Label();
-		lblRestDesc.setLayoutX(210.0);
+		lblRestDesc.setLayoutX(200.0);
 		lblRestDesc.setLayoutY(70.0);
 		lblRestDesc.prefHeight(100.0);
 		lblRestDesc.prefWidth(100.0);
@@ -208,6 +207,55 @@ public class SearchController extends BaseController {
 		AnchorPane.setRightAnchor(lblRestTravelTime, 75.0);
 		AnchorPane.setBottomAnchor(lblRestTravelTime, 20.0);
 		pane.getChildren().add(lblRestTravelTime);
+		
+//		<Label text="[Address]" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="200.0">
+//        <font>
+//           <Font size="18.0" />
+//        </font>
+//     </Label>
+		StringBuilder buildAddress = new StringBuilder();
+		buildAddress.append(BaseController.preferredRestaurants.get(count).getAddress1() + " ");
+		buildAddress.append(BaseController.preferredRestaurants.get(count).getAddress2() + " ");
+		buildAddress.append(BaseController.preferredRestaurants.get(count).getCity() + " ");
+		buildAddress.append(BaseController.preferredRestaurants.get(count).getZipcode() + "\r\n");
+		buildAddress.append(BaseController.preferredRestaurants.get(count).getPhone() + " ");
+		buildAddress.append(BaseController.preferredRestaurants.get(count).getEmail());
+		Label lblAddress = new Label();
+		lblAddress.setText(buildAddress.toString());
+		lblAddress.setFont(new Font(18.0));
+		lblAddress.setWrapText(true);
+		lblAddress.setLayoutX(200.0);
+		lblAddress.setLayoutY(70.0);
+		AnchorPane.setLeftAnchor(lblAddress, 200.0);
+		AnchorPane.setBottomAnchor(lblAddress, 20.0);
+		pane.getChildren().add(lblAddress);
+		
+		// <Hyperlink onAction="#handleViewMenu" text="View Menu"
+		// AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="20.0">
+		// <font>
+		// <Font size="18.0" />
+		// </font>
+		// </Hyperlink>
+		Hyperlink viewMenuLink = new Hyperlink();
+		viewMenuLink.setText("View Menu");
+		viewMenuLink.setFont(new Font(18.0));
+		viewMenuLink.setLayoutX(1020.0);
+		viewMenuLink.setLayoutY(70.0);
+		AnchorPane.setRightAnchor(viewMenuLink, 100.0);
+		AnchorPane.setTopAnchor(viewMenuLink, 20.0);
+		pane.getChildren().add(viewMenuLink);
+		
+		
+		Label lblRating = new Label();
+		lblRating.setText("Rating: " + BaseController.preferredRestaurants.get(count).getRating());
+		lblRating.setFont(new Font(15.0));
+		lblRating.setWrapText(true);
+		lblRating.setLayoutX(900.0);
+		lblRating.setLayoutY(70.0);
+		AnchorPane.setRightAnchor(lblRating, 100.0);
+		AnchorPane.setTopAnchor(lblRating, 60.0);
+		pane.getChildren().add(lblRating);
+		
 
 		anchorPaneRestList.getChildren().add(pane);
 	}
