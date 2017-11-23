@@ -1,9 +1,14 @@
 package com.itm.food.controller;
 
+import java.util.ArrayList;
+
 import org.apache.log4j.Logger;
 
 import com.itm.food.dao.Customer;
+import com.itm.food.dao.Restaurant;
 import com.itm.food.dao.operation.CustomerOperations;
+import com.itm.food.model.RestaurantDB;
+import com.mysql.fabric.xmlrpc.base.Array;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,6 +37,7 @@ public abstract class BaseController {
 
 	// Data access objects for logged in member
 	public static Customer authenticatedCustomer = new Customer();
+	public static ArrayList<Restaurant> preferredRestaurents = new ArrayList<Restaurant>();
 
 	@FXML
 	private ImageView imgExit;

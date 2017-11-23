@@ -122,7 +122,7 @@
       </AnchorPane>
       <AnchorPane layoutX="254.0" layoutY="88.0" prefHeight="100.0" prefWidth="1188.0" AnchorPane.bottomAnchor="825.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="75.0">
          <children>
-            <JFXTextField focusColor="DEEPSKYBLUE" labelFloat="true" layoutX="183.0" layoutY="22.0" prefHeight="50.0" prefWidth="750.0" promptText="Enter Address, Zip or City" unFocusColor="GREY" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="25.0">
+            <JFXTextField fx:id="txtSearch" focusColor="DEEPSKYBLUE" labelFloat="true" layoutX="183.0" layoutY="22.0" prefHeight="50.0" prefWidth="750.0" promptText="Enter Address, Zip or City" unFocusColor="GREY" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="25.0">
                <font>
                   <Font size="24.0" />
                </font>

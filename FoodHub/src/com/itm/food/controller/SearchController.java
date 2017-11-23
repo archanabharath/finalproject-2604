@@ -2,7 +2,11 @@ package com.itm.food.controller;
 
 import java.io.File;
 
+import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
+
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,30 +19,62 @@ import javafx.scene.text.Font;
 
 public class SearchController extends BaseController {
 
+	private static final Logger log = Logger.getLogger(SearchController.class);
+
 	@FXML
 	private ScrollPane scrollPaneRest;
 
 	@FXML
 	private AnchorPane anchorPaneRestList;
-	
-    @FXML
-    private JFXButton btnSearch;
+
+	@FXML
+	private JFXButton btnSearch;
+
+	@FXML
+	private JFXTextField txtSearch;
 
 	@Override
 	void init() {
 		super.init();
-		
+		scrollPaneRest.setVisible(false);
+
 	}
-	
-    @FXML
-    void handleSearch(ActionEvent event) {
-    	for (int i = 0; i < 10; i++) {
-			renderSearchList(i);
+
+	@FXML
+	void handleSearch(ActionEvent event) {
+		try {
+			int zipcode = 0;
+			if (StringUtils.isBlank(txtSearch.getText())) {
+				// Get location using GeoLocator
+			} else {
+				zipcode = Integer.parseInt(txtSearch.getText());
+			}
+			// Load restaurant result
+			loadRestaurantSearchResult(zipcode);
+
+			if (BaseController.preferredRestaurents.size() > 0) {
+				// Clean the anchorPaneRestList before rendering the new search
+				// list
+				anchorPaneRestList.getChildren().removeAll(anchorPaneRestList.getChildren());
+				scrollPaneRest.setVisible(true);
+				for (int i = 0; i < BaseController.preferredRestaurents.size(); i++) {
+					renderSearchList(i);
+				}
+			} else {
+				scrollPaneRest.setVisible(false);
+				log.debug("No resutaurant found.");
+			}
+		} catch (Exception ex) {
+			log.error(ex.getMessage());
 		}
-    }
+	}
+
+	void loadRestaurantSearchResult(int zipcode) throws Exception {
+		BaseController.preferredRestaurents.clear();
+		BaseController.preferredRestaurents.addAll(customerOperation.searchRestaurants(zipcode));
+	}
 
 	void renderSearchList(int count) {
-
 		double paneHeightNeeded = count + 1 * 210;
 		double currentPaneHeight = anchorPaneRestList.getPrefHeight();
 		if (paneHeightNeeded <= currentPaneHeight) {
@@ -88,7 +124,7 @@ public class SearchController extends BaseController {
 		lblRestName.setLayoutY(20.0);
 		lblRestName.prefHeight(30.0);
 		lblRestName.prefWidth(900.0);
-		lblRestName.setText("[ResutantName]");
+		lblRestName.setText(BaseController.preferredRestaurents.get(count).getRestaurantName());
 		lblRestName.setWrapText(true);
 		lblRestName.setFont(new Font(24.0));
 		AnchorPane.setLeftAnchor(lblRestName, 200.0);
@@ -105,13 +141,14 @@ public class SearchController extends BaseController {
 		Label lblRestDesc = new Label();
 		lblRestDesc.setLayoutX(210.0);
 		lblRestDesc.setLayoutY(70.0);
-		lblRestDesc.prefHeight(20.0);
-		lblRestDesc.prefWidth(615.0);
-		lblRestDesc.setText("[ResutantDesc]");
+		lblRestDesc.prefHeight(100.0);
+		lblRestDesc.prefWidth(100.0);
+		lblRestDesc.setText(BaseController.preferredRestaurents.get(count).getRestaurantDescription());
 		lblRestDesc.setWrapText(true);
 		lblRestDesc.setFont(new Font(15.0));
 		AnchorPane.setLeftAnchor(lblRestDesc, 200.0);
 		AnchorPane.setTopAnchor(lblRestDesc, 60.0);
+		AnchorPane.setRightAnchor(lblRestDesc, 400.0);
 		pane.getChildren().add(lblRestDesc);
 
 		// <Label layoutX="896.0" layoutY="156.0" text="[0 Miles]"
