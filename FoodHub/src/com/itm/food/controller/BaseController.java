@@ -140,7 +140,7 @@ public abstract class BaseController {
 	}
 
 	void handleSearch() {
-		this.launchScene("Home Screen", "../views/Search.fxml", BaseController.MAIN_SCREEN_WIDTH,
+		this.launchScene("Search Screen", "../views/Search.fxml", BaseController.MAIN_SCREEN_WIDTH,
 				BaseController.MAIN_SCREEN_HEIGHT);
 	}
 

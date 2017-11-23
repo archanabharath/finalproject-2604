@@ -147,9 +147,9 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <ScrollPane layoutX="281.0" layoutY="234.0" prefHeight="656.0" prefWidth="983.0">
+      <ScrollPane fx:id="scrollPaneRest" layoutX="280.0" layoutY="235.0" prefHeight="656.0" prefWidth="983.0" style="-fx-background-color: ivory;" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="225.0">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+          <AnchorPane fx:id="anchorPaneRestList" minHeight="0.0" minWidth="0.0" prefHeight="210.0" prefWidth="1180.0" style="-fx-background-color: ivory;" />
         </content>
       </ScrollPane>
    </children>
