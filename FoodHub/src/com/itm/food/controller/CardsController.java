@@ -140,8 +140,6 @@ public class CardsController extends BaseController {
 	 */
 	public boolean isCardInputValid() {
 
-		System.out.println("validation of card input");
-
 		if (StringUtils.isEmpty(nameOnCard.getText())) {
 			lblErrorMsg.setText("Please enter the name on card");
 			this.errorPane.setVisible(true);

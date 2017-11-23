@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1500.0" style="-fx-background-color: aliceblue;" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.itm.food.controller.AddressController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1500.0" style="-fx-background-color: aliceblue;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.itm.food.controller.AddressController">
    <children>
       <ImageView fitHeight="945.0" fitWidth="1500.0" opacity="0.2" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="55.0">
          <image>
@@ -136,46 +136,60 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <JFXTextField focusColor="DEEPSKYBLUE" labelFloat="true" layoutX="15.0" layoutY="147.0" prefHeight="40.0" prefWidth="165.0" promptText="Firstname" style="-fx-background-color: aliceblue;" unFocusColor="GREY" AnchorPane.leftAnchor="25.0">
+            <JFXTextField fx:id="uFirstName" focusColor="DEEPSKYBLUE" labelFloat="true" layoutX="15.0" layoutY="147.0" prefHeight="40.0" prefWidth="165.0" promptText="Firstname" style="-fx-background-color: aliceblue;" unFocusColor="GREY" AnchorPane.leftAnchor="25.0">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </JFXTextField>
-            <JFXTextField focusColor="DEEPSKYBLUE" labelFloat="true" layoutX="220.0" layoutY="147.0" prefHeight="40.0" prefWidth="165.0" promptText="Lastname" style="-fx-background-color: aliceblue;" unFocusColor="GREY" AnchorPane.rightAnchor="25.0">
+            <JFXTextField fx:id="uLastName" focusColor="DEEPSKYBLUE" labelFloat="true" layoutX="220.0" layoutY="147.0" prefHeight="40.0" prefWidth="165.0" promptText="Lastname" style="-fx-background-color: aliceblue;" unFocusColor="GREY" AnchorPane.rightAnchor="25.0">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </JFXTextField>
-            <JFXTextField focusColor="DEEPSKYBLUE" labelFloat="true" layoutX="28.0" layoutY="213.0" prefHeight="40.0" prefWidth="350.0" promptText="Address 1" style="-fx-background-color: aliceblue;" unFocusColor="GREY" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0">
+            <JFXTextField fx:id="uAddress1" focusColor="DEEPSKYBLUE" labelFloat="true" layoutX="28.0" layoutY="213.0" prefHeight="40.0" prefWidth="350.0" promptText="Address 1" style="-fx-background-color: aliceblue;" unFocusColor="GREY" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="213.0">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </JFXTextField>
-            <JFXTextField focusColor="DEEPSKYBLUE" labelFloat="true" layoutX="33.0" layoutY="299.0" prefHeight="40.0" prefWidth="230.0" promptText="Address 2" style="-fx-background-color: aliceblue;" unFocusColor="GREY" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0">
+            <JFXTextField fx:id="uAddress2" focusColor="DEEPSKYBLUE" labelFloat="true" layoutX="33.0" layoutY="299.0" prefHeight="40.0" prefWidth="230.0" promptText="Address 2" style="-fx-background-color: aliceblue;" unFocusColor="GREY" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="285.0">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </JFXTextField>
-            <JFXTextField focusColor="DEEPSKYBLUE" labelFloat="true" layoutX="28.0" layoutY="385.0" prefHeight="40.0" prefWidth="230.0" promptText="City" style="-fx-background-color: aliceblue;" unFocusColor="GREY" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0">
+            <JFXTextField fx:id="uCity" focusColor="DEEPSKYBLUE" labelFloat="true" layoutX="28.0" layoutY="385.0" prefHeight="40.0" prefWidth="230.0" promptText="City" style="-fx-background-color: aliceblue;" unFocusColor="GREY" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="365.0">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </JFXTextField>
-            <JFXTextField focusColor="DEEPSKYBLUE" labelFloat="true" layoutX="28.0" layoutY="466.0" prefHeight="40.0" prefWidth="230.0" promptText="Zip" style="-fx-background-color: aliceblue;" unFocusColor="GREY" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0">
+            <JFXTextField fx:id="uZipCode" focusColor="DEEPSKYBLUE" labelFloat="true" layoutX="28.0" layoutY="466.0" prefHeight="40.0" prefWidth="230.0" promptText="Zip" style="-fx-background-color: aliceblue;" unFocusColor="GREY" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="450.0">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </JFXTextField>
-            <JFXTextField focusColor="DEEPSKYBLUE" labelFloat="true" layoutX="28.0" layoutY="550.0" prefHeight="40.0" prefWidth="230.0" promptText="Mobile no" style="-fx-background-color: aliceblue;" unFocusColor="GREY" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0">
+            <JFXTextField fx:id="uPhone" focusColor="DEEPSKYBLUE" labelFloat="true" layoutX="28.0" layoutY="550.0" prefHeight="40.0" prefWidth="230.0" promptText="Mobile no" style="-fx-background-color: aliceblue;" unFocusColor="GREY" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="530.0">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </JFXTextField>
-            <JFXButton layoutX="78.0" layoutY="669.0" onMouseReleased="#handleMouseAddAddress" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: white;" text="Add Address" textFill="STEELBLUE" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="75.0">
+            <JFXButton fx:id="addAddressBtn" layoutX="78.0" layoutY="669.0" onAction="#handleAddNewAddress" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: white;" text="Add Address" textFill="STEELBLUE" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="679.0">
                <font>
                   <Font size="18.0" />
                </font>
             </JFXButton>
+            <AnchorPane fx:id="errorPane" prefHeight="50.0" prefWidth="300.0" visible="false" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="600.0">
+               <children>
+                  <ImageView fitHeight="35.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0">
+                     <image>
+                        <Image url="@../../../../../asserts/icons8-error-96.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="lblErrorMsg" layoutX="60.0" prefHeight="30.0" prefWidth="174.0" text="##Errormsg##" textFill="STEELBLUE" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="10.0">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
    </children>
