@@ -25,5 +25,7 @@ public class MySQLQuery {
 			+ "WHERE CUSTOMER_ID = ?";
 
 	public static String SQL_VALIDATE_USERNAME = "SELECT count(CUSTOMER_ID) FROM ofod.ofod_customer WHERE USERNAME = ?";
+	
+	public static String SQL_FETCH_CUSTOMER_PROFILE = "SELECT FIRST_NAME,LAST_NAME,EMAIL,USERNAME,PASSWORD,DOB FROM ofod.ofod_customer WHERE CUSTOMER_ID = ?";
 
 }

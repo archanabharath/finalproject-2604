@@ -48,10 +48,10 @@ public class CustomerOperations implements IUserOperations, ICustomerPreferences
 		return addressId;
 	}
 
-	 @Override
-	 public void updateUserDetails(Customer updateCustomer) {
-	 customerDB.update(updateCustomer);
-	 }
+	@Override
+	public void updateUserDetails(Customer updateCustomer) {
+		customerDB.update(updateCustomer);
+	}
 
 	@Override
 	public void updateOrder(int orderId) {
@@ -125,20 +125,39 @@ public class CustomerOperations implements IUserOperations, ICustomerPreferences
 	void deleteAddress(int addrId) {
 	}
 
+	/*
+	 * Fetch the list of restaurants within the zip code that is searched for
+	 */
 	public ArrayList<Restaurant> searchRestaurants(int zipcode) throws Exception {
 		return restaurantDB.searchByZip(zipcode);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.itm.food.dao.operation.IUserOperations#validateCustomer(java.lang.String,
+	 * java.lang.String) Authenticate the user information while logging in
+	 */
 	public String validateCustomer(String username, String password) throws SQLException {
 		tempcustid = customerDB.customerLoginCheck(username, password);
 		log.debug("CO-custid:" + tempcustid);
 		return tempcustid;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.itm.food.dao.operation.IUserOperations#getCustomer(java.lang.String)
+	 * Fetch the customer_id for the current session
+	 */
 	public Customer getCustomer(String customerId) throws Exception {
 		return customerDB.find(customerId);
 	}
 
+	/*
+	 * Fetch the list of addresses of the customer
+	 */
 	public List<Address> getCustomerAddress(Address getAddress) throws Exception {
 		return addressDB.getAddresses(getAddress.getCustId());
 
@@ -150,5 +169,14 @@ public class CustomerOperations implements IUserOperations, ICustomerPreferences
 	 */
 	public boolean isUserNamePresent(String username) throws ClassNotFoundException, SQLException {
 		return customerDB.validateUsername(username);
+	}
+
+	/*
+	 * Fetch the customer details from customer table using the customer id This is
+	 * used to display the customer's information on profile page
+	 */
+	public Customer getCustomerProfile(String transferCustId) throws Exception {
+		return customerDB.pullCustomerDetails(transferCustId);
+
 	}
 }
