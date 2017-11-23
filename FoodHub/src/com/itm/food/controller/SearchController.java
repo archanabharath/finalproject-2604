@@ -1,5 +1,10 @@
 package com.itm.food.controller;
 
+import java.io.File;
+
+import com.jfoenix.controls.JFXButton;
+
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -15,14 +20,22 @@ public class SearchController extends BaseController {
 
 	@FXML
 	private AnchorPane anchorPaneRestList;
+	
+    @FXML
+    private JFXButton btnSearch;
 
 	@Override
 	void init() {
 		super.init();
-		for (int i = 0; i < 10; i++) {
+		
+	}
+	
+    @FXML
+    void handleSearch(ActionEvent event) {
+    	for (int i = 0; i < 10; i++) {
 			renderSearchList(i);
 		}
-	}
+    }
 
 	void renderSearchList(int count) {
 
@@ -54,8 +67,13 @@ public class SearchController extends BaseController {
 		imageView.setPreserveRatio(false);
 		AnchorPane.setLeftAnchor(imageView, 10.0);
 		AnchorPane.setTopAnchor(imageView, 25.0);
-		// System.out.println(getClass().getResource("../../../../asserts/icons8-restaurant-96.png").toString());
-		//imageView.setImage(new Image("http://mikecann.co.uk/wp-content/uploads/2009/12/javafx_logo_color_1.jpg"));
+		try {
+			String url = "file://" + new File("").getCanonicalFile().getParent().toString() + File.separatorChar
+					+ "FoodHub/asserts/default-restaurent.png";
+			imageView.setImage(new Image(url));
+		} catch (Exception ex) {
+			System.out.println(ex.getMessage());
+		}
 		pane.getChildren().add(imageView);
 
 		// <Label layoutX="202.0" layoutY="22.0" prefHeight="30.0"
@@ -127,18 +145,6 @@ public class SearchController extends BaseController {
 		pane.getChildren().add(lblRestTravelTime);
 
 		anchorPaneRestList.getChildren().add(pane);
-
-		// for(int i=1; i<=5; i++) {
-		// ScrollPane vbox = new ScrollPane();
-		// vbox.setPrefSize(200, 100);
-		// Label lbl1 = new Label();
-		// lbl1.setText("TEST");
-		// vbox.setContent(lbl1);
-		//
-		// AnchorPane.setTopAnchor(vbox, 10.0 * i * 2); // obviously provide
-		// your own constraints
-		// searchResultsPane.getChildren().add(vbox);
-
 	}
 
 }
