@@ -1,6 +1,7 @@
 package com.itm.food.dao.operation;
 
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -49,7 +50,7 @@ public class CustomerOperations implements IUserOperations, ICustomerPreferences
 	}
 
 	@Override
-	public void updateUserDetails(Customer updateCustomer) {
+	public void updateUserDetails(Customer updateCustomer) throws ParseException {
 		customerDB.update(updateCustomer);
 	}
 

@@ -4,10 +4,9 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 
-import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 
 import com.itm.food.dao.AbstractDomain;
@@ -49,39 +48,28 @@ public class CustomerDB extends AbstractDB implements IDBAccess {
 		return customerObj.getCustomerID();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.itm.food.model.IDBAccess#update(com.itm.food.dao.AbstractDomain)
+	 * update customer details
+	 */
 	@Override
-	public <T extends AbstractDomain> void update(T object) {
+	public <T extends AbstractDomain> void update(T object) throws ParseException {
 		Customer updateCustDetails = (Customer) object;
 		String updateProfileQuery = null;
 		log.debug("Customer");
-		if (StringUtils.isNotEmpty(updateCustDetails.getFirstName())) {
-			updateProfileQuery = "UPDATE ofod.ofod_customer SET FIRST_NAME = '" + updateCustDetails.getFirstName()
-					+ "' WHERE CUSTOMER_ID = ? ;";
-			if (StringUtils.isNotEmpty(updateCustDetails.getLastName())) {
-				updateProfileQuery = "UPDATE ofod.ofod_customer SET FIRST_NAME = '" + updateCustDetails.getFirstName()
-						+ "'," + "LAST_NAME = '" + updateCustDetails.getLastName() + "' WHERE CUSTOMER_ID = ? ;";
-				if (StringUtils.isNotEmpty(updateCustDetails.getEmail())) {
 
-					updateProfileQuery = "UPDATE ofod.ofod_customer SET FIRST_NAME = '"
-							+ updateCustDetails.getFirstName() + "'," + "LAST_NAME = '"
-							+ updateCustDetails.getLastName() + "'," + "EMAIL = '" + updateCustDetails.getEmail()
-							+ "' WHERE CUSTOMER_ID = ? ;";
-					if (StringUtils.isNotEmpty(updateCustDetails.getPassword())) {
-						updateProfileQuery = "UPDATE ofod.ofod_customer SET FIRST_NAME = '"
-								+ updateCustDetails.getFirstName() + "'," + "LAST_NAME = '"
-								+ updateCustDetails.getLastName() + "'," + "EMAIL = '" + updateCustDetails.getEmail()
-								+ "'," + "PASSWORD = '" + updateCustDetails.getPassword() + "' WHERE CUSTOMER_ID = ? ;";
-
-					} // firstname, lastname,email,password input not empty
-				} // firstname,lastname,email input not empty
-
-			} // first name and last name input not empty
-
-		} // first name input alone not empty
+		updateProfileQuery = "UPDATE ofod.ofod_customer SET FIRST_NAME = '" + updateCustDetails.getFirstName() + "',"
+				+ "LAST_NAME = '" + updateCustDetails.getLastName() + "'," + "EMAIL = '" + updateCustDetails.getEmail()
+				+ "'," + "USERNAME = '" + updateCustDetails.getUsername() + "'," + "DOB = '"
+				+ (new Date(new SimpleDateFormat("yyyy-MM-dd").parse(updateCustDetails.getDOB()).getTime())) + "',"
+				+ "PASSWORD = '" + updateCustDetails.getEncryptedPassword() + "' WHERE CUSTOMER_ID = '"
+				+ updateCustDetails.getCustomerID() + "';";
 
 		try {
 			PreparedStatement preparestatement = this.getDBConnection().prepareStatement(updateProfileQuery);
-			preparestatement.setString(1, updateCustDetails.getCustomerID());
+
 			preparestatement.executeUpdate();
 			log.debug("Customer details updated successfully");
 		} catch (ClassNotFoundException e) {
@@ -137,6 +125,9 @@ public class CustomerDB extends AbstractDB implements IDBAccess {
 
 	}
 
+	/*
+	 * validate if the entered login credentials are valid for the customer
+	 */
 	public String customerLoginCheck(String username, String password) throws SQLException {
 
 		String custId = null;
@@ -164,6 +155,9 @@ public class CustomerDB extends AbstractDB implements IDBAccess {
 		return custId;
 	}
 
+	/*
+	 * validate if the username entered by the user already exists or not
+	 */
 	public boolean validateUsername(String userName) throws SQLException, ClassNotFoundException {
 		boolean usernameFound = true;
 
