@@ -18,6 +18,8 @@ public class Restaurant {
 	double latitude;
 	double longitude;
 	String cuisineId;
+	String distance;
+	String timeToTravel;
 	ArrayList<Menu> menu[];
 	double restaurantOverallRating;
 	ArrayList<UserReview> restaurantReview[];
@@ -275,6 +277,36 @@ public class Restaurant {
 	 */
 	public void setRestaurantReview(ArrayList<UserReview>[] restaurantReview) {
 		this.restaurantReview = restaurantReview;
+	}
+
+	/**
+	 * @return the distance
+	 */
+	public String getDistance() {
+		return distance;
+	}
+
+	/**
+	 * @param distance
+	 *            the distance to set
+	 */
+	public void setDistance(String distance) {
+		this.distance = distance;
+	}
+
+	/**
+	 * @return the timeToTravel
+	 */
+	public String getTimeToTravel() {
+		return timeToTravel;
+	}
+
+	/**
+	 * @param timeToTravel
+	 *            the timeToTravel to set
+	 */
+	public void setTimeToTravel(String timeToTravel) {
+		this.timeToTravel = timeToTravel;
 	}
 
 }

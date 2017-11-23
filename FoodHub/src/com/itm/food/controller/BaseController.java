@@ -37,7 +37,7 @@ public abstract class BaseController {
 
 	// Data access objects for logged in member
 	public static Customer authenticatedCustomer = new Customer();
-	public static ArrayList<Restaurant> preferredRestaurents = new ArrayList<Restaurant>();
+	public static ArrayList<Restaurant> preferredRestaurants = new ArrayList<Restaurant>();
 
 	@FXML
 	private ImageView imgExit;

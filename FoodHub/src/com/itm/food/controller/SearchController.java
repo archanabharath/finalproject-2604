@@ -1,10 +1,17 @@
 package com.itm.food.controller;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+import java.util.Map.Entry;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 
+import com.itm.food.dao.Restaurant;
+import com.itm.food.util.DistanceMatrix;
+import com.itm.food.util.GeoLocator;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 
@@ -52,12 +59,33 @@ public class SearchController extends BaseController {
 			// Load restaurant result
 			loadRestaurantSearchResult(zipcode);
 
-			if (BaseController.preferredRestaurents.size() > 0) {
+			// Retrieve the Distance and time for the restaurant from customer
+			// place.
+			Map<String, DistanceMatrix> distanceTimeMap = new HashMap<String, DistanceMatrix>();
+			for (Restaurant restaurant : BaseController.preferredRestaurants) {
+				DistanceMatrix dMatrix = new DistanceMatrix();
+				dMatrix.setDestLat(String.valueOf(restaurant.getLatitude()));
+				dMatrix.setDestLng(String.valueOf(restaurant.getLongitude()));
+				distanceTimeMap.put(restaurant.getRestaurantId(), dMatrix);
+			}
+
+			GeoLocator geoLocator = new GeoLocator();
+			geoLocator.getDistanceMatrix(distanceTimeMap);
+
+			// Set the Distance & TimeToTravel to Resturant object.
+			for (Restaurant restaurant : BaseController.preferredRestaurants) {
+				restaurant.setDistance(distanceTimeMap.get(restaurant.getRestaurantId()).getMiles());
+				restaurant.setTimeToTravel(distanceTimeMap.get(restaurant.getRestaurantId()).getDuration());
+			}
+
+			if (BaseController.preferredRestaurants.size() > 0) {
 				// Clean the anchorPaneRestList before rendering the new search
 				// list
 				anchorPaneRestList.getChildren().removeAll(anchorPaneRestList.getChildren());
+				anchorPaneRestList.setPrefHeight(210.0);
 				scrollPaneRest.setVisible(true);
-				for (int i = 0; i < BaseController.preferredRestaurents.size(); i++) {
+
+				for (int i = 0; i < BaseController.preferredRestaurants.size(); i++) {
 					renderSearchList(i);
 				}
 			} else {
@@ -70,8 +98,8 @@ public class SearchController extends BaseController {
 	}
 
 	void loadRestaurantSearchResult(int zipcode) throws Exception {
-		BaseController.preferredRestaurents.clear();
-		BaseController.preferredRestaurents.addAll(customerOperation.searchRestaurants(zipcode));
+		BaseController.preferredRestaurants.clear();
+		BaseController.preferredRestaurants.addAll(customerOperation.searchRestaurants(zipcode));
 	}
 
 	void renderSearchList(int count) {
@@ -124,7 +152,7 @@ public class SearchController extends BaseController {
 		lblRestName.setLayoutY(20.0);
 		lblRestName.prefHeight(30.0);
 		lblRestName.prefWidth(900.0);
-		lblRestName.setText(BaseController.preferredRestaurents.get(count).getRestaurantName());
+		lblRestName.setText(BaseController.preferredRestaurants.get(count).getRestaurantName());
 		lblRestName.setWrapText(true);
 		lblRestName.setFont(new Font(24.0));
 		AnchorPane.setLeftAnchor(lblRestName, 200.0);
@@ -143,7 +171,7 @@ public class SearchController extends BaseController {
 		lblRestDesc.setLayoutY(70.0);
 		lblRestDesc.prefHeight(100.0);
 		lblRestDesc.prefWidth(100.0);
-		lblRestDesc.setText(BaseController.preferredRestaurents.get(count).getRestaurantDescription());
+		lblRestDesc.setText(BaseController.preferredRestaurants.get(count).getRestaurantDescription());
 		lblRestDesc.setWrapText(true);
 		lblRestDesc.setFont(new Font(15.0));
 		AnchorPane.setLeftAnchor(lblRestDesc, 200.0);
@@ -160,7 +188,7 @@ public class SearchController extends BaseController {
 		Label lblRestDistance = new Label();
 		lblRestDistance.setLayoutX(896.0);
 		lblRestDistance.setLayoutY(156.0);
-		lblRestDistance.setText("[0 Miles]");
+		lblRestDistance.setText(BaseController.preferredRestaurants.get(count).getDistance());
 		lblRestDistance.setFont(new Font(18.0));
 		AnchorPane.setRightAnchor(lblRestDistance, 200.0);
 		AnchorPane.setBottomAnchor(lblRestDistance, 20.0);
@@ -175,7 +203,7 @@ public class SearchController extends BaseController {
 		Label lblRestTravelTime = new Label();
 		lblRestTravelTime.setLayoutX(1021.0);
 		lblRestTravelTime.setLayoutY(156.0);
-		lblRestTravelTime.setText("[0 Mins]");
+		lblRestTravelTime.setText(BaseController.preferredRestaurants.get(count).getTimeToTravel());
 		lblRestTravelTime.setFont(new Font(18.0));
 		AnchorPane.setRightAnchor(lblRestTravelTime, 75.0);
 		AnchorPane.setBottomAnchor(lblRestTravelTime, 20.0);
