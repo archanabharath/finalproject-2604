@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
@@ -112,7 +113,7 @@ public class CustomerDB extends AbstractDB implements IDBAccess {
 				customer.setPassword(rs.getString(8));
 				log.debug("Customer found Successfully.");
 			} else {
-				log.error("Username not found");
+				log.error("Customer not found");
 			}
 			preparedstatement.close();
 		} catch (Exception e) {
@@ -185,6 +186,42 @@ public class CustomerDB extends AbstractDB implements IDBAccess {
 		}
 
 		return usernameFound;
+
+	}
+
+	/*
+	 * Retrieve customer information from customer table to print it on profile page
+	 */
+
+	public Customer pullCustomerDetails(String transferCustId) throws SQLException {
+
+		Customer userProfile = new Customer();
+		try {
+			PreparedStatement preparestatement = this.getDBConnection()
+					.prepareStatement(MySQLQuery.SQL_FETCH_CUSTOMER_PROFILE);
+			preparestatement.setString(1, transferCustId);
+			ResultSet customerProfilers;
+			customerProfilers = preparestatement.executeQuery();
+			while (customerProfilers.next()) {
+				userProfile.setFirstName(customerProfilers.getString(1));
+				userProfile.setLastName(customerProfilers.getString(2));
+				userProfile.setEmail(customerProfilers.getString(3));
+				userProfile.setUsername(customerProfilers.getString(4));
+				userProfile.setEncryptedPassword(customerProfilers.getString(5));
+				userProfile.setDOB(customerProfilers.getDate(6).toString());
+
+			}
+		} catch (ClassNotFoundException e) {
+			log.error(e.getMessage());
+
+		} catch (SQLException e) {
+			log.error(e.getMessage());
+
+		} finally {
+			this.closeConnection();
+
+		}
+		return userProfile;
 
 	}
 
