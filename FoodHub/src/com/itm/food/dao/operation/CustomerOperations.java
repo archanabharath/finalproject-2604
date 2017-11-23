@@ -22,7 +22,6 @@ public class CustomerOperations implements IUserOperations, ICustomerPreferences
 	CustomerDB customerDB = new CustomerDB();
 	AddressDB addressDB = new AddressDB();
 	RestaurantDB restaurantDB = new RestaurantDB();
-	
 
 	@Override
 	public String addUserDetails(Customer newcustomer) throws Exception {
@@ -49,11 +48,10 @@ public class CustomerOperations implements IUserOperations, ICustomerPreferences
 		return addressId;
 	}
 
-	@Override
-	public void updateUserDetails(Customer updateCustomer) {
-		customerDB.update(updateCustomer);
-
-	}
+	 @Override
+	 public void updateUserDetails(Customer updateCustomer) {
+	 customerDB.update(updateCustomer);
+	 }
 
 	@Override
 	public void updateOrder(int orderId) {
@@ -151,10 +149,6 @@ public class CustomerOperations implements IUserOperations, ICustomerPreferences
 	 * register
 	 */
 	public boolean isUserNamePresent(String username) throws ClassNotFoundException, SQLException {
-
 		return customerDB.validateUsername(username);
-
 	}
-
-	
 }
