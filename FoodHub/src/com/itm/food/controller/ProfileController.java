@@ -1,8 +1,9 @@
 package com.itm.food.controller;
 
-import java.sql.Date;
-import java.text.SimpleDateFormat;
+import java.text.ParseException;
+import java.time.LocalDate;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 
 import com.itm.food.dao.Customer;
@@ -23,6 +24,7 @@ public class ProfileController extends BaseController {
 
 	private static final Logger log = Logger.getLogger(ProfileController.class);
 
+	
 	@FXML
 	private Label txtFullname;
 
@@ -61,17 +63,32 @@ public class ProfileController extends BaseController {
 
 	@FXML
 	void handleProfileUpdate(ActionEvent event) {
-		if (!isUpdateDataValid()) {
-			return;
-		}
-		updateUserProfile(BaseController.authenticatedCustomer.getCustomerID());
+		
+		log.info("entering profile controller");
+		try {
+			if (!isUpdateDataValid()) {
+				return;
+			}
+			updateUserProfile(BaseController.authenticatedCustomer.getCustomerID());
 
-		setSuccessAlert();
-		loadUserProfile(BaseController.authenticatedCustomer.getCustomerID());
-		// resetInputFields();
+			setSuccessAlert();
+			loadUserProfile(BaseController.authenticatedCustomer.getCustomerID());// load the updated data to the
+																					// profile window
+
+			BaseController.authenticatedCustomer = customerOperation
+					.getCustomer(BaseController.authenticatedCustomer.getCustomerID()); // load the updated user
+																						// information to the base page
+			handleProfile();// to update the user name on top right corner of profile page
+		} catch (Exception e) {
+			log.error(e.getMessage());
+
+		}
 
 	}
 
+	/*
+	 * invoking the profile page from base controller on clicking profile section
+	 */
 	@FXML
 	void handleMouseUpdateProfile(MouseEvent event) {
 		handleUpdateProfile();
@@ -82,11 +99,21 @@ public class ProfileController extends BaseController {
 	}
 
 	@Override
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.itm.food.controller.BaseController#init()
+	 * 
+	 * populate the user details on profile page
+	 */
 	void init() {
 		super.init();
 		loadUserProfile(BaseController.authenticatedCustomer.getCustomerID());
 	}
 
+	/*
+	 * update the new details of the customer in the table
+	 */
 	public void updateUserProfile(String transferCustid) {
 
 		updateCustomer.setCustomerID(transferCustid);
@@ -95,22 +122,37 @@ public class ProfileController extends BaseController {
 		updateCustomer.setEmail(pEmail.getText());
 		updateCustomer.setUsername(pUserName.getText());
 		updateCustomer.setPassword(pPassword.getText());
-		addUpdates.updateUserDetails(updateCustomer);
+		updateCustomer.setDOB(pDOB.getValue().toString());
+		try {
+			addUpdates.updateUserDetails(updateCustomer);
+		} catch (ParseException e) {
+			log.error(e.getMessage());
+		}
 
 	}
 
+	/*
+	 * validate the new password that the user sets for his account
+	 */
 	public boolean isUpdateDataValid() {
-		if (pPassword.getText().compareTo(pRePassword.getText()) != 0) {
-			lblErrorMsg.setText("Passwords does not match");
-			this.errorPane.setVisible(true);
-			return false;
 
+		if (StringUtils.isNotEmpty(pRePassword.getText())) {
+
+			if (pPassword.getText().compareTo(pRePassword.getText()) != 0) {
+				lblErrorMsg.setText("Passwords does not match");
+				this.errorPane.setVisible(true);
+				return false;
+
+			}
 		}
 		this.errorPane.setVisible(false);
 		return true;
 
 	}
 
+	/*
+	 * alert the user that the user details are updated successfully
+	 */
 	public void setSuccessAlert() {
 		Alert addressAddedMsg = new Alert(Alert.AlertType.INFORMATION);
 		addressAddedMsg.setTitle("Customer details update");
@@ -119,16 +161,9 @@ public class ProfileController extends BaseController {
 		addressAddedMsg.showAndWait();
 	}
 
-	private void resetInputFields() {
-		pFirstName.setText(null);
-		pLastName.setText(null);
-		pEmail.setText(null);
-		pUserName.setText(null);
-		pPassword.setText(null);
-		pRePassword.setText(null);
-		pDOB.setValue(null);
-	}
-
+	/*
+	 * Load the updated user profile data to the profile page
+	 */
 	public void loadUserProfile(String transferCustId) {
 		updateCustomer.setCustomerID(transferCustId);
 		try {
@@ -138,8 +173,7 @@ public class ProfileController extends BaseController {
 			pEmail.setText(updateCustomer.getEmail());
 			pUserName.setText(updateCustomer.getUsername());
 			pPassword.setText(updateCustomer.getPassword());
-			// pDOB.setValue(new Date(new
-			// SimpleDateFormat("yyyy-MM-dd").parse(updateCustomer.getDOB()).getTime()));
+			pDOB.setValue(LocalDate.parse(updateCustomer.getDOB()));
 
 		} catch (Exception e) {
 			log.error(e.getMessage());

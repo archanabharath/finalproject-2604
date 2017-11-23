@@ -1,5 +1,6 @@
 package com.itm.food.dao.operation;
 
+import java.text.ParseException;
 import java.util.Date;
 
 import com.itm.food.dao.Address;
@@ -35,5 +36,5 @@ public interface IUserOperations {
 
 	void Logout() throws Exception;
 
-	void updateUserDetails(Customer updateCustomer);
+	void updateUserDetails(Customer updateCustomer) throws ParseException;
 }
