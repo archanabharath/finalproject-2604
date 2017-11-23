@@ -6,14 +6,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 
 import com.itm.food.dao.AbstractDomain;
 import com.itm.food.dao.Customer;
 import com.itm.food.model.db.MySQLQuery;
 import com.itm.food.util.PasswordUtil;
-
-
 
 public class CustomerDB extends AbstractDB implements IDBAccess {
 
@@ -51,7 +50,44 @@ public class CustomerDB extends AbstractDB implements IDBAccess {
 
 	@Override
 	public <T extends AbstractDomain> void update(T object) {
-		// TODO Auto-generated method stub
+		Customer updateCustDetails = (Customer) object;
+		String updateProfileQuery = null;
+		log.debug("Customer");
+		if (StringUtils.isNotEmpty(updateCustDetails.getFirstName())) {
+			updateProfileQuery = "UPDATE ofod.ofod_customer SET FIRST_NAME = '" + updateCustDetails.getFirstName()
+					+ "' WHERE CUSTOMER_ID = ? ;";
+			if (StringUtils.isNotEmpty(updateCustDetails.getLastName())) {
+				updateProfileQuery = "UPDATE ofod.ofod_customer SET FIRST_NAME = '" + updateCustDetails.getFirstName()
+						+ "'," + "LAST_NAME = '" + updateCustDetails.getLastName() + "' WHERE CUSTOMER_ID = ? ;";
+				if (StringUtils.isNotEmpty(updateCustDetails.getEmail())) {
+
+					updateProfileQuery = "UPDATE ofod.ofod_customer SET FIRST_NAME = '"
+							+ updateCustDetails.getFirstName() + "'," + "LAST_NAME = '"
+							+ updateCustDetails.getLastName() + "'," + "EMAIL = '" + updateCustDetails.getEmail()
+							+ "' WHERE CUSTOMER_ID = ? ;";
+					if (StringUtils.isNotEmpty(updateCustDetails.getPassword())) {
+						updateProfileQuery = "UPDATE ofod.ofod_customer SET FIRST_NAME = '"
+								+ updateCustDetails.getFirstName() + "'," + "LAST_NAME = '"
+								+ updateCustDetails.getLastName() + "'," + "EMAIL = '" + updateCustDetails.getEmail()
+								+ "'," + "PASSWORD = '" + updateCustDetails.getPassword() + "' WHERE CUSTOMER_ID = ? ;";
+
+					} // firstname, lastname,email,password input not empty
+				} // firstname,lastname,email input not empty
+
+			} // first name and last name input not empty
+
+		} // first name input alone not empty
+
+		try {
+			PreparedStatement preparestatement = this.getDBConnection().prepareStatement(updateProfileQuery);
+			preparestatement.setString(1, updateCustDetails.getCustomerID());
+			preparestatement.executeUpdate();
+			log.debug("Customer details updated successfully");
+		} catch (ClassNotFoundException e) {
+			log.error(e.getMessage());
+		} catch (SQLException e) {
+			log.error(e.getSQLState());
+		}
 
 	}
 
@@ -74,7 +110,7 @@ public class CustomerDB extends AbstractDB implements IDBAccess {
 				customer.setEmail(rs.getString(6));
 				customer.setUsername(rs.getString(7));
 				customer.setPassword(rs.getString(8));
-				log.debug("Customer Loaded Successfully.");
+				log.debug("Customer found Successfully.");
 			} else {
 				log.error("Username not found");
 			}
@@ -126,29 +162,30 @@ public class CustomerDB extends AbstractDB implements IDBAccess {
 
 		return custId;
 	}
-	
+
 	public boolean validateUsername(String userName) throws SQLException, ClassNotFoundException {
 		boolean usernameFound = true;
-		
+
 		try {
-			PreparedStatement preparestatement = this.getDBConnection().prepareStatement(MySQLQuery.SQL_VALIDATE_USERNAME);
+			PreparedStatement preparestatement = this.getDBConnection()
+					.prepareStatement(MySQLQuery.SQL_VALIDATE_USERNAME);
 			preparestatement.setString(1, userName);
 			ResultSet usernamers;
 			usernamers = preparestatement.executeQuery();
-			while(usernamers.next()) {
-			if (usernamers.getInt(1) == 0) {
-				usernameFound = false;
-			}
+			while (usernamers.next()) {
+				if (usernamers.getInt(1) == 0) {
+					usernameFound = false;
+				}
 			}
 			preparestatement.close();
-		}catch(SQLException e) {
+		} catch (SQLException e) {
 			log.error(e.getMessage());
-		}finally {
+		} finally {
 			this.closeConnection();
 		}
-		
+
 		return usernameFound;
-		
+
 	}
 
 }

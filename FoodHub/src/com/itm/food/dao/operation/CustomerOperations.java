@@ -47,8 +47,8 @@ public class CustomerOperations implements IUserOperations, ICustomerPreferences
 	}
 
 	@Override
-	public void updateUserDetails(int userId) {
-		// TODO Auto-generated method stub
+	public void updateUserDetails(Customer updateCustomer) {
+		customerDB.update(updateCustomer);
 
 	}
 
@@ -154,4 +154,6 @@ public class CustomerOperations implements IUserOperations, ICustomerPreferences
 		return customerDB.validateUsername(username);
 
 	}
+
+	
 }
