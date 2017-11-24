@@ -1,5 +1,7 @@
 package com.itm.food.controller;
 
+import java.util.List;
+
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 
@@ -16,7 +18,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 public class CardsController extends BaseController {
 
@@ -46,12 +51,19 @@ public class CardsController extends BaseController {
 	@FXML
 	private AnchorPane errorPane;
 
+	@FXML
+	private ScrollPane cardscrollpane;
+
+	@FXML
+	private AnchorPane cardanchorpane;
+
 	ObservableList<String> months;
 	ObservableList<String> years;
 	ObservableList<String> typesOfCard;
 	String pageCardId = null;
+	ObservableList<Payment> cardsList;
 
-	/*
+	/**
 	 * This the method which handles the overall functioning of adding new cards of
 	 * customers
 	 */
@@ -72,9 +84,12 @@ public class CardsController extends BaseController {
 		// Reset all input fields
 		resetInputFields();
 
+		//Refresh the screen
+		handleCards();
+
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 * 
 	 * @see com.itm.food.controller.BaseController#init()
@@ -83,10 +98,15 @@ public class CardsController extends BaseController {
 	void init() {
 		super.init();
 		setPickerData();
+		// list the cards already present for the customer
+		listAllCards();
+		cardscrollpane.setVisible(false);
+		// rendering the cards view
+		renderCardsList();
 
 	}
 
-	/*
+	/**
 	 * Fetch the input details from screen and add the card to the payment table
 	 */
 	public void cardInsertToDB(String transferCustId) {
@@ -105,7 +125,7 @@ public class CardsController extends BaseController {
 
 	}
 
-	/*
+	/**
 	 * set the dropdown(choicebox) values for month, card and year here in this
 	 * method
 	 */
@@ -134,7 +154,7 @@ public class CardsController extends BaseController {
 		cardtypepicker.setStyle("-fx-font: normal bold 14px");
 	}
 
-	/*
+	/**
 	 * validate the user input details and throw error messages on screen
 	 * accordingly
 	 */
@@ -176,7 +196,7 @@ public class CardsController extends BaseController {
 
 	}
 
-	/*
+	/**
 	 * Reset the input fields once the card is added to the payment table
 	 */
 	public void resetInputFields() {
@@ -188,6 +208,9 @@ public class CardsController extends BaseController {
 		cardtypepicker.setValue("--card-type--");
 	}
 
+	/**
+	 * Alert the customer on successfully adding the new card
+	 */
 	public void cardAddedAlert() {
 		Alert cardAddedMsg = new Alert(Alert.AlertType.INFORMATION);
 
@@ -197,4 +220,164 @@ public class CardsController extends BaseController {
 		cardAddedMsg.showAndWait();
 	}
 
+	/**
+	 * Get the list of cards from payment table and store it in the cardsList
+	 */
+	public void listAllCards() {
+		try {
+			BaseController.authenticatedCustomer
+					.setPayments(getAllCards(BaseController.authenticatedCustomer.getCustomerID()));
+		} catch (Exception e) {
+			log.error(e.getMessage());
+		}
+	}
+
+	/**
+	 * place the call to access the payments table to retrieve the list of cards
+	 * 
+	 * @param pagesCustId
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Payment> getAllCards(String pagesCustId) throws Exception {
+		Payment getCards = new Payment();
+		getCards.setCustomerid(pagesCustId);
+		PaymentOperations getCardsOperations = new PaymentOperations();
+		return getCardsOperations.getCards(getCards);
+	}
+
+	/**
+	 * render the view of the cards list on screen
+	 */
+	public void renderCardsList() {
+
+		cardanchorpane.getChildren().removeAll(cardanchorpane.getChildren());
+		cardanchorpane.setPrefHeight(150.0);
+		cardscrollpane.setPrefWidth(600.0);
+		cardscrollpane.setVisible(true);
+		for (int i = 0; i < BaseController.authenticatedCustomer.getPayments().size(); i++) {
+			renderEachCard(i);
+		}
+
+	}
+
+	/**
+	 * render the view of individual cards on screen
+	 * 
+	 * @param cardIndex
+	 */
+	private void renderEachCard(int cardIndex) {
+
+		String maskPattern = "XXXX-XXXX-XXXX-####";
+
+		double requiredAPaneHeight = cardIndex * 150.0;
+		double currentAPaneHeight = cardanchorpane.getPrefHeight();
+		if (requiredAPaneHeight <= currentAPaneHeight) {
+			cardanchorpane.setPrefHeight(currentAPaneHeight + 150.0);
+		}
+
+		// Add a inner pane container
+
+		// design the pane for holding every card
+		AnchorPane individualCardPane = new AnchorPane();
+		individualCardPane.setLayoutY(cardIndex * 150); // TODO INCREMENT THIS 210.0
+		individualCardPane.setPrefHeight(150.0);
+		individualCardPane.setPrefWidth(600.0);
+		individualCardPane.setStyle("-fx-border-color: teal;");
+
+		// add card information to the inner individual panes
+
+		// adding name on card first
+		Label lblNameOnCard = new Label();
+		lblNameOnCard.setLayoutX(200.0);
+		lblNameOnCard.setLayoutY(20.0);
+		lblNameOnCard.prefHeight(30.0);
+		lblNameOnCard.prefWidth(600.0);
+		lblNameOnCard.setText(BaseController.authenticatedCustomer.getPayments().get(cardIndex).getNameOnCard());
+		lblNameOnCard.setTextFill(Color.CRIMSON);
+		lblNameOnCard.setWrapText(true);
+		lblNameOnCard.setFont(new Font(24.0));
+		AnchorPane.setLeftAnchor(lblNameOnCard, 10.0);
+		AnchorPane.setTopAnchor(lblNameOnCard, 20.0);
+		individualCardPane.getChildren().add(lblNameOnCard);
+
+		// adding card number for display
+		Label lblCardNo = new Label();
+		lblCardNo.setLayoutX(200.0);
+		lblCardNo.setLayoutY(20.0);
+		lblCardNo.prefHeight(30.0);
+		lblCardNo.prefWidth(600.0);
+		lblCardNo.setText("Card No: " + maskCardNo(
+				String.valueOf(BaseController.authenticatedCustomer.getPayments().get(cardIndex).getCardNo()),
+				maskPattern));
+		
+		lblCardNo.setWrapText(true);
+		lblCardNo.setFont(new Font(15.0));
+		AnchorPane.setLeftAnchor(lblCardNo, 20.0);
+		AnchorPane.setTopAnchor(lblCardNo, 60.0);
+		AnchorPane.setRightAnchor(lblCardNo, 300.0);
+		individualCardPane.getChildren().add(lblCardNo);
+
+		// adding card type for display
+		Label lblCardType = new Label();
+		lblCardType.setLayoutX(200.0);
+		lblCardType.setLayoutY(20.0);
+		lblCardType.prefHeight(30.0);
+		lblCardType.prefWidth(600.0);
+		lblCardType.setText(
+				"Card Type: " + BaseController.authenticatedCustomer.getPayments().get(cardIndex).getCardType());
+		lblCardType.setWrapText(true);
+		lblCardType.setFont(new Font(15.0));
+		AnchorPane.setLeftAnchor(lblCardType, 20.0);
+		AnchorPane.setTopAnchor(lblCardType, 90.0);
+		AnchorPane.setRightAnchor(lblCardType, 300.0);
+		individualCardPane.getChildren().add(lblCardType);
+
+		// adding card expiry for display
+		Label lblCardExpiry = new Label();
+		lblCardExpiry.setLayoutX(200.0);
+		lblCardExpiry.setLayoutY(20.0);
+		lblCardExpiry.prefHeight(30.0);
+		lblCardExpiry.prefWidth(600.0);
+		lblCardExpiry.setText(
+				"Card Expiry: " + BaseController.authenticatedCustomer.getPayments().get(cardIndex).getCardExpDate());
+		lblCardExpiry.setWrapText(true);
+		lblCardExpiry.setFont(new Font(15.0));
+		AnchorPane.setLeftAnchor(lblCardExpiry, 20.0);
+		AnchorPane.setTopAnchor(lblCardExpiry, 120.0);
+		AnchorPane.setRightAnchor(lblCardExpiry, 300.0);
+		individualCardPane.getChildren().add(lblCardExpiry);
+
+		cardanchorpane.getChildren().add(individualCardPane);
+
+	}
+
+	/**
+	 * Mask card number before printing since it is sensitive data
+	 * 
+	 * @param cardNoForMasking
+	 * @param maskPattern
+	 * @return
+	 */
+	public String maskCardNo(String cardNoForMasking, String maskPattern) {
+
+		// format the number
+		int index = 0;
+		StringBuilder maskedNumber = new StringBuilder();
+		for (int i = 0; i < maskPattern.length(); i++) {
+			char c = maskPattern.charAt(i);
+			if (c == '#') {
+				maskedNumber.append(cardNoForMasking.charAt(index));
+				index++;
+			} else if (c == 'X') {
+				maskedNumber.append(c);
+				index++;
+			} else {
+				maskedNumber.append(c);
+			}
+		}
+
+		// return the masked number
+		return maskedNumber.toString();
+	}
 }
