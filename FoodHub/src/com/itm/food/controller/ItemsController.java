@@ -1,10 +1,12 @@
 package com.itm.food.controller;
 
 import java.io.File;
+import java.util.ArrayList;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 
+import com.itm.food.dao.OrderItem;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXButton.ButtonType;
 
@@ -53,6 +55,9 @@ public class ItemsController extends BaseController {
 		try {
 			BaseController.currentRestaurant.setItems(
 					customerOperation.getItemsByRestaurant(BaseController.currentRestaurant.getRestaurantId()));
+			if (null == BaseController.foodBasket.getOrderItems()) {
+				BaseController.foodBasket.setOrderItems(new ArrayList<OrderItem>());
+			}
 		} catch (Exception e) {
 			log.error(e.getMessage());
 		}
@@ -86,15 +91,15 @@ public class ItemsController extends BaseController {
 		}
 	}
 
-	void renderItem(int count) {
-		double paneHeightNeeded = count + 1 * 150;
+	void renderItem(int index) {
+		double paneHeightNeeded = index + 1 * 150;
 		double currentPaneHeight = anchorPaneItemList.getPrefHeight();
 		if (paneHeightNeeded <= currentPaneHeight) {
 			anchorPaneItemList.setPrefHeight(currentPaneHeight + 150.0);
 		}
 
 		AnchorPane pane = new AnchorPane();
-		pane.setLayoutY(count * 150); // TODO INCREMENT THIS 150
+		pane.setLayoutY(index * 150); // TODO INCREMENT THIS 150
 		pane.setPrefHeight(150.0);
 		pane.setPrefWidth(1180.0);
 		pane.setStyle("-fx-border-color: lightgrey;");
@@ -122,7 +127,7 @@ public class ItemsController extends BaseController {
 		lblItemName.setLayoutY(20.0);
 		lblItemName.prefHeight(30.0);
 		lblItemName.prefWidth(700.0);
-		lblItemName.setText(BaseController.currentRestaurant.getItems().get(count).getItemName());
+		lblItemName.setText(BaseController.currentRestaurant.getItems().get(index).getItemName());
 		lblItemName.setWrapText(true);
 		lblItemName.setFont(new Font(24.0));
 		AnchorPane.setLeftAnchor(lblItemName, 200.0);
@@ -134,7 +139,7 @@ public class ItemsController extends BaseController {
 		lblItemDesc.setLayoutY(70.0);
 		lblItemDesc.prefHeight(100.0);
 		lblItemDesc.prefWidth(100.0);
-		lblItemDesc.setText(BaseController.currentRestaurant.getItems().get(count).getItemDesc());
+		lblItemDesc.setText(BaseController.currentRestaurant.getItems().get(index).getItemDesc());
 		lblItemDesc.setWrapText(true);
 		lblItemDesc.setFont(new Font(15.0));
 		AnchorPane.setLeftAnchor(lblItemDesc, 200.0);
@@ -143,7 +148,7 @@ public class ItemsController extends BaseController {
 		pane.getChildren().add(lblItemDesc);
 
 		Label lblPrice = new Label();
-		lblPrice.setText("$" + BaseController.currentRestaurant.getItems().get(count).getItemPrice());
+		lblPrice.setText("$" + BaseController.currentRestaurant.getItems().get(index).getItemPrice());
 		lblPrice.setFont(new Font(24.0));
 		lblPrice.setWrapText(true);
 		lblPrice.setLayoutX(1020.0);
@@ -155,7 +160,7 @@ public class ItemsController extends BaseController {
 
 		Label lblRating = new Label();
 		lblRating.setText(
-				"Item Rating: " + BaseController.currentRestaurant.getItems().get(count).getItemOverallRating());
+				"Item Rating: " + BaseController.currentRestaurant.getItems().get(index).getItemOverallRating());
 		lblRating.setFont(new Font(15.0));
 		lblRating.setWrapText(true);
 		lblRating.setLayoutX(900.0);
@@ -174,7 +179,7 @@ public class ItemsController extends BaseController {
 		addToBasket.setLayoutY(70.0);
 		AnchorPane.setTopAnchor(addToBasket, 100.0);
 		AnchorPane.setLeftAnchor(addToBasket, 850.0);
-		if (BaseController.itemsInBasket.contains(BaseController.currentRestaurant.getItems().get(count).getItemId())) {
+		if (isItemPresent(BaseController.currentRestaurant.getItems().get(index).getItemId()) != -1) {
 			addToBasket.setText("Remove from Basket");
 			addToBasket.setStyle("-fx-background-color: TOMATO;");
 			addToBasket.setTextFill(Paint.valueOf("WHITE"));
@@ -183,27 +188,68 @@ public class ItemsController extends BaseController {
 			addToBasket.setStyle("-fx-background-color: GOLD;");
 			addToBasket.setTextFill(Paint.valueOf("#4682b4"));
 		}
-		
+
 		addToBasket.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
 				if (addToBasket.getText().equals("Add to Basket")) {
-					BaseController.itemsInBasket.add(String.valueOf(BaseController.currentRestaurant.getItems().get(count).getItemId()));
+					addItemToBasket(index);
 					addToBasket.setText("Remove from Basket");
 					addToBasket.setStyle("-fx-background-color: TOMATO;");
 					addToBasket.setTextFill(Paint.valueOf("WHITE"));
 				} else {
-					BaseController.itemsInBasket.remove(String.valueOf(BaseController.currentRestaurant.getItems().get(count).getItemId()));
+					removeItemFromBasket(index);
 					addToBasket.setText("Add to Basket");
 					addToBasket.setStyle("-fx-background-color: GOLD;");
 					addToBasket.setTextFill(Paint.valueOf("#4682b4"));
 				}
-				log.debug("Item id: " + BaseController.currentRestaurant.getItems().get(count).getItemId() + " added to basket");
-				log.debug("Current Items in basket: " + BaseController.itemsInBasket.toString());
 			}
 		});
 		pane.getChildren().add(addToBasket);
 
 		anchorPaneItemList.getChildren().add(pane);
+	}
+
+	private void addItemToBasket(int index) {
+		OrderItem itemsToBasket = new OrderItem();
+		itemsToBasket.setRestaurantId(BaseController.currentRestaurant.getRestaurantId());
+		itemsToBasket.setItemId(BaseController.currentRestaurant.getItems().get(index).getItemId());
+		itemsToBasket.setItemPrice(BaseController.currentRestaurant.getItems().get(index).getItemPrice());
+		itemsToBasket.setItemQuantity(1);
+		BaseController.foodBasket.getOrderItems().add(itemsToBasket);
+		enableOrDisableBasketButtonIfNeeded();
+		log.debug(
+				"Item id: " + BaseController.currentRestaurant.getItems().get(index).getItemId() + " added to basket");
+		log.debug("Current Items in basket: " + BaseController.foodBasket.getOrderItems().toString());
+	}
+
+	private void removeItemFromBasket(int index) {
+		String itemToBeRemoved = BaseController.currentRestaurant.getItems().get(index).getItemId();
+		int indexToBeRemoved = -1;
+		indexToBeRemoved = isItemPresent(itemToBeRemoved);
+		if(indexToBeRemoved != -1) {
+		BaseController.foodBasket.getOrderItems().remove(indexToBeRemoved);
+		}
+		enableOrDisableBasketButtonIfNeeded();
+		log.debug("Item id: " + BaseController.currentRestaurant.getItems().get(index).getItemId()
+				+ " removed from basket");
+		log.debug("Current Items in basket: " + BaseController.foodBasket.getOrderItems().toString());
+	}
+	
+	private int isItemPresent(String itemsId) {
+		for (int i = 0; i < BaseController.foodBasket.getOrderItems().size(); i++) {
+			if (BaseController.foodBasket.getOrderItems().get(i).getItemId().equals(itemsId)) {
+				return i;
+			}
+		}
+		return -1;
+	}
+
+	private void enableOrDisableBasketButtonIfNeeded() {
+		if (null != BaseController.foodBasket.getOrderItems() && BaseController.foodBasket.getOrderItems().size() > 0) {
+			btnBasket.setDisable(false);
+		} else {
+			btnBasket.setDisable(true);
+		}
 	}
 }

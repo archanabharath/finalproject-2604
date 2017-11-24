@@ -57,7 +57,7 @@
 						<Image url="@../../../../../asserts/icons8-search-96.png" />
 					</image>
 				</ImageView>
-				<JFXButton layoutX="20.0" layoutY="241.0" onMouseReleased="#handleMouseBasket" prefHeight="50.0" prefWidth="135.0" text="Basket" textAlignment="RIGHT" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="0.0">
+				<JFXButton fx:id="btnBasket" layoutX="20.0" layoutY="241.0" onMouseReleased="#handleMouseBasket" prefHeight="50.0" prefWidth="135.0" text="Basket" textAlignment="RIGHT" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="0.0">
 					<font>
 						<Font name="System Bold" size="18.0" />
 					</font>
