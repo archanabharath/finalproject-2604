@@ -127,9 +127,9 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <ScrollPane fx:id="scrollpane" layoutX="232.0" layoutY="226.0" prefHeight="600.0" prefWidth="650.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="120.0">
+            <ScrollPane fx:id="scrollpane" layoutX="232.0" layoutY="226.0" prefHeight="600.0" prefWidth="650.0" style="-fx-background-color: teal;" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="120.0">
               <content>
-                <AnchorPane fx:id="addressanchor" focusTraversable="true" layoutX="10.0" minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="623.0">
+                <AnchorPane fx:id="addressanchor" focusTraversable="true" layoutX="10.0" minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="623.0" style="-fx-background-color: silver;">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets></AnchorPane>

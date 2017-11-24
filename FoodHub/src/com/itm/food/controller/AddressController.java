@@ -20,7 +20,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 public class AddressController extends BaseController {
@@ -98,9 +97,9 @@ public class AddressController extends BaseController {
 	@Override
 	void init() {
 		super.init();
-		listAddressesOfCustomers(); // Retrieving the list of addresses of the customer
+		listAddressesOfCustomers();
 		scrollpane.setVisible(false);
-		renderAddressList(); // rendering the addresses in a scroll pane for better viewability
+		renderAddressList();
 
 	}
 
@@ -149,7 +148,11 @@ public class AddressController extends BaseController {
 			this.errorPane.setVisible(true);
 			return false;
 		}
-
+		if (StringUtils.isEmpty(uAddress2.getText())) {
+			lblErrorMsg.setText("Please enter Address Line2");
+			this.errorPane.setVisible(true);
+			return false;
+		}
 		if (StringUtils.isEmpty(uCity.getText())) {
 			lblErrorMsg.setText("Please enter the City");
 			this.errorPane.setVisible(true);
@@ -196,15 +199,16 @@ public class AddressController extends BaseController {
 
 	}
 
-	/**
-	 * storing the retrieved addresses in the List of address dao
-	 */
 	public void listAddressesOfCustomers() {
 
 		try {
 
+			// obAddress = FXCollections
+			// .observableArrayList(getAllAddresses(BaseController.authenticatedCustomer.getCustomerID()));
 			BaseController.authenticatedCustomer
 					.setAddresses(getAllAddresses(BaseController.authenticatedCustomer.getCustomerID()));
+			// addresslistview.setItems(obAddress);
+			// addresslistview.setStyle("-fx-font: normal bold 14px 'Tahoma'");
 
 		} catch (Exception e) {
 			log.error(e.getMessage());
@@ -212,13 +216,6 @@ public class AddressController extends BaseController {
 
 	}
 
-	/**
-	 * getting all addresses from the address table for the given customer id
-	 * 
-	 * @param pagesCustId
-	 * @return
-	 * @throws Exception
-	 */
 	public List<Address> getAllAddresses(String pagesCustId) throws Exception {
 
 		Address getAddress = new Address();
@@ -228,10 +225,6 @@ public class AddressController extends BaseController {
 		return getCustAddresses.getCustomerAddress(getAddress);
 
 	}
-
-	/**
-	 * setting up the outer anchor pane in scroll pane
-	 */
 
 	public void renderAddressList() {
 		addressanchor.getChildren().removeAll(addressanchor.getChildren());
@@ -243,12 +236,6 @@ public class AddressController extends BaseController {
 
 	}
 
-	/**
-	 * formatting and displaying every address in separate anchor panes
-	 * 
-	 * @param addressIndex
-	 */
-
 	public void renderEachAddress(int addressIndex) {
 
 		double requiredAPaneHeight = addressIndex * 200.0;
@@ -257,6 +244,8 @@ public class AddressController extends BaseController {
 			addressanchor.setPrefHeight(currentAPaneHeight + 200.0);
 		}
 
+		// <AnchorPane prefHeight="200.0" prefWidth="1180.0"
+		// style="-fx-border-color: lightgrey;">
 		// Add a inner pane container
 
 		// design the pane for holding every address
@@ -266,8 +255,7 @@ public class AddressController extends BaseController {
 		individualPane.setPrefWidth(624.0);
 		individualPane.setStyle("-fx-border-color: teal;");
 
-		// add address information to the inner individual panes
-
+		// add address information to the individual panes
 		// adding customer name first
 		Label lblCustName = new Label();
 		lblCustName.setLayoutX(200.0);
@@ -278,7 +266,6 @@ public class AddressController extends BaseController {
 				+ BaseController.authenticatedCustomer.getAddresses().get(addressIndex).getLname());
 		lblCustName.setWrapText(true);
 		lblCustName.setFont(new Font(24.0));
-		lblCustName.setTextFill(Color.CRIMSON);
 		AnchorPane.setLeftAnchor(lblCustName, 10.0);
 		AnchorPane.setTopAnchor(lblCustName, 20.0);
 		individualPane.getChildren().add(lblCustName);

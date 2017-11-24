@@ -22,7 +22,7 @@ public class Customer extends AbstractDomain {
 	String phoneNo;
 	String email;
 	List<Address> addresses;
-	List<Payment> allCards;
+	List<Payment> payments;
 
 	/**
 	 * @return the customerID
@@ -189,7 +189,7 @@ public class Customer extends AbstractDomain {
 	 * @return the payments
 	 */
 	public List<Payment> getPayments() {
-		return allCards;
+		return payments;
 	}
 
 	/**
@@ -197,7 +197,7 @@ public class Customer extends AbstractDomain {
 	 *            the payments to set
 	 */
 	public void setPayments(List<Payment> payments) {
-		this.allCards = payments;
+		this.payments = payments;
 	}
 
 }

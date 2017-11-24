@@ -22,7 +22,7 @@ public class MySQLQuery {
 			+ " WHERE CUSTOMER_ID = ?";
 
 	public static String SQL_GET_ALL_CARDS_OF_CUSTOMER = "SELECT NAME_ON_CARD,CARD_TYPE,EXPIRY,CARD_NO FROM ofod.ofod_payment "
-			+ "WHERE CUSTOMER_ID = ? ORDER BY NAME_ON_CARD";
+			+ "WHERE CUSTOMER_ID = ?";
 
 	public static String SQL_VALIDATE_USERNAME = "SELECT count(CUSTOMER_ID) FROM ofod.ofod_customer WHERE USERNAME = ?";
 	
