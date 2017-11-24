@@ -4,12 +4,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 
 import com.itm.food.dao.AbstractDomain;
 import com.itm.food.dao.Restaurant;
-import com.itm.food.model.db.MySQLQuery;
 
 public class RestaurantDB extends AbstractDB implements IDBAccess {
 
@@ -45,8 +45,8 @@ public class RestaurantDB extends AbstractDB implements IDBAccess {
 
 	}
 
-	public ArrayList<Restaurant> searchByZip(int zipcode) throws SQLException {
-		log.debug("Searching restaurant for zip: " + zipcode);
+	public ArrayList<Restaurant> searchByZip(List<Integer> zipcodes) throws SQLException {
+		log.debug("Searching restaurant for zip: " + zipcodes);
 		ArrayList<Restaurant> restaurantsList = new ArrayList<Restaurant>();
 
 		// Retrieving columns
@@ -54,9 +54,27 @@ public class RestaurantDB extends AbstractDB implements IDBAccess {
 		// from
 		// ofod.ofod_restaurant table
 		try {
+			
+			StringBuilder parameterBuilder = new StringBuilder();
+	        parameterBuilder.append(" (");
+	        for (int i = 0; i < zipcodes.size(); i++) {
+	            parameterBuilder.append("?");
+	            if (zipcodes.size() > i + 1) {
+	                parameterBuilder.append(",");
+	            }
+	        }
+	        parameterBuilder.append(")");
+
+
+	        String sqlQuery = "SELECT RESTAURANT_ID,RESTAURANT_NAME,DESCRIPTION,ADDRESS1,ADDRESS2,CITY,ZIPCODE,RATING,"
+			+ "PHONE,EMAIL,LATITUDE,LONGITUDE FROM ofod.ofod_restaurant WHERE ZIPCODE IN" + parameterBuilder.toString() + " ORDER BY RATING DESC";
+			
 			PreparedStatement preparedstatement = this.getDBConnection()
-					.prepareStatement(MySQLQuery.SQL_GET_RESTAURANTS_BY_ZIP);
-			preparedstatement.setInt(1, zipcode);
+					.prepareStatement(sqlQuery);
+			for (int i = 1; i < zipcodes.size() + 1; i++) {
+				preparedstatement.setInt(i, (int) zipcodes.get(i - 1));
+	        }
+			//preparedstatement.setString(1, StringUtils.join(zipcodes, ","));
 			ResultSet restaurantsResultSet;
 			restaurantsResultSet = preparedstatement.executeQuery();
 

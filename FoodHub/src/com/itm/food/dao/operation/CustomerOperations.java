@@ -132,8 +132,8 @@ public class CustomerOperations implements IUserOperations, ICustomerPreferences
 	/*
 	 * Fetch the list of restaurants within the zip code that is searched for
 	 */
-	public ArrayList<Restaurant> searchRestaurants(int zipcode) throws Exception {
-		return restaurantDB.searchByZip(zipcode);
+	public ArrayList<Restaurant> searchRestaurants(List<Integer> zipcodes) throws Exception {
+		return restaurantDB.searchByZip(zipcodes);
 	}
 
 	/*

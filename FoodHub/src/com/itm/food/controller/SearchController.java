@@ -2,6 +2,7 @@ package com.itm.food.controller;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
@@ -53,14 +54,20 @@ public class SearchController extends BaseController {
 	@FXML
 	void handleSearch(ActionEvent event) {
 		try {
-			int zipcode = 0;
+			GeoLocator geoLocator; 
 			if (StringUtils.isBlank(txtSearch.getText())) {
 				// Get location using GeoLocator
+				geoLocator = new GeoLocator();
+				geoLocator.getCurrentGeoCordinates();
 			} else {
-				zipcode = Integer.parseInt(txtSearch.getText());
+				geoLocator = new GeoLocator(txtSearch.getText());
+				geoLocator.lookupGeocoding();
 			}
+			
+			List<Integer> nearByzipcodes = geoLocator.getNearByZipCodes();
+			
 			// Load restaurant result
-			loadRestaurantSearchResult(zipcode);
+			loadRestaurantSearchResult(nearByzipcodes);
 
 			// Retrieve the Distance and time for the restaurant from customer
 			// place.
@@ -72,7 +79,6 @@ public class SearchController extends BaseController {
 				distanceTimeMap.put(restaurant.getRestaurantId(), dMatrix);
 			}
 
-			GeoLocator geoLocator = new GeoLocator();
 			geoLocator.getDistanceMatrix(distanceTimeMap);
 
 			// Set the Distance & TimeToTravel to Restaurant object.
@@ -87,9 +93,9 @@ public class SearchController extends BaseController {
 		}
 	}
 
-	void loadRestaurantSearchResult(int zipcode) throws Exception {
+	void loadRestaurantSearchResult(List<Integer> zipcodes) throws Exception {
 		BaseController.preferredRestaurants.clear();
-		BaseController.preferredRestaurants.addAll(customerOperation.searchRestaurants(zipcode));
+		BaseController.preferredRestaurants.addAll(customerOperation.searchRestaurants(zipcodes));
 	}
 	
 	void renderRestaurantList() {

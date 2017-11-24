@@ -170,16 +170,18 @@ public class ItemsController extends BaseController {
 		addToBasket.prefWidth(120.0);
 		addToBasket.setTextFill(Paint.valueOf("#4682b4"));
 		addToBasket.setButtonType(ButtonType.RAISED);
-		addToBasket.setStyle("-fx-background-color: GOLD;");
 		addToBasket.setLayoutX(850.0);
 		addToBasket.setLayoutY(70.0);
 		AnchorPane.setTopAnchor(addToBasket, 100.0);
 		AnchorPane.setLeftAnchor(addToBasket, 850.0);
 		if (BaseController.itemsInBasket.contains(BaseController.currentRestaurant.getItems().get(count).getItemId())) {
 			addToBasket.setText("Remove from Basket");
+			addToBasket.setStyle("-fx-background-color: TOMATO;");
+			addToBasket.setTextFill(Paint.valueOf("WHITE"));
 		} else {
 			addToBasket.setText("Add to Basket");
-
+			addToBasket.setStyle("-fx-background-color: GOLD;");
+			addToBasket.setTextFill(Paint.valueOf("#4682b4"));
 		}
 		
 		addToBasket.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
@@ -188,9 +190,13 @@ public class ItemsController extends BaseController {
 				if (addToBasket.getText().equals("Add to Basket")) {
 					BaseController.itemsInBasket.add(String.valueOf(BaseController.currentRestaurant.getItems().get(count).getItemId()));
 					addToBasket.setText("Remove from Basket");
+					addToBasket.setStyle("-fx-background-color: TOMATO;");
+					addToBasket.setTextFill(Paint.valueOf("WHITE"));
 				} else {
 					BaseController.itemsInBasket.remove(String.valueOf(BaseController.currentRestaurant.getItems().get(count).getItemId()));
 					addToBasket.setText("Add to Basket");
+					addToBasket.setStyle("-fx-background-color: GOLD;");
+					addToBasket.setTextFill(Paint.valueOf("#4682b4"));
 				}
 				log.debug("Item id: " + BaseController.currentRestaurant.getItems().get(count).getItemId() + " added to basket");
 				log.debug("Current Items in basket: " + BaseController.itemsInBasket.toString());

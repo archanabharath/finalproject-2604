@@ -135,10 +135,7 @@
          </children></AnchorPane>
 		<ScrollPane fx:id="scrollPaneRest" layoutX="280.0" layoutY="235.0" prefHeight="210.0" prefWidth="1200.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="225.0">
 			<content>
-				<AnchorPane fx:id="anchorPaneItemList" layoutY="0.0" prefHeight="150.0" prefWidth="1195.0" style="-fx-border-color: lightgrey;">
-               <children>
-                  <JFXButton buttonType="RAISED" layoutX="733.0" layoutY="80.0" style="-fx-border-color: steelblue;" text="Add to Basket" textFill="STEELBLUE" />
-               </children></AnchorPane>
+				<AnchorPane fx:id="anchorPaneItemList" layoutY="0.0" prefHeight="150.0" prefWidth="1190.0" style="-fx-border-color: lightgrey;" />
 			</content>
 		</ScrollPane>
 	</children>

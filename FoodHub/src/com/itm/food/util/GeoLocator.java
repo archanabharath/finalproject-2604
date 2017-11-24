@@ -24,6 +24,7 @@ public class GeoLocator {
 	private static String GOOGLE_MAPS_API = "https://maps.googleapis.com/maps/api";
 	private static String GOOGLE_LAT_LNG_PARAM = "/geocode/json?latlng=%s,%s&key=%s";
 	private static String GOOGLE_DISTANCE_PARAM = "/distancematrix/json?units=imperial&origins=%s,%s&destinations=%s&key=%s";
+	private static String GOOGLE_ADDRESS_PARAM = "/geocode/json?address=%s&key=%s";
 	private static String GOOGLE_API_KEY = "AIzaSyDn711I7K9deULNR9VBNXWRfdh1V3LX99w";
 
 	private static String GEONAME_API = "http://api.geonames.org/findNearbyPostalCodesJSON";
@@ -32,14 +33,19 @@ public class GeoLocator {
 
 	private String latitude;
 	private String longitude;
+	private String address;
 
 	public GeoLocator() {
-		getGeoCordinates();
+		getCurrentGeoCordinates();
 	}
 
 	public GeoLocator(String latitude, String longitude) {
 		this.setLatitude(latitude);
 		this.setLongitude(longitude);
+	}
+
+	public GeoLocator(String address) {
+		this.address = address;
 	}
 
 	/**
@@ -70,6 +76,21 @@ public class GeoLocator {
 	 */
 	public void setLongitude(String longitude) {
 		this.longitude = longitude;
+	}
+
+	/**
+	 * @return the address
+	 */
+	public String getAddress() {
+		return address;
+	}
+
+	/**
+	 * @param address
+	 *            the address to set
+	 */
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	/**
@@ -106,7 +127,7 @@ public class GeoLocator {
 	 * 
 	 * @return String address
 	 */
-	public String getReverseGeocoding() {
+	public void lookupReverseGeocoding() {
 		String address = "";
 		try {
 			String response = getHttpResponse(GOOGLE_MAPS_API + String
@@ -118,8 +139,30 @@ public class GeoLocator {
 		} catch (Exception ex) {
 			log.error(ex.getMessage());
 		}
-		log.debug("Fetched address: " + address);
-		return address;
+		log.debug("lookupReverseGeocoding - Fetched address: " + address);
+		this.setAddress(address);
+	}
+
+	/**
+	 * Method to get the reverse Geo-coding for the provide coordinates
+	 * 
+	 * @return String address
+	 */
+	public void lookupGeocoding() {
+		try {
+			String response = getHttpResponse(GOOGLE_MAPS_API + String
+					.format(GOOGLE_ADDRESS_PARAM, this.getAddress().replaceAll(" ", "+") , GOOGLE_API_KEY).toString());
+			JSONObject resObj = (JSONObject) new JSONParser().parse(response);
+			JSONArray results = (JSONArray) resObj.get("results");
+			JSONObject addrObj = (JSONObject) results.get(0);
+			JSONObject geometryObj = (JSONObject) addrObj.get("geometry");
+			JSONObject locationObj = (JSONObject) geometryObj.get("location");
+			this.setLatitude(String.valueOf(locationObj.get("lat")));
+			this.setLongitude(String.valueOf(locationObj.get("lng")));
+		} catch (Exception ex) {
+			log.error(ex.getMessage());
+		}
+		log.debug("lookupGeocoding - Fetched Lat/Lng: " + this.getLatitude() + "/" + this.getLongitude());
 	}
 
 	/**
@@ -141,7 +184,7 @@ public class GeoLocator {
 		} catch (Exception ex) {
 			log.error(ex.getMessage());
 		}
-		log.debug("Fetched near by ZIP's: " + nearByZipCodes);
+		log.debug("getNearByZipCodes - Fetched near by ZIP's: " + nearByZipCodes);
 		return nearByZipCodes;
 	}
 
@@ -183,15 +226,15 @@ public class GeoLocator {
 		} catch (Exception ex) {
 			log.error(ex.getMessage());
 		}
-		log.debug("Fetched Distance Matrix " + destinations);
-		
+		log.debug("getDistanceMatrix - Fetched Distance Matrix " + destinations);
+
 		return destinations;
 	}
 
 	/**
 	 * Find and set the GeoCordinates
 	 */
-	public void getGeoCordinates() {
+	public void getCurrentGeoCordinates() {
 		// TODO - Replace the below code with code to get lat & lng from IP
 		// address or Location service
 		this.setLatitude("41.779291699999995");
@@ -200,7 +243,7 @@ public class GeoLocator {
 
 	public static void main(String[] args) throws ParseException {
 		GeoLocator locator = new GeoLocator();
-		locator.getReverseGeocoding();
+		locator.lookupReverseGeocoding();
 		locator.getNearByZipCodes();
 
 		Map<String, DistanceMatrix> matrix = new HashMap<String, DistanceMatrix>();
@@ -213,24 +256,27 @@ public class GeoLocator {
 		dMatrix2.setDestLat("41.7859");
 		dMatrix2.setDestLng("-87.7157");
 		matrix.put("BBB", dMatrix2);
-		
+
 		DistanceMatrix dMatrix3 = new DistanceMatrix();
 		dMatrix3.setDestLat("41.9769");
 		dMatrix3.setDestLng("-87.7691");
 		matrix.put("CCC", dMatrix3);
-		
+
 		DistanceMatrix dMatrix4 = new DistanceMatrix();
 		dMatrix4.setDestLat("41.7202");
 		dMatrix4.setDestLng("-87.6433");
 		matrix.put("DDD", dMatrix4);
-		
+
 		DistanceMatrix dMatrix5 = new DistanceMatrix();
 		dMatrix5.setDestLat("41.91");
 		dMatrix5.setDestLng("-87.7102");
 		matrix.put("EEE", dMatrix5);
 
 		locator.getDistanceMatrix(matrix);
-
+		
+		locator.setAddress("300 W 60th St, B408, Westmont, IL, 60559");
+		locator.lookupGeocoding();
+		
 
 	}
 

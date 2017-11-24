@@ -1,7 +1,5 @@
 package com.itm.food.dao;
 
-import java.util.ArrayList;
-
 public class Item {
 	String itemId;
 	String restaurantId;
