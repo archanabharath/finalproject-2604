@@ -14,6 +14,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
@@ -43,7 +44,10 @@ public class SearchController extends BaseController {
 	void init() {
 		super.init();
 		scrollPaneRest.setVisible(false);
-
+		if(BaseController.preferredRestaurants.size() > 0) {
+			renderRestaurantList();
+		}
+		
 	}
 
 	@FXML
@@ -76,21 +80,8 @@ public class SearchController extends BaseController {
 				restaurant.setDistance(distanceTimeMap.get(restaurant.getRestaurantId()).getMiles());
 				restaurant.setTimeToTravel(distanceTimeMap.get(restaurant.getRestaurantId()).getDuration());
 			}
-
-			if (BaseController.preferredRestaurants.size() > 0) {
-				// Clean the anchorPaneRestList before rendering the new search
-				// list
-				anchorPaneRestList.getChildren().removeAll(anchorPaneRestList.getChildren());
-				anchorPaneRestList.setPrefHeight(210.0);
-				scrollPaneRest.setVisible(true);
-
-				for (int i = 0; i < BaseController.preferredRestaurants.size(); i++) {
-					renderSearchList(i);
-				}
-			} else {
-				scrollPaneRest.setVisible(false);
-				log.debug("No resutaurant found.");
-			}
+			renderRestaurantList();
+			
 		} catch (Exception ex) {
 			log.error(ex.getMessage());
 		}
@@ -100,8 +91,25 @@ public class SearchController extends BaseController {
 		BaseController.preferredRestaurants.clear();
 		BaseController.preferredRestaurants.addAll(customerOperation.searchRestaurants(zipcode));
 	}
+	
+	void renderRestaurantList() {
+		if (BaseController.preferredRestaurants.size() > 0) {
+			// Clean the anchorPaneRestList before rendering the new search
+			// list
+			anchorPaneRestList.getChildren().removeAll(anchorPaneRestList.getChildren());
+			anchorPaneRestList.setPrefHeight(210.0);
+			scrollPaneRest.setVisible(true);
 
-	void renderSearchList(int count) {
+			for (int i = 0; i < BaseController.preferredRestaurants.size(); i++) {
+				renderRestaurant(i);
+			}
+		} else {
+			scrollPaneRest.setVisible(false);
+			log.debug("No resutaurant found.");
+		}
+	}
+
+	void renderRestaurant(int count) {
 		double paneHeightNeeded = count + 1 * 210;
 		double currentPaneHeight = anchorPaneRestList.getPrefHeight();
 		if (paneHeightNeeded <= currentPaneHeight) {
@@ -135,7 +143,7 @@ public class SearchController extends BaseController {
 					+ "FoodHub/asserts/default-restaurent.png";
 			imageView.setImage(new Image(url));
 		} catch (Exception ex) {
-			System.out.println(ex.getMessage());
+			log.error(ex.getMessage());
 		}
 		pane.getChildren().add(imageView);
 
@@ -184,6 +192,22 @@ public class SearchController extends BaseController {
 		// <Font size="18.0" />
 		// </font>
 		// </Label>
+		ImageView imageDistance = new ImageView();
+		imageDistance.setFitHeight(25.0);
+		imageDistance.setFitWidth(25.0);
+		imageDistance.setPickOnBounds(true);
+		imageDistance.setPreserveRatio(false);
+		AnchorPane.setRightAnchor(imageDistance, 275.0);
+		AnchorPane.setBottomAnchor(imageDistance, 20.0);
+		try {
+			String url = "file://" + new File("").getCanonicalFile().getParent().toString() + File.separatorChar
+					+ "FoodHub/asserts/icons8-geo-fence-24.png";
+			imageDistance.setImage(new Image(url));
+		} catch (Exception ex) {
+			log.error(ex.getMessage());
+		}
+		pane.getChildren().add(imageDistance);
+		
 		Label lblRestDistance = new Label();
 		lblRestDistance.setLayoutX(896.0);
 		lblRestDistance.setLayoutY(156.0);
@@ -199,6 +223,22 @@ public class SearchController extends BaseController {
 		// <Font size="18.0" />
 		// </font>
 		// </Label>
+		ImageView imageTimer = new ImageView();
+		imageTimer.setFitHeight(25.0);
+		imageTimer.setFitWidth(25.0);
+		imageTimer.setPickOnBounds(true);
+		imageTimer.setPreserveRatio(false);
+		AnchorPane.setRightAnchor(imageTimer, 145.0);
+		AnchorPane.setBottomAnchor(imageTimer, 20.0);
+		try {
+			String url = "file://" + new File("").getCanonicalFile().getParent().toString() + File.separatorChar
+					+ "FoodHub/asserts/icons8-timer-24.png";
+			imageTimer.setImage(new Image(url));
+		} catch (Exception ex) {
+			log.error(ex.getMessage());
+		}
+		pane.getChildren().add(imageTimer);
+		
 		Label lblRestTravelTime = new Label();
 		lblRestTravelTime.setLayoutX(1021.0);
 		lblRestTravelTime.setLayoutY(156.0);
@@ -207,21 +247,15 @@ public class SearchController extends BaseController {
 		AnchorPane.setRightAnchor(lblRestTravelTime, 75.0);
 		AnchorPane.setBottomAnchor(lblRestTravelTime, 20.0);
 		pane.getChildren().add(lblRestTravelTime);
-		
-//		<Label text="[Address]" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="200.0">
-//        <font>
-//           <Font size="18.0" />
-//        </font>
-//     </Label>
-		StringBuilder buildAddress = new StringBuilder();
-		buildAddress.append(BaseController.preferredRestaurants.get(count).getAddress1() + " ");
-		buildAddress.append(BaseController.preferredRestaurants.get(count).getAddress2() + " ");
-		buildAddress.append(BaseController.preferredRestaurants.get(count).getCity() + " ");
-		buildAddress.append(BaseController.preferredRestaurants.get(count).getZipcode() + "\r\n");
-		buildAddress.append(BaseController.preferredRestaurants.get(count).getPhone() + " ");
-		buildAddress.append(BaseController.preferredRestaurants.get(count).getEmail());
+
+		// <Label text="[Address]" AnchorPane.bottomAnchor="20.0"
+		// AnchorPane.leftAnchor="200.0">
+		// <font>
+		// <Font size="18.0" />
+		// </font>
+		// </Label>
 		Label lblAddress = new Label();
-		lblAddress.setText(buildAddress.toString());
+		lblAddress.setText(BaseController.preferredRestaurants.get(count).getAddressPhoneAndEmail());
 		lblAddress.setFont(new Font(18.0));
 		lblAddress.setWrapText(true);
 		lblAddress.setLayoutX(200.0);
@@ -229,7 +263,7 @@ public class SearchController extends BaseController {
 		AnchorPane.setLeftAnchor(lblAddress, 200.0);
 		AnchorPane.setBottomAnchor(lblAddress, 20.0);
 		pane.getChildren().add(lblAddress);
-		
+
 		// <Hyperlink onAction="#handleViewMenu" text="View Menu"
 		// AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="20.0">
 		// <font>
@@ -243,9 +277,19 @@ public class SearchController extends BaseController {
 		viewMenuLink.setLayoutY(70.0);
 		AnchorPane.setRightAnchor(viewMenuLink, 100.0);
 		AnchorPane.setTopAnchor(viewMenuLink, 20.0);
+		AnchorPane.setLeftAnchor(viewMenuLink, 950.0);
+		viewMenuLink.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				BaseController.currentRestaurant = BaseController.preferredRestaurants.get(count);
+				log.debug(BaseController.currentRestaurant.getRestaurantId());
+				launchScene("Items Screen", "../views/Items.fxml", BaseController.MAIN_SCREEN_WIDTH,
+						BaseController.MAIN_SCREEN_HEIGHT);
+			}
+		});
+
 		pane.getChildren().add(viewMenuLink);
-		
-		
+
 		Label lblRating = new Label();
 		lblRating.setText("Rating: " + BaseController.preferredRestaurants.get(count).getRating());
 		lblRating.setFont(new Font(15.0));
@@ -253,9 +297,9 @@ public class SearchController extends BaseController {
 		lblRating.setLayoutX(900.0);
 		lblRating.setLayoutY(70.0);
 		AnchorPane.setRightAnchor(lblRating, 100.0);
-		AnchorPane.setTopAnchor(lblRating, 60.0);
+		AnchorPane.setTopAnchor(lblRating, 80.0);
+		AnchorPane.setLeftAnchor(lblRating, 970.0);
 		pane.getChildren().add(lblRating);
-		
 
 		anchorPaneRestList.getChildren().add(pane);
 	}

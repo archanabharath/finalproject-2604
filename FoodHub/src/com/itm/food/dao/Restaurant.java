@@ -1,6 +1,6 @@
 package com.itm.food.dao;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Restaurant {
 
@@ -20,9 +20,9 @@ public class Restaurant {
 	String cuisineId;
 	String distance;
 	String timeToTravel;
-	ArrayList<Menu> menu[];
+	List<Item> items;
 	double restaurantOverallRating;
-	ArrayList<UserReview> restaurantReview[];
+	List<UserReview> restaurantReview;
 
 	/**
 	 * @return the restaurantId
@@ -235,21 +235,6 @@ public class Restaurant {
 	}
 
 	/**
-	 * @return the menu
-	 */
-	public ArrayList<Menu>[] getMenu() {
-		return menu;
-	}
-
-	/**
-	 * @param menu
-	 *            the menu to set
-	 */
-	public void setMenu(ArrayList<Menu>[] menu) {
-		this.menu = menu;
-	}
-
-	/**
 	 * @return the restaurantOverallRating
 	 */
 	public double getRestaurantOverallRating() {
@@ -262,21 +247,6 @@ public class Restaurant {
 	 */
 	public void setRestaurantOverallRating(double restaurantOverallRating) {
 		this.restaurantOverallRating = restaurantOverallRating;
-	}
-
-	/**
-	 * @return the restaurantReview
-	 */
-	public ArrayList<UserReview>[] getRestaurantReview() {
-		return restaurantReview;
-	}
-
-	/**
-	 * @param restaurantReview
-	 *            the restaurantReview to set
-	 */
-	public void setRestaurantReview(ArrayList<UserReview>[] restaurantReview) {
-		this.restaurantReview = restaurantReview;
 	}
 
 	/**
@@ -307,6 +277,47 @@ public class Restaurant {
 	 */
 	public void setTimeToTravel(String timeToTravel) {
 		this.timeToTravel = timeToTravel;
+	}
+
+	/**
+	 * @return the items
+	 */
+	public List<Item> getItems() {
+		return items;
+	}
+
+	/**
+	 * @param items
+	 *            the items to set
+	 */
+	public void setItems(List<Item> items) {
+		this.items = items;
+	}
+
+	/**
+	 * @return the restaurantReview
+	 */
+	public List<UserReview> getRestaurantReview() {
+		return restaurantReview;
+	}
+
+	/**
+	 * @param restaurantReview
+	 *            the restaurantReview to set
+	 */
+	public void setRestaurantReview(List<UserReview> restaurantReview) {
+		this.restaurantReview = restaurantReview;
+	}
+
+	public String getAddressPhoneAndEmail() {
+		StringBuilder buildAddress = new StringBuilder();
+		buildAddress.append(this.getAddress1() + " ");
+		buildAddress.append(this.getAddress2() + " ");
+		buildAddress.append(this.getCity() + " ");
+		buildAddress.append(this.getZipcode() + "\r\n");
+		buildAddress.append(this.getPhone() + " ");
+		buildAddress.append(this.getEmail());
+		return buildAddress.toString();
 	}
 
 }

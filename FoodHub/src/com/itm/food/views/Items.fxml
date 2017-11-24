@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.effect.GaussianBlur?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1500.0" style="-fx-background-color: aliceblue;" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.itm.food.controller.ItemsController">
+	<children>
+		<ImageView fitHeight="945.0" fitWidth="1500.0" layoutX="10.0" layoutY="10.0" opacity="0.2" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="55.0">
+			<image>
+				<Image url="@../../../../../asserts/main-bg.jpg" />
+			</image>
+			<effect>
+				<GaussianBlur />
+			</effect>
+		</ImageView>
+		<AnchorPane prefHeight="55.0" prefWidth="900.0" style="-fx-background-color: steelblue;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+			<children>
+				<Label prefHeight="20.0" prefWidth="80.0" text="FoodHub" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="15.0">
+					<font>
+						<Font name="Arial Bold" size="18.0" />
+					</font>
+				</Label>
+				<ImageView fitHeight="45.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="225.0" AnchorPane.topAnchor="10.0">
+					<image>
+						<Image url="@../../../../../asserts/icons8-female-profile-96.png" />
+					</image>
+				</ImageView>
+				<Label fx:id="txtFullname" prefHeight="35.0" prefWidth="174.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="10.0" />
+			</children>
+		</AnchorPane>
+		<AnchorPane layoutY="55.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: deepskyblue;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1300.0" AnchorPane.topAnchor="55.0">
+			<children>
+				<JFXButton layoutX="20.0" layoutY="101.0" onMouseReleased="#handleMouseHome" prefHeight="50.0" prefWidth="135.0" text="Home" textAlignment="RIGHT" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="0.0">
+					<font>
+						<Font name="System Bold" size="18.0" />
+					</font>
+				</JFXButton>
+				<ImageView fitHeight="45.0" fitWidth="35.0" layoutX="66.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="100.0">
+					<image>
+						<Image url="@../../../../../asserts/icons8-home-96.png" />
+					</image>
+				</ImageView>
+				<JFXButton layoutX="20.0" layoutY="168.0" onMouseReleased="#handleMouseSearch" prefHeight="50.0" prefWidth="135.0" style="-fx-background-color: aliceblue;" text="Search" textAlignment="RIGHT" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="0.0">
+					<font>
+						<Font name="System Bold" size="18.0" />
+					</font>
+				</JFXButton>
+				<ImageView fitHeight="45.0" fitWidth="35.0" layoutX="40.0" layoutY="175.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="125.0">
+					<image>
+						<Image url="@../../../../../asserts/icons8-search-96.png" />
+					</image>
+				</ImageView>
+				<JFXButton layoutX="20.0" layoutY="241.0" onMouseReleased="#handleMouseBasket" prefHeight="50.0" prefWidth="135.0" text="Basket" textAlignment="RIGHT" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="0.0">
+					<font>
+						<Font name="System Bold" size="18.0" />
+					</font>
+				</JFXButton>
+				<ImageView fitHeight="45.0" fitWidth="35.0" layoutX="40.0" layoutY="250.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="125.0">
+					<image>
+						<Image url="@../../../../../asserts/icons8-food-96.png" />
+					</image>
+				</ImageView>
+				<JFXButton layoutX="20.0" layoutY="320.0" onMouseReleased="#handleMouseOrders" prefHeight="50.0" prefWidth="135.0" text="Orders" textAlignment="RIGHT" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="0.0">
+					<font>
+						<Font name="System Bold" size="18.0" />
+					</font>
+				</JFXButton>
+				<ImageView fitHeight="45.0" fitWidth="35.0" layoutX="40.0" layoutY="327.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="125.0">
+					<image>
+						<Image url="@../../../../../asserts/icons8-order-history-96.png" />
+					</image>
+				</ImageView>
+				<JFXButton layoutX="33.0" layoutY="397.0" onMouseReleased="#handleMouseAddress" prefHeight="50.0" prefWidth="135.0" text="Address" textAlignment="RIGHT" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="0.0">
+					<font>
+						<Font name="System Bold" size="18.0" />
+					</font>
+				</JFXButton>
+				<ImageView fitHeight="45.0" fitWidth="35.0" layoutX="53.0" layoutY="404.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="100.0">
+					<image>
+						<Image url="@../../../../../asserts/icons8-address-book-96.png" />
+					</image>
+				</ImageView>
+				<JFXButton layoutX="20.0" layoutY="478.0" onMouseReleased="#handleMouseCards" prefHeight="50.0" prefWidth="135.0" text="Cards" textAlignment="RIGHT" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="0.0">
+					<font>
+						<Font name="System Bold" size="18.0" />
+					</font>
+				</JFXButton>
+				<ImageView fitHeight="45.0" fitWidth="35.0" layoutX="40.0" layoutY="485.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="125.0">
+					<image>
+						<Image url="@../../../../../asserts/icons8-credit-card-96.png" />
+					</image>
+				</ImageView>
+				<JFXButton layoutX="33.0" layoutY="557.0" onMouseReleased="#handleMouseProfile" prefHeight="50.0" prefWidth="135.0" text="Profile" textAlignment="RIGHT" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="0.0">
+					<font>
+						<Font name="System Bold" size="18.0" />
+					</font>
+				</JFXButton>
+				<ImageView fitHeight="45.0" fitWidth="35.0" layoutX="40.0" layoutY="564.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="125.0">
+					<image>
+						<Image url="@../../../../../asserts/icons8-customer-96.png" />
+					</image>
+				</ImageView>
+				<JFXButton layoutX="42.0" layoutY="858.0" onMouseReleased="#handleMouseSignout" prefHeight="50.0" prefWidth="135.0" text="Sign out" textAlignment="RIGHT" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="0.0">
+					<font>
+						<Font name="System Bold" size="18.0" />
+					</font>
+				</JFXButton>
+				<ImageView fitHeight="45.0" fitWidth="35.0" layoutX="49.0" layoutY="865.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="100.0">
+					<image>
+						<Image url="@../../../../../asserts/icons8-sign-out-96.png" />
+					</image>
+				</ImageView>
+			</children>
+		</AnchorPane>
+      <AnchorPane fx:id="anchorPaneRestHeader" layoutX="250.0" layoutY="25.0" minHeight="0.0" minWidth="0.0" prefHeight="150.0" prefWidth="1200.0" style="-fx-background-color: transparent;" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="70.0">
+         <children>
+            <ImageView fx:id="imgRestaurant" fitHeight="150.0" fitWidth="200.0" layoutX="3.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <Label fx:id="lblRestaurantName" layoutX="250.0" layoutY="15.0" text="[RestaurantName]" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="15.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblRestAddress" layoutX="257.0" layoutY="56.0" text="[Address]" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="56.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
+		<ScrollPane fx:id="scrollPaneRest" layoutX="280.0" layoutY="235.0" prefHeight="210.0" prefWidth="1200.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="225.0">
+			<content>
+				<AnchorPane fx:id="anchorPaneItemList" layoutY="0.0" prefHeight="150.0" prefWidth="1195.0" style="-fx-border-color: lightgrey;">
+               <children>
+                  <JFXButton buttonType="RAISED" layoutX="733.0" layoutY="80.0" style="-fx-border-color: steelblue;" text="Add to Basket" textFill="STEELBLUE" />
+               </children></AnchorPane>
+			</content>
+		</ScrollPane>
+	</children>
+	<cursor>
+		<Cursor fx:constant="DEFAULT" />
+	</cursor>
+</AnchorPane>

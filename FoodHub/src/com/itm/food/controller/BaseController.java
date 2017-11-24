@@ -1,6 +1,7 @@
 package com.itm.food.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 
@@ -36,6 +37,8 @@ public abstract class BaseController {
 	// Data access objects for logged in member
 	public static Customer authenticatedCustomer = new Customer();
 	public static ArrayList<Restaurant> preferredRestaurants = new ArrayList<Restaurant>();
+	public static Restaurant currentRestaurant = new Restaurant();
+	public static List<String> itemsInBasket = new ArrayList<String>();
 
 	@FXML
 	private ImageView imgExit;
@@ -186,6 +189,9 @@ public abstract class BaseController {
 	void cleanupSession() {
 		log.debug("Session cleaned.");
 		BaseController.authenticatedCustomer = new Customer();
+		BaseController.preferredRestaurants = new ArrayList<Restaurant>();
+		BaseController.currentRestaurant = null;
+		BaseController.itemsInBasket = new ArrayList<String>();
 	}
 	
 	/**

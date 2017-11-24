@@ -10,9 +10,11 @@ import org.apache.log4j.Logger;
 
 import com.itm.food.dao.Address;
 import com.itm.food.dao.Customer;
+import com.itm.food.dao.Item;
 import com.itm.food.dao.Restaurant;
 import com.itm.food.model.AddressDB;
 import com.itm.food.model.CustomerDB;
+import com.itm.food.model.ItemsDB;
 import com.itm.food.model.RestaurantDB;
 
 public class CustomerOperations implements IUserOperations, ICustomerPreferences {
@@ -23,6 +25,7 @@ public class CustomerOperations implements IUserOperations, ICustomerPreferences
 	CustomerDB customerDB = new CustomerDB();
 	AddressDB addressDB = new AddressDB();
 	RestaurantDB restaurantDB = new RestaurantDB();
+	ItemsDB itemsDB = new ItemsDB();
 
 	@Override
 	public String addUserDetails(Customer newcustomer) throws Exception {
@@ -137,8 +140,9 @@ public class CustomerOperations implements IUserOperations, ICustomerPreferences
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * com.itm.food.dao.operation.IUserOperations#validateCustomer(java.lang.String,
-	 * java.lang.String) Authenticate the user information while logging in
+	 * com.itm.food.dao.operation.IUserOperations#validateCustomer(java.lang.
+	 * String, java.lang.String) Authenticate the user information while logging
+	 * in
 	 */
 	public String validateCustomer(String username, String password) throws SQLException {
 		tempcustid = customerDB.customerLoginCheck(username, password);
@@ -149,35 +153,58 @@ public class CustomerOperations implements IUserOperations, ICustomerPreferences
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.itm.food.dao.operation.IUserOperations#getCustomer(java.lang.String)
+	 * @see
+	 * com.itm.food.dao.operation.IUserOperations#getCustomer(java.lang.String)
 	 * Fetch the customer_id for the current session
 	 */
 	public Customer getCustomer(String customerId) throws Exception {
 		return customerDB.find(customerId);
 	}
 
-	/*
+	/**
 	 * Fetch the list of addresses of the customer
+	 * 
+	 * @param getAddress
+	 * @return
+	 * @throws Exception
 	 */
 	public List<Address> getCustomerAddress(Address getAddress) throws Exception {
 		return addressDB.getAddresses(getAddress.getCustId());
 
 	}
 
-	/*
-	 * Validate if username already exists in Customer table while the user tries to
-	 * register
+	/**
+	 * Validate if username already exists in Customer table while the user
+	 * tries to register
+	 * 
+	 * @param username
+	 * @return
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
 	 */
 	public boolean isUserNamePresent(String username) throws ClassNotFoundException, SQLException {
 		return customerDB.validateUsername(username);
 	}
 
-	/*
-	 * Fetch the customer details from customer table using the customer id This is
-	 * used to display the customer's information on profile page
+	/**
+	 * Fetch the customer details from customer table using the customer id This
+	 * is used to display the customer's information on profile page
+	 * 
+	 * @param transferCustId
+	 * @return
+	 * @throws Exception
 	 */
 	public Customer getCustomerProfile(String transferCustId) throws Exception {
 		return customerDB.pullCustomerDetails(transferCustId);
+	}
 
+	/**
+	 * 
+	 * @param restaurantId
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Item> getItemsByRestaurant(String restaurantId) throws Exception {
+		return itemsDB.getItemsByRestaurantId(restaurantId);
 	}
 }
