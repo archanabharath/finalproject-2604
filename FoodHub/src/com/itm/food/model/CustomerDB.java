@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import org.apache.log4j.Logger;
@@ -12,8 +13,6 @@ import com.itm.food.dao.AbstractDomain;
 import com.itm.food.dao.Customer;
 import com.itm.food.model.db.MySQLQuery;
 import com.itm.food.util.PasswordUtil;
-
-
 
 public class CustomerDB extends AbstractDB implements IDBAccess {
 
@@ -49,9 +48,35 @@ public class CustomerDB extends AbstractDB implements IDBAccess {
 		return customerObj.getCustomerID();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.itm.food.model.IDBAccess#update(com.itm.food.dao.AbstractDomain)
+	 * update customer details
+	 */
 	@Override
-	public <T extends AbstractDomain> void update(T object) {
-		// TODO Auto-generated method stub
+	public <T extends AbstractDomain> void update(T object) throws ParseException {
+		Customer updateCustDetails = (Customer) object;
+		String updateProfileQuery = null;
+		log.debug("Customer");
+
+		updateProfileQuery = "UPDATE ofod.ofod_customer SET FIRST_NAME = '" + updateCustDetails.getFirstName() + "',"
+				+ "LAST_NAME = '" + updateCustDetails.getLastName() + "'," + "EMAIL = '" + updateCustDetails.getEmail()
+				+ "'," + "USERNAME = '" + updateCustDetails.getUsername() + "'," + "DOB = '"
+				+ (new Date(new SimpleDateFormat("yyyy-MM-dd").parse(updateCustDetails.getDOB()).getTime())) + "',"
+				+ "PASSWORD = '" + updateCustDetails.getEncryptedPassword() + "' WHERE CUSTOMER_ID = '"
+				+ updateCustDetails.getCustomerID() + "';";
+
+		try {
+			PreparedStatement preparestatement = this.getDBConnection().prepareStatement(updateProfileQuery);
+
+			preparestatement.executeUpdate();
+			log.debug("Customer details updated successfully");
+		} catch (ClassNotFoundException e) {
+			log.error(e.getMessage());
+		} catch (SQLException e) {
+			log.error(e.getSQLState());
+		}
 
 	}
 
@@ -74,9 +99,9 @@ public class CustomerDB extends AbstractDB implements IDBAccess {
 				customer.setEmail(rs.getString(6));
 				customer.setUsername(rs.getString(7));
 				customer.setPassword(rs.getString(8));
-				log.debug("Customer Loaded Successfully.");
+				log.debug("Customer found Successfully.");
 			} else {
-				log.error("Username not found");
+				log.error("Customer not found");
 			}
 			preparedstatement.close();
 		} catch (Exception e) {
@@ -100,6 +125,9 @@ public class CustomerDB extends AbstractDB implements IDBAccess {
 
 	}
 
+	/*
+	 * validate if the entered login credentials are valid for the customer
+	 */
 	public String customerLoginCheck(String username, String password) throws SQLException {
 
 		String custId = null;
@@ -126,29 +154,69 @@ public class CustomerDB extends AbstractDB implements IDBAccess {
 
 		return custId;
 	}
-	
+
+	/*
+	 * validate if the username entered by the user already exists or not
+	 */
 	public boolean validateUsername(String userName) throws SQLException, ClassNotFoundException {
 		boolean usernameFound = true;
-		
+
 		try {
-			PreparedStatement preparestatement = this.getDBConnection().prepareStatement(MySQLQuery.SQL_VALIDATE_USERNAME);
+			PreparedStatement preparestatement = this.getDBConnection()
+					.prepareStatement(MySQLQuery.SQL_VALIDATE_USERNAME);
 			preparestatement.setString(1, userName);
 			ResultSet usernamers;
 			usernamers = preparestatement.executeQuery();
-			while(usernamers.next()) {
-			if (usernamers.getInt(1) == 0) {
-				usernameFound = false;
-			}
+			while (usernamers.next()) {
+				if (usernamers.getInt(1) == 0) {
+					usernameFound = false;
+				}
 			}
 			preparestatement.close();
-		}catch(SQLException e) {
+		} catch (SQLException e) {
 			log.error(e.getMessage());
-		}finally {
+		} finally {
 			this.closeConnection();
 		}
-		
+
 		return usernameFound;
-		
+
+	}
+
+	/*
+	 * Retrieve customer information from customer table to print it on profile page
+	 */
+
+	public Customer pullCustomerDetails(String transferCustId) throws SQLException {
+
+		Customer userProfile = new Customer();
+		try {
+			PreparedStatement preparestatement = this.getDBConnection()
+					.prepareStatement(MySQLQuery.SQL_FETCH_CUSTOMER_PROFILE);
+			preparestatement.setString(1, transferCustId);
+			ResultSet customerProfilers;
+			customerProfilers = preparestatement.executeQuery();
+			while (customerProfilers.next()) {
+				userProfile.setFirstName(customerProfilers.getString(1));
+				userProfile.setLastName(customerProfilers.getString(2));
+				userProfile.setEmail(customerProfilers.getString(3));
+				userProfile.setUsername(customerProfilers.getString(4));
+				userProfile.setEncryptedPassword(customerProfilers.getString(5));
+				userProfile.setDOB(customerProfilers.getDate(6).toString());
+
+			}
+		} catch (ClassNotFoundException e) {
+			log.error(e.getMessage());
+
+		} catch (SQLException e) {
+			log.error(e.getMessage());
+
+		} finally {
+			this.closeConnection();
+
+		}
+		return userProfile;
+
 	}
 
 }

@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1500.0" style="-fx-background-color: aliceblue;" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.itm.food.controller.ProfileController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1500.0" style="-fx-background-color: aliceblue;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.itm.food.controller.ProfileController">
    <children>
       <ImageView fitHeight="945.0" fitWidth="1500.0" layoutX="20.0" layoutY="20.0" opacity="0.2" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="55.0">
          <image>
@@ -58,7 +58,7 @@
                   <Image url="@../../../../../asserts/icons8-search-96.png" />
                </image>
             </ImageView>
-            <JFXButton layoutX="20.0" layoutY="241.0" onMouseReleased="#handleMouseBasket" prefHeight="50.0" prefWidth="135.0" text="Basket" textAlignment="RIGHT" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="0.0">
+            <JFXButton fx:id="btnBasket" layoutX="20.0" layoutY="241.0" onMouseReleased="#handleMouseBasket" prefHeight="50.0" prefWidth="135.0" text="Basket" textAlignment="RIGHT" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="0.0">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -127,42 +127,56 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <JFXTextField focusColor="DEEPSKYBLUE" labelFloat="true" layoutX="115.0" layoutY="129.0" prefHeight="40.0" prefWidth="230.0" promptText="Firstname" style="-fx-background-color: aliceblue;" unFocusColor="GREY">
+            <JFXTextField fx:id="pFirstName" focusColor="DEEPSKYBLUE" labelFloat="true" layoutX="115.0" layoutY="129.0" prefHeight="40.0" prefWidth="230.0" promptText="Firstname" style="-fx-background-color: aliceblue;" unFocusColor="GREY">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </JFXTextField>
-            <JFXTextField focusColor="DEEPSKYBLUE" labelFloat="true" layoutX="380.0" layoutY="129.0" prefHeight="40.0" prefWidth="230.0" promptText="Lastname" style="-fx-background-color: aliceblue;" unFocusColor="GREY">
+            <JFXTextField fx:id="pLastName" focusColor="DEEPSKYBLUE" labelFloat="true" layoutX="380.0" layoutY="129.0" prefHeight="40.0" prefWidth="230.0" promptText="Lastname" style="-fx-background-color: aliceblue;" unFocusColor="GREY">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </JFXTextField>
-            <JFXTextField focusColor="DEEPSKYBLUE" labelFloat="true" layoutX="113.0" layoutY="212.0" prefHeight="40.0" prefWidth="500.0" promptText="Email" style="-fx-background-color: aliceblue;" unFocusColor="GREY">
+            <JFXTextField fx:id="pEmail" focusColor="DEEPSKYBLUE" labelFloat="true" layoutX="113.0" layoutY="212.0" prefHeight="40.0" prefWidth="500.0" promptText="Email" style="-fx-background-color: aliceblue;" unFocusColor="GREY">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </JFXTextField>
-            <JFXTextField focusColor="DEEPSKYBLUE" labelFloat="true" layoutX="113.0" layoutY="293.0" prefHeight="40.0" prefWidth="500.0" promptText="Username" style="-fx-background-color: aliceblue;" unFocusColor="GREY">
+            <JFXTextField fx:id="pUserName" focusColor="DEEPSKYBLUE" labelFloat="true" layoutX="113.0" layoutY="293.0" prefHeight="40.0" prefWidth="500.0" promptText="Username" style="-fx-background-color: aliceblue;" unFocusColor="GREY">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </JFXTextField>
-            <JFXPasswordField focusColor="DEEPSKYBLUE" labelFloat="true" layoutX="113.0" layoutY="383.0" prefHeight="40.0" prefWidth="230.0" promptText="Password" style="-fx-background-color: aliceblue;" unFocusColor="GREY">
+            <JFXPasswordField fx:id="pPassword" focusColor="DEEPSKYBLUE" labelFloat="true" layoutX="113.0" layoutY="383.0" prefHeight="40.0" prefWidth="230.0" promptText="Password" style="-fx-background-color: aliceblue;" unFocusColor="GREY">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </JFXPasswordField>
-            <JFXPasswordField focusColor="DEEPSKYBLUE" labelFloat="true" layoutX="380.0" layoutY="383.0" prefHeight="40.0" prefWidth="230.0" promptText="Re Enter password" style="-fx-background-color: aliceblue;" unFocusColor="GREY">
+            <JFXPasswordField fx:id="pRePassword" focusColor="DEEPSKYBLUE" labelFloat="true" layoutX="380.0" layoutY="383.0" prefHeight="40.0" prefWidth="230.0" promptText="Re Enter password" style="-fx-background-color: aliceblue;" unFocusColor="GREY">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </JFXPasswordField>
-            <JFXDatePicker defaultColor="DARKGRAY" layoutX="122.0" layoutY="490.0" prefHeight="40.0" prefWidth="230.0" promptText="Date of Birth" />
-            <JFXButton layoutX="439.0" layoutY="575.0" onMouseReleased="#handleMouseUpdateProfile" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: white;" text="Update" textFill="STEELBLUE" AnchorPane.leftAnchor="439.0" AnchorPane.rightAnchor="63.0">
+            <JFXDatePicker fx:id="pDOB" defaultColor="DARKGRAY" layoutX="122.0" layoutY="490.0" prefHeight="40.0" prefWidth="230.0" promptText="Date of Birth" />
+            <JFXButton fx:id="pUpdateBtn" layoutX="439.0" layoutY="575.0" onAction="#handleProfileUpdate" onMouseReleased="#handleMouseUpdateProfile" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: white;" text="Update" textFill="STEELBLUE" AnchorPane.leftAnchor="439.0" AnchorPane.rightAnchor="63.0" AnchorPane.topAnchor="575.0">
                <font>
                   <Font size="18.0" />
                </font>
             </JFXButton>
+            <AnchorPane fx:id="errorPane" prefHeight="50.0" prefWidth="300.0" visible="false" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="575.0">
+               <children>
+                  <ImageView fitHeight="35.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0">
+                     <image>
+                        <Image url="@../../../../../asserts/icons8-error-96.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="lblErrorMsg" layoutX="60.0" prefHeight="30.0" prefWidth="174.0" text="##Errormsg##" textFill="STEELBLUE" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="10.0">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
    </children>

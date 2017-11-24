@@ -12,8 +12,6 @@ import com.itm.food.dao.AbstractDomain;
 import com.itm.food.dao.Address;
 import com.itm.food.model.db.MySQLQuery;
 
-
-
 public class AddressDB extends AbstractDB implements IDBAccess {
 
 	private static final Logger log = Logger.getLogger(AddressDB.class);
@@ -82,7 +80,7 @@ public class AddressDB extends AbstractDB implements IDBAccess {
 			preparestatement.setString(1, custId);
 			rsAllAddresses = preparestatement.executeQuery();
 			while (rsAllAddresses.next()) {
-				// FIRST_NAME,LAST_NAME,ADDRESS1,ADDRESS2,CITY,ZIPCODE,PHONE 
+				// FIRST_NAME,LAST_NAME,ADDRESS1,ADDRESS2,CITY,ZIPCODE,PHONE
 				Address address = new Address();
 				address.setFname(rsAllAddresses.getString(1));
 				address.setLname(rsAllAddresses.getString(2));
@@ -90,18 +88,14 @@ public class AddressDB extends AbstractDB implements IDBAccess {
 				address.setAddr2(rsAllAddresses.getString(4));
 				address.setCity(rsAllAddresses.getString(5));
 				address.setPincode(rsAllAddresses.getInt(6));
-				address.setAddrphoneNo(rsAllAddresses.getString(7));					
+				address.setAddrphoneNo(rsAllAddresses.getString(7));
 				addressList.add(address);
 			}
-			
 		} catch (SQLException e) {
 			log.error(e.getMessage());
 
 		}
-		
 		return addressList;
-		
-
 	}
 
 }

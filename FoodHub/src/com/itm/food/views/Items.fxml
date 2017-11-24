@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.effect.GaussianBlur?>
-<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1500.0" style="-fx-background-color: aliceblue;" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.itm.food.controller.SearchController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1500.0" style="-fx-background-color: aliceblue;" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.itm.food.controller.ItemsController">
 	<children>
 		<ImageView fitHeight="945.0" fitWidth="1500.0" layoutX="10.0" layoutY="10.0" opacity="0.2" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="55.0">
 			<image>
@@ -121,36 +119,23 @@
 				</ImageView>
 			</children>
 		</AnchorPane>
-		<AnchorPane layoutX="254.0" layoutY="88.0" prefHeight="100.0" prefWidth="1188.0" AnchorPane.bottomAnchor="825.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="75.0">
-			<children>
-				<JFXTextField fx:id="txtSearch" focusColor="DEEPSKYBLUE" labelFloat="true" layoutX="183.0" layoutY="22.0" prefHeight="50.0" prefWidth="750.0" promptText="Enter Address, Zip or City" unFocusColor="GREY" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="25.0">
-					<font>
-						<Font size="24.0" />
-					</font>
-				</JFXTextField>
-				<JFXButton fx:id="btnSearch" layoutX="921.0" layoutY="24.0" onAction="#handleSearch" prefHeight="50.0" prefWidth="135.0" style="-fx-background-color: aliceblue;" text="Search" textAlignment="RIGHT" textFill="STEELBLUE" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="25.0">
-					<font>
-						<Font name="System Bold" size="24.0" />
-					</font>
-				</JFXButton>
-				<ImageView fitHeight="60.0" fitWidth="50.0" layoutX="838.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="25.0" AnchorPane.topAnchor="25.0">
-					<image>
-						<Image url="@../../../../../asserts/icons8-search-96.png" />
-					</image>
-				</ImageView>
-				<ImageView accessibleHelp="Click to get current location" accessibleText="Click to get current locationClick to get current location" fitHeight="60.0" fitWidth="50.0" layoutX="92.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="25.0" AnchorPane.topAnchor="25.0">
-					<image>
-						<Image url="@../../../../../asserts/icons8-marker-96.png" />
-					</image>
-					<effect>
-						<Glow />
-					</effect>
-				</ImageView>
-			</children>
-		</AnchorPane>
+      <AnchorPane fx:id="anchorPaneRestHeader" layoutX="250.0" layoutY="25.0" minHeight="0.0" minWidth="0.0" prefHeight="150.0" prefWidth="1200.0" style="-fx-background-color: transparent;" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="70.0">
+         <children>
+            <ImageView fx:id="imgRestaurant" fitHeight="150.0" fitWidth="200.0" layoutX="3.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <Label fx:id="lblRestaurantName" layoutX="250.0" layoutY="15.0" text="[RestaurantName]" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="15.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblRestAddress" layoutX="257.0" layoutY="56.0" text="[Address]" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="56.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
 		<ScrollPane fx:id="scrollPaneRest" layoutX="280.0" layoutY="235.0" prefHeight="210.0" prefWidth="1200.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="225.0">
 			<content>
-				<AnchorPane fx:id="anchorPaneRestList" minHeight="0.0" minWidth="0.0" prefHeight="210.0" prefWidth="1180.0" style="-fx-background-color: ivory;" />
+				<AnchorPane fx:id="anchorPaneItemList" layoutY="0.0" prefHeight="150.0" prefWidth="1190.0" style="-fx-border-color: lightgrey;" />
 			</content>
 		</ScrollPane>
 	</children>

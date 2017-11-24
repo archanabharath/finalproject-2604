@@ -1,9 +1,14 @@
 package com.itm.food.controller;
 
+import java.util.ArrayList;
+
 import org.apache.log4j.Logger;
 
+import com.itm.food.dao.Basket;
 import com.itm.food.dao.Customer;
+import com.itm.food.dao.Restaurant;
 import com.itm.food.dao.operation.CustomerOperations;
+import com.jfoenix.controls.JFXButton;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,12 +37,18 @@ public abstract class BaseController {
 
 	// Data access objects for logged in member
 	public static Customer authenticatedCustomer = new Customer();
+	public static ArrayList<Restaurant> preferredRestaurants = new ArrayList<Restaurant>();
+	public static Restaurant currentRestaurant = new Restaurant();
+	public static Basket foodBasket = new Basket();
 
 	@FXML
 	private ImageView imgExit;
 
 	@FXML
 	private Label txtFullname;
+
+	@FXML
+	protected JFXButton btnBasket;
 
 	@FXML
 	void handleApplicationClose(MouseEvent event) {
@@ -129,9 +140,21 @@ public abstract class BaseController {
 	 * Base init() method. Implement all the logic is common for main screen
 	 */
 	void init() {
-		if(null != this.txtFullname) {
-		this.txtFullname.setText(BaseController.authenticatedCustomer.getFirstName() + " " + BaseController.authenticatedCustomer.getLastName());
+		try {
+			if (null != this.txtFullname) {
+				this.txtFullname.setText(BaseController.authenticatedCustomer.getFirstName() + " "
+						+ BaseController.authenticatedCustomer.getLastName());
+			}
+			if (null != this.btnBasket && (null == BaseController.foodBasket.getOrderItems()
+					|| BaseController.foodBasket.getOrderItems().size() == 0)) {
+				btnBasket.setDisable(true);
+			} else {
+				btnBasket.setDisable(false);
+			}
+		} catch (Exception ex) {
+			log.error(ex.getMessage());
 		}
+
 	}
 
 	void handleHome() {
@@ -182,8 +205,11 @@ public abstract class BaseController {
 	void cleanupSession() {
 		log.debug("Session cleaned.");
 		BaseController.authenticatedCustomer = new Customer();
+		BaseController.preferredRestaurants = new ArrayList<Restaurant>();
+		BaseController.currentRestaurant = null;
+		BaseController.foodBasket = new Basket();
 	}
-	
+
 	/**
 	 * Method to launch the scene in the primary stage
 	 * 
