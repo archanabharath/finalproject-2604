@@ -1,28 +1,60 @@
 package com.itm.food.controller;
 
-import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.JFXButton;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
 public class BasketController extends BaseController {
 
 	@FXML
-	private ScrollPane spContent;
+	private JFXButton btnPlaceOrder;
+
+	@FXML
+	private AnchorPane errorPane;
+
+	@FXML
+	private Label lblErrorMsg;
+
+	@FXML
+	private Label lblItemsTotal;
+
+	@FXML
+	private Label lblDeliveryCharge;
+
+	@FXML
+	private Label lblCouponsApplied;
+
+	@FXML
+	private Label lblTotalBeforeTax;
+
+	@FXML
+	private Label lblTaxApplied;
+
+	@FXML
+	private Label lblOrderTotal;
 
 	public void init() {
 		super.init();
-    	for(int i=0; i<5 ; i++) {
-        	AnchorPane ap = new AnchorPane();
-        	ap.setPrefHeight(200);
-        	ap.setPrefWidth(500);
-        	
-        	JFXTextField jtf = new JFXTextField();
-        	jtf.setPrefHeight(100);
-        	jtf.setPrefWidth(300);
-        	ap.setUserData(jtf);
-    	}
-    }
+		if (null != BaseController.foodBasket.getOrderItems() || BaseController.foodBasket.getOrderItems().isEmpty())
+			renderOrderSummary();
+	}
+
+	@FXML
+	void handlePlaceOrder(ActionEvent event) {
+
+	}
+
+	void renderOrderSummary() {
+		BaseController.foodBasket.calculateOrderSummary();
+		lblItemsTotal.setText("$" + BaseController.foodBasket.getItemsTotal());
+		lblDeliveryCharge.setText("$" + BaseController.foodBasket.getDeliveryCharge());
+		lblCouponsApplied.setText("$" + BaseController.foodBasket.getCouponsApplied());
+		lblTotalBeforeTax.setText("$" + BaseController.foodBasket.getTotalBeforeTax());
+		lblTaxApplied.setText("$" + BaseController.foodBasket.getTaxApplied());
+		lblOrderTotal.setText("$" + BaseController.foodBasket.getOrderTotal());
+	}
 
 }

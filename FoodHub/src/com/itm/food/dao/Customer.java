@@ -1,11 +1,9 @@
 package com.itm.food.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
 
-import com.itm.food.dao.operation.PaymentOperations;
 import com.itm.food.util.PasswordUtil;
 
 public class Customer extends AbstractDomain {
