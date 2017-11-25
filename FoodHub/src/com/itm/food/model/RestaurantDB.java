@@ -10,6 +10,7 @@ import org.apache.log4j.Logger;
 
 import com.itm.food.dao.AbstractDomain;
 import com.itm.food.dao.Restaurant;
+import com.itm.food.model.db.MySQLQuery;
 
 public class RestaurantDB extends AbstractDB implements IDBAccess {
 
@@ -27,10 +28,35 @@ public class RestaurantDB extends AbstractDB implements IDBAccess {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public <T extends AbstractDomain> T find(String id) throws Exception {
-
-		return null;
+		log.debug("Getting Restaurant for the RestaurantId: " + id);
+		ResultSet rsRestaurant;
+		Restaurant restaurant = new Restaurant();
+		try {
+			PreparedStatement preparestatement = this.getDBConnection()
+					.prepareStatement(MySQLQuery.SQL_RESTAURANT_SELECT);
+			preparestatement.setString(1, id);
+			rsRestaurant = preparestatement.executeQuery();
+			while (rsRestaurant.next()) {
+				restaurant.setRestaurantId(rsRestaurant.getString(1));
+				restaurant.setRestaurantName(rsRestaurant.getString(2));
+				restaurant.setRestaurantDescription(rsRestaurant.getString(3));
+				restaurant.setAddress1(rsRestaurant.getString(4));
+				restaurant.setAddress2(rsRestaurant.getString(5));
+				restaurant.setCity(rsRestaurant.getString(6));
+				restaurant.setZipcode(rsRestaurant.getInt(7));
+				restaurant.setRating(rsRestaurant.getInt(8));
+				restaurant.setPhone(rsRestaurant.getString(9));
+				restaurant.setEmail(rsRestaurant.getString(10));
+				restaurant.setLatitude(rsRestaurant.getDouble(11));
+				restaurant.setLongitude(rsRestaurant.getDouble(12));
+			}
+		} catch (SQLException e) {
+			log.error(e.getMessage());
+		}
+		return (T) restaurant;
 	}
 
 	@Override
@@ -54,27 +80,26 @@ public class RestaurantDB extends AbstractDB implements IDBAccess {
 		// from
 		// ofod.ofod_restaurant table
 		try {
-			
+
 			StringBuilder parameterBuilder = new StringBuilder();
-	        parameterBuilder.append(" (");
-	        for (int i = 0; i < zipcodes.size(); i++) {
-	            parameterBuilder.append("?");
-	            if (zipcodes.size() > i + 1) {
-	                parameterBuilder.append(",");
-	            }
-	        }
-	        parameterBuilder.append(")");
+			parameterBuilder.append(" (");
+			for (int i = 0; i < zipcodes.size(); i++) {
+				parameterBuilder.append("?");
+				if (zipcodes.size() > i + 1) {
+					parameterBuilder.append(",");
+				}
+			}
+			parameterBuilder.append(")");
 
+			String sqlQuery = "SELECT RESTAURANT_ID,RESTAURANT_NAME,DESCRIPTION,ADDRESS1,ADDRESS2,CITY,ZIPCODE,RATING,"
+					+ "PHONE,EMAIL,LATITUDE,LONGITUDE FROM ofod.ofod_restaurant WHERE ZIPCODE IN"
+					+ parameterBuilder.toString() + " ORDER BY RATING DESC";
 
-	        String sqlQuery = "SELECT RESTAURANT_ID,RESTAURANT_NAME,DESCRIPTION,ADDRESS1,ADDRESS2,CITY,ZIPCODE,RATING,"
-			+ "PHONE,EMAIL,LATITUDE,LONGITUDE FROM ofod.ofod_restaurant WHERE ZIPCODE IN" + parameterBuilder.toString() + " ORDER BY RATING DESC";
-			
-			PreparedStatement preparedstatement = this.getDBConnection()
-					.prepareStatement(sqlQuery);
+			PreparedStatement preparedstatement = this.getDBConnection().prepareStatement(sqlQuery);
 			for (int i = 1; i < zipcodes.size() + 1; i++) {
 				preparedstatement.setInt(i, (int) zipcodes.get(i - 1));
-	        }
-			//preparedstatement.setString(1, StringUtils.join(zipcodes, ","));
+			}
+			// preparedstatement.setString(1, StringUtils.join(zipcodes, ","));
 			ResultSet restaurantsResultSet;
 			restaurantsResultSet = preparedstatement.executeQuery();
 
@@ -82,7 +107,7 @@ public class RestaurantDB extends AbstractDB implements IDBAccess {
 				Restaurant newRestaurant = new Restaurant();
 
 				// Fetching the restaurants column data and setting it to the
-				// respective dao object 
+				// respective dao object
 				newRestaurant.setRestaurantId(restaurantsResultSet.getString(1));
 				newRestaurant.setRestaurantName(restaurantsResultSet.getString(2));
 				newRestaurant.setRestaurantDescription(restaurantsResultSet.getString(3));

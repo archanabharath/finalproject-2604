@@ -124,7 +124,7 @@
             <ImageView fx:id="imgRestaurant" fitHeight="150.0" fitWidth="200.0" layoutX="3.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
             <Label fx:id="lblRestaurantName" layoutX="250.0" layoutY="15.0" text="[RestaurantName]" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="15.0">
                <font>
-                  <Font size="18.0" />
+                  <Font size="24.0" />
                </font>
             </Label>
             <Label fx:id="lblRestAddress" layoutX="257.0" layoutY="56.0" text="[Address]" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="56.0">
@@ -138,6 +138,20 @@
 				<AnchorPane fx:id="anchorPaneItemList" layoutY="0.0" prefHeight="150.0" prefWidth="1190.0" style="-fx-border-color: lightgrey;" />
 			</content>
 		</ScrollPane>
+      <AnchorPane fx:id="noMenuPane" prefHeight="60.0" prefWidth="500.0" visible="false" AnchorPane.bottomAnchor="715.0" AnchorPane.leftAnchor="600.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="225.0">
+         <children>
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <image>
+                  <Image url="@../../../../../asserts/icons8-sad-100.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="71.0" layoutY="5.0" prefHeight="50.0" prefWidth="276.0" text="Sorry!!! No menu found here. Please try different restaurant." textFill="TOMATO" wrapText="true" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="71.0" AnchorPane.rightAnchor="153.0" AnchorPane.topAnchor="5.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
 	</children>
 	<cursor>
 		<Cursor fx:constant="DEFAULT" />

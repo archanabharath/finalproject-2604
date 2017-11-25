@@ -86,7 +86,8 @@ public class AddressController extends BaseController {
 		// insert the address into the address table
 		addressInsertToDB(BaseController.authenticatedCustomer.getCustomerID());
 
-		// set an alert message soon after the address is added to the address table
+		// set an alert message soon after the address is added to the address
+		// table
 		setSuccessAlert();
 
 		// Reset the input fields after adding the address
@@ -98,14 +99,17 @@ public class AddressController extends BaseController {
 	@Override
 	void init() {
 		super.init();
-		listAddressesOfCustomers(); // Retrieving the list of addresses of the customer
+		listAddressesOfCustomers(); // Retrieving the list of addresses of the
+									// customer
 		scrollpane.setVisible(false);
-		renderAddressList(); // rendering the addresses in a scroll pane for better viewability
+		renderAddressList(); // rendering the addresses in a scroll pane for
+								// better viewability
 
 	}
 
 	/*
-	 * place calls to the address table to insert the new address for the customer
+	 * place calls to the address table to insert the new address for the
+	 * customer
 	 */
 	public void addressInsertToDB(String transferCustId) {
 
@@ -130,8 +134,8 @@ public class AddressController extends BaseController {
 	}
 
 	/*
-	 * Validate every input data the user keys in for correction before inserting
-	 * into table
+	 * Validate every input data the user keys in for correction before
+	 * inserting into table
 	 */
 	public boolean isAddressInputValid() {
 		if (StringUtils.isEmpty(uFirstName.getText())) {
@@ -171,8 +175,8 @@ public class AddressController extends BaseController {
 	}
 
 	/*
-	 * Throw a success alert to the customer once the address is added successfully
-	 * to the table
+	 * Throw a success alert to the customer once the address is added
+	 * successfully to the table
 	 */
 	public void setSuccessAlert() {
 		Alert addressAddedMsg = new Alert(Alert.AlertType.INFORMATION);
@@ -261,7 +265,8 @@ public class AddressController extends BaseController {
 
 		// design the pane for holding every address
 		AnchorPane individualPane = new AnchorPane();
-		individualPane.setLayoutY(addressIndex * 200); // TODO INCREMENT THIS 210.0
+		individualPane.setLayoutY(addressIndex * 200); // TODO INCREMENT THIS
+														// 210.0
 		individualPane.setPrefHeight(200.0);
 		individualPane.setPrefWidth(624.0);
 		individualPane.setStyle("-fx-border-color: teal;");

@@ -236,5 +236,14 @@ public abstract class BaseController {
 			log.error("Error in launching scene: " + e.getMessage());
 		}
 	}
+	
+	public int isItemPresent(String itemsId) {
+		for (int i = 0; i < BaseController.foodBasket.getOrderItems().size(); i++) {
+			if (BaseController.foodBasket.getOrderItems().get(i).getItemId().equals(itemsId)) {
+				return i;
+			}
+		}
+		return -1;
+	}
 
 }

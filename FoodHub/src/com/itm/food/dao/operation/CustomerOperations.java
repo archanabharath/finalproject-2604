@@ -207,4 +207,18 @@ public class CustomerOperations implements IUserOperations, ICustomerPreferences
 	public List<Item> getItemsByRestaurant(String restaurantId) throws Exception {
 		return itemsDB.getItemsByRestaurantId(restaurantId);
 	}
+
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
+	public Item getItem(String id) throws Exception {
+		return itemsDB.find(id);
+	}
+	
+	public Restaurant getRestaurant(String id) throws Exception {
+		return restaurantDB.find(id);
+	}
 }
