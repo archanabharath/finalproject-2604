@@ -1,5 +1,7 @@
 package com.itm.food.dao;
 
+import com.itm.food.util.CardUtil;
+
 public class Payment extends AbstractDomain {
 
 	String customerid;
@@ -107,7 +109,7 @@ public class Payment extends AbstractDomain {
 		builder.append("-");
 		builder.append(this.getCardExpDate());
 		builder.append("-");
-		builder.append(this.getCardNo());
+		builder.append(CardUtil.maskCardNo(String.valueOf(this.getCardNo())));
 		return builder.toString();
 	}
 

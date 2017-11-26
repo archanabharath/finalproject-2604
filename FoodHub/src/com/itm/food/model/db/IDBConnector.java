@@ -7,7 +7,7 @@ public interface IDBConnector {
 	
 	public void createConnection() throws ClassNotFoundException, SQLException;
 	
-	public Connection getConnection();
+	public Connection getConnection() throws ClassNotFoundException, SQLException;
 	
 	public void closeConnection() throws SQLException;
 

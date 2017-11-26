@@ -1,7 +1,6 @@
 package com.itm.food.dao.operation;
 
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -9,13 +8,21 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import com.itm.food.dao.Address;
+import com.itm.food.dao.Basket;
 import com.itm.food.dao.Customer;
+import com.itm.food.dao.CustomerOrder;
 import com.itm.food.dao.Item;
+import com.itm.food.dao.Order;
+import com.itm.food.dao.OrderItem;
+import com.itm.food.dao.OrderStatus;
 import com.itm.food.dao.Restaurant;
 import com.itm.food.model.AddressDB;
 import com.itm.food.model.CustomerDB;
 import com.itm.food.model.ItemsDB;
+import com.itm.food.model.OrderDB;
+import com.itm.food.model.OrderItemDB;
 import com.itm.food.model.RestaurantDB;
+import com.itm.food.util.UniqueKeyGen;
 
 public class CustomerOperations implements IUserOperations, ICustomerPreferences {
 
@@ -26,6 +33,8 @@ public class CustomerOperations implements IUserOperations, ICustomerPreferences
 	AddressDB addressDB = new AddressDB();
 	RestaurantDB restaurantDB = new RestaurantDB();
 	ItemsDB itemsDB = new ItemsDB();
+	OrderDB orderDB = new OrderDB();
+	OrderItemDB orderItemDB = new OrderItemDB();
 
 	@Override
 	public String addUserDetails(Customer newcustomer) throws Exception {
@@ -53,13 +62,51 @@ public class CustomerOperations implements IUserOperations, ICustomerPreferences
 	}
 
 	@Override
-	public void updateUserDetails(Customer updateCustomer) throws ParseException {
+	public void updateUserDetails(Customer updateCustomer) throws Exception {
 		customerDB.update(updateCustomer);
 	}
 
 	@Override
-	public void updateOrder(int orderId) {
-		// TODO Auto-generated method stub
+	public void updateOrder(Basket basket) throws Exception {
+		try {
+
+			// Transaction Begins - Set auto commit to false. which allow us to
+			// rollback in case of failures
+			orderDB.setAutoCommit(false);
+
+			Order order = new Order();
+			order.setOrderId(UniqueKeyGen.generateUUID());
+			order.setCustomerId(basket.getCustomer());
+			order.setCardId(basket.getPayment());
+			order.setAddressId(basket.getAddress());
+			order.setTotalPayment(basket.getOrderTotal());
+			order.setOrderStatus(OrderStatus.IN_PROGRESS.getId());
+			order.setDeliveryMode(basket.getDeliveryMode());
+
+			String orderid = orderDB.add(order);
+
+			for (OrderItem items : basket.getOrderItems()) {
+				items.setOrderId(orderid);
+				orderItemDB.add(items);
+			}
+
+			// Commit the transaction
+			orderDB.commit();
+
+			// -- Transaction end
+
+		} catch (Exception e) {
+			orderDB.rollback();
+			log.error(e.getMessage());
+			throw e;
+			// nothing saved.
+		} finally {
+			try {
+				orderDB.setAutoCommit(true);
+			} catch (ClassNotFoundException | SQLException e) {
+				log.error(e.getMessage());
+			}
+		}
 
 	}
 
@@ -73,13 +120,34 @@ public class CustomerOperations implements IUserOperations, ICustomerPreferences
 
 	}
 
+	/**
+	 * retrieve the current orders that are in progress and yet to be completed
+	 */
 	@Override
-	public void displayOrderDetails(int orderId) {
+	public List<Order> displayOrderDetails(Order getOrders) {
+		return null;
 
 	}
 
+	/**
+	 * retrieve the list of orders along with customer, address and payment details placed by a customer in the past
+	 * 
+	 * @throws SQLException
+	 */
 	@Override
-	public void displayOrderHistory(int customerId) {
+	public List<CustomerOrder> displayOrderHistoryOfCustomer(String customerId) throws SQLException {
+		return orderDB.getListOfOrdersPlacedByCustomer(customerId);
+
+	}
+
+	/**
+	 * retrieve the item and restaurant details of all orders placed by the customer
+	 * 
+	 * @param customerId
+	 * @return
+	 */
+	public List<OrderItem> displayItemsRestaurantsOfAnOrder(String customerId) {
+		return orderDB.getOrderItemRestaurantDetails(customerId);
 
 	}
 
@@ -168,8 +236,8 @@ public class CustomerOperations implements IUserOperations, ICustomerPreferences
 	 * @return
 	 * @throws Exception
 	 */
-	public List<Address> getCustomerAddress(Address getAddress) throws Exception {
-		return addressDB.getAddresses(getAddress.getCustId());
+	public List<Address> getCustomerAddress(String customerId) throws Exception {
+		return addressDB.getAddresses(customerId);
 
 	}
 
@@ -206,5 +274,19 @@ public class CustomerOperations implements IUserOperations, ICustomerPreferences
 	 */
 	public List<Item> getItemsByRestaurant(String restaurantId) throws Exception {
 		return itemsDB.getItemsByRestaurantId(restaurantId);
+	}
+
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
+	public Item getItem(String id) throws Exception {
+		return itemsDB.find(id);
+	}
+
+	public Restaurant getRestaurant(String id) throws Exception {
+		return restaurantDB.find(id);
 	}
 }

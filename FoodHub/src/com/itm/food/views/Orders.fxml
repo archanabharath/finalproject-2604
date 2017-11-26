@@ -3,13 +3,14 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.effect.GaussianBlur?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1500.0" style="-fx-background-color: aliceblue;" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.itm.food.controller.OrdersController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1500.0" style="-fx-background-color: aliceblue;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.itm.food.controller.OrdersController">
    <children>
       <ImageView fitHeight="945.0" fitWidth="1500.0" layoutX="10.0" layoutY="10.0" opacity="0.2" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="55.0">
          <image>
@@ -117,6 +118,16 @@
             </ImageView>
          </children>
       </AnchorPane>
+      <ScrollPane fx:id="ordersscrollpane" layoutX="290.0" layoutY="245.0" prefHeight="210.0" prefWidth="1200.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="450.0">
+         <content>
+            <AnchorPane fx:id="ordersAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="139.0" prefWidth="1180.0" style="-fx-background-color: ivory;" />
+         </content>
+      </ScrollPane>
+      <Label alignment="CENTER" layoutX="755.0" layoutY="134.0" text="Your Orders" textFill="STEELBLUE" AnchorPane.bottomAnchor="810.0" AnchorPane.leftAnchor="550.0" AnchorPane.rightAnchor="420.0" AnchorPane.topAnchor="110.0">
+         <font>
+            <Font name="System Bold" size="26.0" />
+         </font>
+      </Label>
    </children>
    <cursor>
       <Cursor fx:constant="DEFAULT" />

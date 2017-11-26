@@ -1,6 +1,6 @@
 package com.itm.food.dao;
 
-public class Item {
+public class Item extends AbstractDomain {
 	String itemId;
 	String restaurantId;
 	String itemName;

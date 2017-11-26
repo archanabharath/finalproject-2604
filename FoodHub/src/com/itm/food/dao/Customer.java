@@ -1,11 +1,9 @@
 package com.itm.food.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
 
-import com.itm.food.dao.operation.PaymentOperations;
 import com.itm.food.util.PasswordUtil;
 
 public class Customer extends AbstractDomain {
@@ -23,7 +21,9 @@ public class Customer extends AbstractDomain {
 	String email;
 	List<Address> addresses;
 	List<Payment> allCards;
+	List<Order> allOrders;
 
+	
 	/**
 	 * @return the customerID
 	 */
@@ -198,6 +198,20 @@ public class Customer extends AbstractDomain {
 	 */
 	public void setPayments(List<Payment> payments) {
 		this.allCards = payments;
+	}
+
+	/**
+	 * @return the allOrders
+	 */
+	public List<Order> getAllOrders() {
+		return allOrders;
+	}
+
+	/**
+	 * @param allOrders the allOrders to set
+	 */
+	public void setAllOrders(List<Order> allOrders) {
+		this.allOrders = allOrders;
 	}
 
 }

@@ -153,6 +153,20 @@
 				<AnchorPane fx:id="anchorPaneRestList" minHeight="0.0" minWidth="0.0" prefHeight="210.0" prefWidth="1180.0" style="-fx-background-color: ivory;" />
 			</content>
 		</ScrollPane>
+      <AnchorPane fx:id="noRestaurantPane" layoutX="525.0" layoutY="163.0" prefHeight="60.0" prefWidth="500.0" visible="false" AnchorPane.leftAnchor="600.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="163.0">
+         <children>
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <image>
+                  <Image url="@../../../../../asserts/icons8-sad-100.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="71.0" layoutY="5.0" prefHeight="50.0" prefWidth="399.0" text="Sorry!!! No restaurant found near your place. Please try different place." textFill="TOMATO" wrapText="true" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="71.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="5.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
 	</children>
 	<cursor>
 		<Cursor fx:constant="DEFAULT" />

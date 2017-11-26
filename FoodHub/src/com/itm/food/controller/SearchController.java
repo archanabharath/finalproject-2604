@@ -23,6 +23,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 public class SearchController extends BaseController {
@@ -40,6 +41,9 @@ public class SearchController extends BaseController {
 
 	@FXML
 	private JFXTextField txtSearch;
+	
+	@FXML
+	private AnchorPane noRestaurantPane;
 
 	@Override
 	void init() {
@@ -96,6 +100,14 @@ public class SearchController extends BaseController {
 	void loadRestaurantSearchResult(List<Integer> zipcodes) throws Exception {
 		BaseController.preferredRestaurants.clear();
 		BaseController.preferredRestaurants.addAll(customerOperation.searchRestaurants(zipcodes));
+		if (null == BaseController.preferredRestaurants
+				|| BaseController.preferredRestaurants.size() == 0) {
+			noRestaurantPane.setVisible(true);
+			scrollPaneRest.setVisible(false);
+		} else {
+			noRestaurantPane.setVisible(false);
+			scrollPaneRest.setVisible(true);
+		}
 	}
 	
 	void renderRestaurantList() {
@@ -167,6 +179,7 @@ public class SearchController extends BaseController {
 		lblRestName.prefWidth(900.0);
 		lblRestName.setText(BaseController.preferredRestaurants.get(count).getRestaurantName());
 		lblRestName.setWrapText(true);
+		lblRestName.setTextFill(Color.CRIMSON);
 		lblRestName.setFont(new Font(24.0));
 		AnchorPane.setLeftAnchor(lblRestName, 200.0);
 		AnchorPane.setTopAnchor(lblRestName, 20.0);

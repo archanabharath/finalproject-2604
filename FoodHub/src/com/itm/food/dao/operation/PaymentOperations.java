@@ -8,14 +8,16 @@ import com.itm.food.dao.Payment;
 import com.itm.food.model.PaymentDB;
 
 public class PaymentOperations {
-	String cardId = null;
+
 	private static final Logger log = Logger.getLogger(PaymentOperations.class);
+
+	PaymentDB paymentDB = new PaymentDB();
 
 	public String addPaymentInfo(Payment newCard) {
 		log.info("payment operations started");
-		PaymentDB addNewCard = new PaymentDB();
+		String cardId = null;
 		try {
-			cardId = addNewCard.add(newCard);
+			cardId = paymentDB.add(newCard);
 		} catch (Exception e) {
 			log.error(e.getMessage());
 		}
@@ -32,9 +34,8 @@ public class PaymentOperations {
 		return 0;
 	}
 
-	public List<Payment> getCards(Payment getCards) throws Exception {
-		PaymentDB callPaymentDBTOGetCards = new PaymentDB();
-		return callPaymentDBTOGetCards.getAllCardsFromDB(getCards);
+	public List<Payment> getCards(String customerId) throws Exception {
+		return paymentDB.getAllCardsFromDB(customerId);
 
 	}
 

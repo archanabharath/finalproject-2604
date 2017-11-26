@@ -21,7 +21,11 @@ public class ParentController extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			mainStage = primaryStage;
-			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/Login.fxml"));
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource("../views/Login.fxml"));
+			AnchorPane root = loader.load();
+			BaseController controller = loader.getController();
+			controller.appInit();
 			Scene scene = new Scene(root, 900, 500);
 			scene.getStylesheets().add(getClass().getResource("../application.css").toExternalForm());
 			primaryStage.setScene(scene);

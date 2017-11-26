@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.effect.GaussianBlur?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -207,6 +209,12 @@
             <Line endX="200.0" layoutX="140.0" layoutY="305.0" opacity="0.5" startX="-100.0" stroke="WHITE" />
          </children>
       </AnchorPane>
+      <ScrollPane fx:id="scrollPaneRest" layoutX="290.0" layoutY="245.0" prefHeight="750.0" prefWidth="750.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="150.0">
+         <content>
+            <AnchorPane fx:id="anchorPaneItemList" layoutY="0.0" prefHeight="150.0" prefWidth="740.0" style="-fx-border-color: lightgrey;">
+            </AnchorPane>
+         </content>
+      </ScrollPane>
    </children>
    <cursor>
       <Cursor fx:constant="DEFAULT" />

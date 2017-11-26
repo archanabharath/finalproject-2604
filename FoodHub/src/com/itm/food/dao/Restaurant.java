@@ -2,7 +2,7 @@ package com.itm.food.dao;
 
 import java.util.List;
 
-public class Restaurant {
+public class Restaurant extends AbstractDomain {
 
 	String restaurantId;
 	String restaurantName;

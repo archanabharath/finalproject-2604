@@ -18,6 +18,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 
@@ -43,6 +44,9 @@ public class ItemsController extends BaseController {
 	@FXML
 	private AnchorPane anchorPaneItemList;
 
+	@FXML
+	private AnchorPane noMenuPane;
+
 	@Override
 	void init() {
 		super.init();
@@ -57,6 +61,14 @@ public class ItemsController extends BaseController {
 					customerOperation.getItemsByRestaurant(BaseController.currentRestaurant.getRestaurantId()));
 			if (null == BaseController.foodBasket.getOrderItems()) {
 				BaseController.foodBasket.setOrderItems(new ArrayList<OrderItem>());
+			}
+			if (null == BaseController.currentRestaurant.getItems()
+					|| BaseController.currentRestaurant.getItems().size() == 0) {
+				noMenuPane.setVisible(true);
+				scrollPaneRest.setVisible(false);
+			} else {
+				noMenuPane.setVisible(false);
+				scrollPaneRest.setVisible(true);
 			}
 		} catch (Exception e) {
 			log.error(e.getMessage());
@@ -73,6 +85,7 @@ public class ItemsController extends BaseController {
 		}
 
 		lblRestaurantName.setText(BaseController.currentRestaurant.getRestaurantName());
+		lblRestaurantName.setTextFill(Color.CRIMSON);
 		lblRestAddress.setText(BaseController.currentRestaurant.getAddressPhoneAndEmail());
 	}
 
@@ -81,14 +94,10 @@ public class ItemsController extends BaseController {
 			// Clean the anchorPaneRestList before rendering the new search list
 			anchorPaneItemList.getChildren().removeAll(anchorPaneItemList.getChildren());
 			anchorPaneItemList.setPrefHeight(150.0);
-			scrollPaneRest.setVisible(true);
 			for (int i = 0; i < BaseController.currentRestaurant.getItems().size(); i++) {
 				renderItem(i);
 			}
-		} else {
-			scrollPaneRest.setVisible(false);
-			log.debug("No Items found.");
-		}
+		} 
 	}
 
 	void renderItem(int index) {
@@ -130,6 +139,7 @@ public class ItemsController extends BaseController {
 		lblItemName.setText(BaseController.currentRestaurant.getItems().get(index).getItemName());
 		lblItemName.setWrapText(true);
 		lblItemName.setFont(new Font(24.0));
+		lblItemName.setTextFill(Color.CRIMSON);
 		AnchorPane.setLeftAnchor(lblItemName, 200.0);
 		AnchorPane.setTopAnchor(lblItemName, 20.0);
 		pane.getChildren().add(lblItemName);
@@ -227,22 +237,13 @@ public class ItemsController extends BaseController {
 		String itemToBeRemoved = BaseController.currentRestaurant.getItems().get(index).getItemId();
 		int indexToBeRemoved = -1;
 		indexToBeRemoved = isItemPresent(itemToBeRemoved);
-		if(indexToBeRemoved != -1) {
-		BaseController.foodBasket.getOrderItems().remove(indexToBeRemoved);
+		if (indexToBeRemoved != -1) {
+			BaseController.foodBasket.getOrderItems().remove(indexToBeRemoved);
 		}
 		enableOrDisableBasketButtonIfNeeded();
 		log.debug("Item id: " + BaseController.currentRestaurant.getItems().get(index).getItemId()
 				+ " removed from basket");
 		log.debug("Current Items in basket: " + BaseController.foodBasket.getOrderItems().toString());
-	}
-	
-	private int isItemPresent(String itemsId) {
-		for (int i = 0; i < BaseController.foodBasket.getOrderItems().size(); i++) {
-			if (BaseController.foodBasket.getOrderItems().get(i).getItemId().equals(itemsId)) {
-				return i;
-			}
-		}
-		return -1;
 	}
 
 	private void enableOrDisableBasketButtonIfNeeded() {

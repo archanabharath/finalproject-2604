@@ -35,8 +35,6 @@ public class PaymentDB extends AbstractDB implements IDBAccess{
 		
 	}catch(SQLException e) {
 		log.error(e.getMessage());
-	}finally {
-		this.closeConnection();
 	}
 		log.debug("Card added to payment table");
 		return newCard.getCardid();
@@ -66,13 +64,13 @@ public class PaymentDB extends AbstractDB implements IDBAccess{
 		
 	}
 	
-	public List<Payment> getAllCardsFromDB(Payment getCards) throws Exception{
+	public List<Payment> getAllCardsFromDB(String customerId) throws Exception{
 		ResultSet rsAllCards;
 		List<Payment> cardsList = new ArrayList<Payment>();
 		log.debug("Getting all cards");
 		try {
 			PreparedStatement preparestatement = this.getDBConnection().prepareStatement(MySQLQuery.SQL_GET_ALL_CARDS_OF_CUSTOMER);
-			preparestatement.setString(1, getCards.getCustomerid());
+			preparestatement.setString(1, customerId);
 			rsAllCards = preparestatement.executeQuery();//NAME_ON_CARD,CARD_TYPE,EXPIRY,CARD_NO
 			while(rsAllCards.next()) {
 				Payment newcard = new Payment();
@@ -80,6 +78,8 @@ public class PaymentDB extends AbstractDB implements IDBAccess{
 				newcard.setCardType(rsAllCards.getString(2));
 				newcard.setCardExpDate(rsAllCards.getString(3));
 				newcard.setCardNo(rsAllCards.getLong(4));
+				newcard.setCardid(rsAllCards.getString(5));
+				newcard.setCustomerid(rsAllCards.getString(6));
 				
 				cardsList.add(newcard);
 			}
