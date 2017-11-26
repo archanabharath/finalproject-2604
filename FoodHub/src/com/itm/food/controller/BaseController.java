@@ -1,3 +1,4 @@
+
 package com.itm.food.controller;
 
 import java.util.ArrayList;
@@ -144,7 +145,7 @@ public abstract class BaseController {
 	void handleMouseSignout(MouseEvent event) {
 		handleSignout();
 	}
-	
+
 	void appInit() {
 		try {
 		MySQLDBConnector connector = new MySQLDBConnector();
