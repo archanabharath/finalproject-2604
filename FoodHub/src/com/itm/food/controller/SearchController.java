@@ -123,7 +123,7 @@ public class SearchController extends BaseController {
 			}
 		} else {
 			scrollPaneRest.setVisible(false);
-			log.debug("No resutaurant found.");
+			log.debug("No restaurant found.");
 		}
 	}
 
@@ -302,7 +302,7 @@ public class SearchController extends BaseController {
 			public void handle(ActionEvent event) {
 				BaseController.currentRestaurant = BaseController.preferredRestaurants.get(count);
 				log.debug(BaseController.currentRestaurant.getRestaurantId());
-				launchScene("Items Screen", "../views/Items.fxml", BaseController.MAIN_SCREEN_WIDTH,
+				launchScene("Items Screen", "/com/itm/food/views/Items.fxml", BaseController.MAIN_SCREEN_WIDTH,
 						BaseController.MAIN_SCREEN_HEIGHT);
 			}
 		});

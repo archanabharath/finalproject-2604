@@ -137,6 +137,7 @@ public class CustomerOperations implements IUserOperations, ICustomerPreferences
 	@Override
 	public List<CustomerOrder> displayOrderHistoryOfCustomer(String customerId) throws SQLException {
 		return orderDB.getListOfOrdersPlacedByCustomer(customerId);
+		
 
 	}
 

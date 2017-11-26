@@ -38,7 +38,7 @@ public class LoginController extends BaseController {
 
 	@FXML
 	void handleSignup(MouseEvent event) {
-		this.launchScene("Signup Screen", "../views/Signup.fxml", BaseController.SIGNUP_SCREEN_WIDTH,
+		this.launchScene("Signup Screen", "/com/itm/food/views/Signup.fxml", BaseController.SIGNUP_SCREEN_WIDTH,
 				BaseController.SIGNUP_SCREEN_HEIGHT);
 	}
 
@@ -64,7 +64,7 @@ public class LoginController extends BaseController {
 		}
 		
 		if(validateUser()) {
-		this.launchScene("Home Screen", "../views/Home.fxml", BaseController.MAIN_SCREEN_WIDTH,
+		this.launchScene("Home Screen", "/com/itm/food/views/Home.fxml", BaseController.MAIN_SCREEN_WIDTH,
 				BaseController.MAIN_SCREEN_HEIGHT);
 		} else {
 			showErrorMsg("Username / Password is not correct");

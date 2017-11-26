@@ -1,19 +1,17 @@
 package com.itm.food.controller;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 
 import com.itm.food.dao.CustomerOrder;
-import com.itm.food.dao.Order;
-import com.itm.food.dao.operation.CustomerOperations;
 
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -29,6 +27,7 @@ public class OrdersController extends BaseController {
 	private AnchorPane ordersAnchorPane;
 
 	CustomerOrder ordercustomer = new CustomerOrder();
+	List<CustomerOrder> custOrderList ;
 
 	@Override
 	void init() {
@@ -49,10 +48,10 @@ public class OrdersController extends BaseController {
 	 */
 	public void retrieveOrdersForCustomer(String orderCustId) {
 
-		CustomerOperations getOrdersHistory = new CustomerOperations();
+		
 		try {
-			ordercustomer.setOrderCustomerDetails(getOrdersHistory.displayOrderHistoryOfCustomer(orderCustId));
-			ordercustomer.setOrderItemRestaurantDetails(getOrdersHistory.displayItemsRestaurantsOfAnOrder(orderCustId));
+			customerOperation.displayOrderHistoryOfCustomer(orderCustId);
+			customerOperation.displayItemsRestaurantsOfAnOrder(orderCustId);
 
 		} catch (SQLException e) {
 			log.error(e.getMessage());
