@@ -64,5 +64,5 @@ public class MySQLQuery {
 
 	public static String SQL_ORDER__ITEM_INSERT = "INSERT INTO ofod.ofod_order_item (ORDER_ID, RESTAURANT_ID, COUPON_ID, ITEM_ID, ITEM_QUANTITY) "
 			+ "VALUES(?, ?, ?, ?, ?)";
-
-}
+	
+	}
