@@ -14,15 +14,28 @@ public abstract class AbstractDB {
 	MySQLDBConnector connector = new MySQLDBConnector();
 
 	public Connection getDBConnection() throws ClassNotFoundException, SQLException {
-		log.info("Getting DB Connection.");
-		connector.createConnection();
-		log.info("DB Connection created");
+		log.debug("Getting DB Connection.");
 		return connector.getConnection();
 	}
 
 	public void closeConnection() throws SQLException {
 		connector.closeConnection();
-		log.info("Connection closed.");
+		log.debug("Connection closed.");
+	}
+
+	public void setAutoCommit(boolean autoCommit) throws ClassNotFoundException, SQLException {
+		log.debug("Auto commit set to: " + autoCommit);
+		connector.getConnection().setAutoCommit(autoCommit);
+	}
+
+	public void commit() throws ClassNotFoundException, SQLException {
+		log.debug("Committing transaction.");
+		connector.getConnection().commit();
+	}
+
+	public void rollback() throws ClassNotFoundException, SQLException {
+		log.debug("Rollback transaction");
+		connector.getConnection().rollback();
 	}
 
 }

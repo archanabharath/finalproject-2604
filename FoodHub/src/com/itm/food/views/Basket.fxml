@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXToggleButton?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.effect.GaussianBlur?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -35,7 +37,8 @@
                   <Font name="Arial Bold" size="18.0" />
                </font>
             </Label>
-         </children></AnchorPane>
+         </children>
+      </AnchorPane>
       <AnchorPane layoutY="55.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: deepskyblue;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1300.0" AnchorPane.topAnchor="55.0">
          <children>
             <JFXButton layoutX="20.0" layoutY="101.0" onMouseReleased="#handleMouseHome" prefHeight="50.0" prefWidth="135.0" text="Home" textAlignment="RIGHT" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="0.0">
@@ -132,20 +135,6 @@
                   <Font size="18.0" />
                </font>
             </JFXButton>
-            <AnchorPane fx:id="errorPane" prefHeight="50.0" prefWidth="300.0" visible="false" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="600.0">
-               <children>
-                  <ImageView fitHeight="35.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0">
-                     <image>
-                        <Image url="@../../../../../asserts/icons8-error-96.png" />
-                     </image>
-                  </ImageView>
-                  <Label fx:id="lblErrorMsg" layoutX="60.0" prefHeight="30.0" prefWidth="174.0" text="##Errormsg##" textFill="STEELBLUE" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="10.0">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Label>
-               </children>
-            </AnchorPane>
             <Label layoutX="37.0" layoutY="120.0" text="Items Total:" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="100.0">
                <font>
                   <Font size="18.0" />
@@ -196,17 +185,56 @@
                   <Font name="Arial" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="58.0" layoutY="348.0" prefHeight="23.0" prefWidth="150.0" text="Order Total:" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="209.0" AnchorPane.topAnchor="320.0">
+            <Label layoutX="58.0" layoutY="348.0" prefHeight="23.0" prefWidth="150.0" text="Order Total:" textFill="CRIMSON" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="209.0" AnchorPane.topAnchor="320.0">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label fx:id="lblOrderTotal" layoutX="280.0" layoutY="348.0" text="\$0.00" AnchorPane.leftAnchor="270.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="320.0">
+            <Label fx:id="lblOrderTotal" layoutX="280.0" layoutY="348.0" text="\$0.00" textFill="CRIMSON" AnchorPane.leftAnchor="270.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="320.0">
                <font>
                   <Font name="Arial" size="24.0" />
                </font>
             </Label>
             <Line endX="200.0" layoutX="140.0" layoutY="305.0" opacity="0.5" startX="-100.0" stroke="WHITE" />
+            <Line endX="200.0" layoutX="144.0" layoutY="363.0" opacity="0.5" startX="-100.0" stroke="WHITE" />
+            <JFXToggleButton fx:id="togglePickup" contentDisplay="RIGHT" layoutX="40.0" layoutY="373.0" onAction="#handlePickup" text="Pickup" toggleColor="STEELBLUE" AnchorPane.bottomAnchor="320.0" AnchorPane.leftAnchor="40.0">
+               <toggleGroup>
+                  <ToggleGroup fx:id="deliveryMode" />
+               </toggleGroup>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXToggleButton>
+            <JFXToggleButton fx:id="toggleDelivery" contentDisplay="RIGHT" layoutX="209.0" layoutY="376.0" onAction="#handleDelivery" selected="true" text="Delivery" toggleColor="STEELBLUE" toggleGroup="$deliveryMode" AnchorPane.bottomAnchor="320.0" AnchorPane.rightAnchor="40.0">
+               <font>
+                  <Font size="18.0" />
+               </font></JFXToggleButton>
+            <ChoiceBox fx:id="addressPicker" layoutX="74.0" layoutY="434.0" prefHeight="40.0" prefWidth="150.0" AnchorPane.bottomAnchor="240.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" />
+            <ChoiceBox fx:id="paymentPicker" layoutX="71.0" layoutY="531.0" prefHeight="40.0" prefWidth="150.0" AnchorPane.bottomAnchor="130.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" />
+            <Label layoutX="46.0" layoutY="449.0" text="Pick an address for delivery:" AnchorPane.bottomAnchor="290.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="56.0" layoutY="459.0" text="Pick a card for payment:" AnchorPane.bottomAnchor="180.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <AnchorPane fx:id="orderErrorPane" layoutX="49.0" layoutY="628.0" prefHeight="50.0" prefWidth="300.0" visible="false" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0">
+               <children>
+                  <ImageView fitHeight="35.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0">
+                     <image>
+                        <Image url="@../../../../../asserts/icons8-error-96.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="lblOrderErrorMsg" layoutX="60.0" prefHeight="30.0" prefWidth="174.0" text="##Errormsg##" textFill="STEELBLUE" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="10.0">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
       <ScrollPane fx:id="scrollPaneRest" layoutX="290.0" layoutY="245.0" prefHeight="750.0" prefWidth="750.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="150.0">
@@ -215,6 +243,20 @@
             </AnchorPane>
          </content>
       </ScrollPane>
+      <AnchorPane fx:id="errorPane" layoutX="10.0" layoutY="10.0" prefHeight="50.0" prefWidth="300.0" visible="false" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="300.0">
+         <children>
+            <ImageView fitHeight="35.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0">
+               <image>
+                  <Image url="@../../../../../asserts/icons8-error-96.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="lblErrorMsg" layoutX="60.0" prefHeight="30.0" prefWidth="174.0" text="##Errormsg##" textFill="STEELBLUE" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="10.0">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
    </children>
    <cursor>
       <Cursor fx:constant="DEFAULT" />

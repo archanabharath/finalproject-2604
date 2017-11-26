@@ -128,9 +128,7 @@ public class RestaurantDB extends AbstractDB implements IDBAccess {
 		} catch (Exception e) {
 			log.error(e.getMessage());
 
-		} finally {
-			this.closeConnection();
-		}
+		} 
 		return restaurantsList;
 
 	}

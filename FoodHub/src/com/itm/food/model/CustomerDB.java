@@ -41,9 +41,7 @@ public class CustomerDB extends AbstractDB implements IDBAccess {
 		} catch (Exception ex) {
 			log.error(ex.getMessage());
 			throw ex;
-		} finally {
-			this.closeConnection();
-		}
+		} 
 		log.debug("Added Customer - " + customerObj.getCustomerID());
 		return customerObj.getCustomerID();
 	}
@@ -107,9 +105,7 @@ public class CustomerDB extends AbstractDB implements IDBAccess {
 		} catch (Exception e) {
 			log.error(e.getMessage());
 
-		} finally {
-			this.closeConnection();
-		}
+		} 
 		return (T) customer;
 	}
 
@@ -148,10 +144,7 @@ public class CustomerDB extends AbstractDB implements IDBAccess {
 		} catch (Exception e) {
 			log.error(e.getMessage());
 
-		} finally {
-			this.closeConnection();
 		}
-
 		return custId;
 	}
 
@@ -175,10 +168,7 @@ public class CustomerDB extends AbstractDB implements IDBAccess {
 			preparestatement.close();
 		} catch (SQLException e) {
 			log.error(e.getMessage());
-		} finally {
-			this.closeConnection();
 		}
-
 		return usernameFound;
 
 	}
@@ -211,10 +201,7 @@ public class CustomerDB extends AbstractDB implements IDBAccess {
 		} catch (SQLException e) {
 			log.error(e.getMessage());
 
-		} finally {
-			this.closeConnection();
-
-		}
+		} 
 		return userProfile;
 
 	}

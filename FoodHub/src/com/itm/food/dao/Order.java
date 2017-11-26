@@ -7,12 +7,10 @@ public class Order extends AbstractDomain {
 	String cardId;
 	String addressId;
 	double totalPayment;
-	double totalReceived;
-	String orderDate;
 	String orderTime;
-	String orderStatus;
+	int orderStatus;
 	String driverId;
-	String deliveryMode;
+	int deliveryMode;
 	String orderFulfilment;
 	String orderRating;
 	String orderFeedback;
@@ -94,36 +92,6 @@ public class Order extends AbstractDomain {
 	}
 
 	/**
-	 * @return the totalReceived
-	 */
-	public double getTotalReceived() {
-		return totalReceived;
-	}
-
-	/**
-	 * @param totalReceived
-	 *            the totalReceived to set
-	 */
-	public void setTotalReceived(double totalReceived) {
-		this.totalReceived = totalReceived;
-	}
-
-	/**
-	 * @return the orderDate
-	 */
-	public String getOrderDate() {
-		return orderDate;
-	}
-
-	/**
-	 * @param orderDate
-	 *            the orderDate to set
-	 */
-	public void setOrderDate(String orderDate) {
-		this.orderDate = orderDate;
-	}
-
-	/**
 	 * @return the orderTime
 	 */
 	public String getOrderTime() {
@@ -141,7 +109,7 @@ public class Order extends AbstractDomain {
 	/**
 	 * @return the orderStatus
 	 */
-	public String getOrderStatus() {
+	public int getOrderStatus() {
 		return orderStatus;
 	}
 
@@ -149,7 +117,7 @@ public class Order extends AbstractDomain {
 	 * @param orderStatus
 	 *            the orderStatus to set
 	 */
-	public void setOrderStatus(String orderStatus) {
+	public void setOrderStatus(int orderStatus) {
 		this.orderStatus = orderStatus;
 	}
 
@@ -171,7 +139,7 @@ public class Order extends AbstractDomain {
 	/**
 	 * @return the deliveryMode
 	 */
-	public String getDeliveryMode() {
+	public int getDeliveryMode() {
 		return deliveryMode;
 	}
 
@@ -179,7 +147,7 @@ public class Order extends AbstractDomain {
 	 * @param deliveryMode
 	 *            the deliveryMode to set
 	 */
-	public void setDeliveryMode(String deliveryMode) {
+	public void setDeliveryMode(int deliveryMode) {
 		this.deliveryMode = deliveryMode;
 	}
 

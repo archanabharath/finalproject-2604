@@ -1,6 +1,5 @@
 package com.itm.food.controller;
 
-import java.text.ParseException;
 import java.time.LocalDate;
 
 import org.apache.commons.lang.StringUtils;
@@ -125,7 +124,7 @@ public class ProfileController extends BaseController {
 		updateCustomer.setDOB(pDOB.getValue().toString());
 		try {
 			addUpdates.updateUserDetails(updateCustomer);
-		} catch (ParseException e) {
+		} catch (Exception e) {
 			log.error(e.getMessage());
 		}
 

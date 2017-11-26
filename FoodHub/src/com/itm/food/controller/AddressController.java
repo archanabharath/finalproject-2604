@@ -204,16 +204,12 @@ public class AddressController extends BaseController {
 	 * storing the retrieved addresses in the List of address dao
 	 */
 	public void listAddressesOfCustomers() {
-
 		try {
-
 			BaseController.authenticatedCustomer
 					.setAddresses(getAllAddresses(BaseController.authenticatedCustomer.getCustomerID()));
-
 		} catch (Exception e) {
 			log.error(e.getMessage());
 		}
-
 	}
 
 	/**
@@ -224,13 +220,7 @@ public class AddressController extends BaseController {
 	 * @throws Exception
 	 */
 	public List<Address> getAllAddresses(String pagesCustId) throws Exception {
-
-		Address getAddress = new Address();
-		getAddress.setCustId(pagesCustId);
-		CustomerOperations getCustAddresses = new CustomerOperations();
-
-		return getCustAddresses.getCustomerAddress(getAddress);
-
+		return customerOperation.getCustomerAddress(pagesCustId);
 	}
 
 	/**

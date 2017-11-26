@@ -6,7 +6,7 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 
 import com.itm.food.dao.Payment;
-import com.itm.food.dao.operation.PaymentOperations;
+import com.itm.food.util.CardUtil;
 import com.itm.food.util.UniqueKeyGen;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
@@ -64,8 +64,8 @@ public class CardsController extends BaseController {
 	ObservableList<Payment> cardsList;
 
 	/**
-	 * This the method which handles the overall functioning of adding new cards of
-	 * customers
+	 * This the method which handles the overall functioning of adding new cards
+	 * of customers
 	 */
 	@FXML
 	void handleAddNewCard(ActionEvent event) {
@@ -84,7 +84,7 @@ public class CardsController extends BaseController {
 		// Reset all input fields
 		resetInputFields();
 
-		//Refresh the screen
+		// Refresh the screen
 		handleCards();
 
 	}
@@ -112,7 +112,6 @@ public class CardsController extends BaseController {
 	public void cardInsertToDB(String transferCustId) {
 		log.info("Addcardcontroller started");
 		Payment newCard = new Payment();
-		PaymentOperations addNewCard = new PaymentOperations();
 
 		newCard.setCardid(UniqueKeyGen.generateUUID());
 		newCard.setCardNo(Long.parseLong(cardNo.getText()));
@@ -120,7 +119,7 @@ public class CardsController extends BaseController {
 		newCard.setCustomerid(transferCustId);
 		newCard.setCardType(cardtypepicker.getValue());
 		newCard.setCardExpDate(monthpicker.getValue() + "/" + yearpicker.getValue());
-		pageCardId = addNewCard.addPaymentInfo(newCard);
+		pageCardId = paymentOperation.addPaymentInfo(newCard);
 		log.info("cardcontroller returned");
 
 	}
@@ -131,26 +130,25 @@ public class CardsController extends BaseController {
 	 */
 	public void setPickerData() {
 		// initialize observable arraylists for choice boxes
-		months = FXCollections.observableArrayList("--month--", "01", "02", "03", "04", "05", "06", "07", "08", "09",
+		months = FXCollections.observableArrayList("--Month--", "01", "02", "03", "04", "05", "06", "07", "08", "09",
 				"10", "11", "12");
-		years = FXCollections.observableArrayList("--year--", "2017", "2018", "2019", "2020", "2022", "2023", "2024",
+		years = FXCollections.observableArrayList("--Year--", "2017", "2018", "2019", "2020", "2022", "2023", "2024",
 				"2025", "2026", "2027", "2028", "2029", "2030");
-		typesOfCard = FXCollections.observableArrayList("--card-type--", "credit", "debit");
+		typesOfCard = FXCollections.observableArrayList("--Card-type--", "Credit", "Debit");
 
 		// initialize months choicebox for dropdown
 		monthpicker.setItems(months);
-		monthpicker.setValue("--month--");
+		monthpicker.setValue("--Month--");
 		monthpicker.setStyle("-fx-font: normal bold 14px");
 
 		// initialize years choicebox for dropdown
 		yearpicker.setItems(years);
-		yearpicker.setValue("--year--");
+		yearpicker.setValue("--Year--");
 		yearpicker.setStyle("-fx-font: normal bold 14px");
 
 		// set card type picker
 		cardtypepicker.setItems(typesOfCard);
-		cardtypepicker.setValue("--card-type--");
-
+		cardtypepicker.setValue("--Card-type--");
 		cardtypepicker.setStyle("-fx-font: normal bold 14px");
 	}
 
@@ -240,17 +238,13 @@ public class CardsController extends BaseController {
 	 * @throws Exception
 	 */
 	public List<Payment> getAllCards(String pagesCustId) throws Exception {
-		Payment getCards = new Payment();
-		getCards.setCustomerid(pagesCustId);
-		PaymentOperations getCardsOperations = new PaymentOperations();
-		return getCardsOperations.getCards(getCards);
+		return paymentOperation.getCards(pagesCustId);
 	}
 
 	/**
 	 * render the view of the cards list on screen
 	 */
 	public void renderCardsList() {
-
 		cardanchorpane.getChildren().removeAll(cardanchorpane.getChildren());
 		cardanchorpane.setPrefHeight(150.0);
 		cardscrollpane.setPrefWidth(600.0);
@@ -268,8 +262,6 @@ public class CardsController extends BaseController {
 	 */
 	private void renderEachCard(int cardIndex) {
 
-		String maskPattern = "XXXX-XXXX-XXXX-####";
-
 		double requiredAPaneHeight = cardIndex * 150.0;
 		double currentAPaneHeight = cardanchorpane.getPrefHeight();
 		if (requiredAPaneHeight <= currentAPaneHeight) {
@@ -280,7 +272,8 @@ public class CardsController extends BaseController {
 
 		// design the pane for holding every card
 		AnchorPane individualCardPane = new AnchorPane();
-		individualCardPane.setLayoutY(cardIndex * 150); // TODO INCREMENT THIS 210.0
+		individualCardPane.setLayoutY(cardIndex * 150); // TODO INCREMENT THIS
+														// 210.0
 		individualCardPane.setPrefHeight(150.0);
 		individualCardPane.setPrefWidth(600.0);
 		individualCardPane.setStyle("-fx-border-color: teal;");
@@ -307,10 +300,9 @@ public class CardsController extends BaseController {
 		lblCardNo.setLayoutY(20.0);
 		lblCardNo.prefHeight(30.0);
 		lblCardNo.prefWidth(600.0);
-		lblCardNo.setText("Card No: " + maskCardNo(
-				String.valueOf(BaseController.authenticatedCustomer.getPayments().get(cardIndex).getCardNo()),
-				maskPattern));
-		
+		lblCardNo.setText("Card No: " + CardUtil.maskCardNo(
+				String.valueOf(BaseController.authenticatedCustomer.getPayments().get(cardIndex).getCardNo())));
+
 		lblCardNo.setWrapText(true);
 		lblCardNo.setFont(new Font(15.0));
 		AnchorPane.setLeftAnchor(lblCardNo, 20.0);
@@ -350,34 +342,5 @@ public class CardsController extends BaseController {
 
 		cardanchorpane.getChildren().add(individualCardPane);
 
-	}
-
-	/**
-	 * Mask card number before printing since it is sensitive data
-	 * 
-	 * @param cardNoForMasking
-	 * @param maskPattern
-	 * @return
-	 */
-	public String maskCardNo(String cardNoForMasking, String maskPattern) {
-
-		// format the number
-		int index = 0;
-		StringBuilder maskedNumber = new StringBuilder();
-		for (int i = 0; i < maskPattern.length(); i++) {
-			char c = maskPattern.charAt(i);
-			if (c == '#') {
-				maskedNumber.append(cardNoForMasking.charAt(index));
-				index++;
-			} else if (c == 'X') {
-				maskedNumber.append(c);
-				index++;
-			} else {
-				maskedNumber.append(c);
-			}
-		}
-
-		// return the masked number
-		return maskedNumber.toString();
 	}
 }

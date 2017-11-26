@@ -8,6 +8,8 @@ import com.itm.food.dao.Basket;
 import com.itm.food.dao.Customer;
 import com.itm.food.dao.Restaurant;
 import com.itm.food.dao.operation.CustomerOperations;
+import com.itm.food.dao.operation.PaymentOperations;
+import com.itm.food.model.db.MySQLDBConnector;
 import com.jfoenix.controls.JFXButton;
 
 import javafx.fxml.FXML;
@@ -34,6 +36,7 @@ public abstract class BaseController {
 
 	// Operations
 	CustomerOperations customerOperation = new CustomerOperations();
+	PaymentOperations paymentOperation = new PaymentOperations();
 
 	// Data access objects for logged in member
 	public static Customer authenticatedCustomer = new Customer();
@@ -52,6 +55,12 @@ public abstract class BaseController {
 
 	@FXML
 	void handleApplicationClose(MouseEvent event) {
+		try {
+			MySQLDBConnector connector = new MySQLDBConnector();
+			connector.closeConnection();
+		} catch (Exception ex) {
+			log.error("Unable to close DB connection:" + ex.getMessage());
+		}
 		log.debug("Closing app");
 		System.exit(0);
 	}
@@ -134,6 +143,17 @@ public abstract class BaseController {
 	@FXML
 	void handleMouseSignout(MouseEvent event) {
 		handleSignout();
+	}
+	
+	void appInit() {
+		try {
+		MySQLDBConnector connector = new MySQLDBConnector();
+		connector.getConnection();
+		} catch (Exception e) {
+			log.error(e.getMessage());
+			// Add a pop up message for DB connectivity 
+		}
+
 	}
 
 	/**
@@ -236,7 +256,7 @@ public abstract class BaseController {
 			log.error("Error in launching scene: " + e.getMessage());
 		}
 	}
-	
+
 	public int isItemPresent(String itemsId) {
 		for (int i = 0; i < BaseController.foodBasket.getOrderItems().size(); i++) {
 			if (BaseController.foodBasket.getOrderItems().get(i).getItemId().equals(itemsId)) {

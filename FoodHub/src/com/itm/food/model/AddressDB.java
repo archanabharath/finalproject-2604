@@ -19,7 +19,7 @@ public class AddressDB extends AbstractDB implements IDBAccess {
 	@Override
 	public <T extends AbstractDomain> String add(T object) throws Exception {
 		Address custaddrobj = (Address) object;
-		log.debug("Fetched Address");
+		log.debug("Adding Address");
 		try {
 			PreparedStatement preparedStatement = this.getDBConnection()
 					.prepareStatement(MySQLQuery.SQL_CUSTOMER_ADDRESS_INSERT);
@@ -39,9 +39,7 @@ public class AddressDB extends AbstractDB implements IDBAccess {
 		} catch (Exception ex) {
 			log.error(ex.getMessage());
 			throw ex;
-		} finally {
-			this.closeConnection();
-		}
+		} 
 		log.debug("Added Address - " + custaddrobj.getAddrId());
 		return custaddrobj.getAddrId();
 	}
@@ -71,7 +69,7 @@ public class AddressDB extends AbstractDB implements IDBAccess {
 	}
 
 	public List<Address> getAddresses(String custId) throws ClassNotFoundException {
-		log.debug("getting addresses for the customer");
+		log.debug("Getting addresses for the customer");
 		List<Address> addressList = new ArrayList<Address>();
 		ResultSet rsAllAddresses;
 		try {
@@ -89,6 +87,8 @@ public class AddressDB extends AbstractDB implements IDBAccess {
 				address.setCity(rsAllAddresses.getString(5));
 				address.setPincode(rsAllAddresses.getInt(6));
 				address.setAddrphoneNo(rsAllAddresses.getString(7));
+				address.setAddrId(rsAllAddresses.getString(8));
+				address.setCustId(rsAllAddresses.getString(9));
 				addressList.add(address);
 			}
 		} catch (SQLException e) {
