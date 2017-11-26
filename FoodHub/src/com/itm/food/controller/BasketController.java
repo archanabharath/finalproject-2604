@@ -5,19 +5,27 @@ import java.io.File;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 
+import com.itm.food.dao.Address;
+import com.itm.food.dao.Basket;
 import com.itm.food.dao.Item;
+import com.itm.food.dao.Payment;
 import com.itm.food.dao.Restaurant;
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXButton.ButtonType;
+import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.JFXToggleButton;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -62,28 +70,88 @@ public class BasketController extends BaseController {
 	@FXML
 	private AnchorPane anchorPaneItemList;
 
+    @FXML
+    private JFXToggleButton togglePickup;
+
+    @FXML
+    private ToggleGroup deliveryMode;
+
+    @FXML
+    private JFXToggleButton toggleDelivery;
+
+	@FXML
+	private ChoiceBox<Address> addressPicker;
+
+	@FXML
+	private ChoiceBox<Payment> paymentPicker;
+
+	@FXML
+	private AnchorPane orderErrorPane;
+
+	@FXML
+	private Label lblOrderErrorMsg;
+
 	public void init() {
 		super.init();
 		if (null != BaseController.foodBasket.getOrderItems() || BaseController.foodBasket.getOrderItems().isEmpty()) {
+			this.errorPane.setVisible(false);
+			this.orderErrorPane.setVisible(false);
 			renderOrderSummary();
 			renderBasketItems();
 		}
 
 	}
 
+    @FXML
+    void handleDelivery(ActionEvent event) {
+    	addressPicker.setDisable(false);
+    }
+    
+    @FXML
+    void handlePickup(ActionEvent event) {
+    	addressPicker.setDisable(true);
+    }
+	
 	@FXML
 	void handlePlaceOrder(ActionEvent event) {
-
+		placeOrder();
 	}
 
 	void renderOrderSummary() {
-		BaseController.foodBasket.calculateOrderSummary();
-		lblItemsTotal.setText("$" + BaseController.foodBasket.getItemsTotal());
-		lblDeliveryCharge.setText("$" + BaseController.foodBasket.getDeliveryCharge());
-		lblCouponsApplied.setText("$" + BaseController.foodBasket.getCouponsApplied());
-		lblTotalBeforeTax.setText("$" + BaseController.foodBasket.getTotalBeforeTax());
-		lblTaxApplied.setText("$" + BaseController.foodBasket.getTaxApplied());
-		lblOrderTotal.setText("$" + BaseController.foodBasket.getOrderTotal());
+		try {
+			BaseController.foodBasket.calculateOrderSummary();
+			lblItemsTotal.setText("$" + BaseController.foodBasket.getItemsTotal());
+			lblDeliveryCharge.setText("$" + BaseController.foodBasket.getDeliveryCharge());
+			lblCouponsApplied.setText("$" + BaseController.foodBasket.getCouponsApplied());
+			lblTotalBeforeTax.setText("$" + BaseController.foodBasket.getTotalBeforeTax());
+			lblTaxApplied.setText("$" + BaseController.foodBasket.getTaxApplied());
+			lblOrderTotal.setText("$" + BaseController.foodBasket.getOrderTotal());
+
+			if (null == BaseController.authenticatedCustomer.getAddresses()
+					|| BaseController.authenticatedCustomer.getAddresses().size() == 0) {
+				BaseController.authenticatedCustomer.setAddresses(
+						customerOperation.getCustomerAddress(BaseController.authenticatedCustomer.getCustomerID()));
+			}
+			ObservableList<Address> obAddress = null;
+			obAddress = FXCollections.observableArrayList(BaseController.authenticatedCustomer.getAddresses());
+			addressPicker.setItems(obAddress);
+			addressPicker.setValue(BaseController.authenticatedCustomer.getAddresses().get(0));
+
+			if (null == BaseController.authenticatedCustomer.getPayments()
+					|| BaseController.authenticatedCustomer.getPayments().size() == 0) {
+				BaseController.authenticatedCustomer
+						.setPayments(paymentOperation.getCards(BaseController.authenticatedCustomer.getCustomerID()));
+			}
+			ObservableList<Payment> obPayment = null;
+			obPayment = FXCollections.observableArrayList(BaseController.authenticatedCustomer.getPayments());
+			paymentPicker.setItems(obPayment);
+			paymentPicker.setValue(BaseController.authenticatedCustomer.getPayments().get(0));
+
+		} catch (Exception ex) {
+			lblOrderErrorMsg.setText("Unable to load order Summary.");
+			orderErrorPane.setVisible(true);
+			log.error(ex.getMessage());
+		}
 	}
 
 	void renderBasketItems() {
@@ -184,18 +252,18 @@ public class BasketController extends BaseController {
 			AnchorPane.setRightAnchor(lblPrice, 10.0);
 			AnchorPane.setTopAnchor(lblPrice, 15.0);
 			txtQuantity.textProperty().addListener(new ChangeListener<String>() {
-			    @Override
-			    public void changed(ObservableValue<? extends String> observable,
-			            String oldValue, String newValue) {
-			    	if(StringUtils.isNotBlank(newValue)) {
-			    	log.debug("Quantity changed to new value " + newValue + ". Recalculating the Order Summary");
-			    	BaseController.foodBasket.getOrderItems().get(index).setItemQuantity(Integer.parseInt(newValue));
-			    	renderOrderSummary();
-			    	}
-			    }
+				@Override
+				public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+					if (StringUtils.isNotBlank(newValue)) {
+						log.debug("Quantity changed to new value " + newValue + ". Recalculating the Order Summary");
+						BaseController.foodBasket.getOrderItems().get(index)
+								.setItemQuantity(Integer.parseInt(newValue));
+						renderOrderSummary();
+					}
+				}
 			});
 			pane.getChildren().add(txtQuantity);
-			
+
 			JFXButton addToBasket = new JFXButton();
 			addToBasket.setText("Remove from basket");
 			addToBasket.prefHeight(30.0);
@@ -207,7 +275,6 @@ public class BasketController extends BaseController {
 			addToBasket.setLayoutY(90.0);
 			AnchorPane.setRightAnchor(addToBasket, 30.0);
 			AnchorPane.setBottomAnchor(addToBasket, 20.0);
-	
 
 			addToBasket.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
 				@Override
@@ -217,32 +284,63 @@ public class BasketController extends BaseController {
 				}
 			});
 			pane.getChildren().add(addToBasket);
-			
 
 			anchorPaneItemList.getChildren().add(pane);
 		} catch (Exception ex) {
 			log.error(ex.getMessage());
 		}
 	}
-	
+
 	private void removeItemFromBasket(int index) {
 		String itemToBeRemoved = BaseController.foodBasket.getOrderItems().get(index).getItemId();
 		int indexToBeRemoved = -1;
 		indexToBeRemoved = isItemPresent(itemToBeRemoved);
-		if(indexToBeRemoved != -1) {
+		if (indexToBeRemoved != -1) {
 			log.debug("Item id: " + BaseController.foodBasket.getOrderItems().get(index).getItemId()
 					+ " removed from basket");
-		BaseController.foodBasket.getOrderItems().remove(indexToBeRemoved);
-		log.debug("Current Items in basket: " + BaseController.foodBasket.getOrderItems().toString());
-		navigateToSearchScreenIfNoItemsInBasket();
+			BaseController.foodBasket.getOrderItems().remove(indexToBeRemoved);
+			log.debug("Current Items in basket: " + BaseController.foodBasket.getOrderItems().toString());
+			navigateToSearchScreenIfNoItemsInBasket();
 		}
-		
+
 	}
-	
+
 	private void navigateToSearchScreenIfNoItemsInBasket() {
-		if(BaseController.foodBasket.getOrderItems().size() == 0) {
-			this.launchScene("Search Screen", "../views/Search.fxml", BaseController.MAIN_SCREEN_WIDTH,
-					BaseController.MAIN_SCREEN_HEIGHT);
+		if (BaseController.foodBasket.getOrderItems().size() == 0) {
+			handleSearch();
+		}
+	}
+
+	private void placeOrder() {
+		try {
+			// Set the payment and address
+			int selectedDeliveryMode = -1;
+			JFXToggleButton button = (JFXToggleButton) deliveryMode.getSelectedToggle();
+			if (button.getText().equals("Pickup")) {
+				selectedDeliveryMode = 1;
+			} else {
+				selectedDeliveryMode = 2;
+				BaseController.foodBasket.setAddress(BaseController.authenticatedCustomer.getAddresses()
+						.get(addressPicker.getSelectionModel().getSelectedIndex()).getAddrId());
+			}
+			BaseController.foodBasket.setPayment(BaseController.authenticatedCustomer.getPayments()
+					.get(paymentPicker.getSelectionModel().getSelectedIndex()).getCardid());
+			BaseController.foodBasket.setCustomer(BaseController.authenticatedCustomer.getCustomerID());
+
+			BaseController.foodBasket.setDeliveryMode(selectedDeliveryMode);
+
+			customerOperation.updateOrder(BaseController.foodBasket);
+
+			
+			// Reset the basket
+			BaseController.foodBasket = new Basket();
+
+			handleOrders();
+
+		} catch (Exception ex) {
+			lblOrderErrorMsg.setText("Unable to place order. Please try again later.");
+			orderErrorPane.setVisible(true);
+			log.error(ex.getMessage(), ex);
 		}
 	}
 
