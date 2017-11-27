@@ -264,26 +264,27 @@ public class BasketController extends BaseController {
 			});
 			pane.getChildren().add(txtQuantity);
 
-			JFXButton addToBasket = new JFXButton();
-			addToBasket.setText("Remove from basket");
-			addToBasket.prefHeight(30.0);
-			addToBasket.prefWidth(120.0);
-			addToBasket.setStyle("-fx-background-color: TOMATO;");
-			addToBasket.setTextFill(Paint.valueOf("WHITE"));
-			addToBasket.setButtonType(ButtonType.RAISED);
-			addToBasket.setLayoutX(606.0);
-			addToBasket.setLayoutY(90.0);
-			AnchorPane.setRightAnchor(addToBasket, 30.0);
-			AnchorPane.setBottomAnchor(addToBasket, 20.0);
+			JFXButton removeFromBasket = new JFXButton();
+			removeFromBasket.setText("Remove from basket");
+			removeFromBasket.prefHeight(30.0);
+			removeFromBasket.prefWidth(120.0);
+			removeFromBasket.setStyle("-fx-background-color: TOMATO;");
+			removeFromBasket.setTextFill(Paint.valueOf("WHITE"));
+			removeFromBasket.setButtonType(ButtonType.RAISED);
+			removeFromBasket.setLayoutX(606.0);
+			removeFromBasket.setLayoutY(90.0);
+			AnchorPane.setRightAnchor(removeFromBasket, 30.0);
+			AnchorPane.setBottomAnchor(removeFromBasket, 20.0);
 
-			addToBasket.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
+			removeFromBasket.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent event) {
 					removeItemFromBasket(index);
 					renderBasketItems();
+					renderOrderSummary();
 				}
 			});
-			pane.getChildren().add(addToBasket);
+			pane.getChildren().add(removeFromBasket);
 
 			anchorPaneItemList.getChildren().add(pane);
 		} catch (Exception ex) {
