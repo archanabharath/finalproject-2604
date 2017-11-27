@@ -277,6 +277,8 @@ public class GeoLocator {
 		locator.setAddress("300 W 60th St, B408, Westmont, IL, 60559");
 		locator.lookupGeocoding();
 		
+		
+		
 
 	}
 

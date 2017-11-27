@@ -12,6 +12,7 @@ import com.itm.food.dao.Basket;
 import com.itm.food.dao.Customer;
 import com.itm.food.dao.CustomerOrder;
 import com.itm.food.dao.Item;
+import com.itm.food.dao.ItemRestaurant;
 import com.itm.food.dao.Order;
 import com.itm.food.dao.OrderItem;
 import com.itm.food.dao.OrderStatus;
@@ -130,24 +131,33 @@ public class CustomerOperations implements IUserOperations, ICustomerPreferences
 	}
 
 	/**
-	 * retrieve the list of orders along with customer, address and payment details placed by a customer in the past
+	 * retrieve the list of orders along with customer, address and payment
+	 * details placed by a customer in the past
 	 * 
 	 * @throws SQLException
 	 */
 	@Override
 	public List<CustomerOrder> displayOrderHistoryOfCustomer(String customerId) throws SQLException {
-		return orderDB.getListOfOrdersPlacedByCustomer(customerId);
-
+		List<CustomerOrder> customerOrders = new ArrayList<CustomerOrder>();
+		customerOrders = orderDB.getListOfOrdersPlacedByCustomer(customerId);
+		for (CustomerOrder order : customerOrders) {
+			List<OrderItem> orderItems = displayItemsRestaurantsOfAnOrder(order.getOrderData().getOrderId());
+			if (null != orderItems && orderItems.size() > 0) {
+				order.setOrderItemRestaurantList(orderItems);
+			}
+		}
+		return customerOrders;
 	}
 
 	/**
-	 * retrieve the item and restaurant details of all orders placed by the customer
+	 * retrieve the item and restaurant details of all orders placed by the
+	 * customer
 	 * 
 	 * @param customerId
 	 * @return
 	 */
-	public List<OrderItem> displayItemsRestaurantsOfAnOrder(String customerId) {
-		return orderDB.getOrderItemRestaurantDetails(customerId);
+	public List<OrderItem> displayItemsRestaurantsOfAnOrder(String orderId) {
+		return orderDB.getOrderItemRestaurantDetails(orderId);
 
 	}
 
@@ -288,5 +298,14 @@ public class CustomerOperations implements IUserOperations, ICustomerPreferences
 
 	public Restaurant getRestaurant(String id) throws Exception {
 		return restaurantDB.find(id);
+	}
+	
+	public ItemRestaurant getTop3Items(){
+		return itemsDB.getTop3HighRatedItems();
+		
+	}
+	
+	public List<Restaurant> getTopRestaurants(){
+		return restaurantDB.getTop3Restaurants();
 	}
 }

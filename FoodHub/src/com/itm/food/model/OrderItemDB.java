@@ -32,7 +32,7 @@ public class OrderItemDB extends AbstractDB implements IDBAccess {
 			log.error(ex.getMessage());
 			throw ex;
 		} 
-		log.debug("Added Order - " + orderItem.getOrderId());	
+		log.debug("Added OrderItem for Order - " + orderItem.getOrderId());	
 		return orderItem.getOrderId();
 	}
 

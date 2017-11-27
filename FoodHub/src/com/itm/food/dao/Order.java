@@ -1,5 +1,7 @@
 package com.itm.food.dao;
 
+import java.util.List;
+
 public class Order extends AbstractDomain {
 
 	String orderId;
@@ -15,6 +17,7 @@ public class Order extends AbstractDomain {
 	String orderRating;
 	String orderFeedback;
 	String feedbackTime;
+	List<OrderItem> orderedItems;
 
 	/**
 	 * @return the orderId
@@ -209,6 +212,21 @@ public class Order extends AbstractDomain {
 	 */
 	public void setFeedbackTime(String feedbackTime) {
 		this.feedbackTime = feedbackTime;
+	}
+
+	/**
+	 * @return the orderedItems
+	 */
+	public List<OrderItem> getOrderedItems() {
+		return orderedItems;
+	}
+
+	/**
+	 * @param orderedItems
+	 *            the orderedItems to set
+	 */
+	public void setOrderedItems(List<OrderItem> orderedItems) {
+		this.orderedItems = orderedItems;
 	}
 
 }

@@ -16,7 +16,7 @@
    <children>
       <ImageView fitHeight="945.0" fitWidth="1500.0" opacity="0.2" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="55.0">
          <image>
-            <Image url="@../../../../../asserts/main-bg.jpg" />
+            <Image url="file:asserts/main-bg.jpg" />
          </image>
          <effect>
             <GaussianBlur />

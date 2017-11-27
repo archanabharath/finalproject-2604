@@ -22,12 +22,12 @@ public class ParentController extends Application {
 		try {
 			mainStage = primaryStage;
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(getClass().getResource("../views/Login.fxml"));
+			loader.setLocation(getClass().getResource("/com/itm/food/views/Login.fxml"));
 			AnchorPane root = loader.load();
 			BaseController controller = loader.getController();
 			controller.appInit();
 			Scene scene = new Scene(root, 900, 500);
-			scene.getStylesheets().add(getClass().getResource("../application.css").toExternalForm());
+			scene.getStylesheets().add(getClass().getResource("/com/itm/food/application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.setResizable(false);
 			primaryStage.initStyle(StageStyle.UNDECORATED);

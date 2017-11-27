@@ -11,6 +11,7 @@ public class OrderItem extends AbstractDomain {
 	String itemName;
 	String restaurantName;
 	String couponName;
+	
 	/**
 	 * @return the orderId
 	 */
@@ -118,6 +119,19 @@ public class OrderItem extends AbstractDomain {
 	 */
 	public void setCouponName(String couponName) {
 		this.couponName = couponName;
+	}
+	
+	@Override
+	public String toString() {
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append(this.getItemName());
+		stringBuilder.append(" by ");
+		stringBuilder.append(this.getRestaurantName());
+		stringBuilder.append("\r\n");
+		stringBuilder.append("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
+		stringBuilder.append(this.getItemQuantity() + " x " + this.getItemPrice() + " = $");
+		stringBuilder.append(this.getItemQuantity() * this.getItemPrice());
+		return stringBuilder.toString();
 	}
 
 	
