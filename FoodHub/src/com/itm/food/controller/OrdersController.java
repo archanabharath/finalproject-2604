@@ -1,15 +1,23 @@
 package com.itm.food.controller;
 
+<<<<<<< HEAD
 import java.text.SimpleDateFormat;
+=======
+import java.sql.SQLException;
+import java.util.List;
+>>>>>>> refs/remotes/origin/feature1
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 
 import com.itm.food.dao.CustomerOrder;
+<<<<<<< HEAD
 import com.itm.food.dao.OrderItem;
 import com.itm.food.util.CardUtil;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXProgressBar;
+=======
+>>>>>>> refs/remotes/origin/feature1
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,6 +26,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.AnchorPane;
+<<<<<<< HEAD
+=======
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+>>>>>>> refs/remotes/origin/feature1
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
@@ -31,6 +44,7 @@ public class OrdersController extends BaseController {
 	private AnchorPane ordersAnchorPane;
 
 	CustomerOrder ordercustomer = new CustomerOrder();
+	List<CustomerOrder> custOrderList ;
 
 	@Override
 	void init() {
@@ -39,12 +53,36 @@ public class OrdersController extends BaseController {
 		renderOrdersList();
 	}
 
+<<<<<<< HEAD
 	private void loadOrdersList() {
+=======
+	public void getOrderCustomerDetails(String orderCustid) {
+
+	}
+
+	/**
+	 * Retrieve the list of orders with customer,address,payment,items and
+	 * restaurant details that were placed by the customer
+	 * 
+	 * @param orderCustId
+	 */
+	public void retrieveOrdersForCustomer(String orderCustId) {
+
+		
+>>>>>>> refs/remotes/origin/feature1
 		try {
+<<<<<<< HEAD
 			BaseController.customerOrders = customerOperation
 					.displayOrderHistoryOfCustomer(BaseController.authenticatedCustomer.getCustomerID());
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
+=======
+			customerOperation.displayOrderHistoryOfCustomer(orderCustId);
+			customerOperation.displayItemsRestaurantsOfAnOrder(orderCustId);
+
+		} catch (SQLException e) {
+			log.error(e.getMessage());
+>>>>>>> refs/remotes/origin/feature1
 		}
 	}
 

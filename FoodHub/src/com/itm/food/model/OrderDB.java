@@ -109,8 +109,18 @@ public class OrderDB extends AbstractDB implements IDBAccess {
 	 * @throws SQLException
 	 */
 	public List<CustomerOrder> getListOfOrdersPlacedByCustomer(String customerId) throws SQLException {
+<<<<<<< HEAD
 
 		List<CustomerOrder> customerOrderList = new ArrayList<CustomerOrder>();
+=======
+		CustomerOrder orderCustomerInfo = new CustomerOrder();
+
+		Address addressdata = new Address();
+		Order orderdata = new Order();
+		Payment paymentdata = new Payment();
+		
+		List<CustomerOrder> customerOrderList = new ArrayList<CustomerOrder> ();
+>>>>>>> refs/remotes/origin/feature1
 
 		try {
 			// P.CARD_ID,P.CARD_NO,A.ADDRESS_ID,A.CUSTOMER_ID,A.FIRST_NAME,A.LAST_NAME,A.ADDRESS1,
@@ -122,6 +132,7 @@ public class OrderDB extends AbstractDB implements IDBAccess {
 			ResultSet rsCustomerOrder;
 			rsCustomerOrder = preparestatement.executeQuery();
 			while (rsCustomerOrder.next()) {
+<<<<<<< HEAD
 				CustomerOrder orderCustomerInfo = new CustomerOrder();
 				Address addressdata = new Address();
 				Order orderdata = new Order();
@@ -154,6 +165,33 @@ public class OrderDB extends AbstractDB implements IDBAccess {
 				orderCustomerInfo.setAddressData(addressdata);
 				orderCustomerInfo.setOrderData(orderdata);
 
+=======
+
+				paymentdata.setCardid(rsCustomerOrder.getString(1));
+				paymentdata.setCardNo(rsCustomerOrder.getLong(2));
+
+				addressdata.setAddrId(rsCustomerOrder.getString(3));
+				addressdata.setCustId(rsCustomerOrder.getString(4));
+				addressdata.setFname(rsCustomerOrder.getString(5));
+				addressdata.setLname(rsCustomerOrder.getString(6));
+				addressdata.setAddr1(rsCustomerOrder.getString(7));
+				addressdata.setAddr2(rsCustomerOrder.getString(8));
+				addressdata.setCity(rsCustomerOrder.getString(9));
+				addressdata.setPincode(rsCustomerOrder.getInt(10));
+				addressdata.setAddrphoneNo(rsCustomerOrder.getString(11));
+
+				orderdata.setOrderId(rsCustomerOrder.getString(12));
+				orderdata.setTotalPayment(rsCustomerOrder.getDouble(13));
+				orderdata.setOrderStatus(rsCustomerOrder.getInt(14));
+				orderdata.setOrderTime(rsCustomerOrder.getTimestamp(15).toString());
+				orderdata.setDeliveryMode(rsCustomerOrder.getInt(16));
+				orderdata.setOrderFulfilment(rsCustomerOrder.getTimestamp(17).toString());
+
+				orderCustomerInfo.setPaymentData(paymentdata);
+				orderCustomerInfo.setAddressData(addressdata);
+				orderCustomerInfo.setOrderData(orderdata);
+				
+>>>>>>> refs/remotes/origin/feature1
 				customerOrderList.add(orderCustomerInfo);
 
 			}
@@ -174,7 +212,12 @@ public class OrderDB extends AbstractDB implements IDBAccess {
 	 * @param CustomerId
 	 * @return
 	 */
+<<<<<<< HEAD
 	public List<OrderItem> getOrderItemRestaurantDetails(String orderId) {
+=======
+	public List<OrderItem> getOrderItemRestaurantDetails(String CustomerId) {
+		OrderItem orderitem = new OrderItem();
+>>>>>>> refs/remotes/origin/feature1
 		List<OrderItem> orderItemsList = new ArrayList<OrderItem>();
 		try {// R.RESTAURANT_ID,R.RESTAURANT_NAME,
 				// I.ITEM_ID,I.ITEM_NAME,I.ITEM_PRICE,O.ORDER_ID,OI.COUPON_ID,OI.ITEM_QUANTITY,C.COUPON_NAME

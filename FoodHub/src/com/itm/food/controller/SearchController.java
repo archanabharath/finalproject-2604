@@ -37,7 +37,7 @@ public class SearchController extends BaseController {
 	private AnchorPane anchorPaneRestList;
 
 	@FXML
-	private JFXButton btnSearch;
+	private JFXButton btnSearch; 
 
 	@FXML
 	private JFXTextField txtSearch;
