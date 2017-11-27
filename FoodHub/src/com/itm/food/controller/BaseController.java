@@ -186,11 +186,7 @@ public abstract class BaseController {
 	}
 
 	void handleSearch() {
-<<<<<<< HEAD
 		this.launchScene("Search Screen", "/com/itm/food/views/Search.fxml", BaseController.MAIN_SCREEN_WIDTH,
-=======
-		this.launchScene("Search Screen", "/com/itm/food./views/Search.fxml", BaseController.MAIN_SCREEN_WIDTH,
->>>>>>> refs/remotes/origin/feature1
 				BaseController.MAIN_SCREEN_HEIGHT);
 	}
 

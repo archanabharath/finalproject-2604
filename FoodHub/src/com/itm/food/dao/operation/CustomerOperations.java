@@ -138,7 +138,6 @@ public class CustomerOperations implements IUserOperations, ICustomerPreferences
 	 */
 	@Override
 	public List<CustomerOrder> displayOrderHistoryOfCustomer(String customerId) throws SQLException {
-<<<<<<< HEAD
 		List<CustomerOrder> customerOrders = new ArrayList<CustomerOrder>();
 		customerOrders = orderDB.getListOfOrdersPlacedByCustomer(customerId);
 		for (CustomerOrder order : customerOrders) {
@@ -148,11 +147,6 @@ public class CustomerOperations implements IUserOperations, ICustomerPreferences
 			}
 		}
 		return customerOrders;
-=======
-		return orderDB.getListOfOrdersPlacedByCustomer(customerId);
-		
-
->>>>>>> refs/remotes/origin/feature1
 	}
 
 	/**
