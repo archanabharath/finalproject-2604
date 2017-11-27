@@ -10,6 +10,8 @@ import org.apache.log4j.Logger;
 
 import com.itm.food.dao.AbstractDomain;
 import com.itm.food.dao.Item;
+import com.itm.food.dao.ItemRestaurant;
+import com.itm.food.dao.Restaurant;
 import com.itm.food.model.db.MySQLQuery;
 
 public class ItemsDB extends AbstractDB implements IDBAccess {
@@ -35,8 +37,7 @@ public class ItemsDB extends AbstractDB implements IDBAccess {
 		ResultSet rsItems;
 		Item item = new Item();
 		try {
-			PreparedStatement preparestatement = this.getDBConnection()
-					.prepareStatement(MySQLQuery.SQL_ITEMS_SELECT);
+			PreparedStatement preparestatement = this.getDBConnection().prepareStatement(MySQLQuery.SQL_ITEMS_SELECT);
 			preparestatement.setString(1, id);
 			rsItems = preparestatement.executeQuery();
 			while (rsItems.next()) {
@@ -91,6 +92,50 @@ public class ItemsDB extends AbstractDB implements IDBAccess {
 			log.error(e.getMessage());
 		}
 		return itemList;
+	}
+
+	public ItemRestaurant getTop3HighRatedItems() {
+		log.debug("Fetching the high rated top 3 items");
+
+		//List<ItemRestaurant> itemRestaurantsList = new ArrayList<ItemRestaurant>();
+		List<Item> itemsList = new ArrayList<Item>();
+		List<Restaurant> restaurantsList = new ArrayList<Restaurant>();
+
+		ItemRestaurant itemrestaurantobj = new ItemRestaurant();
+
+		try {// I.ITEM_ID, I.ITEM_NAME, I.ITEM_RATING, R.RESTAURANT_ID, R.RESTAURANT_NAME,
+				// R.RATING
+			PreparedStatement preparestatement = this.getDBConnection()
+					.prepareStatement(MySQLQuery.SQL_FETCH_TOP_3_ITEMS);
+			ResultSet rsTopItems;
+			rsTopItems = preparestatement.executeQuery();
+			while (rsTopItems.next()) {
+				Item topItems = new Item();
+
+				topItems.setItemId(rsTopItems.getString(1));
+				topItems.setItemName(rsTopItems.getString(2));
+				topItems.setItemOverallRating(rsTopItems.getInt(3));
+				itemsList.add(topItems);
+				Restaurant topItemsRestaurants = new Restaurant();
+				topItemsRestaurants.setRestaurantId(rsTopItems.getString(4));
+				topItemsRestaurants.setRestaurantName(rsTopItems.getString(5));
+				topItemsRestaurants.setRating(rsTopItems.getInt(6));
+				restaurantsList.add(topItemsRestaurants);
+
+				
+
+			}
+			itemrestaurantobj.setTop3ItemsByRestaurants(restaurantsList);
+			itemrestaurantobj.setTop3ItemsList(itemsList);
+
+		} catch (ClassNotFoundException e) {
+			log.error(e.getMessage());
+		} catch (SQLException e) {
+			log.error(e.getMessage());
+		}
+
+		return itemrestaurantobj;
+
 	}
 
 }

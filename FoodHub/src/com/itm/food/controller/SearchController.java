@@ -37,7 +37,7 @@ public class SearchController extends BaseController {
 	private AnchorPane anchorPaneRestList;
 
 	@FXML
-	private JFXButton btnSearch;
+	private JFXButton btnSearch; 
 
 	@FXML
 	private JFXTextField txtSearch;
@@ -302,8 +302,8 @@ public class SearchController extends BaseController {
 			public void handle(ActionEvent event) {
 				BaseController.currentRestaurant = BaseController.preferredRestaurants.get(count);
 				log.debug(BaseController.currentRestaurant.getRestaurantId());
-				launchScene("Items Screen", "/com/itm/food/views/Items.fxml", BaseController.MAIN_SCREEN_WIDTH,
-						BaseController.MAIN_SCREEN_HEIGHT);
+				handleItem();
+				
 			}
 		});
 

@@ -12,6 +12,7 @@ import com.itm.food.dao.Basket;
 import com.itm.food.dao.Customer;
 import com.itm.food.dao.CustomerOrder;
 import com.itm.food.dao.Item;
+import com.itm.food.dao.ItemRestaurant;
 import com.itm.food.dao.Order;
 import com.itm.food.dao.OrderItem;
 import com.itm.food.dao.OrderStatus;
@@ -289,5 +290,14 @@ public class CustomerOperations implements IUserOperations, ICustomerPreferences
 
 	public Restaurant getRestaurant(String id) throws Exception {
 		return restaurantDB.find(id);
+	}
+	
+	public ItemRestaurant getTop3Items(){
+		return itemsDB.getTop3HighRatedItems();
+		
+	}
+	
+	public List<Restaurant> getTopRestaurants(){
+		return restaurantDB.getTop3Restaurants();
 	}
 }

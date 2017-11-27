@@ -218,7 +218,13 @@ public abstract class BaseController {
 				BaseController.LOGIN_SCREEN_HEIGHT);
 		log.debug("User successfully logged out.");
 	}
-
+	
+	void handleItem() {
+		launchScene("Items Screen", "/com/itm/food/views/Items.fxml", BaseController.MAIN_SCREEN_WIDTH,
+				BaseController.MAIN_SCREEN_HEIGHT);
+	}
+	
+	
 	/**
 	 * Clean up the data model used during user login.
 	 */

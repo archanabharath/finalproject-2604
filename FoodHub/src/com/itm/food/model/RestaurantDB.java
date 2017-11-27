@@ -128,9 +128,44 @@ public class RestaurantDB extends AbstractDB implements IDBAccess {
 		} catch (Exception e) {
 			log.error(e.getMessage());
 
-		} 
+		}
 		return restaurantsList;
 
+	}
+
+	public List<Restaurant> getTop3Restaurants() {
+
+		log.debug("getting top 3 restaurants from RestaurantDB");
+		List<Restaurant> top3RestaurantsList = new ArrayList<Restaurant>();
+		// RESTAURANT_ID,RESTAURANT_NAME,DESCRIPTION,ADDRESS1,ADDRESS2,CITY,ZIPCODE,PHONE,EMAIL,
+		// RATING
+		try {
+			PreparedStatement preparestatement = this.getDBConnection()
+					.prepareStatement(MySQLQuery.SQL_FETCH_TOP_3_RESTAURANTS);
+			ResultSet rsTopRestaurants;
+			rsTopRestaurants = preparestatement.executeQuery();
+			while (rsTopRestaurants.next()) {
+				Restaurant restaurant = new Restaurant();
+				restaurant.setRestaurantId(rsTopRestaurants.getString(1));
+				restaurant.setRestaurantName(rsTopRestaurants.getString(2));
+				restaurant.setRestaurantDescription(rsTopRestaurants.getString(3));
+				restaurant.setAddress1(rsTopRestaurants.getString(4));
+				restaurant.setAddress2(rsTopRestaurants.getString(5));
+				restaurant.setCity(rsTopRestaurants.getString(6));
+				restaurant.setZipcode(rsTopRestaurants.getInt(7));
+				restaurant.setPhone(rsTopRestaurants.getString(8));
+				restaurant.setEmail(rsTopRestaurants.getString(9));
+				restaurant.setRating(rsTopRestaurants.getInt(10));
+				
+				top3RestaurantsList.add(restaurant);
+
+			}
+		} catch (ClassNotFoundException e) {
+			log.error(e.getMessage());
+		} catch (SQLException e) {
+			log.error(e.getMessage());
+		}
+		return top3RestaurantsList;
 	}
 
 }
