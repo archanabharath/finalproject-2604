@@ -4,13 +4,17 @@ package com.itm.food.controller;
 import java.io.File;
 import java.util.ArrayList;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.math3.util.Precision;
 import org.apache.log4j.Logger;
+import org.controlsfx.control.Rating;
 
+import com.itm.food.dao.ItemRating;
 import com.itm.food.dao.OrderItem;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXButton.ButtonType;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -124,8 +128,10 @@ public class ItemsController extends BaseController {
 		AnchorPane.setLeftAnchor(imageView, 0.0);
 		AnchorPane.setTopAnchor(imageView, 0.0);
 		try {
-			String url = "file:\\" + new File("").getCanonicalFile().getParent().toString() + File.separatorChar
-					+ "FoodHub\\src\\com\\itm\\food\\images\\default-items.png";
+			String url = "file://" + new File("").getCanonicalFile().getParent().toString()
+					+ File.separatorChar + "FoodHub" + File.separatorChar + "src" + File.separatorChar + "com"
+					+ File.separatorChar + "itm" + File.separatorChar + "food" + File.separatorChar + "images"
+					+ File.separatorChar + "default-items.png";
 			imageView.setImage(new Image(url));
 		} catch (Exception ex) {
 			log.error(ex.getMessage());
@@ -170,17 +176,44 @@ public class ItemsController extends BaseController {
 		AnchorPane.setLeftAnchor(lblPrice, 860.0);
 		pane.getChildren().add(lblPrice);
 
-		Label lblRating = new Label();
-		lblRating.setText(
-				"Item Rating: " + BaseController.currentRestaurant.getItems().get(index).getItemOverallRating());
-		lblRating.setFont(new Font(15.0));
-		lblRating.setWrapText(true);
-		lblRating.setLayoutX(900.0);
-		lblRating.setLayoutY(70.0);
-		AnchorPane.setRightAnchor(lblRating, 100.0);
-		AnchorPane.setTopAnchor(lblRating, 60.0);
-		AnchorPane.setLeftAnchor(lblRating, 860.0);
-		pane.getChildren().add(lblRating);
+		// Label lblRating = new Label();
+		// lblRating.setText(
+		// "Item Rating: " +
+		// BaseController.currentRestaurant.getItems().get(index).getItemOverallRating());
+		// lblRating.setFont(new Font(15.0));
+		// lblRating.setWrapText(true);
+		// lblRating.setLayoutX(900.0);
+		// lblRating.setLayoutY(70.0);
+		// AnchorPane.setRightAnchor(lblRating, 100.0);
+		// AnchorPane.setTopAnchor(lblRating, 60.0);
+		// AnchorPane.setLeftAnchor(lblRating, 860.0);
+		// pane.getChildren().add(lblRating);
+
+		Rating rating = new Rating();
+		rating.setRating(BaseController.currentRestaurant.getItems().get(index).getItemOverallRating());
+		rating.setPartialRating(true);
+		rating.setLayoutX(900.0);
+		rating.setLayoutY(70.0);
+		AnchorPane.setRightAnchor(rating, 100.0);
+		AnchorPane.setTopAnchor(rating, 60.0);
+		AnchorPane.setLeftAnchor(rating, 860.0);
+		rating.ratingProperty().addListener(new ChangeListener<Number>() {
+			@Override
+			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+				ItemRating itemRating = new ItemRating();
+				itemRating.setCustomerId(BaseController.authenticatedCustomer.getCustomerID());
+				itemRating.setRating(Precision.round(newValue.doubleValue(), 2));
+				itemRating.setItemId(BaseController.currentRestaurant.getItems().get(index).getItemId());
+				try {
+					customerOperation.addItemRating(itemRating);
+				} catch (Exception e) {
+					log.error(e.getMessage());
+				}
+				log.debug("Rating:" + Precision.round(newValue.doubleValue(), 2));
+			}
+		});
+
+		pane.getChildren().add(rating);
 
 		JFXButton addToBasket = new JFXButton();
 		addToBasket.prefHeight(30.0);

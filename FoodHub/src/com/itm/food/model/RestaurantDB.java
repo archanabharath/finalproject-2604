@@ -92,9 +92,14 @@ public class RestaurantDB extends AbstractDB implements IDBAccess {
 			}
 			parameterBuilder.append(")");
 
-			String sqlQuery = "SELECT RESTAURANT_ID,RESTAURANT_NAME,DESCRIPTION,ADDRESS1,ADDRESS2,CITY,ZIPCODE,RATING,"
-					+ "PHONE,EMAIL,LATITUDE,LONGITUDE FROM ofod.ofod_restaurant WHERE ZIPCODE IN"
-					+ parameterBuilder.toString() + " ORDER BY RATING DESC LIMIT ?";
+			String sqlQuery = "SELECT R.RESTAURANT_ID,RESTAURANT_NAME,DESCRIPTION,ADDRESS1,ADDRESS2,CITY,ZIPCODE,AVG(UR.RATING) AS RATING,"
+					+ "PHONE,EMAIL,LATITUDE,LONGITUDE FROM ofod.ofod_restaurant R "
+					+ " LEFT JOIN  ofod.ofod_restaurant_rating RR ON R.RESTAURANT_ID = RR.RESTAURANT_ID " 
+                    + " LEFT JOIN ofod.ofod_user_rating UR ON UR.RATING_ID = RR.RATING_ID "
+					+ " WHERE ZIPCODE IN"
+					+ parameterBuilder.toString() 
+					+ "  GROUP BY R.RESTAURANT_ID "
+					+ " ORDER BY RATING DESC LIMIT ?";
 
 			PreparedStatement preparedstatement = this.getDBConnection().prepareStatement(sqlQuery);
 		

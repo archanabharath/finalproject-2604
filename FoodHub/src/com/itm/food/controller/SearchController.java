@@ -6,14 +6,19 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.math3.util.Precision;
 import org.apache.log4j.Logger;
+import org.controlsfx.control.Rating;
 
 import com.itm.food.dao.Restaurant;
+import com.itm.food.dao.RestaurantRating;
 import com.itm.food.util.DistanceMatrix;
 import com.itm.food.util.GeoLocator;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -37,11 +42,11 @@ public class SearchController extends BaseController {
 	private AnchorPane anchorPaneRestList;
 
 	@FXML
-	private JFXButton btnSearch; 
+	private JFXButton btnSearch;
 
 	@FXML
 	private JFXTextField txtSearch;
-	
+
 	@FXML
 	private AnchorPane noRestaurantPane;
 
@@ -49,16 +54,16 @@ public class SearchController extends BaseController {
 	void init() {
 		super.init();
 		scrollPaneRest.setVisible(false);
-		if(BaseController.preferredRestaurants.size() > 0) {
+		if (BaseController.preferredRestaurants.size() > 0) {
 			renderRestaurantList();
 		}
-		
+
 	}
 
 	@FXML
 	void handleSearch(ActionEvent event) {
 		try {
-			GeoLocator geoLocator; 
+			GeoLocator geoLocator;
 			if (StringUtils.isBlank(txtSearch.getText())) {
 				// Get location using GeoLocator
 				geoLocator = new GeoLocator();
@@ -67,9 +72,9 @@ public class SearchController extends BaseController {
 				geoLocator = new GeoLocator(txtSearch.getText());
 				geoLocator.lookupGeocoding();
 			}
-			
+
 			List<Integer> nearByzipcodes = geoLocator.getNearByZipCodes();
-			
+
 			// Load restaurant result
 			loadRestaurantSearchResult(nearByzipcodes);
 
@@ -80,7 +85,7 @@ public class SearchController extends BaseController {
 				DistanceMatrix dMatrix = new DistanceMatrix();
 				dMatrix.setDestLat(String.valueOf(restaurant.getLatitude()));
 				dMatrix.setDestLng(String.valueOf(restaurant.getLongitude()));
-				distanceTimeMap.put((Integer)restaurant.getRestaurantId(), dMatrix);
+				distanceTimeMap.put((Integer) restaurant.getRestaurantId(), dMatrix);
 			}
 
 			geoLocator.getDistanceMatrix(distanceTimeMap);
@@ -91,7 +96,7 @@ public class SearchController extends BaseController {
 				restaurant.setTimeToTravel(distanceTimeMap.get(restaurant.getRestaurantId()).getDuration());
 			}
 			renderRestaurantList();
-			
+
 		} catch (Exception ex) {
 			log.error(ex.getMessage());
 		}
@@ -100,8 +105,7 @@ public class SearchController extends BaseController {
 	void loadRestaurantSearchResult(List<Integer> zipcodes) throws Exception {
 		BaseController.preferredRestaurants.clear();
 		BaseController.preferredRestaurants.addAll(customerOperation.searchRestaurants(zipcodes));
-		if (null == BaseController.preferredRestaurants
-				|| BaseController.preferredRestaurants.size() == 0) {
+		if (null == BaseController.preferredRestaurants || BaseController.preferredRestaurants.size() == 0) {
 			noRestaurantPane.setVisible(true);
 			scrollPaneRest.setVisible(false);
 		} else {
@@ -109,7 +113,7 @@ public class SearchController extends BaseController {
 			scrollPaneRest.setVisible(true);
 		}
 	}
-	
+
 	void renderRestaurantList() {
 		if (BaseController.preferredRestaurants.size() > 0) {
 			// Clean the anchorPaneRestList before rendering the new search
@@ -157,8 +161,11 @@ public class SearchController extends BaseController {
 		AnchorPane.setLeftAnchor(imageView, 10.0);
 		AnchorPane.setTopAnchor(imageView, 25.0);
 		try {
-			String url = "file:\\" + new File("").getCanonicalFile().getParent().toString() + File.separatorChar
-					+ "FoodHub\\src\\com\\itm\\food\\images\\default-restaurent.png";
+			String url = "file://" + new File("").getCanonicalFile().getParent().toString()
+					+ File.separatorChar + "FoodHub" + File.separatorChar + "src" + File.separatorChar + "com"
+					+ File.separatorChar + "itm" + File.separatorChar + "food" + File.separatorChar + "images"
+					+ File.separatorChar + "default-restaurent.png";
+			
 			imageView.setImage(new Image(url));
 		} catch (Exception ex) {
 			log.error(ex.getMessage());
@@ -182,7 +189,7 @@ public class SearchController extends BaseController {
 		lblRestName.setTextFill(Color.CRIMSON);
 		lblRestName.setFont(new Font(24.0));
 		lblRestName.setStyle("-fx-font-weight:bold;");
-		
+
 		AnchorPane.setLeftAnchor(lblRestName, 200.0);
 		AnchorPane.setTopAnchor(lblRestName, 20.0);
 		pane.getChildren().add(lblRestName);
@@ -199,7 +206,7 @@ public class SearchController extends BaseController {
 		lblRestDesc.setLayoutY(70.0);
 		lblRestDesc.prefHeight(100.0);
 		lblRestDesc.prefWidth(100.0);
-		lblRestDesc.setText(BaseController.preferredRestaurants.get(count).getRestaurantDescription()+"\n");
+		lblRestDesc.setText(BaseController.preferredRestaurants.get(count).getRestaurantDescription() + "\n");
 		lblRestDesc.setWrapText(true);
 		lblRestDesc.setFont(new Font(15.0));
 		lblRestDesc.setStyle("-fx-font-style: italic");
@@ -222,14 +229,16 @@ public class SearchController extends BaseController {
 		AnchorPane.setRightAnchor(imageDistance, 275.0);
 		AnchorPane.setBottomAnchor(imageDistance, 20.0);
 		try {
-			String url = "file:\\" + new File("").getCanonicalFile().getParent().toString() + File.separatorChar
-					+ "FoodHub\\src\\com\\itm\\food\\images\\icons8-geo-fence-24.png";
+			String url = "file://" + new File("").getCanonicalFile().getParent().toString()
+					+ File.separatorChar + "FoodHub" + File.separatorChar + "src" + File.separatorChar + "com"
+					+ File.separatorChar + "itm" + File.separatorChar + "food" + File.separatorChar + "images"
+					+ File.separatorChar + "icons8-geo-fence-24.png";
 			imageDistance.setImage(new Image(url));
 		} catch (Exception ex) {
 			log.error(ex.getMessage());
 		}
 		pane.getChildren().add(imageDistance);
-		
+
 		Label lblRestDistance = new Label();
 		lblRestDistance.setLayoutX(896.0);
 		lblRestDistance.setLayoutY(156.0);
@@ -254,17 +263,17 @@ public class SearchController extends BaseController {
 		AnchorPane.setRightAnchor(imageTimer, 145.0);
 		AnchorPane.setBottomAnchor(imageTimer, 20.0);
 		try {
-			
-		
-			String url = "file:\\" + new File("").getCanonicalFile().getParent().toString() + File.separatorChar
-					+ "FoodHub\\src\\com\\itm\\food\\images\\icons8-timer-24.png";
-			log.error("timer image location : " +url);
+
+			String url = "file://" + new File("").getCanonicalFile().getParent().toString()
+					+ File.separatorChar + "FoodHub" + File.separatorChar + "src" + File.separatorChar + "com"
+					+ File.separatorChar + "itm" + File.separatorChar + "food" + File.separatorChar + "images"
+					+ File.separatorChar + "icons8-timer-24.png";
 			imageTimer.setImage(new Image(url));
 		} catch (Exception ex) {
 			log.error(ex.getMessage());
 		}
 		pane.getChildren().add(imageTimer);
-		
+
 		Label lblRestTravelTime = new Label();
 		lblRestTravelTime.setLayoutX(1021.0);
 		lblRestTravelTime.setLayoutY(156.0);
@@ -282,9 +291,8 @@ public class SearchController extends BaseController {
 		// </font>
 		// </Label>
 		Label lblAddress = new Label();
-		lblAddress.setText("Contact: " +BaseController.preferredRestaurants.get(count).getPhone()+
-				"\n"+
-				"Email: "+ BaseController.preferredRestaurants.get(count).getEmail());
+		lblAddress.setText("Contact: " + BaseController.preferredRestaurants.get(count).getPhone() + "\n" + "Email: "
+				+ BaseController.preferredRestaurants.get(count).getEmail());
 		lblAddress.setFont(new Font(18.0));
 		lblAddress.setStyle("-fx-font-weight:bold;");
 		lblAddress.setWrapText(true);
@@ -315,23 +323,37 @@ public class SearchController extends BaseController {
 				BaseController.currentRestaurant = BaseController.preferredRestaurants.get(count);
 				log.debug(BaseController.currentRestaurant.getRestaurantId());
 				handleItem();
-				
+
 			}
 		});
 
 		pane.getChildren().add(viewMenuLink);
 
-		Label lblRating = new Label();
-		lblRating.setText("Rating: " + BaseController.preferredRestaurants.get(count).getRating());
-		lblRating.setFont(new Font(15.0));
-		lblRating.setStyle("-fx-font-weight:bold;");
-		lblRating.setWrapText(true);
-		lblRating.setLayoutX(900.0);
-		lblRating.setLayoutY(70.0);
-		AnchorPane.setRightAnchor(lblRating, 100.0);
-		AnchorPane.setTopAnchor(lblRating, 80.0);
-		AnchorPane.setLeftAnchor(lblRating, 970.0);
-		pane.getChildren().add(lblRating);
+		Rating rating = new Rating();
+		rating.setRating((BaseController.preferredRestaurants.get(count).getRating()));
+		rating.setPartialRating(true);
+		rating.setLayoutX(900.0);
+		rating.setLayoutY(70.0);
+		AnchorPane.setRightAnchor(rating, 100.0);
+		AnchorPane.setTopAnchor(rating, 80.0);
+		AnchorPane.setLeftAnchor(rating, 970.0);
+		rating.ratingProperty().addListener(new ChangeListener<Number>() {
+			@Override
+			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+				RestaurantRating restRating = new RestaurantRating();
+				restRating.setCustomerId(BaseController.authenticatedCustomer.getCustomerID());
+				restRating.setRating(Precision.round(newValue.doubleValue(), 2));
+				restRating.setRestaurantId(BaseController.preferredRestaurants.get(count).getRestaurantId());
+				try {
+					customerOperation.addRestaurantRating(restRating);
+				} catch (Exception e) {
+					log.error(e.getMessage());
+				}
+				log.debug("Rating:" + Precision.round(newValue.doubleValue(), 2));
+			}
+		});
+
+		pane.getChildren().add(rating);
 
 		anchorPaneRestList.getChildren().add(pane);
 	}

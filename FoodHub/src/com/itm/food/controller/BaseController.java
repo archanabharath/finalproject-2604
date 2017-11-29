@@ -47,7 +47,6 @@ public abstract class BaseController {
 	public static Restaurant currentRestaurant = new Restaurant();
 	public static Basket foodBasket = new Basket();
 	public static List<CustomerOrder> customerOrders = new ArrayList<CustomerOrder>();
-	
 
 	@FXML
 	private ImageView imgExit;
@@ -149,14 +148,14 @@ public abstract class BaseController {
 	void handleMouseSignout(MouseEvent event) {
 		handleSignout();
 	}
-	
+
 	void appInit() {
 		try {
-		MySQLDBConnector connector = new MySQLDBConnector();
-		connector.getConnection();
+			MySQLDBConnector connector = new MySQLDBConnector();
+			connector.getConnection();
 		} catch (Exception e) {
 			log.error(e.getMessage());
-			// Add a pop up message for DB connectivity 
+			// Add a pop up message for DB connectivity
 		}
 
 	}
@@ -170,14 +169,16 @@ public abstract class BaseController {
 				this.txtFullname.setText(BaseController.authenticatedCustomer.getFirstName() + " "
 						+ BaseController.authenticatedCustomer.getLastName());
 			}
-			if (null != this.btnBasket && (null == BaseController.foodBasket.getOrderItems()
+			if (null != this.btnBasket) { 
+				if((null == BaseController.foodBasket.getOrderItems()
 					|| BaseController.foodBasket.getOrderItems().size() == 0)) {
 				btnBasket.setDisable(true);
 			} else {
 				btnBasket.setDisable(false);
 			}
+			}
 		} catch (Exception ex) {
-			log.error(ex.getMessage());
+			log.error(ex.getMessage(), ex);
 		}
 
 	}
@@ -223,17 +224,17 @@ public abstract class BaseController {
 				BaseController.LOGIN_SCREEN_HEIGHT);
 		log.debug("User successfully logged out.");
 	}
-	
+
 	void handleItem() {
 		launchScene("Items Screen", "/com/itm/food/views/Items.fxml", BaseController.MAIN_SCREEN_WIDTH,
 				BaseController.MAIN_SCREEN_HEIGHT);
 	}
+
 	void handleRating() {
 		launchScene("Rating Screen", "/com/itm/food/views/UserReviews.fxml", BaseController.MAIN_SCREEN_WIDTH,
 				BaseController.MAIN_SCREEN_HEIGHT);
 	}
-	
-	
+
 	/**
 	 * Clean up the data model used during user login.
 	 */

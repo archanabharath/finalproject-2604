@@ -12,18 +12,21 @@ import com.itm.food.dao.Basket;
 import com.itm.food.dao.Customer;
 import com.itm.food.dao.CustomerOrder;
 import com.itm.food.dao.Item;
+import com.itm.food.dao.ItemRating;
 import com.itm.food.dao.ItemRestaurant;
 import com.itm.food.dao.Order;
 import com.itm.food.dao.OrderItem;
 import com.itm.food.dao.OrderStatus;
 import com.itm.food.dao.Restaurant;
+import com.itm.food.dao.RestaurantRating;
 import com.itm.food.model.AddressDB;
 import com.itm.food.model.CustomerDB;
+import com.itm.food.model.ItemRatingDB;
 import com.itm.food.model.ItemsDB;
 import com.itm.food.model.OrderDB;
 import com.itm.food.model.OrderItemDB;
 import com.itm.food.model.RestaurantDB;
-import com.itm.food.util.UniqueKeyGen;
+import com.itm.food.model.RestaurantRatingDB;
 
 public class CustomerOperations implements IUserOperations, ICustomerPreferences {
 
@@ -36,6 +39,8 @@ public class CustomerOperations implements IUserOperations, ICustomerPreferences
 	ItemsDB itemsDB = new ItemsDB();
 	OrderDB orderDB = new OrderDB();
 	OrderItemDB orderItemDB = new OrderItemDB();
+	RestaurantRatingDB restaurantRatingDB = new RestaurantRatingDB();
+	ItemRatingDB itemRatingDB = new ItemRatingDB();
 
 	@Override
 	public int addUserDetails(Customer newcustomer) throws Exception {
@@ -302,4 +307,13 @@ public class CustomerOperations implements IUserOperations, ICustomerPreferences
 	public List<Restaurant> getTopRestaurants() {
 		return restaurantDB.getTop3Restaurants();
 	}
+	
+	public int addRestaurantRating(RestaurantRating rating) throws Exception {
+		return restaurantRatingDB.add(rating);
+	}
+	
+	public int addItemRating(ItemRating rating) throws Exception {
+		return itemRatingDB.add(rating);
+	}
+	
 }

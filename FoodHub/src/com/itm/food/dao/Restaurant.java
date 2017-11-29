@@ -22,7 +22,6 @@ public class Restaurant extends AbstractDomain {
 	String timeToTravel;
 	List<Item> items;
 	double restaurantOverallRating;
-	List<UserReview> restaurantReview;
 
 	/**
 	 * @return the restaurantId
@@ -292,21 +291,6 @@ public class Restaurant extends AbstractDomain {
 	 */
 	public void setItems(List<Item> items) {
 		this.items = items;
-	}
-
-	/**
-	 * @return the restaurantReview
-	 */
-	public List<UserReview> getRestaurantReview() {
-		return restaurantReview;
-	}
-
-	/**
-	 * @param restaurantReview
-	 *            the restaurantReview to set
-	 */
-	public void setRestaurantReview(List<UserReview> restaurantReview) {
-		this.restaurantReview = restaurantReview;
 	}
 
 	public String getAddressPhoneAndEmail() {
