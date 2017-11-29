@@ -13,35 +13,40 @@ import com.itm.food.dao.AbstractDomain;
 import com.itm.food.dao.Customer;
 import com.itm.food.model.db.MySQLQuery;
 import com.itm.food.util.PasswordUtil;
+import com.mysql.jdbc.Statement;
 
 public class CustomerDB extends AbstractDB implements IDBAccess {
 
 	private static final Logger log = Logger.getLogger(CustomerDB.class);
 
 	@Override
-	public <T extends AbstractDomain> String add(T object) throws Exception {
+	public <T extends AbstractDomain> int add(T object) throws Exception {
 		Customer customerObj = (Customer) object;
 		log.debug("Fetched Customer");
 		try {
 			PreparedStatement preparedStatement = this.getDBConnection()
-					.prepareStatement(MySQLQuery.SQL_CUSTOMER_INSERT);
-			preparedStatement.setString(1, customerObj.getCustomerID()); // CUSTOMER_ID
-			preparedStatement.setString(2, customerObj.getFirstName()); // FIRST_NAME
-			preparedStatement.setString(3, customerObj.getLastName());// LAST_NAME
-			preparedStatement.setDate(4,
+					.prepareStatement(MySQLQuery.SQL_CUSTOMER_INSERT, Statement.RETURN_GENERATED_KEYS);
+			// preparedStatement.setString(1, customerObj.getCustomerID()); // CUSTOMER_ID
+			preparedStatement.setString(1, customerObj.getFirstName()); // FIRST_NAME
+			preparedStatement.setString(2, customerObj.getLastName());// LAST_NAME
+			preparedStatement.setDate(3,
 					new Date(new SimpleDateFormat("yyyy-MM-dd").parse(customerObj.getDOB()).getTime()));// BIRTH_DATE
-			preparedStatement.setString(5, customerObj.getPhoneNo()); // PHONE
-			preparedStatement.setString(6, customerObj.getEmail()); // EMAIL
-			preparedStatement.setString(7, customerObj.getUsername()); // USERNAME
-			preparedStatement.setString(8, customerObj.getEncryptedPassword()); // PASSWORD
-
-			preparedStatement.execute();
+			preparedStatement.setString(4, customerObj.getPhoneNo()); // PHONE
+			preparedStatement.setString(5, customerObj.getEmail()); // EMAIL
+			preparedStatement.setString(6, customerObj.getUsername()); // USERNAME
+			preparedStatement.setString(7, customerObj.getEncryptedPassword()); // PASSWORD
+			preparedStatement.executeUpdate();
+			ResultSet rsReturnKey = preparedStatement.getGeneratedKeys();
+			while(rsReturnKey.next()) {
+				customerObj.setCustomerID(rsReturnKey.getInt(1));
+			}
+			
 			preparedStatement.close();
 
 		} catch (Exception ex) {
 			log.error(ex.getMessage());
 			throw ex;
-		} 
+		}
 		log.debug("Added Customer - " + customerObj.getCustomerID());
 		return customerObj.getCustomerID();
 	}
@@ -80,16 +85,16 @@ public class CustomerDB extends AbstractDB implements IDBAccess {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public <T extends AbstractDomain> T find(String id) throws Exception {
+	public <T extends AbstractDomain> T find(int i) throws Exception {
 		Customer customer = new Customer();
 		try {
 			PreparedStatement preparedstatement = this.getDBConnection()
 					.prepareStatement(MySQLQuery.SQL_CUSTOMER_SELECT);
-			preparedstatement.setString(1, id);
+			preparedstatement.setInt(1, i);
 			ResultSet rs;
 			rs = preparedstatement.executeQuery();
 			if (rs.first()) {
-				customer.setCustomerID(rs.getString(1));
+				customer.setCustomerID(rs.getInt(1));
 				customer.setFirstName(rs.getString(2));
 				customer.setLastName(rs.getString(3));
 				customer.setDOB(rs.getString(4));
@@ -105,7 +110,7 @@ public class CustomerDB extends AbstractDB implements IDBAccess {
 		} catch (Exception e) {
 			log.error(e.getMessage());
 
-		} 
+		}
 		return (T) customer;
 	}
 
@@ -124,9 +129,9 @@ public class CustomerDB extends AbstractDB implements IDBAccess {
 	/*
 	 * validate if the entered login credentials are valid for the customer
 	 */
-	public String customerLoginCheck(String username, String password) throws SQLException {
+	public int customerLoginCheck(String username, String password) throws SQLException {
 
-		String custId = null;
+		int custId = 0;
 
 		try {
 			PreparedStatement preparedstatement = this.getDBConnection()
@@ -136,7 +141,7 @@ public class CustomerDB extends AbstractDB implements IDBAccess {
 			ResultSet rs;
 			rs = preparedstatement.executeQuery();
 			if (rs.first()) {
-				custId = rs.getString(1);
+				custId = rs.getInt(1);
 			} else {
 				log.error("Username not found");
 			}
@@ -177,13 +182,13 @@ public class CustomerDB extends AbstractDB implements IDBAccess {
 	 * Retrieve customer information from customer table to print it on profile page
 	 */
 
-	public Customer pullCustomerDetails(String transferCustId) throws SQLException {
+	public Customer pullCustomerDetails(int i) throws SQLException {
 
 		Customer userProfile = new Customer();
 		try {
 			PreparedStatement preparestatement = this.getDBConnection()
 					.prepareStatement(MySQLQuery.SQL_FETCH_CUSTOMER_PROFILE);
-			preparestatement.setString(1, transferCustId);
+			preparestatement.setInt(1, i);
 			ResultSet customerProfilers;
 			customerProfilers = preparestatement.executeQuery();
 			while (customerProfilers.next()) {
@@ -201,7 +206,7 @@ public class CustomerDB extends AbstractDB implements IDBAccess {
 		} catch (SQLException e) {
 			log.error(e.getMessage());
 
-		} 
+		}
 		return userProfile;
 
 	}

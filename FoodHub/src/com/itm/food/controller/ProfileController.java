@@ -113,9 +113,9 @@ public class ProfileController extends BaseController {
 	/*
 	 * update the new details of the customer in the table
 	 */
-	public void updateUserProfile(String transferCustid) {
+	public void updateUserProfile(int i) {
 
-		updateCustomer.setCustomerID(transferCustid);
+		updateCustomer.setCustomerID(i);
 		updateCustomer.setFirstName(pFirstName.getText());
 		updateCustomer.setLastName(pLastName.getText());
 		updateCustomer.setEmail(pEmail.getText());
@@ -163,10 +163,10 @@ public class ProfileController extends BaseController {
 	/*
 	 * Load the updated user profile data to the profile page
 	 */
-	public void loadUserProfile(String transferCustId) {
-		updateCustomer.setCustomerID(transferCustId);
+	public void loadUserProfile(int i) {
+		updateCustomer.setCustomerID(i);
 		try {
-			updateCustomer = addUpdates.getCustomerProfile(transferCustId);
+			updateCustomer = addUpdates.getCustomerProfile(i);
 			pFirstName.setText(updateCustomer.getFirstName());
 			pLastName.setText(updateCustomer.getLastName());
 			pEmail.setText(updateCustomer.getEmail());

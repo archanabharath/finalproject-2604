@@ -80,7 +80,7 @@ public class SearchController extends BaseController {
 				DistanceMatrix dMatrix = new DistanceMatrix();
 				dMatrix.setDestLat(String.valueOf(restaurant.getLatitude()));
 				dMatrix.setDestLng(String.valueOf(restaurant.getLongitude()));
-				distanceTimeMap.put(restaurant.getRestaurantId(), dMatrix);
+				distanceTimeMap.put(Integer.toString(restaurant.getRestaurantId()), dMatrix);
 			}
 
 			geoLocator.getDistanceMatrix(distanceTimeMap);
@@ -157,8 +157,8 @@ public class SearchController extends BaseController {
 		AnchorPane.setLeftAnchor(imageView, 10.0);
 		AnchorPane.setTopAnchor(imageView, 25.0);
 		try {
-			String url = "file://" + new File("").getCanonicalFile().getParent().toString() + File.separatorChar
-					+ "FoodHub/asserts/default-restaurent.png";
+			String url = "file:\\" + new File("").getCanonicalFile().getParent().toString() + File.separatorChar
+					+ "FoodHub\\src\\com\\itm\\food\\images\\default-restaurent.png";
 			imageView.setImage(new Image(url));
 		} catch (Exception ex) {
 			log.error(ex.getMessage());
@@ -181,6 +181,7 @@ public class SearchController extends BaseController {
 		lblRestName.setWrapText(true);
 		lblRestName.setTextFill(Color.CRIMSON);
 		lblRestName.setFont(new Font(24.0));
+		lblRestName.setStyle("-fx-font-weight:bold;");
 		AnchorPane.setLeftAnchor(lblRestName, 200.0);
 		AnchorPane.setTopAnchor(lblRestName, 20.0);
 		pane.getChildren().add(lblRestName);
@@ -197,10 +198,10 @@ public class SearchController extends BaseController {
 		lblRestDesc.setLayoutY(70.0);
 		lblRestDesc.prefHeight(100.0);
 		lblRestDesc.prefWidth(100.0);
-		lblRestDesc.setText(BaseController.preferredRestaurants.get(count).getRestaurantDescription());
+		lblRestDesc.setText(BaseController.preferredRestaurants.get(count).getRestaurantDescription()+"\n");
 		lblRestDesc.setWrapText(true);
 		lblRestDesc.setFont(new Font(15.0));
-		AnchorPane.setLeftAnchor(lblRestDesc, 200.0);
+		AnchorPane.setLeftAnchor(lblRestDesc, 225.0);
 		AnchorPane.setTopAnchor(lblRestDesc, 60.0);
 		AnchorPane.setRightAnchor(lblRestDesc, 400.0);
 		pane.getChildren().add(lblRestDesc);
@@ -219,8 +220,8 @@ public class SearchController extends BaseController {
 		AnchorPane.setRightAnchor(imageDistance, 275.0);
 		AnchorPane.setBottomAnchor(imageDistance, 20.0);
 		try {
-			String url = "file://" + new File("").getCanonicalFile().getParent().toString() + File.separatorChar
-					+ "FoodHub/asserts/icons8-geo-fence-24.png";
+			String url = "file:\\" + new File("").getCanonicalFile().getParent().toString() + File.separatorChar
+					+ "FoodHub\\src\\com\\itm\\food\\images\\icons8-geo-fence-24.png";
 			imageDistance.setImage(new Image(url));
 		} catch (Exception ex) {
 			log.error(ex.getMessage());
@@ -232,6 +233,7 @@ public class SearchController extends BaseController {
 		lblRestDistance.setLayoutY(156.0);
 		lblRestDistance.setText(BaseController.preferredRestaurants.get(count).getDistance());
 		lblRestDistance.setFont(new Font(18.0));
+		lblRestDistance.setStyle("-fx-font-weight:bold;");
 		AnchorPane.setRightAnchor(lblRestDistance, 200.0);
 		AnchorPane.setBottomAnchor(lblRestDistance, 20.0);
 		pane.getChildren().add(lblRestDistance);
@@ -250,8 +252,11 @@ public class SearchController extends BaseController {
 		AnchorPane.setRightAnchor(imageTimer, 145.0);
 		AnchorPane.setBottomAnchor(imageTimer, 20.0);
 		try {
-			String url = "file://" + new File("").getCanonicalFile().getParent().toString() + File.separatorChar
-					+ "FoodHub/asserts/icons8-timer-24.png";
+			
+		
+			String url = "file:\\" + new File("").getCanonicalFile().getParent().toString() + File.separatorChar
+					+ "FoodHub\\src\\com\\itm\\food\\images\\icons8-timer-24.png";
+			log.error("timer image location : " +url);
 			imageTimer.setImage(new Image(url));
 		} catch (Exception ex) {
 			log.error(ex.getMessage());
@@ -263,6 +268,7 @@ public class SearchController extends BaseController {
 		lblRestTravelTime.setLayoutY(156.0);
 		lblRestTravelTime.setText(BaseController.preferredRestaurants.get(count).getTimeToTravel());
 		lblRestTravelTime.setFont(new Font(18.0));
+		lblRestTravelTime.setStyle("-fx-font-weight:bold;");
 		AnchorPane.setRightAnchor(lblRestTravelTime, 75.0);
 		AnchorPane.setBottomAnchor(lblRestTravelTime, 20.0);
 		pane.getChildren().add(lblRestTravelTime);
@@ -274,12 +280,15 @@ public class SearchController extends BaseController {
 		// </font>
 		// </Label>
 		Label lblAddress = new Label();
-		lblAddress.setText(BaseController.preferredRestaurants.get(count).getAddressPhoneAndEmail());
+		lblAddress.setText("Contact: " +BaseController.preferredRestaurants.get(count).getPhone()+
+				"\n"+
+				"Email: "+ BaseController.preferredRestaurants.get(count).getEmail());
 		lblAddress.setFont(new Font(18.0));
+		lblAddress.setStyle("-fx-font-weight:bold;");
 		lblAddress.setWrapText(true);
 		lblAddress.setLayoutX(200.0);
 		lblAddress.setLayoutY(70.0);
-		AnchorPane.setLeftAnchor(lblAddress, 200.0);
+		AnchorPane.setLeftAnchor(lblAddress, 225.0);
 		AnchorPane.setBottomAnchor(lblAddress, 20.0);
 		pane.getChildren().add(lblAddress);
 
@@ -292,6 +301,7 @@ public class SearchController extends BaseController {
 		Hyperlink viewMenuLink = new Hyperlink();
 		viewMenuLink.setText("View Menu");
 		viewMenuLink.setFont(new Font(18.0));
+		viewMenuLink.setStyle("-fx-font-weight:bold;");
 		viewMenuLink.setLayoutX(1020.0);
 		viewMenuLink.setLayoutY(70.0);
 		AnchorPane.setRightAnchor(viewMenuLink, 100.0);
@@ -312,6 +322,7 @@ public class SearchController extends BaseController {
 		Label lblRating = new Label();
 		lblRating.setText("Rating: " + BaseController.preferredRestaurants.get(count).getRating());
 		lblRating.setFont(new Font(15.0));
+		lblRating.setStyle("-fx-font-weight:bold;");
 		lblRating.setWrapText(true);
 		lblRating.setLayoutX(900.0);
 		lblRating.setLayoutY(70.0);

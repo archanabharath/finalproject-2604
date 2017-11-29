@@ -4,8 +4,8 @@ import com.itm.food.util.CardUtil;
 
 public class Payment extends AbstractDomain {
 
-	String customerid;
-	String cardid;
+	int customerid;
+	int cardid;
 	long cardNo;
 	String cardExpDate;
 	String cardType;
@@ -14,7 +14,7 @@ public class Payment extends AbstractDomain {
 	/**
 	 * @return the customerid
 	 */
-	public String getCustomerid() {
+	public int getCustomerid() {
 		return customerid;
 	}
 
@@ -22,14 +22,14 @@ public class Payment extends AbstractDomain {
 	 * @param customerid
 	 *            the customerid to set
 	 */
-	public void setCustomerid(String customerid) {
+	public void setCustomerid(int customerid) {
 		this.customerid = customerid;
 	}
 
 	/**
 	 * @return the cardid
 	 */
-	public String getCardid() {
+	public int getCardid() {
 		return cardid;
 	}
 
@@ -37,7 +37,7 @@ public class Payment extends AbstractDomain {
 	 * @param cardid
 	 *            the cardid to set
 	 */
-	public void setCardid(String cardid) {
+	public void setCardid(int cardid) {
 		this.cardid = cardid;
 	}
 

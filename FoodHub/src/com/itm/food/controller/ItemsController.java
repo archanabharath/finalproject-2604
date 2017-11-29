@@ -78,8 +78,8 @@ public class ItemsController extends BaseController {
 
 	void renderRestaurantHeader() {
 		try {
-			String url = "file://" + new File("").getCanonicalFile().getParent().toString() + File.separatorChar
-					+ "FoodHub/asserts/default-restaurent.png";
+			String url = "file:\\" + new File("").getCanonicalFile().getParent().toString() + File.separatorChar
+					+ "FoodHub\\src\\com\\itm\\food\\images\\default-restaurent.png";
 			imgRestaurant.setImage(new Image(url));
 		} catch (Exception ex) {
 			log.error(ex.getMessage());
@@ -91,14 +91,14 @@ public class ItemsController extends BaseController {
 	}
 
 	void renderItemList() {
-		if (StringUtils.isNotEmpty(BaseController.currentRestaurant.getRestaurantId())) {
+		if ((BaseController.currentRestaurant.getRestaurantId() != 0)) {
 			// Clean the anchorPaneRestList before rendering the new search list
 			anchorPaneItemList.getChildren().removeAll(anchorPaneItemList.getChildren());
 			anchorPaneItemList.setPrefHeight(150.0);
 			for (int i = 0; i < BaseController.currentRestaurant.getItems().size(); i++) {
 				renderItem(i);
 			}
-		} 
+		}
 	}
 
 	void renderItem(int index) {
@@ -124,8 +124,8 @@ public class ItemsController extends BaseController {
 		AnchorPane.setLeftAnchor(imageView, 0.0);
 		AnchorPane.setTopAnchor(imageView, 0.0);
 		try {
-			String url = "file://" + new File("").getCanonicalFile().getParent().toString() + File.separatorChar
-					+ "FoodHub/asserts/default-items.png";
+			String url = "file:\\" + new File("").getCanonicalFile().getParent().toString() + File.separatorChar
+					+ "FoodHub\\src\\com\\itm\\food\\images\\default-items.png";
 			imageView.setImage(new Image(url));
 		} catch (Exception ex) {
 			log.error(ex.getMessage());
@@ -229,22 +229,18 @@ public class ItemsController extends BaseController {
 		itemsToBasket.setItemQuantity(1);
 		BaseController.foodBasket.getOrderItems().add(itemsToBasket);
 		enableOrDisableBasketButtonIfNeeded();
-		log.debug(
-				"Item id: " + BaseController.currentRestaurant.getItems().get(index).getItemId() + " added to basket");
-		log.debug("Current Items in basket: " + BaseController.foodBasket.getOrderItems().toString());
+
 	}
 
 	private void removeItemFromBasket(int index) {
-		String itemToBeRemoved = BaseController.currentRestaurant.getItems().get(index).getItemId();
+		int itemToBeRemoved = BaseController.currentRestaurant.getItems().get(index).getItemId();
 		int indexToBeRemoved = -1;
 		indexToBeRemoved = isItemPresent(itemToBeRemoved);
 		if (indexToBeRemoved != -1) {
 			BaseController.foodBasket.getOrderItems().remove(indexToBeRemoved);
 		}
 		enableOrDisableBasketButtonIfNeeded();
-		log.debug("Item id: " + BaseController.currentRestaurant.getItems().get(index).getItemId()
-				+ " removed from basket");
-		log.debug("Current Items in basket: " + BaseController.foodBasket.getOrderItems().toString());
+
 	}
 
 	private void enableOrDisableBasketButtonIfNeeded() {

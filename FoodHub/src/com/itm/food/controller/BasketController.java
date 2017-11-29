@@ -7,9 +7,11 @@ import org.apache.log4j.Logger;
 
 import com.itm.food.dao.Address;
 import com.itm.food.dao.Basket;
+import com.itm.food.dao.Coupon;
 import com.itm.food.dao.Item;
 import com.itm.food.dao.Payment;
 import com.itm.food.dao.Restaurant;
+import com.itm.food.model.CouponDB;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXButton.ButtonType;
 import com.jfoenix.controls.JFXTextField;
@@ -22,7 +24,9 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ToggleGroup;
@@ -65,19 +69,25 @@ public class BasketController extends BaseController {
 	private Label lblOrderTotal;
 
 	@FXML
+	private Hyperlink linkToAddAddress;
+
+	@FXML
+	private Hyperlink linkToAddCard;
+
+	@FXML
 	private ScrollPane scrollPaneRest;
 
 	@FXML
 	private AnchorPane anchorPaneItemList;
 
-    @FXML
-    private JFXToggleButton togglePickup;
+	@FXML
+	private JFXToggleButton togglePickup;
 
-    @FXML
-    private ToggleGroup deliveryMode;
+	@FXML
+	private ToggleGroup deliveryMode;
 
-    @FXML
-    private JFXToggleButton toggleDelivery;
+	@FXML
+	private JFXToggleButton toggleDelivery;
 
 	@FXML
 	private ChoiceBox<Address> addressPicker;
@@ -91,27 +101,41 @@ public class BasketController extends BaseController {
 	@FXML
 	private Label lblOrderErrorMsg;
 
+	@FXML
+	private JFXTextField couponTextBox;
+
+	CouponDB couponDB = new CouponDB();
+
 	public void init() {
 		super.init();
 		if (null != BaseController.foodBasket.getOrderItems() || BaseController.foodBasket.getOrderItems().isEmpty()) {
 			this.errorPane.setVisible(false);
 			this.orderErrorPane.setVisible(false);
+			getCouponValue();
 			renderOrderSummary();
 			renderBasketItems();
 		}
 
 	}
 
-    @FXML
-    void handleDelivery(ActionEvent event) {
-    	addressPicker.setDisable(false);
-    }
-    
-    @FXML
-    void handlePickup(ActionEvent event) {
-    	addressPicker.setDisable(true);
-    }
-	
+	@FXML
+	void handleDelivery(ActionEvent event) {
+		addressPicker.setDisable(false);
+		BaseController.foodBasket.setDeliveryCharge(3.0);
+		lblDeliveryCharge.setText("$" + BaseController.foodBasket.getDeliveryCharge());
+		linkToAddAddress.setDisable(false);
+		renderOrderSummary();
+	}
+
+	@FXML
+	void handlePickup(ActionEvent event) {
+		addressPicker.setDisable(true);
+		BaseController.foodBasket.setDeliveryCharge(0.0);
+		lblDeliveryCharge.setText("$0.00");
+		linkToAddAddress.setDisable(true);
+		renderOrderSummary();
+	}
+
 	@FXML
 	void handlePlaceOrder(ActionEvent event) {
 		placeOrder();
@@ -119,9 +143,11 @@ public class BasketController extends BaseController {
 
 	void renderOrderSummary() {
 		try {
+
 			BaseController.foodBasket.calculateOrderSummary();
 			lblItemsTotal.setText("$" + BaseController.foodBasket.getItemsTotal());
-			lblDeliveryCharge.setText("$" + BaseController.foodBasket.getDeliveryCharge());
+			// lblDeliveryCharge.setText("$" +
+			// BaseController.foodBasket.getDeliveryCharge());
 			lblCouponsApplied.setText("$" + BaseController.foodBasket.getCouponsApplied());
 			lblTotalBeforeTax.setText("$" + BaseController.foodBasket.getTotalBeforeTax());
 			lblTaxApplied.setText("$" + BaseController.foodBasket.getTaxApplied());
@@ -132,6 +158,15 @@ public class BasketController extends BaseController {
 				BaseController.authenticatedCustomer.setAddresses(
 						customerOperation.getCustomerAddress(BaseController.authenticatedCustomer.getCustomerID()));
 			}
+			linkToAddAddress.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent event) {
+					log.debug("Basket-controller-link to add new address");
+					handleAddress();
+					return;
+
+				}
+			});
 			ObservableList<Address> obAddress = null;
 			obAddress = FXCollections.observableArrayList(BaseController.authenticatedCustomer.getAddresses());
 			addressPicker.setItems(obAddress);
@@ -142,6 +177,16 @@ public class BasketController extends BaseController {
 				BaseController.authenticatedCustomer
 						.setPayments(paymentOperation.getCards(BaseController.authenticatedCustomer.getCustomerID()));
 			}
+
+			linkToAddCard.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent event) {
+					log.debug("Basket-controller-link to add new card");
+					handleCards();
+					return;
+
+				}
+			});
 			ObservableList<Payment> obPayment = null;
 			obPayment = FXCollections.observableArrayList(BaseController.authenticatedCustomer.getPayments());
 			paymentPicker.setItems(obPayment);
@@ -150,7 +195,7 @@ public class BasketController extends BaseController {
 		} catch (Exception ex) {
 			lblOrderErrorMsg.setText("Unable to load order Summary.");
 			orderErrorPane.setVisible(true);
-			log.error(ex.getMessage());
+			log.error(ex.getMessage(), ex);
 		}
 	}
 
@@ -197,8 +242,8 @@ public class BasketController extends BaseController {
 			AnchorPane.setLeftAnchor(imageView, 0.0);
 			AnchorPane.setTopAnchor(imageView, 0.0);
 
-			String url = "file://" + new File("").getCanonicalFile().getParent().toString() + File.separatorChar
-					+ "FoodHub/asserts/default-items.png";
+			String url = "file:\\" + new File("").getCanonicalFile().getParent().toString() + File.separatorChar
+					+ "FoodHub\\src\\com\\itm\\food\\images\\default-items.png";
 			imageView.setImage(new Image(url));
 
 			pane.getChildren().add(imageView);
@@ -293,7 +338,7 @@ public class BasketController extends BaseController {
 	}
 
 	private void removeItemFromBasket(int index) {
-		String itemToBeRemoved = BaseController.foodBasket.getOrderItems().get(index).getItemId();
+		int itemToBeRemoved = BaseController.foodBasket.getOrderItems().get(index).getItemId();
 		int indexToBeRemoved = -1;
 		indexToBeRemoved = isItemPresent(itemToBeRemoved);
 		if (indexToBeRemoved != -1) {
@@ -317,12 +362,19 @@ public class BasketController extends BaseController {
 			// Set the payment and address
 			int selectedDeliveryMode = -1;
 			JFXToggleButton button = (JFXToggleButton) deliveryMode.getSelectedToggle();
-			if (button.getText().equals("Pickup")) {
-				selectedDeliveryMode = 1;
+			
+			if (StringUtils.isNotBlank(button.getText())) {
+
+				if (button.getText().equals("Pickup")) {
+					selectedDeliveryMode = 1;
+
+				} else {
+					selectedDeliveryMode = 2;
+					BaseController.foodBasket.setAddress(BaseController.authenticatedCustomer.getAddresses()
+							.get(addressPicker.getSelectionModel().getSelectedIndex()).getAddrId());
+				}
 			} else {
-				selectedDeliveryMode = 2;
-				BaseController.foodBasket.setAddress(BaseController.authenticatedCustomer.getAddresses()
-						.get(addressPicker.getSelectionModel().getSelectedIndex()).getAddrId());
+				lblOrderErrorMsg.setText("Please choose the delivery option");
 			}
 			BaseController.foodBasket.setPayment(BaseController.authenticatedCustomer.getPayments()
 					.get(paymentPicker.getSelectionModel().getSelectedIndex()).getCardid());
@@ -332,10 +384,10 @@ public class BasketController extends BaseController {
 
 			customerOperation.updateOrder(BaseController.foodBasket);
 
-			
 			// Reset the basket
 			BaseController.foodBasket = new Basket();
-
+			orderPlacedAlert();
+			handleRating();
 			handleOrders();
 
 		} catch (Exception ex) {
@@ -345,4 +397,39 @@ public class BasketController extends BaseController {
 		}
 	}
 
+	public void orderPlacedAlert() {
+		Alert orderPlacedMsg = new Alert(Alert.AlertType.INFORMATION);
+
+		orderPlacedMsg.setTitle("Order Placed");
+		orderPlacedMsg.setContentText("You have successfully placed your order!" + "\n"
+				+ "You can track your order status in the orders section");
+		orderPlacedMsg.setHeaderText(null);
+		orderPlacedMsg.showAndWait();
+	}
+
+	public void submitReviewRating() {
+		Alert orderReview = new Alert(Alert.AlertType.CONFIRMATION);
+
+	}
+
+	public void getCouponValue() {
+		couponTextBox.textProperty().addListener(new ChangeListener<String>() {
+
+			@Override
+			public void changed(ObservableValue<? extends String> couponText, String oldCoupon, String newCoupon) {
+				log.debug("coupon changed to new value " + newCoupon + ". Recalculating the Order Summary");
+				if (StringUtils.isNotBlank(newCoupon)) {
+
+					BaseController.foodBasket.setCouponobj(couponDB.getSelectedCoupon(newCoupon));
+					renderOrderSummary();
+
+				} else {
+					BaseController.foodBasket.setCouponobj(null);
+					renderOrderSummary();
+				}
+			}
+
+		});
+
+	}
 }

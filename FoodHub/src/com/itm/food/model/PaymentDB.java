@@ -18,17 +18,17 @@ public class PaymentDB extends AbstractDB implements IDBAccess{
 	private static final Logger log = Logger.getLogger(PaymentDB.class);
 
 	@Override
-	public <T extends AbstractDomain> String add(T object) throws Exception {
+	public <T extends AbstractDomain> int add(T object) throws Exception {
 		Payment newCard = (Payment) object;
 		log.debug("Adding new card");	
 		try {
 		PreparedStatement preparedstatement = this.getDBConnection().prepareStatement(MySQLQuery.SQL_PAYMENT_INSERT);
-		preparedstatement.setString(1, newCard.getCustomerid());
-		preparedstatement.setString(2, newCard.getCardid());
-		preparedstatement.setLong(3, newCard.getCardNo()); 
-		preparedstatement.setString(4, newCard.getCardExpDate());
-		preparedstatement.setString(5, newCard.getCardType());
-		preparedstatement.setString(6,newCard.getNameOnCard());
+		preparedstatement.setInt(1, newCard.getCustomerid());
+		//preparedstatement.setString(2, newCard.getCardid());
+		preparedstatement.setLong(2, newCard.getCardNo()); 
+		preparedstatement.setString(3, newCard.getCardExpDate());
+		preparedstatement.setString(4, newCard.getCardType());
+		preparedstatement.setString(5,newCard.getNameOnCard());
 		preparedstatement.executeUpdate();
 		preparedstatement.close();
 		
@@ -47,7 +47,7 @@ public class PaymentDB extends AbstractDB implements IDBAccess{
 	}
 
 	@Override
-	public <T extends AbstractDomain> T find(String id) throws Exception {
+	public <T extends AbstractDomain> T find(int id) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -64,13 +64,13 @@ public class PaymentDB extends AbstractDB implements IDBAccess{
 		
 	}
 	
-	public List<Payment> getAllCardsFromDB(String customerId) throws Exception{
+	public List<Payment> getAllCardsFromDB(int i) throws Exception{
 		ResultSet rsAllCards;
 		List<Payment> cardsList = new ArrayList<Payment>();
 		log.debug("Getting all cards");
 		try {
 			PreparedStatement preparestatement = this.getDBConnection().prepareStatement(MySQLQuery.SQL_GET_ALL_CARDS_OF_CUSTOMER);
-			preparestatement.setString(1, customerId);
+			preparestatement.setInt(1, i);
 			rsAllCards = preparestatement.executeQuery();//NAME_ON_CARD,CARD_TYPE,EXPIRY,CARD_NO
 			while(rsAllCards.next()) {
 				Payment newcard = new Payment();
@@ -78,8 +78,8 @@ public class PaymentDB extends AbstractDB implements IDBAccess{
 				newcard.setCardType(rsAllCards.getString(2));
 				newcard.setCardExpDate(rsAllCards.getString(3));
 				newcard.setCardNo(rsAllCards.getLong(4));
-				newcard.setCardid(rsAllCards.getString(5));
-				newcard.setCustomerid(rsAllCards.getString(6));
+				newcard.setCardid(rsAllCards.getInt(5));
+				newcard.setCustomerid(rsAllCards.getInt(6));
 				
 				cardsList.add(newcard);
 			}

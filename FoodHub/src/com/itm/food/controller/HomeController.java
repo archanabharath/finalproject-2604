@@ -3,7 +3,10 @@ package com.itm.food.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import com.itm.food.dao.ItemRestaurant;
+import com.itm.food.dao.OrderItem;
 import com.itm.food.dao.Restaurant;
 
 import javafx.fxml.FXML;
@@ -14,6 +17,8 @@ import javafx.scene.layout.AnchorPane;
 
 public class HomeController extends BaseController {
 
+	private static final Logger log = Logger.getLogger(HomeController.class);
+	
 	@FXML
 	private AnchorPane anchorrestaurant1;
 
@@ -70,17 +75,19 @@ public class HomeController extends BaseController {
 
 	@FXML
 	void handleAddToCart1(MouseEvent event) {
-
+		log.debug(event.getClickCount());
+		log.debug(event.getSource().toString());
+		handleAddToCart(0);
 	}
 
 	@FXML
 	void handleAddToCart2(MouseEvent event) {
-
+		handleAddToCart(1);
 	}
 
 	@FXML
 	void handleAddToCart3(MouseEvent event) {
-
+		handleAddToCart(2);
 	}
 
 	@FXML
@@ -102,6 +109,7 @@ public class HomeController extends BaseController {
 	}
 
 	List<Restaurant> top3RestaurantsByRating = new ArrayList<Restaurant>();
+	ItemRestaurant top3ItemsToOrder = new ItemRestaurant();
 
 	@Override
 	void init() {
@@ -112,19 +120,17 @@ public class HomeController extends BaseController {
 	}
 
 	public void getTop3ItemsByRating() {
-		ItemRestaurant top3ItemsList = new ItemRestaurant();
-		top3ItemsList = customerOperation.getTop3Items();
-		lblitem1.setText(top3ItemsList.getTop3ItemsList().get(0).getItemName() + "\n" + "Prepared By: "
-				+ top3ItemsList.getTop3ItemsByRestaurants().get(0).getRestaurantName());
-		lblitem2.setText(top3ItemsList.getTop3ItemsList().get(1).getItemName() + "\n" + "Prepared By:"
-				+ top3ItemsList.getTop3ItemsByRestaurants().get(1).getRestaurantName());
-		lblitem3.setText(top3ItemsList.getTop3ItemsList().get(2).getItemName() + "\n" + "Prepared By:"
-				+ top3ItemsList.getTop3ItemsByRestaurants().get(2).getRestaurantName());
+		top3ItemsToOrder = customerOperation.getTop3Items();
+		lblitem1.setText(top3ItemsToOrder.getTop3ItemsList().get(0).getItemName() + "\n" + "Prepared By: "
+				+ top3ItemsToOrder.getTop3ItemsByRestaurants().get(0).getRestaurantName());
+		lblitem2.setText(top3ItemsToOrder.getTop3ItemsList().get(1).getItemName() + "\n" + "Prepared By:"
+				+ top3ItemsToOrder.getTop3ItemsByRestaurants().get(1).getRestaurantName());
+		lblitem3.setText(top3ItemsToOrder.getTop3ItemsList().get(2).getItemName() + "\n" + "Prepared By:"
+				+ top3ItemsToOrder.getTop3ItemsByRestaurants().get(2).getRestaurantName());
 
 	}
 
 	public void getTop3RestaurantsByRating() {
-
 		top3RestaurantsByRating = customerOperation.getTopRestaurants();
 		lblrestaurant1.setText(top3RestaurantsByRating.get(0).getRestaurantName());
 		lblrestaurant2.setText(top3RestaurantsByRating.get(1).getRestaurantName());
@@ -135,6 +141,25 @@ public class HomeController extends BaseController {
 	public void handleViewMenu(int i) {
 		BaseController.currentRestaurant = top3RestaurantsByRating.get(i);
 		handleItem();
+	}
+
+	public void handleAddToCart(int j) {
+		log.debug("handleaddtocart: " +j);
+		OrderItem item = new OrderItem();
+		item.setRestaurantId(top3ItemsToOrder.getTop3ItemsByRestaurants().get(j).getRestaurantId());
+		item.setItemId(top3ItemsToOrder.getTop3ItemsList().get(j).getItemId());
+		item.setItemPrice(top3ItemsToOrder.getTop3ItemsList().get(j).getItemPrice());
+		item.setItemQuantity(1);
+
+		if (null == BaseController.foodBasket.getOrderItems()) {
+			ArrayList<OrderItem> orderItemList = new ArrayList<OrderItem>();
+			orderItemList.add(item);
+			BaseController.foodBasket.setOrderItems(orderItemList);
+		} else {
+			BaseController.foodBasket.getOrderItems().add(item);
+		}
+
+		handleBasket();
 
 	}
 

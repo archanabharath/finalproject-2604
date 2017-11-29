@@ -17,21 +17,21 @@ public class AddressDB extends AbstractDB implements IDBAccess {
 	private static final Logger log = Logger.getLogger(AddressDB.class);
 
 	@Override
-	public <T extends AbstractDomain> String add(T object) throws Exception {
+	public <T extends AbstractDomain> int add(T object) throws Exception {
 		Address custaddrobj = (Address) object;
 		log.debug("Adding Address");
 		try {
 			PreparedStatement preparedStatement = this.getDBConnection()
 					.prepareStatement(MySQLQuery.SQL_CUSTOMER_ADDRESS_INSERT);
-			preparedStatement.setString(1, custaddrobj.getAddrId()); // ADDRESS_ID
-			preparedStatement.setString(2, custaddrobj.getCustId()); // CUSTOMER_ID
-			preparedStatement.setString(3, custaddrobj.getFname());// FIRST_NAME
-			preparedStatement.setString(4, custaddrobj.getLname());// LAST_NAME
-			preparedStatement.setString(5, custaddrobj.getAddr1()); // ADDRESS1
-			preparedStatement.setString(6, custaddrobj.getAddr2()); // ADDRESS2
-			preparedStatement.setString(7, custaddrobj.getCity()); // CITY
-			preparedStatement.setInt(8, custaddrobj.getPincode()); // ZIPCODE
-			preparedStatement.setString(9, custaddrobj.getAddrphoneNo()); // PHONE
+			//preparedStatement.setString(1, custaddrobj.getAddrId()); // ADDRESS_ID
+			preparedStatement.setInt(1, custaddrobj.getCustId()); // CUSTOMER_ID
+			preparedStatement.setString(2, custaddrobj.getFname());// FIRST_NAME
+			preparedStatement.setString(3, custaddrobj.getLname());// LAST_NAME
+			preparedStatement.setString(4, custaddrobj.getAddr1()); // ADDRESS1
+			preparedStatement.setString(5, custaddrobj.getAddr2()); // ADDRESS2
+			preparedStatement.setString(6, custaddrobj.getCity()); // CITY
+			preparedStatement.setInt(7, custaddrobj.getPincode()); // ZIPCODE
+			preparedStatement.setString(8, custaddrobj.getAddrphoneNo()); // PHONE
 
 			preparedStatement.execute();
 			preparedStatement.close();
@@ -52,7 +52,7 @@ public class AddressDB extends AbstractDB implements IDBAccess {
 
 	@Override
 	// get all addresses for a customer from address table
-	public <T extends AbstractDomain> T find(String id) throws Exception {
+	public <T extends AbstractDomain> T find(int id) throws Exception {
 		return null;
 
 	}
@@ -68,14 +68,14 @@ public class AddressDB extends AbstractDB implements IDBAccess {
 		// TODO Auto-generated method stub
 	}
 
-	public List<Address> getAddresses(String custId) throws ClassNotFoundException {
+	public List<Address> getAddresses(int i) throws ClassNotFoundException {
 		log.debug("Getting addresses for the customer");
 		List<Address> addressList = new ArrayList<Address>();
 		ResultSet rsAllAddresses;
 		try {
 			PreparedStatement preparestatement = this.getDBConnection()
 					.prepareStatement(MySQLQuery.SQL_GET_ALL_ADDRESSES_OF_CUSTOMER);
-			preparestatement.setString(1, custId);
+			preparestatement.setInt(1, i);
 			rsAllAddresses = preparestatement.executeQuery();
 			while (rsAllAddresses.next()) {
 				// FIRST_NAME,LAST_NAME,ADDRESS1,ADDRESS2,CITY,ZIPCODE,PHONE
@@ -87,8 +87,8 @@ public class AddressDB extends AbstractDB implements IDBAccess {
 				address.setCity(rsAllAddresses.getString(5));
 				address.setPincode(rsAllAddresses.getInt(6));
 				address.setAddrphoneNo(rsAllAddresses.getString(7));
-				address.setAddrId(rsAllAddresses.getString(8));
-				address.setCustId(rsAllAddresses.getString(9));
+				address.setAddrId(rsAllAddresses.getInt(8));
+				address.setCustId(rsAllAddresses.getInt(9));
 				addressList.add(address);
 			}
 		} catch (SQLException e) {

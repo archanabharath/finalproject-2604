@@ -4,9 +4,9 @@ import java.util.List;
 
 public class Restaurant extends AbstractDomain {
 
-	String restaurantId;
+	int restaurantId;
 	String restaurantName;
-	String restaurantDescription;
+	String description;
 	String address1;
 	String address2;
 	String city;
@@ -27,7 +27,7 @@ public class Restaurant extends AbstractDomain {
 	/**
 	 * @return the restaurantId
 	 */
-	public String getRestaurantId() {
+	public int getRestaurantId() {
 		return restaurantId;
 	}
 
@@ -35,7 +35,7 @@ public class Restaurant extends AbstractDomain {
 	 * @param restaurantId
 	 *            the restaurantId to set
 	 */
-	public void setRestaurantId(String restaurantId) {
+	public void setRestaurantId(int restaurantId) {
 		this.restaurantId = restaurantId;
 	}
 
@@ -58,7 +58,7 @@ public class Restaurant extends AbstractDomain {
 	 * @return the restaurantDescription
 	 */
 	public String getRestaurantDescription() {
-		return restaurantDescription;
+		return description;
 	}
 
 	/**
@@ -66,7 +66,7 @@ public class Restaurant extends AbstractDomain {
 	 *            the restaurantDescription to set
 	 */
 	public void setRestaurantDescription(String restaurantDescription) {
-		this.restaurantDescription = restaurantDescription;
+		this.description = restaurantDescription;
 	}
 
 	/**

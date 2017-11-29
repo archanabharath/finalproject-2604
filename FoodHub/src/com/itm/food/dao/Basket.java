@@ -2,6 +2,7 @@
 package com.itm.food.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.commons.math3.util.Precision;
 
@@ -15,9 +16,12 @@ public class Basket {
 	private double orderTotal;
 	private ArrayList<OrderItem> orderItems;
 	private int deliveryMode;
-	private String payment;
-	private String address;
-	private String customer;
+	private int payment;
+	private int address;
+	private int customer;
+	private Coupon couponobj;
+
+	private ArrayList<Coupon> allCoupons;
 
 	public static double TAX_AMOUNT = 7.0;
 
@@ -144,7 +148,7 @@ public class Basket {
 	/**
 	 * @return the payment
 	 */
-	public String getPayment() {
+	public int getPayment() {
 		return payment;
 	}
 
@@ -152,14 +156,14 @@ public class Basket {
 	 * @param payment
 	 *            the payment to set
 	 */
-	public void setPayment(String payment) {
+	public void setPayment(int payment) {
 		this.payment = payment;
 	}
 
 	/**
 	 * @return the address
 	 */
-	public String getAddress() {
+	public int getAddress() {
 		return address;
 	}
 
@@ -167,14 +171,14 @@ public class Basket {
 	 * @param address
 	 *            the address to set
 	 */
-	public void setAddress(String address) {
+	public void setAddress(int address) {
 		this.address = address;
 	}
 
 	/**
 	 * @return the customer
 	 */
-	public String getCustomer() {
+	public int getCustomer() {
 		return customer;
 	}
 
@@ -182,24 +186,70 @@ public class Basket {
 	 * @param customer
 	 *            the customer to set
 	 */
-	public void setCustomer(String customer) {
+	public void setCustomer(int customer) {
 		this.customer = customer;
 	}
 
+	/**
+	 * @return the allCoupons
+	 */
+	public ArrayList<Coupon> getAllCoupons() {
+		return allCoupons;
+	}
+
+	/**
+	 * @param allCoupons
+	 *            the allCoupons to set
+	 */
+	public void setAllCoupons(ArrayList<Coupon> allCoupons) {
+		this.allCoupons = allCoupons;
+	}
+
+	/**
+	 * @return the couponobj
+	 */
+	public Coupon getCouponobj() {
+		return couponobj;
+	}
+
+	/**
+	 * @param couponobj
+	 *            the couponobj to set
+	 */
+	public void setCouponobj(Coupon couponobj) {
+		this.couponobj = couponobj;
+	}
+
+	/**
+	 * calculate the order total amounts deducting the coupon amount and adding
+	 * delivery charges and tax amount
+	 */
 	public void calculateOrderSummary() {
 		// Calculate item total first
 		double tmpItemsTotal = 0.0;
+
 		for (OrderItem orderItem : this.getOrderItems()) {
 			tmpItemsTotal += Math.abs((orderItem.getItemPrice() * orderItem.getItemQuantity()));
 		}
 		this.setItemsTotal(tmpItemsTotal);
 
 		// Calculate Delivery charge
-		this.setDeliveryCharge(3.0);
+		// this.setDeliveryCharge(3.0);
 
 		// Calculate Coupon applied
-		this.setCouponsApplied(0.0);
-
+		// this.setCouponsApplied(0.0);
+		if (this.getCouponobj() != null) {
+			if (this.getCouponobj().getCouponType() == 1) {
+				System.out.println("coupon-type-1" +this.getCouponobj().getCouponValue());
+				this.setCouponsApplied(this.itemsTotal * (this.getCouponobj().getCouponValue())/100.0);
+				System.out.println("coupon-applied-pct:" +this.getCouponsApplied());
+			} else if (this.getCouponobj().getCouponType() == 2) {
+				System.out.println("coupon-type-2" +this.getCouponobj().getCouponValue());
+				this.setCouponsApplied(this.getCouponobj().getCouponValue());
+			}
+		}else {
+			this.setCouponsApplied(0.0);
+		}
 		// Calculate Total before Tax
 		this.setTotalBeforeTax(Precision
 				.round(Math.abs((this.getItemsTotal() + this.getDeliveryCharge()) - this.getCouponsApplied()), 2));

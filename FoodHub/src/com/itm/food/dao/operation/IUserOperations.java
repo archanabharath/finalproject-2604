@@ -11,13 +11,13 @@ import com.itm.food.dao.Order;
 
 public interface IUserOperations {
 
-	String validateCustomer(String username, String password) throws Exception;
+	int validateCustomer(String username, String password) throws Exception;
 
-	Customer getCustomer(String customerId) throws Exception;
+	Customer getCustomer(int customerId) throws Exception;
 
-	String addUserDetails(Customer newcustomer) throws Exception;
+	int addUserDetails(Customer newcustomer) throws Exception;
 
-	String addAddress(Address newAddress) throws Exception;
+	int addAddress(Address newAddress) throws Exception;
 
 	void updateOrder(Basket basket) throws Exception;
 
@@ -27,7 +27,7 @@ public interface IUserOperations {
 
 	List<Order> displayOrderDetails(Order getOrders) throws Exception;
 
-	List<CustomerOrder> displayOrderHistoryOfCustomer(String CustomerId) throws Exception;
+	List<CustomerOrder> displayOrderHistoryOfCustomer(int CustomerId) throws Exception;
 
 	void displayReviewComments(int orderId) throws Exception;
 

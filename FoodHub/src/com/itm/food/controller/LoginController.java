@@ -76,8 +76,8 @@ public class LoginController extends BaseController {
 	
 	private boolean validateUser() throws Exception {
 		boolean isAuthenticated = false;
-		String customerId = customerOperation.validateCustomer(this.txtUsername.getText().trim(), this.txtPassword.getText().trim());
-		isAuthenticated = (null != customerId);
+		int customerId = customerOperation.validateCustomer(this.txtUsername.getText().trim(), this.txtPassword.getText().trim());
+		isAuthenticated = (0 != customerId);
 		if(isAuthenticated) {
 		BaseController.authenticatedCustomer = customerOperation.getCustomer(customerId);
 		} 

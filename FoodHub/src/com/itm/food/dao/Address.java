@@ -2,10 +2,10 @@ package com.itm.food.dao;
 
 public class Address extends AbstractDomain {
 
-	String addrId;
+	int addrId;
 	String fname;
 	String lname;
-	String custId;
+	int custId;
 	String addr1;
 	String addr2;
 	String city;
@@ -44,7 +44,7 @@ public class Address extends AbstractDomain {
 	/**
 	 * @return the custId
 	 */
-	public String getCustId() {
+	public int getCustId() {
 		return custId;
 	}
 
@@ -52,14 +52,14 @@ public class Address extends AbstractDomain {
 	 * @param custId
 	 *            the custId to set
 	 */
-	public void setCustId(String custId) {
+	public void setCustId(int custId) {
 		this.custId = custId;
 	}
 
 	/**
 	 * @return the addrId
 	 */
-	public String getAddrId() {
+	public int getAddrId() {
 		return addrId;
 	}
 
@@ -67,7 +67,7 @@ public class Address extends AbstractDomain {
 	 * @param addrId
 	 *            the addrId to set
 	 */
-	public void setAddrId(String addrId) {
+	public void setAddrId(int addrId) {
 		this.addrId = addrId;
 	}
 

@@ -24,7 +24,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 public class SignupController extends BaseController {
-	
+
 	private static final Logger log = Logger.getLogger(SignupController.class);
 
 	@FXML
@@ -128,7 +128,7 @@ public class SignupController extends BaseController {
 	 * variables using the setters
 	 */
 	private void setCustomerData() {
-		newcustomer.setCustomerID(UniqueKeyGen.generateUUID());
+		// newcustomer.setCustomerID(UniqueKeyGen.generateUUID());
 		newcustomer.setFirstName(this.txtFirstname.getText());
 		newcustomer.setLastName(this.txtLastname.getText());
 		newcustomer.setDOB(this.txtDob.getValue().toString());
@@ -143,7 +143,7 @@ public class SignupController extends BaseController {
 	 * respective variables using the setters
 	 */
 	private void setAddressData() {
-		newaddress.setAddrId(UniqueKeyGen.generateUUID());
+		// newaddress.setAddrId(UniqueKeyGen.generateUUID());
 		newaddress.setFname(this.txtFirstname.getText());
 		newaddress.setLname(this.txtLastname.getText());
 		newaddress.setAddr1(this.txtAddress1.getText());
@@ -159,7 +159,7 @@ public class SignupController extends BaseController {
 
 			// Set and Save Customer
 			setCustomerData();
-			String custId = customerOperations.addUserDetails(newcustomer);
+			int custId = customerOperations.addUserDetails(newcustomer);
 
 			// Set and save Customer address
 			setAddressData();

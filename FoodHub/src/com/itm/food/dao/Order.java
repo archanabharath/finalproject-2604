@@ -4,17 +4,17 @@ import java.util.List;
 
 public class Order extends AbstractDomain {
 
-	String orderId;
-	String customerId;
-	String cardId;
-	String addressId;
+	int orderId;
+	int customerId;
+	int cardId;
+	int addressId;
 	double totalPayment;
 	String orderTime;
 	int orderStatus;
 	String driverId;
 	int deliveryMode;
-	String orderFulfilment;
-	String orderRating;
+	String orderFulfilmentTime;
+	int orderRating;
 	String orderFeedback;
 	String feedbackTime;
 	List<OrderItem> orderedItems;
@@ -22,7 +22,7 @@ public class Order extends AbstractDomain {
 	/**
 	 * @return the orderId
 	 */
-	public String getOrderId() {
+	public int getOrderId() {
 		return orderId;
 	}
 
@@ -30,14 +30,14 @@ public class Order extends AbstractDomain {
 	 * @param orderId
 	 *            the orderId to set
 	 */
-	public void setOrderId(String orderId) {
+	public void setOrderId(int orderId) {
 		this.orderId = orderId;
 	}
 
 	/**
 	 * @return the customerId
 	 */
-	public String getCustomerId() {
+	public int getCustomerId() {
 		return customerId;
 	}
 
@@ -45,14 +45,14 @@ public class Order extends AbstractDomain {
 	 * @param customerId
 	 *            the customerId to set
 	 */
-	public void setCustomerId(String customerId) {
+	public void setCustomerId(int customerId) {
 		this.customerId = customerId;
 	}
 
 	/**
 	 * @return the cardId
 	 */
-	public String getCardId() {
+	public int getCardId() {
 		return cardId;
 	}
 
@@ -60,14 +60,14 @@ public class Order extends AbstractDomain {
 	 * @param cardId
 	 *            the cardId to set
 	 */
-	public void setCardId(String cardId) {
+	public void setCardId(int cardId) {
 		this.cardId = cardId;
 	}
 
 	/**
 	 * @return the addressId
 	 */
-	public String getAddressId() {
+	public int getAddressId() {
 		return addressId;
 	}
 
@@ -75,7 +75,7 @@ public class Order extends AbstractDomain {
 	 * @param addressId
 	 *            the addressId to set
 	 */
-	public void setAddressId(String addressId) {
+	public void setAddressId(int addressId) {
 		this.addressId = addressId;
 	}
 
@@ -158,7 +158,7 @@ public class Order extends AbstractDomain {
 	 * @return the orderFulfilment
 	 */
 	public String getOrderFulfilment() {
-		return orderFulfilment;
+		return orderFulfilmentTime;
 	}
 
 	/**
@@ -166,13 +166,13 @@ public class Order extends AbstractDomain {
 	 *            the orderFulfilment to set
 	 */
 	public void setOrderFulfilment(String orderFulfilment) {
-		this.orderFulfilment = orderFulfilment;
+		this.orderFulfilmentTime = orderFulfilment;
 	}
 
 	/**
 	 * @return the orderRating
 	 */
-	public String getOrderRating() {
+	public int getOrderRating() {
 		return orderRating;
 	}
 
@@ -180,7 +180,7 @@ public class Order extends AbstractDomain {
 	 * @param orderRating
 	 *            the orderRating to set
 	 */
-	public void setOrderRating(String orderRating) {
+	public void setOrderRating(int orderRating) {
 		this.orderRating = orderRating;
 	}
 

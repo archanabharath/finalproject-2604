@@ -60,12 +60,12 @@ public class CardsController extends BaseController {
 	ObservableList<String> months;
 	ObservableList<String> years;
 	ObservableList<String> typesOfCard;
-	String pageCardId = null;
+	int pageCardId = 0;
 	ObservableList<Payment> cardsList;
 
 	/**
-	 * This the method which handles the overall functioning of adding new cards
-	 * of customers
+	 * This the method which handles the overall functioning of adding new cards of
+	 * customers
 	 */
 	@FXML
 	void handleAddNewCard(ActionEvent event) {
@@ -109,14 +109,14 @@ public class CardsController extends BaseController {
 	/**
 	 * Fetch the input details from screen and add the card to the payment table
 	 */
-	public void cardInsertToDB(String transferCustId) {
+	public void cardInsertToDB(int i) {
 		log.info("Addcardcontroller started");
 		Payment newCard = new Payment();
 
-		newCard.setCardid(UniqueKeyGen.generateUUID());
+		//newCard.setCardid(UniqueKeyGen.generateUUID());
 		newCard.setCardNo(Long.parseLong(cardNo.getText()));
 		newCard.setNameOnCard(nameOnCard.getText());
-		newCard.setCustomerid(transferCustId);
+		newCard.setCustomerid(i);
 		newCard.setCardType(cardtypepicker.getValue());
 		newCard.setCardExpDate(monthpicker.getValue() + "/" + yearpicker.getValue());
 		pageCardId = paymentOperation.addPaymentInfo(newCard);
@@ -174,17 +174,17 @@ public class CardsController extends BaseController {
 			return false;
 		}
 
-		if ((monthpicker.getValue().compareTo("--month--")) == 0) {
+		if ((monthpicker.getValue().compareTo("--Month--")) == 0) {
 			lblErrorMsg.setText("Please pick card expiry month");
 			this.errorPane.setVisible(true);
 			return false;
 		}
-		if ((yearpicker.getValue().compareTo("--year--")) == 0) {
+		if ((yearpicker.getValue().compareTo("--Year--")) == 0) {
 			lblErrorMsg.setText("Please pick card expiry year");
 			this.errorPane.setVisible(true);
 			return false;
 		}
-		if ((cardtypepicker.getValue().compareTo("--card-type--")) == 0) {
+		if ((cardtypepicker.getValue().compareTo("--Card-type--")) == 0) {
 			lblErrorMsg.setText("Please pick your card type");
 			this.errorPane.setVisible(true);
 			return false;
@@ -233,12 +233,12 @@ public class CardsController extends BaseController {
 	/**
 	 * place the call to access the payments table to retrieve the list of cards
 	 * 
-	 * @param pagesCustId
+	 * @param i
 	 * @return
 	 * @throws Exception
 	 */
-	public List<Payment> getAllCards(String pagesCustId) throws Exception {
-		return paymentOperation.getCards(pagesCustId);
+	public List<Payment> getAllCards(int i) throws Exception {
+		return paymentOperation.getCards(i);
 	}
 
 	/**

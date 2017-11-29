@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import com.itm.food.dao.Basket;
+import com.itm.food.dao.Coupon;
 import com.itm.food.dao.Customer;
 import com.itm.food.dao.CustomerOrder;
 import com.itm.food.dao.Restaurant;
@@ -46,6 +47,7 @@ public abstract class BaseController {
 	public static Restaurant currentRestaurant = new Restaurant();
 	public static Basket foodBasket = new Basket();
 	public static List<CustomerOrder> customerOrders = new ArrayList<CustomerOrder>();
+	
 
 	@FXML
 	private ImageView imgExit;
@@ -226,6 +228,10 @@ public abstract class BaseController {
 		launchScene("Items Screen", "/com/itm/food/views/Items.fxml", BaseController.MAIN_SCREEN_WIDTH,
 				BaseController.MAIN_SCREEN_HEIGHT);
 	}
+	void handleRating() {
+		launchScene("Rating Screen", "/com/itm/food/views/UserReviews.fxml", BaseController.MAIN_SCREEN_WIDTH,
+				BaseController.MAIN_SCREEN_HEIGHT);
+	}
 	
 	
 	/**
@@ -267,9 +273,9 @@ public abstract class BaseController {
 		}
 	}
 
-	public int isItemPresent(String itemsId) {
+	public int isItemPresent(int j) {
 		for (int i = 0; i < BaseController.foodBasket.getOrderItems().size(); i++) {
-			if (BaseController.foodBasket.getOrderItems().get(i).getItemId().equals(itemsId)) {
+			if (BaseController.foodBasket.getOrderItems().get(i).getItemId() == j) {
 				return i;
 			}
 		}

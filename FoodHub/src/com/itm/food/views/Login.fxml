@@ -12,11 +12,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" style="-fx-background-color: aliceblue;" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.itm.food.controller.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" style="-fx-background-color: aliceblue;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.itm.food.controller.LoginController">
 	<children>
       <ImageView fitHeight="500.0" fitWidth="900.0" opacity="0.2" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
-            <Image url="@../../../../../asserts/login_banner.jpg" />
+            <Image url="@../../../../../src/com/itm/food/images/main-bg.jpg" />
          </image>
          <effect>
             <GaussianBlur />
@@ -29,7 +29,7 @@
                   <Font size="36.0" />
                </font>
             </Label>
-            <Label layoutX="169.0" layoutY="128.0" text="Online food ordering and delivery ..." textFill="TOMATO" />
+            <Label layoutX="169.0" layoutY="128.0" text="Food Ordering and Delivery ..." textFill="TOMATO" />
          </children>
       </AnchorPane>
       		<AnchorPane layoutX="453.0" layoutY="34.0" prefHeight="436.0" prefWidth="350.0" style="-fx-background-color: steelblue; -fx-border-color: white;" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0">
@@ -46,7 +46,7 @@
             </JFXPasswordField>
             <JFXButton fx:id="btnLogin" layoutX="20.0" layoutY="291.0" onKeyPressed="#handleKeyLogin" onMouseReleased="#handleMouseLogin" prefHeight="40.0" prefWidth="310.0" style="-fx-background-color: white;" text="Login" textFill="STEELBLUE" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
                <font>
-                  <Font size="18.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
             </JFXButton>
             <Hyperlink fx:id="linkSignup" layoutX="180.0" layoutY="359.0" onMouseClicked="#handleSignup" text="Signup now!!!" textFill="LIGHTYELLOW" underline="true">
@@ -68,10 +68,10 @@
                <children>
                   <ImageView fitHeight="35.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0">
                      <image>
-                        <Image url="@../../../../../asserts/icons8-error-96.png" />
+                        <Image url="@../../../../../src/com/itm/food/images/icons8-error-96.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="lblErrorMsg" text="##Errormsg##" textFill="RED" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="10.0">
+                  <Label fx:id="lblErrorMsg" text="##Errormsg##" textFill="ORANGE" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="10.0">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
@@ -82,7 +82,7 @@
       </AnchorPane>
       <ImageView fx:id="imgExit" blendMode="DARKEN" fitHeight="25.0" fitWidth="25.0" layoutX="869.0" onMouseReleased="#handleApplicationClose" opacity="0.5" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
          <image>
-            <Image url="@../../../../../asserts/icons8-shutdown-96.png" />
+            <Image url="@../../../../../src/com/itm/food/images/icons8-shutdown-96.png" />
          </image>
          <cursor>
             <Cursor fx:constant="HAND" />

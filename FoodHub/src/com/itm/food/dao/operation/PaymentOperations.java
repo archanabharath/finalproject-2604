@@ -13,9 +13,9 @@ public class PaymentOperations {
 
 	PaymentDB paymentDB = new PaymentDB();
 
-	public String addPaymentInfo(Payment newCard) {
+	public int addPaymentInfo(Payment newCard) {
 		log.info("payment operations started");
-		String cardId = null;
+		int cardId = 0;
 		try {
 			cardId = paymentDB.add(newCard);
 		} catch (Exception e) {
@@ -34,8 +34,8 @@ public class PaymentOperations {
 		return 0;
 	}
 
-	public List<Payment> getCards(String customerId) throws Exception {
-		return paymentDB.getAllCardsFromDB(customerId);
+	public List<Payment> getCards(int i) throws Exception {
+		return paymentDB.getAllCardsFromDB(i);
 
 	}
 

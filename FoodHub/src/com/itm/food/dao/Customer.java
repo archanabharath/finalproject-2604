@@ -10,7 +10,7 @@ public class Customer extends AbstractDomain {
 
 	private static final Logger log = Logger.getLogger(Customer.class);
 
-	String customerID;
+	int customerID;
 	String firstName;
 	String lastName;
 	String DOB;
@@ -27,7 +27,7 @@ public class Customer extends AbstractDomain {
 	/**
 	 * @return the customerID
 	 */
-	public String getCustomerID() {
+	public int getCustomerID() {
 		return customerID;
 	}
 
@@ -35,7 +35,7 @@ public class Customer extends AbstractDomain {
 	 * @param string
 	 *            the customerID to set
 	 */
-	public void setCustomerID(String uuid) {
+	public void setCustomerID(int uuid) {
 		this.customerID = uuid;
 	}
 

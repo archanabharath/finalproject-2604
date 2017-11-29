@@ -2,10 +2,10 @@ package com.itm.food.dao;
 
 public class OrderItem extends AbstractDomain {
 
-	private String orderId;
-	private String restaurantId;
+	private int orderId;
+	private int restaurantId;
 	private String couponId;
-	private String itemId;
+	private int itemId;
 	private int itemQuantity;
 	private double itemPrice;
 	String itemName;
@@ -15,25 +15,25 @@ public class OrderItem extends AbstractDomain {
 	/**
 	 * @return the orderId
 	 */
-	public String getOrderId() {
+	public int getOrderId() {
 		return orderId;
 	}
 	/**
 	 * @param orderId the orderId to set
 	 */
-	public void setOrderId(String orderId) {
+	public void setOrderId(int orderId) {
 		this.orderId = orderId;
 	}
 	/**
 	 * @return the restaurantId
 	 */
-	public String getRestaurantId() {
+	public int getRestaurantId() {
 		return restaurantId;
 	}
 	/**
 	 * @param restaurantId the restaurantId to set
 	 */
-	public void setRestaurantId(String restaurantId) {
+	public void setRestaurantId(int restaurantId) {
 		this.restaurantId = restaurantId;
 	}
 	/**
@@ -51,13 +51,13 @@ public class OrderItem extends AbstractDomain {
 	/**
 	 * @return the itemId
 	 */
-	public String getItemId() {
+	public int getItemId() {
 		return itemId;
 	}
 	/**
 	 * @param itemId the itemId to set
 	 */
-	public void setItemId(String itemId) {
+	public void setItemId(int itemId) {
 		this.itemId = itemId;
 	}
 	/**

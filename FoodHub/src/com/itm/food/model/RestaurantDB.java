@@ -17,9 +17,9 @@ public class RestaurantDB extends AbstractDB implements IDBAccess {
 	private static final Logger log = Logger.getLogger(RestaurantDB.class);
 
 	@Override
-	public <T extends AbstractDomain> String add(T object) throws Exception {
+	public <T extends AbstractDomain> int add(T object) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		return 0;
 	}
 
 	@Override
@@ -30,17 +30,17 @@ public class RestaurantDB extends AbstractDB implements IDBAccess {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public <T extends AbstractDomain> T find(String id) throws Exception {
+	public <T extends AbstractDomain> T find(int id) throws Exception {
 		log.debug("Getting Restaurant for the RestaurantId: " + id);
 		ResultSet rsRestaurant;
 		Restaurant restaurant = new Restaurant();
 		try {
 			PreparedStatement preparestatement = this.getDBConnection()
 					.prepareStatement(MySQLQuery.SQL_RESTAURANT_SELECT);
-			preparestatement.setString(1, id);
+			preparestatement.setInt(1, id);
 			rsRestaurant = preparestatement.executeQuery();
 			while (rsRestaurant.next()) {
-				restaurant.setRestaurantId(rsRestaurant.getString(1));
+				restaurant.setRestaurantId(rsRestaurant.getInt(1));
 				restaurant.setRestaurantName(rsRestaurant.getString(2));
 				restaurant.setRestaurantDescription(rsRestaurant.getString(3));
 				restaurant.setAddress1(rsRestaurant.getString(4));
@@ -108,7 +108,7 @@ public class RestaurantDB extends AbstractDB implements IDBAccess {
 
 				// Fetching the restaurants column data and setting it to the
 				// respective dao object
-				newRestaurant.setRestaurantId(restaurantsResultSet.getString(1));
+				newRestaurant.setRestaurantId(restaurantsResultSet.getInt(1));
 				newRestaurant.setRestaurantName(restaurantsResultSet.getString(2));
 				newRestaurant.setRestaurantDescription(restaurantsResultSet.getString(3));
 				newRestaurant.setAddress1(restaurantsResultSet.getString(4));
@@ -146,7 +146,7 @@ public class RestaurantDB extends AbstractDB implements IDBAccess {
 			rsTopRestaurants = preparestatement.executeQuery();
 			while (rsTopRestaurants.next()) {
 				Restaurant restaurant = new Restaurant();
-				restaurant.setRestaurantId(rsTopRestaurants.getString(1));
+				restaurant.setRestaurantId(rsTopRestaurants.getInt(1));
 				restaurant.setRestaurantName(rsTopRestaurants.getString(2));
 				restaurant.setRestaurantDescription(rsTopRestaurants.getString(3));
 				restaurant.setAddress1(rsTopRestaurants.getString(4));

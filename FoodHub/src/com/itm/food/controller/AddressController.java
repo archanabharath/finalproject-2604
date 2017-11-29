@@ -66,7 +66,7 @@ public class AddressController extends BaseController {
 	@FXML
 	private AnchorPane addressanchor;
 
-	String pageAddrId = null;
+	int pageAddrId = 0;
 
 	ObservableList<Address> obAddress = null;
 	ArrayList<Address> addressList = null;
@@ -111,7 +111,7 @@ public class AddressController extends BaseController {
 	 * place calls to the address table to insert the new address for the
 	 * customer
 	 */
-	public void addressInsertToDB(String transferCustId) {
+	public void addressInsertToDB(int i) {
 
 		CustomerOperations addNewAddress = new CustomerOperations();
 		Address additionalAddress = new Address();
@@ -122,8 +122,8 @@ public class AddressController extends BaseController {
 		additionalAddress.setCity(uCity.getText());
 		additionalAddress.setPincode(Integer.parseInt(uZipCode.getText()));
 		additionalAddress.setAddrphoneNo(uPhone.getText());
-		additionalAddress.setCustId(transferCustId);
-		additionalAddress.setAddrId(UniqueKeyGen.generateUUID());
+		additionalAddress.setCustId(i);
+		//additionalAddress.setAddrId(UniqueKeyGen.generateUUID());
 		try {
 			pageAddrId = addNewAddress.addAddress(additionalAddress);
 		} catch (Exception e) {
@@ -215,12 +215,12 @@ public class AddressController extends BaseController {
 	/**
 	 * getting all addresses from the address table for the given customer id
 	 * 
-	 * @param pagesCustId
+	 * @param i
 	 * @return
 	 * @throws Exception
 	 */
-	public List<Address> getAllAddresses(String pagesCustId) throws Exception {
-		return customerOperation.getCustomerAddress(pagesCustId);
+	public List<Address> getAllAddresses(int i) throws Exception {
+		return customerOperation.getCustomerAddress(i);
 	}
 
 	/**

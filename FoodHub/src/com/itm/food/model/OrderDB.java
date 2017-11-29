@@ -16,26 +16,32 @@ import com.itm.food.dao.Order;
 import com.itm.food.dao.OrderItem;
 import com.itm.food.dao.Payment;
 import com.itm.food.model.db.MySQLQuery;
+import com.mysql.jdbc.Statement;
 
 public class OrderDB extends AbstractDB implements IDBAccess {
 
 	private static final Logger log = Logger.getLogger(OrderDB.class);
 
 	@Override
-	public <T extends AbstractDomain> String add(T object) throws Exception {
+	public <T extends AbstractDomain> int add(T object) throws Exception {
 		Order order = (Order) object;
 		log.debug("Adding Order");
 		try {
-			PreparedStatement preparedStatement = this.getDBConnection().prepareStatement(MySQLQuery.SQL_ORDER_INSERT);
-			preparedStatement.setString(1, order.getOrderId());
-			preparedStatement.setString(2, order.getCustomerId());
-			preparedStatement.setString(3, order.getCardId());
-			preparedStatement.setString(4, order.getAddressId());
-			preparedStatement.setDouble(5, order.getTotalPayment());
-			preparedStatement.setInt(6, order.getOrderStatus());
-			preparedStatement.setInt(7, order.getDeliveryMode());
+			PreparedStatement preparedStatement = this.getDBConnection().prepareStatement(MySQLQuery.SQL_ORDER_INSERT,
+					Statement.RETURN_GENERATED_KEYS);
+			//preparedStatement.setString(1, order.getOrderId());
+			preparedStatement.setInt(1, order.getCustomerId());
+			preparedStatement.setInt(2, order.getCardId());
+			preparedStatement.setInt(3, order.getAddressId());
+			preparedStatement.setDouble(4, order.getTotalPayment());
+			preparedStatement.setInt(5, order.getOrderStatus());
+			preparedStatement.setInt(6, order.getDeliveryMode());
 
-			preparedStatement.execute();
+			preparedStatement.executeUpdate();
+			ResultSet rsReturnOrderKey = preparedStatement.getGeneratedKeys();
+			while(rsReturnOrderKey.next()) {
+				order.setOrderId(rsReturnOrderKey.getInt(1));
+			}
 			preparedStatement.close();
 
 		} catch (Exception ex) {
@@ -53,7 +59,7 @@ public class OrderDB extends AbstractDB implements IDBAccess {
 	}
 
 	@Override
-	public <T extends AbstractDomain> T find(String id) throws Exception {
+	public <T extends AbstractDomain> T find(int id) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -76,12 +82,12 @@ public class OrderDB extends AbstractDB implements IDBAccess {
 		try {// ORDER_ID,ADDRESS_ID,TOTAL_PAYMENT,ORDER_TIME,DRIVER_ID,DELIVERY_MODE
 			PreparedStatement preparestatement = this.getDBConnection()
 					.prepareStatement(MySQLQuery.SQL_RETRIEVE_COMPLETED_ORDERS_FOR_CUSTOMER);
-			preparestatement.setString(1, getOrders.getCustomerId());
+			preparestatement.setInt(1, getOrders.getCustomerId());
 			ResultSet rsorders;
 			rsorders = preparestatement.executeQuery();
 			while (rsorders.next()) {
-				order.setOrderId(rsorders.getString(1));
-				order.setAddressId(rsorders.getString(2));
+				order.setOrderId(rsorders.getInt(1));
+				order.setAddressId(rsorders.getInt(2));
 				order.setTotalPayment(rsorders.getDouble(3));
 				order.setOrderTime(rsorders.getTimestamp(4).toString());
 				order.setDriverId(rsorders.getString(5));
@@ -108,7 +114,7 @@ public class OrderDB extends AbstractDB implements IDBAccess {
 	 * @return
 	 * @throws SQLException
 	 */
-	public List<CustomerOrder> getListOfOrdersPlacedByCustomer(String customerId) throws SQLException {
+	public List<CustomerOrder> getListOfOrdersPlacedByCustomer(int customerId) throws SQLException {
 		List<CustomerOrder> customerOrderList = new ArrayList<CustomerOrder>();
 
 		try {
@@ -117,7 +123,7 @@ public class OrderDB extends AbstractDB implements IDBAccess {
 			// O.ORDER_FULFILMENT_TIME
 			PreparedStatement preparestatement = this.getDBConnection()
 					.prepareStatement(MySQLQuery.SQL_ORDER_CUSTOMER_DETAILS_FETCH_QUERY);
-			preparestatement.setString(1, customerId);
+			preparestatement.setInt(1, customerId);
 			ResultSet rsCustomerOrder;
 			rsCustomerOrder = preparestatement.executeQuery();
 			while (rsCustomerOrder.next()) {
@@ -126,13 +132,13 @@ public class OrderDB extends AbstractDB implements IDBAccess {
 				Order orderdata = new Order();
 				Payment paymentdata = new Payment();
 
-				paymentdata.setCardid(rsCustomerOrder.getString(1));
+				paymentdata.setCardid(rsCustomerOrder.getInt(1));
 				paymentdata.setCardNo(rsCustomerOrder.getLong(2));
 				paymentdata.setNameOnCard(rsCustomerOrder.getString(3));
 				paymentdata.setCardType(rsCustomerOrder.getString(4));
 
-				addressdata.setAddrId(rsCustomerOrder.getString(5));
-				addressdata.setCustId(rsCustomerOrder.getString(6));
+				addressdata.setAddrId(rsCustomerOrder.getInt(5));
+				addressdata.setCustId(rsCustomerOrder.getInt(6));
 				addressdata.setFname(rsCustomerOrder.getString(7));
 				addressdata.setLname(rsCustomerOrder.getString(8));
 				addressdata.setAddr1(rsCustomerOrder.getString(9));
@@ -141,13 +147,14 @@ public class OrderDB extends AbstractDB implements IDBAccess {
 				addressdata.setPincode(rsCustomerOrder.getInt(12));
 				addressdata.setAddrphoneNo(rsCustomerOrder.getString(13));
 
-				orderdata.setOrderId(rsCustomerOrder.getString(14));
+				orderdata.setOrderId(rsCustomerOrder.getInt(14));
 				orderdata.setTotalPayment(rsCustomerOrder.getDouble(15));
 				orderdata.setOrderStatus(rsCustomerOrder.getInt(16));
 				orderdata.setOrderTime(rsCustomerOrder.getTimestamp(17).toString());
 				orderdata.setDeliveryMode(rsCustomerOrder.getInt(18));
-				orderdata.setOrderFulfilment(null != rsCustomerOrder.getTimestamp(19)
-						? rsCustomerOrder.getTimestamp(19).toString() : StringUtils.EMPTY);
+				orderdata.setOrderFulfilment(
+						null != rsCustomerOrder.getTimestamp(19) ? rsCustomerOrder.getTimestamp(19).toString()
+								: StringUtils.EMPTY);
 
 				orderCustomerInfo.setPaymentData(paymentdata);
 				orderCustomerInfo.setAddressData(addressdata);
@@ -173,23 +180,23 @@ public class OrderDB extends AbstractDB implements IDBAccess {
 	 * @param CustomerId
 	 * @return
 	 */
-	public List<OrderItem> getOrderItemRestaurantDetails(String orderId) {
+	public List<OrderItem> getOrderItemRestaurantDetails(int i) {
 		List<OrderItem> orderItemsList = new ArrayList<OrderItem>();
 		try {// R.RESTAURANT_ID,R.RESTAURANT_NAME,
 				// I.ITEM_ID,I.ITEM_NAME,I.ITEM_PRICE,O.ORDER_ID,OI.COUPON_ID,OI.ITEM_QUANTITY,C.COUPON_NAME
 			PreparedStatement preparestatement = this.getDBConnection()
 					.prepareStatement(MySQLQuery.SQL_ORDER_ITEM_RESTAURANT_DETAILS_FETCH_QUERY);
-			preparestatement.setString(1, orderId);
+			preparestatement.setInt(1, i);
 			ResultSet rsOrderItems;
 			rsOrderItems = preparestatement.executeQuery();
 			while (rsOrderItems.next()) {
 				OrderItem orderitem = new OrderItem();
-				orderitem.setRestaurantId(rsOrderItems.getString(1));
+				orderitem.setRestaurantId(rsOrderItems.getInt(1));
 				orderitem.setRestaurantName(rsOrderItems.getString(2));
-				orderitem.setItemId(rsOrderItems.getString(3));
+				orderitem.setItemId(rsOrderItems.getInt(3));
 				orderitem.setItemName(rsOrderItems.getString(4));
 				orderitem.setItemPrice(rsOrderItems.getDouble(5));
-				orderitem.setOrderId(rsOrderItems.getString(6));
+				orderitem.setOrderId(rsOrderItems.getInt(6));
 				orderitem.setCouponId(rsOrderItems.getString(7));
 				orderitem.setItemQuantity(rsOrderItems.getInt(8));
 				orderitem.setCouponName(rsOrderItems.getString(9));

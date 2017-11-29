@@ -28,7 +28,7 @@ import com.itm.food.util.UniqueKeyGen;
 public class CustomerOperations implements IUserOperations, ICustomerPreferences {
 
 	private static final Logger log = Logger.getLogger(CustomerOperations.class);
-	String tempcustid = null;
+	int tempcustid = 0;
 
 	CustomerDB customerDB = new CustomerDB();
 	AddressDB addressDB = new AddressDB();
@@ -38,8 +38,8 @@ public class CustomerOperations implements IUserOperations, ICustomerPreferences
 	OrderItemDB orderItemDB = new OrderItemDB();
 
 	@Override
-	public String addUserDetails(Customer newcustomer) throws Exception {
-		String custId = "";
+	public int addUserDetails(Customer newcustomer) throws Exception {
+		int custId;
 		try {
 			log.debug("addUserDetails");
 			custId = customerDB.add(newcustomer);
@@ -50,8 +50,8 @@ public class CustomerOperations implements IUserOperations, ICustomerPreferences
 		return custId;
 	}
 
-	public String addAddress(Address newaddress) throws Exception {
-		String addressId = "";
+	public int addAddress(Address newaddress) throws Exception {
+		int addressId;
 		try {
 			log.debug("addAddress");
 			addressId = new AddressDB().add(newaddress);
@@ -76,18 +76,18 @@ public class CustomerOperations implements IUserOperations, ICustomerPreferences
 			orderDB.setAutoCommit(false);
 
 			Order order = new Order();
-			order.setOrderId(UniqueKeyGen.generateUUID());
+			// order.setOrderId(UniqueKeyGen.generateUUID());
 			order.setCustomerId(basket.getCustomer());
 			order.setCardId(basket.getPayment());
 			order.setAddressId(basket.getAddress());
 			order.setTotalPayment(basket.getOrderTotal());
 			order.setOrderStatus(OrderStatus.IN_PROGRESS.getId());
 			order.setDeliveryMode(basket.getDeliveryMode());
-
-			String orderid = orderDB.add(order);
+			order.setOrderId(orderDB.add(order));
+			int orderid = orderDB.add(order);
 
 			for (OrderItem items : basket.getOrderItems()) {
-				items.setOrderId(orderid);
+				// items.setOrderId(orderid);
 				orderItemDB.add(items);
 			}
 
@@ -131,13 +131,13 @@ public class CustomerOperations implements IUserOperations, ICustomerPreferences
 	}
 
 	/**
-	 * retrieve the list of orders along with customer, address and payment
-	 * details placed by a customer in the past
+	 * retrieve the list of orders along with customer, address and payment details
+	 * placed by a customer in the past
 	 * 
 	 * @throws SQLException
 	 */
 	@Override
-	public List<CustomerOrder> displayOrderHistoryOfCustomer(String customerId) throws SQLException {
+	public List<CustomerOrder> displayOrderHistoryOfCustomer(int customerId) throws SQLException {
 		List<CustomerOrder> customerOrders = new ArrayList<CustomerOrder>();
 		customerOrders = orderDB.getListOfOrdersPlacedByCustomer(customerId);
 		for (CustomerOrder order : customerOrders) {
@@ -150,14 +150,13 @@ public class CustomerOperations implements IUserOperations, ICustomerPreferences
 	}
 
 	/**
-	 * retrieve the item and restaurant details of all orders placed by the
-	 * customer
+	 * retrieve the item and restaurant details of all orders placed by the customer
 	 * 
 	 * @param customerId
 	 * @return
 	 */
-	public List<OrderItem> displayItemsRestaurantsOfAnOrder(String orderId) {
-		return orderDB.getOrderItemRestaurantDetails(orderId);
+	public List<OrderItem> displayItemsRestaurantsOfAnOrder(int i) {
+		return orderDB.getOrderItemRestaurantDetails(i);
 
 	}
 
@@ -217,12 +216,10 @@ public class CustomerOperations implements IUserOperations, ICustomerPreferences
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * com.itm.food.dao.operation.IUserOperations#validateCustomer(java.lang.
-	 * String, java.lang.String) Authenticate the user information while logging
-	 * in
+	 * @see com.itm.food.dao.operation.IUserOperations#validateCustomer(java.lang.
+	 * String, java.lang.String) Authenticate the user information while logging in
 	 */
-	public String validateCustomer(String username, String password) throws SQLException {
+	public int validateCustomer(String username, String password) throws SQLException {
 		tempcustid = customerDB.customerLoginCheck(username, password);
 		log.debug("CO-custid:" + tempcustid);
 		return tempcustid;
@@ -231,12 +228,11 @@ public class CustomerOperations implements IUserOperations, ICustomerPreferences
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * com.itm.food.dao.operation.IUserOperations#getCustomer(java.lang.String)
+	 * @see com.itm.food.dao.operation.IUserOperations#getCustomer(java.lang.String)
 	 * Fetch the customer_id for the current session
 	 */
-	public Customer getCustomer(String customerId) throws Exception {
-		return customerDB.find(customerId);
+	public Customer getCustomer(int i) throws Exception {
+		return customerDB.find(i);
 	}
 
 	/**
@@ -246,14 +242,14 @@ public class CustomerOperations implements IUserOperations, ICustomerPreferences
 	 * @return
 	 * @throws Exception
 	 */
-	public List<Address> getCustomerAddress(String customerId) throws Exception {
-		return addressDB.getAddresses(customerId);
+	public List<Address> getCustomerAddress(int i) throws Exception {
+		return addressDB.getAddresses(i);
 
 	}
 
 	/**
-	 * Validate if username already exists in Customer table while the user
-	 * tries to register
+	 * Validate if username already exists in Customer table while the user tries to
+	 * register
 	 * 
 	 * @param username
 	 * @return
@@ -265,25 +261,25 @@ public class CustomerOperations implements IUserOperations, ICustomerPreferences
 	}
 
 	/**
-	 * Fetch the customer details from customer table using the customer id This
-	 * is used to display the customer's information on profile page
+	 * Fetch the customer details from customer table using the customer id This is
+	 * used to display the customer's information on profile page
 	 * 
-	 * @param transferCustId
+	 * @param i
 	 * @return
 	 * @throws Exception
 	 */
-	public Customer getCustomerProfile(String transferCustId) throws Exception {
-		return customerDB.pullCustomerDetails(transferCustId);
+	public Customer getCustomerProfile(int i) throws Exception {
+		return customerDB.pullCustomerDetails(i);
 	}
 
 	/**
 	 * 
-	 * @param restaurantId
+	 * @param i
 	 * @return
 	 * @throws Exception
 	 */
-	public List<Item> getItemsByRestaurant(String restaurantId) throws Exception {
-		return itemsDB.getItemsByRestaurantId(restaurantId);
+	public List<Item> getItemsByRestaurant(int i) throws Exception {
+		return itemsDB.getItemsByRestaurantId(i);
 	}
 
 	/**
@@ -292,20 +288,20 @@ public class CustomerOperations implements IUserOperations, ICustomerPreferences
 	 * @return
 	 * @throws Exception
 	 */
-	public Item getItem(String id) throws Exception {
+	public Item getItem(int id) throws Exception {
 		return itemsDB.find(id);
 	}
 
-	public Restaurant getRestaurant(String id) throws Exception {
-		return restaurantDB.find(id);
+	public Restaurant getRestaurant(int i) throws Exception {
+		return restaurantDB.find(i);
 	}
-	
-	public ItemRestaurant getTop3Items(){
+
+	public ItemRestaurant getTop3Items() {
 		return itemsDB.getTop3HighRatedItems();
-		
+
 	}
-	
-	public List<Restaurant> getTopRestaurants(){
+
+	public List<Restaurant> getTopRestaurants() {
 		return restaurantDB.getTop3Restaurants();
 	}
 }

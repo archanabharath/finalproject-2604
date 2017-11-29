@@ -36,7 +36,7 @@ public class OrdersController extends BaseController {
 	void init() {
 		super.init();
 		loadOrdersList();
-		renderOrdersList();
+		renderOrdersList(); 
 	}
 
 	private void loadOrdersList() {
@@ -94,9 +94,9 @@ public class OrdersController extends BaseController {
 		JFXProgressBar progressBar = new JFXProgressBar();
 		progressBar.setLayoutX(68.0);
 		progressBar.setLayoutY(30.0);
-		progressBar.prefHeight(20.0);
-		progressBar.prefWidth(1000.0);
-		AnchorPane.setLeftAnchor(progressBar, 50.0);
+		progressBar.prefHeight(10.0);
+		progressBar.prefWidth(1030.0);
+		AnchorPane.setLeftAnchor(progressBar, 20.0);
 		AnchorPane.setTopAnchor(progressBar, 15.0);
 		AnchorPane.setRightAnchor(progressBar, 15.0);
 		AnchorPane.setBottomAnchor(progressBar, 225.0);
@@ -141,6 +141,7 @@ public class OrdersController extends BaseController {
 		lblOrderPlaced.setWrapText(true);
 		lblOrderPlaced.setTextFill(Color.DARKSLATEGRAY);
 		lblOrderPlaced.setFont(new Font(15.0));
+		lblOrderPlaced.setStyle("-fx-font-weight:bold;");
 		AnchorPane.setLeftAnchor(lblOrderPlaced, 20.0);
 		AnchorPane.setTopAnchor(lblOrderPlaced, 30.0);
 		AnchorPane.setRightAnchor(lblOrderPlaced, 1000.0);
@@ -162,6 +163,7 @@ public class OrdersController extends BaseController {
 		lblPreparing.setWrapText(true);
 		lblPreparing.setTextFill(Color.DARKSLATEGRAY);
 		lblPreparing.setFont(new Font(15.0));
+		lblPreparing.setStyle("-fx-font-weight:bold;");
 		AnchorPane.setLeftAnchor(lblPreparing, 325.0);
 		AnchorPane.setTopAnchor(lblPreparing, 30.0);
 		AnchorPane.setRightAnchor(lblPreparing, 725.0);
@@ -187,6 +189,7 @@ public class OrdersController extends BaseController {
 		lblDeliveryMode.setWrapText(true);
 		lblDeliveryMode.setTextFill(Color.DARKSLATEGRAY);
 		lblDeliveryMode.setFont(new Font(15.0));
+		lblDeliveryMode.setStyle("-fx-font-weight:bold;");
 		AnchorPane.setLeftAnchor(lblDeliveryMode, 700.0);
 		AnchorPane.setTopAnchor(lblDeliveryMode, 30.0);
 		AnchorPane.setRightAnchor(lblDeliveryMode, 300.0);
@@ -213,6 +216,7 @@ public class OrdersController extends BaseController {
 		lblCompleted.setWrapText(true);
 		lblCompleted.setTextFill(Color.DARKSLATEGRAY);
 		lblCompleted.setFont(new Font(15.0));
+		lblCompleted.setStyle("-fx-font-weight:bold;");
 		AnchorPane.setLeftAnchor(lblCompleted, 1060.0);
 		AnchorPane.setTopAnchor(lblCompleted, 30.0);
 		AnchorPane.setRightAnchor(lblCompleted, 30.0);
@@ -234,6 +238,7 @@ public class OrdersController extends BaseController {
 		lblAmountPaid.setWrapText(true);
 		lblAmountPaid.setTextFill(Color.CRIMSON);
 		lblAmountPaid.setFont(new Font(24.0));
+		lblAmountPaid.setStyle("-fx-font-weight:bold;");
 		AnchorPane.setLeftAnchor(lblAmountPaid, 975.0);
 		AnchorPane.setTopAnchor(lblAmountPaid, 100.0);
 		AnchorPane.setRightAnchor(lblAmountPaid, 40.0);
@@ -256,6 +261,7 @@ public class OrdersController extends BaseController {
 		lblPaid.setWrapText(true);
 		lblPaid.setTextFill(Color.CRIMSON);
 		lblPaid.setFont(new Font(24.0));
+		lblPaid.setStyle("-fx-font-weight:bold;");
 		AnchorPane.setLeftAnchor(lblPaid, 1020.0);
 		AnchorPane.setTopAnchor(lblPaid, 150.0);
 		AnchorPane.setRightAnchor(lblPaid, 60.0);
@@ -271,6 +277,7 @@ public class OrdersController extends BaseController {
 		orderItemlistView.prefHeight(160.0);
 		orderItemlistView.prefWidth(500.0);
 		orderItemlistView.setShowTooltip(true);
+		orderItemlistView.setStyle("-fx-font-weight:bold;");
 		AnchorPane.setLeftAnchor(orderItemlistView, 50.0);
 		AnchorPane.setTopAnchor(orderItemlistView, 100.0);
 		AnchorPane.setRightAnchor(orderItemlistView, 500.0);
@@ -280,7 +287,7 @@ public class OrdersController extends BaseController {
 		ObservableList<OrderItem> observableList = FXCollections
 				.observableArrayList(BaseController.customerOrders.get(index).getOrderItemRestaurantList());
 		orderItemlistView.setItems(observableList);
-
+/*
 		if (BaseController.customerOrders.get(index).getOrderData().getDeliveryMode() == 2) {
 			Label lblAddress = new Label();
 			lblAddress.setLayoutX(706.0);
@@ -288,24 +295,27 @@ public class OrdersController extends BaseController {
 			lblAddress.prefHeight(100.0);
 			lblAddress.prefWidth(150.0);
 			StringBuilder addressBuilder = new StringBuilder();
+			addressBuilder.append("Delivered To: \n");
 			addressBuilder.append(BaseController.customerOrders.get(index).getAddressData().getFname() + " "
 					+ BaseController.customerOrders.get(index).getAddressData().getLname());
 			addressBuilder.append("\r\n");
 			addressBuilder.append(BaseController.customerOrders.get(index).getAddressData().getAddr1());
-			addressBuilder.append("\r\n");
+			addressBuilder.append("\t");
 			addressBuilder.append(BaseController.customerOrders.get(index).getAddressData().getAddr2());
 			addressBuilder.append("\r\n");
 			addressBuilder.append(BaseController.customerOrders.get(index).getAddressData().getCity() + ", "
 					+ BaseController.customerOrders.get(index).getAddressData().getPincode());
+			addressBuilder.append("\n");
 			lblAddress.setText(addressBuilder.toString());
 			lblAddress.setWrapText(true);
 			lblAddress.setTextFill(Color.STEELBLUE);
 			lblAddress.setFont(new Font(13.0));
+			lblAddress.setStyle("-fx-font-weight:bold;");
 			AnchorPane.setLeftAnchor(lblAddress, 700.0);
 			AnchorPane.setTopAnchor(lblAddress, 100.0);
 			AnchorPane.setRightAnchor(lblAddress, 300.0);
 			pane.getChildren().add(lblAddress);
-		}
+		}*/
 
 		Label lblCard = new Label();
 		lblCard.setLayoutX(706.0);
@@ -313,21 +323,75 @@ public class OrdersController extends BaseController {
 		lblCard.prefHeight(30.0);
 		lblCard.prefWidth(300.0);
 		StringBuilder builder = new StringBuilder();
-		builder.append("Paid through:");
-		builder.append("\r\n");
+		builder.append("\n Paid Via:");
+		builder.append("\r\n\t");
 		builder.append(BaseController.customerOrders.get(index).getPaymentData().getNameOnCard());
-		builder.append("\r\n");
+		builder.append("\r\n\t");
 		builder.append(CardUtil
 				.maskCardNo(String.valueOf(BaseController.customerOrders.get(index).getPaymentData().getCardNo())));
 		lblCard.setText(builder.toString());
 		lblCard.setWrapText(true);
 		lblCard.setTextFill(Color.STEELBLUE);
 		lblCard.setFont(new Font(13.0));
+		lblCard.setStyle("-fx-font-weight:bold;");
+		AnchorPane.setLeftAnchor(lblCard, 700.0);
+		AnchorPane.setTopAnchor(lblCard, 80.0);
+	//	AnchorPane.setBottomAnchor(lblCard, 15.0);
+		AnchorPane.setRightAnchor(lblCard, 20.0);
+		pane.getChildren().add(lblCard);
+/*
+		Label lblCard = new Label();
+		lblCard.setLayoutX(706.0);
+		lblCard.setLayoutY(199.0);
+		lblCard.prefHeight(30.0);
+		lblCard.prefWidth(300.0);
+		StringBuilder builder = new StringBuilder();
+		builder.append("\n Paid Via:");
+		builder.append("\r\n\t");
+		builder.append(BaseController.customerOrders.get(index).getPaymentData().getNameOnCard());
+		builder.append("\r\n\t");
+		builder.append(CardUtil
+				.maskCardNo(String.valueOf(BaseController.customerOrders.get(index).getPaymentData().getCardNo())));
+		lblCard.setText(builder.toString());
+		lblCard.setWrapText(true);
+		lblCard.setTextFill(Color.STEELBLUE);
+		lblCard.setFont(new Font(13.0));
+		lblCard.setStyle("-fx-font-weight:bold;");
 		AnchorPane.setLeftAnchor(lblCard, 700.0);
 		AnchorPane.setBottomAnchor(lblCard, 15.0);
 		AnchorPane.setRightAnchor(lblCard, 20.0);
-		pane.getChildren().add(lblCard);
+		pane.getChildren().add(lblCard);*/
 
+
+		if (BaseController.customerOrders.get(index).getOrderData().getDeliveryMode() == 2) {
+			Label lblAddress = new Label();
+			lblAddress.setLayoutX(706.0);
+			lblAddress.setLayoutY(199.0);
+			lblAddress.prefHeight(100.0);
+			lblAddress.prefWidth(300.0);
+			StringBuilder addressBuilder = new StringBuilder();
+			addressBuilder.append("Delivered To: \n\t");
+			addressBuilder.append(BaseController.customerOrders.get(index).getAddressData().getFname() + " "
+					+ BaseController.customerOrders.get(index).getAddressData().getLname());
+			addressBuilder.append("\r\n\t");
+			addressBuilder.append(BaseController.customerOrders.get(index).getAddressData().getAddr1());
+			addressBuilder.append("\t");
+			addressBuilder.append(BaseController.customerOrders.get(index).getAddressData().getAddr2());
+			addressBuilder.append("\r\n\t");
+			addressBuilder.append(BaseController.customerOrders.get(index).getAddressData().getCity() + ", "
+					+ BaseController.customerOrders.get(index).getAddressData().getPincode());
+			//addressBuilder.append("\n");
+			lblAddress.setText(addressBuilder.toString());
+			lblAddress.setWrapText(true);
+			lblAddress.setTextFill(Color.STEELBLUE);
+			lblAddress.setFont(new Font(13.0));
+			lblAddress.setStyle("-fx-font-weight:bold;");
+			AnchorPane.setLeftAnchor(lblAddress, 700.0);
+			AnchorPane.setBottomAnchor(lblAddress, 15.0);
+			//AnchorPane.setTopAnchor(lblAddress, 100.0);
+			AnchorPane.setRightAnchor(lblAddress, 20.0);
+			pane.getChildren().add(lblAddress);
+		}
 		ordersAnchorPane.getChildren().add(pane);
 
 	}
