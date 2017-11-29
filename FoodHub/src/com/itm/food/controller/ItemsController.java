@@ -153,6 +153,7 @@ public class ItemsController extends BaseController {
 		lblItemDesc.setText(BaseController.currentRestaurant.getItems().get(index).getItemDesc());
 		lblItemDesc.setWrapText(true);
 		lblItemDesc.setFont(new Font(15.0));
+		lblItemDesc.setStyle("-fx-font-style: italic");
 		AnchorPane.setLeftAnchor(lblItemDesc, 200.0);
 		AnchorPane.setTopAnchor(lblItemDesc, 60.0);
 		AnchorPane.setRightAnchor(lblItemDesc, 400.0);

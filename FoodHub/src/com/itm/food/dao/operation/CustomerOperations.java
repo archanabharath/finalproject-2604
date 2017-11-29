@@ -75,8 +75,7 @@ public class CustomerOperations implements IUserOperations, ICustomerPreferences
 			// rollback in case of failures
 			orderDB.setAutoCommit(false);
 
-			Order order = new Order();
-			// order.setOrderId(UniqueKeyGen.generateUUID());
+			Order order = new Order();			
 			order.setCustomerId(basket.getCustomer());
 			order.setCardId(basket.getPayment());
 			order.setAddressId(basket.getAddress());
@@ -84,10 +83,9 @@ public class CustomerOperations implements IUserOperations, ICustomerPreferences
 			order.setOrderStatus(OrderStatus.IN_PROGRESS.getId());
 			order.setDeliveryMode(basket.getDeliveryMode());
 			order.setOrderId(orderDB.add(order));
-			int orderid = orderDB.add(order);
-
+			
 			for (OrderItem items : basket.getOrderItems()) {
-				// items.setOrderId(orderid);
+				items.setOrderId(order.getOrderId());
 				orderItemDB.add(items);
 			}
 

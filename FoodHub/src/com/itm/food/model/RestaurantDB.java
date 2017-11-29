@@ -28,6 +28,7 @@ public class RestaurantDB extends AbstractDB implements IDBAccess {
 
 	}
 
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public <T extends AbstractDomain> T find(int id) throws Exception {
@@ -80,7 +81,7 @@ public class RestaurantDB extends AbstractDB implements IDBAccess {
 		// from
 		// ofod.ofod_restaurant table
 		try {
-
+			int searchLimit = 20;
 			StringBuilder parameterBuilder = new StringBuilder();
 			parameterBuilder.append(" (");
 			for (int i = 0; i < zipcodes.size(); i++) {
@@ -93,12 +94,15 @@ public class RestaurantDB extends AbstractDB implements IDBAccess {
 
 			String sqlQuery = "SELECT RESTAURANT_ID,RESTAURANT_NAME,DESCRIPTION,ADDRESS1,ADDRESS2,CITY,ZIPCODE,RATING,"
 					+ "PHONE,EMAIL,LATITUDE,LONGITUDE FROM ofod.ofod_restaurant WHERE ZIPCODE IN"
-					+ parameterBuilder.toString() + " ORDER BY RATING DESC";
+					+ parameterBuilder.toString() + " ORDER BY RATING DESC LIMIT ?";
 
 			PreparedStatement preparedstatement = this.getDBConnection().prepareStatement(sqlQuery);
+		
 			for (int i = 1; i < zipcodes.size() + 1; i++) {
 				preparedstatement.setInt(i, (int) zipcodes.get(i - 1));
 			}
+			
+			preparedstatement.setInt(zipcodes.size()+1, searchLimit);
 			// preparedstatement.setString(1, StringUtils.join(zipcodes, ","));
 			ResultSet restaurantsResultSet;
 			restaurantsResultSet = preparedstatement.executeQuery();

@@ -188,12 +188,12 @@ public class GeoLocator {
 		return nearByZipCodes;
 	}
 
-	public Map<String, DistanceMatrix> getDistanceMatrix(Map<String, DistanceMatrix> destinations) {
+	public Map<Integer, DistanceMatrix> getDistanceMatrix(Map<Integer, DistanceMatrix> destinations) {
 		try {
 			StringBuilder destCordinateBuilder = new StringBuilder();
 			int cnt = 1;
-			Set<Entry<String, DistanceMatrix>> matrixSet = destinations.entrySet();
-			for (Entry<String, DistanceMatrix> dest : matrixSet) {
+			Set<Entry<Integer, DistanceMatrix>> matrixSet = destinations.entrySet();
+			for (Entry<Integer, DistanceMatrix> dest : matrixSet) {
 				destCordinateBuilder.append(dest.getValue().getDestLat());
 				destCordinateBuilder.append(",");
 				destCordinateBuilder.append(dest.getValue().getDestLng());
@@ -209,7 +209,7 @@ public class GeoLocator {
 			JSONObject rows = (JSONObject) ((JSONArray) resObj.get("rows")).get(0);
 			JSONArray elements = (JSONArray) rows.get("elements");
 			cnt = 0;
-			for (Entry<String, DistanceMatrix> dest : matrixSet) {
+			for (Entry<Integer, DistanceMatrix> dest : matrixSet) {
 
 				dest.getValue().setOrginLat(this.getLatitude());
 				dest.getValue().setOrginLng(this.getLongitude());
@@ -246,31 +246,31 @@ public class GeoLocator {
 		locator.lookupReverseGeocoding();
 		locator.getNearByZipCodes();
 
-		Map<String, DistanceMatrix> matrix = new HashMap<String, DistanceMatrix>();
+		Map<Integer, DistanceMatrix> matrix = new HashMap<Integer, DistanceMatrix>();
 		DistanceMatrix dMatrix1 = new DistanceMatrix();
 		dMatrix1.setDestLat("41.7462");
 		dMatrix1.setDestLng("-87.5526");
-		matrix.put("AAA", dMatrix1);
+		matrix.put(1000, dMatrix1);
 
 		DistanceMatrix dMatrix2 = new DistanceMatrix();
 		dMatrix2.setDestLat("41.7859");
 		dMatrix2.setDestLng("-87.7157");
-		matrix.put("BBB", dMatrix2);
+		matrix.put(1001, dMatrix2);
 
 		DistanceMatrix dMatrix3 = new DistanceMatrix();
 		dMatrix3.setDestLat("41.9769");
 		dMatrix3.setDestLng("-87.7691");
-		matrix.put("CCC", dMatrix3);
+		matrix.put(1002, dMatrix3);
 
 		DistanceMatrix dMatrix4 = new DistanceMatrix();
 		dMatrix4.setDestLat("41.7202");
 		dMatrix4.setDestLng("-87.6433");
-		matrix.put("DDD", dMatrix4);
+		matrix.put(1003, dMatrix4);
 
 		DistanceMatrix dMatrix5 = new DistanceMatrix();
 		dMatrix5.setDestLat("41.91");
 		dMatrix5.setDestLng("-87.7102");
-		matrix.put("EEE", dMatrix5);
+		matrix.put(1004, dMatrix5);
 
 		locator.getDistanceMatrix(matrix);
 		

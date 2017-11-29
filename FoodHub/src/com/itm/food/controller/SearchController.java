@@ -75,12 +75,12 @@ public class SearchController extends BaseController {
 
 			// Retrieve the Distance and time for the restaurant from customer
 			// place.
-			Map<String, DistanceMatrix> distanceTimeMap = new HashMap<String, DistanceMatrix>();
+			Map<Integer, DistanceMatrix> distanceTimeMap = new HashMap<Integer, DistanceMatrix>();
 			for (Restaurant restaurant : BaseController.preferredRestaurants) {
 				DistanceMatrix dMatrix = new DistanceMatrix();
 				dMatrix.setDestLat(String.valueOf(restaurant.getLatitude()));
 				dMatrix.setDestLng(String.valueOf(restaurant.getLongitude()));
-				distanceTimeMap.put(Integer.toString(restaurant.getRestaurantId()), dMatrix);
+				distanceTimeMap.put((Integer)restaurant.getRestaurantId(), dMatrix);
 			}
 
 			geoLocator.getDistanceMatrix(distanceTimeMap);
@@ -182,6 +182,7 @@ public class SearchController extends BaseController {
 		lblRestName.setTextFill(Color.CRIMSON);
 		lblRestName.setFont(new Font(24.0));
 		lblRestName.setStyle("-fx-font-weight:bold;");
+		
 		AnchorPane.setLeftAnchor(lblRestName, 200.0);
 		AnchorPane.setTopAnchor(lblRestName, 20.0);
 		pane.getChildren().add(lblRestName);
@@ -201,6 +202,7 @@ public class SearchController extends BaseController {
 		lblRestDesc.setText(BaseController.preferredRestaurants.get(count).getRestaurantDescription()+"\n");
 		lblRestDesc.setWrapText(true);
 		lblRestDesc.setFont(new Font(15.0));
+		lblRestDesc.setStyle("-fx-font-style: italic");
 		AnchorPane.setLeftAnchor(lblRestDesc, 225.0);
 		AnchorPane.setTopAnchor(lblRestDesc, 60.0);
 		AnchorPane.setRightAnchor(lblRestDesc, 400.0);
