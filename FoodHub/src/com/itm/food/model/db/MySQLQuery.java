@@ -69,7 +69,7 @@ public class MySQLQuery {
 			+ "VALUES(?, ?, ?, ?, ?)";
 
 	public static String SQL_FETCH_TOP_3_ITEMS = "SELECT I.ITEM_ID, I.ITEM_NAME, AVG(UR.RATING) AS I_RATING, R.RESTAURANT_ID, "
-			+ "R.RESTAURANT_NAME, I.ITEM_DESCRIPTION, I.ITEM_PRICE " + "FROM ofod.ofod_item I "
+			+ "R.RESTAURANT_NAME, I.ITEM_DESCRIPTION, I.ITEM_PRICE, R.ZIPCODE, R.CITY " + "FROM ofod.ofod_item I "
 			+ "INNER JOIN ofod.ofod_restaurant R ON I.RESTAURANT_ID = R.RESTAURANT_ID "
 			+ "LEFT JOIN ofod.ofod_item_rating IR ON IR.ITEM_ID = I.ITEM_ID "
 			+ "LEFT JOIN ofod.ofod_user_rating UR ON UR.RATING_ID = IR.RATING_ID " + "GROUP BY I.ITEM_ID "
