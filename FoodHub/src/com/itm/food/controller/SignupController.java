@@ -8,7 +8,6 @@ import org.apache.log4j.Logger;
 import com.itm.food.dao.Address;
 import com.itm.food.dao.Customer;
 import com.itm.food.dao.operation.CustomerOperations;
-import com.itm.food.util.UniqueKeyGen;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXPasswordField;

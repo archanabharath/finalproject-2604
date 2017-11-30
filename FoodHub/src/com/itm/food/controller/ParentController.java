@@ -1,17 +1,14 @@
 
 package com.itm.food.controller;
 
-import java.util.Calendar;
-import java.util.Random;
-
 import org.apache.log4j.Logger;
 
 import javafx.application.Application;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
-import javafx.fxml.FXMLLoader;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class ParentController extends Application {
 
@@ -20,7 +17,7 @@ public class ParentController extends Application {
 	public static Stage mainStage;
 
 	@Override
-	public void start(Stage primaryStage) {
+	public void start(Stage primaryStage) { 
 		try {
 			mainStage = primaryStage;
 			FXMLLoader loader = new FXMLLoader();

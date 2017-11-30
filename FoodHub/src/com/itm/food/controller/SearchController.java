@@ -258,7 +258,7 @@ public class SearchController extends BaseController {
 		
 			String url = "file:\\" + new File("").getCanonicalFile().getParent().toString() + File.separatorChar
 					+ "FoodHub\\src\\com\\itm\\food\\images\\icons8-timer-24.png";
-			log.error("timer image location : " +url);
+			
 			imageTimer.setImage(new Image(url));
 		} catch (Exception ex) {
 			log.error(ex.getMessage());

@@ -18,7 +18,7 @@ import javafx.scene.layout.AnchorPane;
 public class HomeController extends BaseController {
 
 	private static final Logger log = Logger.getLogger(HomeController.class);
-	
+
 	@FXML
 	private AnchorPane anchorrestaurant1;
 
@@ -122,19 +122,28 @@ public class HomeController extends BaseController {
 	public void getTop3ItemsByRating() {
 		top3ItemsToOrder = customerOperation.getTop3Items();
 		lblitem1.setText(top3ItemsToOrder.getTop3ItemsList().get(0).getItemName() + "\n" + "Prepared By: "
-				+ top3ItemsToOrder.getTop3ItemsByRestaurants().get(0).getRestaurantName());
+				+ top3ItemsToOrder.getTop3ItemsByRestaurants().get(0).getRestaurantName() + " "
+				+ top3ItemsToOrder.getTop3ItemsByRestaurants().get(0).getCity() + "-"
+				+ top3ItemsToOrder.getTop3ItemsByRestaurants().get(0).getZipcode());
 		lblitem2.setText(top3ItemsToOrder.getTop3ItemsList().get(1).getItemName() + "\n" + "Prepared By:"
-				+ top3ItemsToOrder.getTop3ItemsByRestaurants().get(1).getRestaurantName());
+				+ top3ItemsToOrder.getTop3ItemsByRestaurants().get(1).getRestaurantName()+ "\n "
+						+ top3ItemsToOrder.getTop3ItemsByRestaurants().get(1).getCity() + "-"
+						+ top3ItemsToOrder.getTop3ItemsByRestaurants().get(1).getZipcode());
 		lblitem3.setText(top3ItemsToOrder.getTop3ItemsList().get(2).getItemName() + "\n" + "Prepared By:"
-				+ top3ItemsToOrder.getTop3ItemsByRestaurants().get(2).getRestaurantName());
+				+ top3ItemsToOrder.getTop3ItemsByRestaurants().get(2).getRestaurantName() + "\n "
+				+ top3ItemsToOrder.getTop3ItemsByRestaurants().get(2).getCity() + "-"
+				+ top3ItemsToOrder.getTop3ItemsByRestaurants().get(2).getZipcode());
 
 	}
 
 	public void getTop3RestaurantsByRating() {
 		top3RestaurantsByRating = customerOperation.getTopRestaurants();
-		lblrestaurant1.setText(top3RestaurantsByRating.get(0).getRestaurantName());
-		lblrestaurant2.setText(top3RestaurantsByRating.get(1).getRestaurantName());
-		lblrestaurant3.setText(top3RestaurantsByRating.get(2).getRestaurantName());
+		lblrestaurant1.setText(top3RestaurantsByRating.get(0).getRestaurantName() + "\n "
+				+ top3RestaurantsByRating.get(0).getCity() + "-" + top3RestaurantsByRating.get(0).getZipcode());
+		lblrestaurant2.setText(top3RestaurantsByRating.get(1).getRestaurantName() + "\n "
+				+ top3RestaurantsByRating.get(1).getCity() + "-" + top3RestaurantsByRating.get(1).getZipcode());
+		lblrestaurant3.setText(top3RestaurantsByRating.get(2).getRestaurantName() + "\n"
+				+ top3RestaurantsByRating.get(2).getCity() + "-" + top3RestaurantsByRating.get(2).getZipcode());
 
 	}
 
@@ -144,7 +153,7 @@ public class HomeController extends BaseController {
 	}
 
 	public void handleAddToCart(int j) {
-		log.debug("handleaddtocart: " +j);
+		log.debug("handleaddtocart: " + j);
 		OrderItem item = new OrderItem();
 		item.setRestaurantId(top3ItemsToOrder.getTop3ItemsByRestaurants().get(j).getRestaurantId());
 		item.setItemId(top3ItemsToOrder.getTop3ItemsList().get(j).getItemId());

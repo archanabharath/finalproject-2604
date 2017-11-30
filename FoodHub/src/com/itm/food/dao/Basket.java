@@ -2,7 +2,6 @@
 package com.itm.food.dao;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.apache.commons.math3.util.Precision;
 
@@ -19,8 +18,8 @@ public class Basket {
 	private int payment;
 	private int address;
 	private int customer;
+	private double itemtotalminuscoupon;
 	private Coupon couponobj;
-
 	private ArrayList<Coupon> allCoupons;
 
 	public static double TAX_AMOUNT = 7.0;
@@ -191,18 +190,18 @@ public class Basket {
 	}
 
 	/**
-	 * @return the allCoupons
+	 * @return the itemtotalminuscoupon
 	 */
-	public ArrayList<Coupon> getAllCoupons() {
-		return allCoupons;
+	public double getItemtotalminuscoupon() {
+		return itemtotalminuscoupon;
 	}
 
 	/**
-	 * @param allCoupons
-	 *            the allCoupons to set
+	 * @param itemtotalminuscoupon
+	 *            the itemtotalminuscoupon to set
 	 */
-	public void setAllCoupons(ArrayList<Coupon> allCoupons) {
-		this.allCoupons = allCoupons;
+	public void setItemtotalminuscoupon(double itemtotalminuscoupon) {
+		this.itemtotalminuscoupon = itemtotalminuscoupon;
 	}
 
 	/**
@@ -218,6 +217,21 @@ public class Basket {
 	 */
 	public void setCouponobj(Coupon couponobj) {
 		this.couponobj = couponobj;
+	}
+
+	/**
+	 * @return the allCoupons
+	 */
+	public ArrayList<Coupon> getAllCoupons() {
+		return allCoupons;
+	}
+
+	/**
+	 * @param allCoupons
+	 *            the allCoupons to set
+	 */
+	public void setAllCoupons(ArrayList<Coupon> allCoupons) {
+		this.allCoupons = allCoupons;
 	}
 
 	/**
@@ -240,25 +254,34 @@ public class Basket {
 		// this.setCouponsApplied(0.0);
 		if (this.getCouponobj() != null) {
 			if (this.getCouponobj().getCouponType() == 1) {
-				System.out.println("coupon-type-1" +this.getCouponobj().getCouponValue());
-				this.setCouponsApplied(this.itemsTotal * (this.getCouponobj().getCouponValue())/100.0);
-				System.out.println("coupon-applied-pct:" +this.getCouponsApplied());
+				System.out.println("coupon-type-1" + this.getCouponobj().getCouponValue());
+				this.setCouponsApplied(this.itemsTotal * (this.getCouponobj().getCouponValue()) / 100.0);
+				System.out.println("coupon-applied-pct:" + this.getCouponsApplied());
 			} else if (this.getCouponobj().getCouponType() == 2) {
-				System.out.println("coupon-type-2" +this.getCouponobj().getCouponValue());
+				System.out.println("coupon-type-2" + this.getCouponobj().getCouponValue());
 				this.setCouponsApplied(this.getCouponobj().getCouponValue());
 			}
-		}else {
+		} else {
 			this.setCouponsApplied(0.0);
 		}
+
+		if (this.getItemsTotal() <= this.getCouponsApplied()) {
+			// this.setItemsTotal(0);
+			this.setItemtotalminuscoupon(0);
+
+		} else {
+			this.setItemtotalminuscoupon(this.getItemsTotal() - this.getCouponsApplied());
+		}
 		// Calculate Total before Tax
-		this.setTotalBeforeTax(Precision
-				.round(Math.abs((this.getItemsTotal() + this.getDeliveryCharge()) - this.getCouponsApplied()), 2));
+		this.setTotalBeforeTax(
+				Precision.round(Math.abs((this.getItemtotalminuscoupon() + this.getDeliveryCharge())), 2));
 
 		// Calculate tax
-		this.setTaxApplied(Precision.round(Math.abs((this.getItemsTotal() * Basket.TAX_AMOUNT) / 100), 2));
+		this.setTaxApplied(Precision.round(Math.abs((this.getItemtotalminuscoupon() * Basket.TAX_AMOUNT) / 100), 2));
 
 		// Calculate total order amount
 		this.setOrderTotal(Precision.round(Math.abs(this.getTotalBeforeTax() + this.getTaxApplied()), 2));
+
 	}
 
 }

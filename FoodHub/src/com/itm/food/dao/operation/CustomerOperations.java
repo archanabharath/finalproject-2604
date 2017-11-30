@@ -23,7 +23,6 @@ import com.itm.food.model.ItemsDB;
 import com.itm.food.model.OrderDB;
 import com.itm.food.model.OrderItemDB;
 import com.itm.food.model.RestaurantDB;
-import com.itm.food.util.UniqueKeyGen;
 
 public class CustomerOperations implements IUserOperations, ICustomerPreferences {
 

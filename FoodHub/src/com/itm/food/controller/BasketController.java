@@ -7,7 +7,6 @@ import org.apache.log4j.Logger;
 
 import com.itm.food.dao.Address;
 import com.itm.food.dao.Basket;
-import com.itm.food.dao.Coupon;
 import com.itm.food.dao.Item;
 import com.itm.food.dao.Payment;
 import com.itm.food.dao.Restaurant;
@@ -111,6 +110,14 @@ public class BasketController extends BaseController {
 		if (null != BaseController.foodBasket.getOrderItems() || BaseController.foodBasket.getOrderItems().isEmpty()) {
 			this.errorPane.setVisible(false);
 			this.orderErrorPane.setVisible(false);
+			JFXToggleButton button = (JFXToggleButton) deliveryMode.getSelectedToggle();
+			if (button.getText().equals("Pickup")) {
+				addressPicker.setDisable(true);
+				linkToAddAddress.setDisable(true);
+			} else {
+				addressPicker.setDisable(false);
+				linkToAddAddress.setDisable(false);
+			}
 			getCouponValue();
 			renderOrderSummary();
 			renderBasketItems();
@@ -123,6 +130,7 @@ public class BasketController extends BaseController {
 		addressPicker.setDisable(false);
 		BaseController.foodBasket.setDeliveryCharge(3.0);
 		lblDeliveryCharge.setText("$" + BaseController.foodBasket.getDeliveryCharge());
+		lblDeliveryCharge.setStyle("-fx-font-weight:bold;");
 		linkToAddAddress.setDisable(false);
 		renderOrderSummary();
 	}
@@ -132,6 +140,7 @@ public class BasketController extends BaseController {
 		addressPicker.setDisable(true);
 		BaseController.foodBasket.setDeliveryCharge(0.0);
 		lblDeliveryCharge.setText("$0.00");
+		lblDeliveryCharge.setStyle("-fx-font-weight:bold;");
 		linkToAddAddress.setDisable(true);
 		renderOrderSummary();
 	}
@@ -145,13 +154,23 @@ public class BasketController extends BaseController {
 		try {
 
 			BaseController.foodBasket.calculateOrderSummary();
+			lblDeliveryCharge.setStyle("-fx-font-weight:bold;");
 			lblItemsTotal.setText("$" + BaseController.foodBasket.getItemsTotal());
+			lblItemsTotal.setStyle("-fx-font-weight:bold;");
 			// lblDeliveryCharge.setText("$" +
 			// BaseController.foodBasket.getDeliveryCharge());
-			lblCouponsApplied.setText("$" + BaseController.foodBasket.getCouponsApplied());
+			if (BaseController.foodBasket.getCouponsApplied() > 0) {
+				lblCouponsApplied.setText("-$" + BaseController.foodBasket.getCouponsApplied());
+			} else {
+				lblCouponsApplied.setText("$" + BaseController.foodBasket.getCouponsApplied());
+			}
+			lblCouponsApplied.setStyle("-fx-font-weight:bold;");
 			lblTotalBeforeTax.setText("$" + BaseController.foodBasket.getTotalBeforeTax());
+			lblTotalBeforeTax.setStyle("-fx-font-weight:bold;");
 			lblTaxApplied.setText("$" + BaseController.foodBasket.getTaxApplied());
+			lblTaxApplied.setStyle("-fx-font-weight:bold;");
 			lblOrderTotal.setText("$" + BaseController.foodBasket.getOrderTotal());
+			lblOrderTotal.setStyle("-fx-font-weight:bold;");
 
 			if (null == BaseController.authenticatedCustomer.getAddresses()
 					|| BaseController.authenticatedCustomer.getAddresses().size() == 0) {
@@ -362,7 +381,7 @@ public class BasketController extends BaseController {
 			// Set the payment and address
 			int selectedDeliveryMode = -1;
 			JFXToggleButton button = (JFXToggleButton) deliveryMode.getSelectedToggle();
-			
+
 			if (StringUtils.isNotBlank(button.getText())) {
 
 				if (button.getText().equals("Pickup")) {

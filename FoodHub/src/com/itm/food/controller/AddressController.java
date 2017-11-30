@@ -8,7 +8,6 @@ import org.apache.log4j.Logger;
 
 import com.itm.food.dao.Address;
 import com.itm.food.dao.operation.CustomerOperations;
-import com.itm.food.util.UniqueKeyGen;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
@@ -274,6 +273,7 @@ public class AddressController extends BaseController {
 		lblCustName.setWrapText(true);
 		lblCustName.setFont(new Font(24.0));
 		lblCustName.setTextFill(Color.CRIMSON);
+		lblCustName.setStyle("-fx-font-weight:bold;");
 		AnchorPane.setLeftAnchor(lblCustName, 10.0);
 		AnchorPane.setTopAnchor(lblCustName, 20.0);
 		individualPane.getChildren().add(lblCustName);
@@ -330,6 +330,7 @@ public class AddressController extends BaseController {
 		lblcontact.setText(
 				"Phone: " + BaseController.authenticatedCustomer.getAddresses().get(addressIndex).getAddrphoneNo());
 		lblcontact.setWrapText(true);
+		lblcontact.setStyle("-fx-font-style: italic");
 		lblcontact.setFont(new Font(15.0));
 		AnchorPane.setLeftAnchor(lblcontact, 20.0);
 		AnchorPane.setTopAnchor(lblcontact, 130.0);

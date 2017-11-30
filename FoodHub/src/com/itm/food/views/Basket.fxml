@@ -145,7 +145,7 @@
             </JFXButton>
             <Label layoutX="37.0" layoutY="120.0" text="Items Total:" AnchorPane.bottomAnchor="700.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="145.0">
                <font>
-                  <Font size="18.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
             </Label>
             <Label fx:id="lblItemsTotal" layoutX="248.0" layoutY="119.0" text="\$0.00" AnchorPane.bottomAnchor="700.0" AnchorPane.leftAnchor="270.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="145.0">
@@ -155,7 +155,7 @@
             </Label>
             <Label layoutX="42.0" layoutY="182.0" prefHeight="23.0" prefWidth="150.0" text="Delivery charge:" AnchorPane.bottomAnchor="660.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="209.0" AnchorPane.topAnchor="180.0">
                <font>
-                  <Font size="18.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
             </Label>
             <Label fx:id="lblDeliveryCharge" layoutX="264.0" layoutY="182.0" text="\$0.00" AnchorPane.bottomAnchor="660.0" AnchorPane.leftAnchor="270.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="180.0">
@@ -165,7 +165,7 @@
             </Label>
             <Label layoutX="51.0" layoutY="248.0" prefHeight="23.0" prefWidth="150.0" text="Coupons Applied:" AnchorPane.bottomAnchor="625.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="210.0">
                <font>
-                  <Font size="18.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
             </Label>
             <Label fx:id="lblCouponsApplied" layoutX="273.0" layoutY="248.0" text="\$0.00" AnchorPane.bottomAnchor="635.0" AnchorPane.leftAnchor="270.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="210.0">
@@ -175,7 +175,7 @@
             </Label>
             <Label layoutX="47.0" layoutY="249.0" prefHeight="23.0" prefWidth="150.0" text="Total before tax:" AnchorPane.bottomAnchor="600.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="209.0" AnchorPane.topAnchor="250.0">
                <font>
-                  <Font size="18.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
             </Label>
             <Label fx:id="lblTotalBeforeTax" layoutX="269.0" layoutY="249.0" text="\$0.00" AnchorPane.bottomAnchor="600.0" AnchorPane.leftAnchor="270.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="250.0">
@@ -185,7 +185,7 @@
             </Label>
             <Label layoutX="53.0" layoutY="269.0" prefHeight="23.0" prefWidth="150.0" text="Tax applied (7%)" AnchorPane.bottomAnchor="560.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="209.0" AnchorPane.topAnchor="290.0">
                <font>
-                  <Font size="18.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
             </Label>
             <Label fx:id="lblTaxApplied" layoutX="275.0" layoutY="269.0" text="\$0.00" AnchorPane.bottomAnchor="560.0" AnchorPane.leftAnchor="270.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="290.0">
@@ -195,7 +195,7 @@
             </Label>
             <Label layoutX="58.0" layoutY="348.0" prefHeight="23.0" prefWidth="150.0" text="Order Total:" textFill="CRIMSON" AnchorPane.bottomAnchor="490.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="209.0" AnchorPane.topAnchor="360.0">
                <font>
-                  <Font size="24.0" />
+                  <Font name="System Bold" size="24.0" />
                </font>
             </Label>
             <Label fx:id="lblOrderTotal" layoutX="280.0" layoutY="348.0" text="\$0.00" textFill="CRIMSON" AnchorPane.bottomAnchor="490.0" AnchorPane.leftAnchor="270.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="360.0">

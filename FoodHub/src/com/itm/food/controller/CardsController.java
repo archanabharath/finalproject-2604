@@ -7,7 +7,6 @@ import org.apache.log4j.Logger;
 
 import com.itm.food.dao.Payment;
 import com.itm.food.util.CardUtil;
-import com.itm.food.util.UniqueKeyGen;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 

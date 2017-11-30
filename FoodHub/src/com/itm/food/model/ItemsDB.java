@@ -123,6 +123,8 @@ public class ItemsDB extends AbstractDB implements IDBAccess {
 				topItemsRestaurants.setRating(rsTopItems.getInt(6));
 				topItems.setItemDesc(rsTopItems.getString(7));
 				topItems.setItemPrice(rsTopItems.getDouble(8));
+				topItemsRestaurants.setZipcode(rsTopItems.getInt(9));
+				topItemsRestaurants.setCity(rsTopItems.getString(10));
 				itemsList.add(topItems);
 				restaurantsList.add(topItemsRestaurants);
 
