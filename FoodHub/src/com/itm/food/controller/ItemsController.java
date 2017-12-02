@@ -1,7 +1,6 @@
 
 package com.itm.food.controller;
 
-import java.io.File;
 import java.util.ArrayList;
 
 import org.apache.commons.math3.util.Precision;
@@ -82,8 +81,11 @@ public class ItemsController extends BaseController {
 
 	void renderRestaurantHeader() {
 		try {
-			String url = "file:\\" + new File("").getCanonicalFile().getParent().toString() + File.separatorChar
-					+ "FoodHub\\src\\com\\itm\\food\\images\\default-restaurent.png";
+	/*		String url = "file:\\" + new File("").getCanonicalFile().getParent().toString() + File.separatorChar
+					+ "FoodHub" + File.separatorChar + "src" + File.separatorChar + "com" + File.separatorChar + "itm"
+					+ File.separatorChar + "food" + File.separatorChar + "images" + File.separatorChar
+					+ "default-restaurent.png";*/
+			String url = "file:\\E:\\Projects\\GitHub\\finalproject-2604\\FoodHub\\src\\com\\itm\\food\\images\\default-restaurant.jpg";
 			imgRestaurant.setImage(new Image(url));
 		} catch (Exception ex) {
 			log.error(ex.getMessage());
@@ -128,10 +130,11 @@ public class ItemsController extends BaseController {
 		AnchorPane.setLeftAnchor(imageView, 0.0);
 		AnchorPane.setTopAnchor(imageView, 0.0);
 		try {
-			String url = "file://" + new File("").getCanonicalFile().getParent().toString()
-					+ File.separatorChar + "FoodHub" + File.separatorChar + "src" + File.separatorChar + "com"
-					+ File.separatorChar + "itm" + File.separatorChar + "food" + File.separatorChar + "images"
-					+ File.separatorChar + "default-items.png";
+/*			String url = "file:\\" + new File("").getCanonicalFile().getParent().toString() + File.separatorChar
+					+ "FoodHub" + File.separatorChar + "src" + File.separatorChar + "com" + File.separatorChar + "itm"
+					+ File.separatorChar + "food" + File.separatorChar + "images" + File.separatorChar
+					+ "default-items.png";*/
+			String url = "file:\\E:\\Projects\\GitHub\\finalproject-2604\\FoodHub\\src\\com\\itm\\food\\images\\default-items.png";
 			imageView.setImage(new Image(url));
 		} catch (Exception ex) {
 			log.error(ex.getMessage());
@@ -175,19 +178,6 @@ public class ItemsController extends BaseController {
 		AnchorPane.setTopAnchor(lblPrice, 20.0);
 		AnchorPane.setLeftAnchor(lblPrice, 860.0);
 		pane.getChildren().add(lblPrice);
-
-		// Label lblRating = new Label();
-		// lblRating.setText(
-		// "Item Rating: " +
-		// BaseController.currentRestaurant.getItems().get(index).getItemOverallRating());
-		// lblRating.setFont(new Font(15.0));
-		// lblRating.setWrapText(true);
-		// lblRating.setLayoutX(900.0);
-		// lblRating.setLayoutY(70.0);
-		// AnchorPane.setRightAnchor(lblRating, 100.0);
-		// AnchorPane.setTopAnchor(lblRating, 60.0);
-		// AnchorPane.setLeftAnchor(lblRating, 860.0);
-		// pane.getChildren().add(lblRating);
 
 		Rating rating = new Rating();
 		rating.setRating(BaseController.currentRestaurant.getItems().get(index).getItemOverallRating());

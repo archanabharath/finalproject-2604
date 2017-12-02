@@ -144,7 +144,7 @@ public class RestaurantDB extends AbstractDB implements IDBAccess {
 
 	public List<Restaurant> getTop3Restaurants() {
 
-		log.debug("getting top 3 restaurants from RestaurantDB");
+		log.debug("Getting top 3 restaurants from RestaurantDB");
 		List<Restaurant> top3RestaurantsList = new ArrayList<Restaurant>();
 		// RESTAURANT_ID,RESTAURANT_NAME,DESCRIPTION,ADDRESS1,ADDRESS2,CITY,ZIPCODE,PHONE,EMAIL,
 		// RATING
@@ -164,7 +164,7 @@ public class RestaurantDB extends AbstractDB implements IDBAccess {
 				restaurant.setZipcode(rsTopRestaurants.getInt(7));
 				restaurant.setPhone(rsTopRestaurants.getString(8));
 				restaurant.setEmail(rsTopRestaurants.getString(9));
-				restaurant.setRating(rsTopRestaurants.getInt(10));
+				restaurant.setRating(rsTopRestaurants.getDouble(10));
 				
 				top3RestaurantsList.add(restaurant);
 

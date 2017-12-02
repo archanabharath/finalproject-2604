@@ -255,11 +255,11 @@ public class Basket {
 		if (this.getCouponobj() != null) {
 			if (this.getCouponobj().getCouponType() == 1) {
 				System.out.println("coupon-type-1" + this.getCouponobj().getCouponValue());
-				this.setCouponsApplied(this.itemsTotal * (this.getCouponobj().getCouponValue()) / 100.0);
+				this.setCouponsApplied(Precision.round(Math.abs(this.itemsTotal * (this.getCouponobj().getCouponValue()) / 100.0),2));
 				System.out.println("coupon-applied-pct:" + this.getCouponsApplied());
 			} else if (this.getCouponobj().getCouponType() == 2) {
 				System.out.println("coupon-type-2" + this.getCouponobj().getCouponValue());
-				this.setCouponsApplied(this.getCouponobj().getCouponValue());
+				this.setCouponsApplied(Precision.round(Math.abs(this.getCouponobj().getCouponValue()), 2));
 			}
 		} else {
 			this.setCouponsApplied(0.0);

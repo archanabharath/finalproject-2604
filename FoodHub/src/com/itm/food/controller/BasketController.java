@@ -1,7 +1,5 @@
 package com.itm.food.controller;
 
-import java.io.File;
-
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 
@@ -206,10 +204,12 @@ public class BasketController extends BaseController {
 
 				}
 			});
-			ObservableList<Payment> obPayment = null;
-			obPayment = FXCollections.observableArrayList(BaseController.authenticatedCustomer.getPayments());
-			paymentPicker.setItems(obPayment);
-			paymentPicker.setValue(BaseController.authenticatedCustomer.getPayments().get(0));
+			if (BaseController.authenticatedCustomer.getPayments().size() > 0) {
+				ObservableList<Payment> obPayment = null;
+				obPayment = FXCollections.observableArrayList(BaseController.authenticatedCustomer.getPayments());
+				paymentPicker.setItems(obPayment);
+				paymentPicker.setValue(BaseController.authenticatedCustomer.getPayments().get(0));
+			}
 
 		} catch (Exception ex) {
 			lblOrderErrorMsg.setText("Unable to load order Summary.");
@@ -261,8 +261,16 @@ public class BasketController extends BaseController {
 			AnchorPane.setLeftAnchor(imageView, 0.0);
 			AnchorPane.setTopAnchor(imageView, 0.0);
 
-			String url = "file:\\" + new File("").getCanonicalFile().getParent().toString() + File.separatorChar
-					+ "FoodHub\\src\\com\\itm\\food\\images\\default-items.png";
+			/*
+			 * String url =
+			 * "file:\\" + new File("").getCanonicalFile().getParent().toString() +
+			 * File.separatorChar + "FoodHub" + File.separatorChar + "src" +
+			 * File.separatorChar + "com" + File.separatorChar + "itm" + File.separatorChar
+			 * + "food" + File.separatorChar + "images" + File.separatorChar +
+			 * "default-items.png";
+			 */
+
+			String url = "file:\\E:\\Projects\\GitHub\\finalproject-2604\\FoodHub\\src\\com\\itm\\food\\images\\default-items.png";
 			imageView.setImage(new Image(url));
 
 			pane.getChildren().add(imageView);
@@ -377,7 +385,11 @@ public class BasketController extends BaseController {
 	}
 
 	private void placeOrder() {
+
 		try {
+			if (!isCardInputValid()) {
+				return;
+			}
 			// Set the payment and address
 			int selectedDeliveryMode = -1;
 			JFXToggleButton button = (JFXToggleButton) deliveryMode.getSelectedToggle();
@@ -426,11 +438,6 @@ public class BasketController extends BaseController {
 		orderPlacedMsg.showAndWait();
 	}
 
-	public void submitReviewRating() {
-		Alert orderReview = new Alert(Alert.AlertType.CONFIRMATION);
-
-	}
-
 	public void getCouponValue() {
 		couponTextBox.textProperty().addListener(new ChangeListener<String>() {
 
@@ -450,5 +457,15 @@ public class BasketController extends BaseController {
 
 		});
 
+	}
+
+	public boolean isCardInputValid() {
+		if (null == paymentPicker.getValue() ||  StringUtils.isEmpty(paymentPicker.getValue().toString())) {
+			lblOrderErrorMsg.setText("Please choose a card for payment");
+			this.orderErrorPane.setVisible(true);
+			return false;
+		}
+		this.orderErrorPane.setVisible(false);
+		return true;
 	}
 }

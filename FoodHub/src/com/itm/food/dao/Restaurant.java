@@ -13,7 +13,7 @@ public class Restaurant extends AbstractDomain {
 	int zipcode;
 	String phone;
 	String email;
-	int rating;
+	double rating;
 	String feedback;
 	double latitude;
 	double longitude;
@@ -21,7 +21,6 @@ public class Restaurant extends AbstractDomain {
 	String distance;
 	String timeToTravel;
 	List<Item> items;
-	double restaurantOverallRating;
 
 	/**
 	 * @return the restaurantId
@@ -161,7 +160,7 @@ public class Restaurant extends AbstractDomain {
 	/**
 	 * @return the rating
 	 */
-	public int getRating() {
+	public double getRating() {
 		return rating;
 	}
 
@@ -169,7 +168,7 @@ public class Restaurant extends AbstractDomain {
 	 * @param rating
 	 *            the rating to set
 	 */
-	public void setRating(int rating) {
+	public void setRating(double rating) {
 		this.rating = rating;
 	}
 
@@ -231,21 +230,6 @@ public class Restaurant extends AbstractDomain {
 	 */
 	public void setCuisineId(String cuisineId) {
 		this.cuisineId = cuisineId;
-	}
-
-	/**
-	 * @return the restaurantOverallRating
-	 */
-	public double getRestaurantOverallRating() {
-		return restaurantOverallRating;
-	}
-
-	/**
-	 * @param restaurantOverallRating
-	 *            the restaurantOverallRating to set
-	 */
-	public void setRestaurantOverallRating(double restaurantOverallRating) {
-		this.restaurantOverallRating = restaurantOverallRating;
 	}
 
 	/**

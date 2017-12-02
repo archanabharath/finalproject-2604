@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.controlsfx.control.Rating;
 
 import com.itm.food.dao.ItemRestaurant;
 import com.itm.food.dao.OrderItem;
@@ -74,6 +75,24 @@ public class HomeController extends BaseController {
 	private Label lblitem3;
 
 	@FXML
+	private Rating irating1;
+
+	@FXML
+	private Rating irating2;
+
+	@FXML
+	private Rating irating3;
+
+	@FXML
+	private Rating rrating1;
+
+	@FXML
+	private Rating rrating2;
+
+	@FXML
+	private Rating rrating3;
+
+	@FXML
 	void handleAddToCart1(MouseEvent event) {
 		log.debug(event.getClickCount());
 		log.debug(event.getSource().toString());
@@ -125,14 +144,17 @@ public class HomeController extends BaseController {
 				+ top3ItemsToOrder.getTop3ItemsByRestaurants().get(0).getRestaurantName() + " "
 				+ top3ItemsToOrder.getTop3ItemsByRestaurants().get(0).getCity() + "-"
 				+ top3ItemsToOrder.getTop3ItemsByRestaurants().get(0).getZipcode());
+		irating1.setRating(top3ItemsToOrder.getTop3ItemsList().get(0).getItemOverallRating());
 		lblitem2.setText(top3ItemsToOrder.getTop3ItemsList().get(1).getItemName() + "\n" + "Prepared By:"
-				+ top3ItemsToOrder.getTop3ItemsByRestaurants().get(1).getRestaurantName()+ "\n "
-						+ top3ItemsToOrder.getTop3ItemsByRestaurants().get(1).getCity() + "-"
-						+ top3ItemsToOrder.getTop3ItemsByRestaurants().get(1).getZipcode());
+				+ top3ItemsToOrder.getTop3ItemsByRestaurants().get(1).getRestaurantName() + "\n "
+				+ top3ItemsToOrder.getTop3ItemsByRestaurants().get(1).getCity() + "-"
+				+ top3ItemsToOrder.getTop3ItemsByRestaurants().get(1).getZipcode());
+		irating2.setRating(top3ItemsToOrder.getTop3ItemsList().get(1).getItemOverallRating());
 		lblitem3.setText(top3ItemsToOrder.getTop3ItemsList().get(2).getItemName() + "\n" + "Prepared By:"
 				+ top3ItemsToOrder.getTop3ItemsByRestaurants().get(2).getRestaurantName() + "\n "
 				+ top3ItemsToOrder.getTop3ItemsByRestaurants().get(2).getCity() + "-"
 				+ top3ItemsToOrder.getTop3ItemsByRestaurants().get(2).getZipcode());
+		irating3.setRating(top3ItemsToOrder.getTop3ItemsList().get(2).getItemOverallRating());
 
 	}
 
@@ -140,10 +162,13 @@ public class HomeController extends BaseController {
 		top3RestaurantsByRating = customerOperation.getTopRestaurants();
 		lblrestaurant1.setText(top3RestaurantsByRating.get(0).getRestaurantName() + "\n "
 				+ top3RestaurantsByRating.get(0).getCity() + "-" + top3RestaurantsByRating.get(0).getZipcode());
+		rrating1.setRating(top3RestaurantsByRating.get(0).getRating());
 		lblrestaurant2.setText(top3RestaurantsByRating.get(1).getRestaurantName() + "\n "
 				+ top3RestaurantsByRating.get(1).getCity() + "-" + top3RestaurantsByRating.get(1).getZipcode());
+		rrating2.setRating(top3RestaurantsByRating.get(1).getRating());
 		lblrestaurant3.setText(top3RestaurantsByRating.get(2).getRestaurantName() + "\n"
 				+ top3RestaurantsByRating.get(2).getCity() + "-" + top3RestaurantsByRating.get(2).getZipcode());
+		rrating3.setRating(top3RestaurantsByRating.get(2).getRating());
 
 	}
 

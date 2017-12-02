@@ -172,7 +172,7 @@
                <children>
                   <ImageView fitHeight="35.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0">
                      <image>
-                        <Image url="@../../../../../src/com/itm/food/images/icons8-error-96.png" />
+                        <Image url="@../images/icons8-error-96.png" />
                      </image>
                   </ImageView>
                   <Label fx:id="lblErrorMsg" layoutX="60.0" prefHeight="30.0" prefWidth="174.0" text="##Errormsg##" textFill="STEELBLUE" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="10.0">

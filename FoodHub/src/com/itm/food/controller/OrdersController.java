@@ -134,10 +134,11 @@ public class OrdersController extends BaseController {
 		lblOrderPlaced.prefHeight(20.0);
 		lblOrderPlaced.prefWidth(150.0);
 
-		lblOrderPlaced.setText("Order Placed \r\n"
+		/*lblOrderPlaced.setText("Order Placed \r\n"
 				+ (StringUtils.isEmpty(BaseController.customerOrders.get(index).getOrderData().getOrderTime()) ? ""
 						: sdtFormat.format(sdtParse
-								.parse(BaseController.customerOrders.get(index).getOrderData().getOrderTime()))));
+								.parse(BaseController.customerOrders.get(index).getOrderData().getOrderTime()))));*/
+		lblOrderPlaced.setText((BaseController.customerOrders.get(index).getOrderData().getOrderTime().substring(0, 19)));
 		lblOrderPlaced.setWrapText(true);
 		lblOrderPlaced.setTextFill(Color.DARKSLATEGRAY);
 		lblOrderPlaced.setFont(new Font(15.0));

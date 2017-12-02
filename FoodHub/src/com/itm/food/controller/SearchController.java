@@ -1,6 +1,5 @@
 package com.itm.food.controller;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -161,12 +160,17 @@ public class SearchController extends BaseController {
 		AnchorPane.setLeftAnchor(imageView, 10.0);
 		AnchorPane.setTopAnchor(imageView, 25.0);
 		try {
-			String url = "file://" + new File("").getCanonicalFile().getParent().toString()
-					+ File.separatorChar + "FoodHub" + File.separatorChar + "src" + File.separatorChar + "com"
-					+ File.separatorChar + "itm" + File.separatorChar + "food" + File.separatorChar + "images"
-					+ File.separatorChar + "default-restaurent.png";
+//			String url = "file:\\" + new File("").getCanonicalFile().getParent().toString()
+//					+ File.separatorChar + "FoodHub" + File.separatorChar + "src" + File.separatorChar + "com"
+//					+ File.separatorChar + "itm" + File.separatorChar + "food" + File.separatorChar + "images"
+//					+ File.separatorChar + "default-restaurent.png";
+			
+			String url = "file:\\E:\\Projects\\GitHub\\finalproject-2604\\FoodHub\\src\\com\\itm\\food\\images\\default-restaurant.jpg";
 			
 			imageView.setImage(new Image(url));
+			
+			
+			
 		} catch (Exception ex) {
 			log.error(ex.getMessage());
 		}
@@ -229,10 +233,12 @@ public class SearchController extends BaseController {
 		AnchorPane.setRightAnchor(imageDistance, 275.0);
 		AnchorPane.setBottomAnchor(imageDistance, 20.0);
 		try {
-			String url = "file://" + new File("").getCanonicalFile().getParent().toString()
+/*			String url = "file:\\" + new File("").getCanonicalFile().getParent().toString()
 					+ File.separatorChar + "FoodHub" + File.separatorChar + "src" + File.separatorChar + "com"
 					+ File.separatorChar + "itm" + File.separatorChar + "food" + File.separatorChar + "images"
-					+ File.separatorChar + "icons8-geo-fence-24.png";
+					+ File.separatorChar + "icons8-geo-fence-24.png";*/
+			
+			String url = "file:\\E:\\Projects\\GitHub\\finalproject-2604\\FoodHub\\src\\com\\itm\\food\\images\\icons8-geo-fence-24.png";
 			imageDistance.setImage(new Image(url));
 		} catch (Exception ex) {
 			log.error(ex.getMessage());
@@ -264,10 +270,12 @@ public class SearchController extends BaseController {
 		AnchorPane.setBottomAnchor(imageTimer, 20.0);
 		try {
 
-			String url = "file://" + new File("").getCanonicalFile().getParent().toString()
+			/*String url = "file:\\" + new File("").getCanonicalFile().getParent().toString()
 					+ File.separatorChar + "FoodHub" + File.separatorChar + "src" + File.separatorChar + "com"
 					+ File.separatorChar + "itm" + File.separatorChar + "food" + File.separatorChar + "images"
-					+ File.separatorChar + "icons8-timer-24.png";
+					+ File.separatorChar + "icons8-timer-24.png";*/
+			
+			String url = "file:\\E:\\Projects\\GitHub\\finalproject-2604\\FoodHub\\src\\com\\itm\\food\\images\\icons8-timer-24.png";
 			imageTimer.setImage(new Image(url));
 		} catch (Exception ex) {
 			log.error(ex.getMessage());

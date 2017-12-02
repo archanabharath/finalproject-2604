@@ -131,14 +131,14 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="337.0" layoutY="195.0" prefHeight="750.0" prefWidth="441.0" style="-fx-background-color: transparent; -fx-border-color: white;" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="1050.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="60.0">
+      <AnchorPane layoutX="337.0" layoutY="195.0" prefHeight="750.0" prefWidth="441.0" style="-fx-background-color: transparent; -fx-border-color: white;" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="1050.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="60.0">
          <children>
             <Label alignment="CENTER" layoutX="90.0" layoutY="33.0" prefHeight="40.0" prefWidth="186.0" style="-fx-background-color: tomato;" text="Order Summary" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="32.0">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <JFXButton fx:id="btnPlaceOrder" layoutX="78.0" layoutY="669.0" onAction="#handlePlaceOrder" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: GOLD;" text="Place Order" textFill="STEELBLUE" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="800.0">
+            <JFXButton fx:id="btnPlaceOrder" layoutX="81.0" layoutY="840.0" onAction="#handlePlaceOrder" prefHeight="55.0" prefWidth="240.0" style="-fx-background-color: GOLD;" text="Place Order" textFill="STEELBLUE" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="839.0">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -205,7 +205,7 @@
             </Label>
             <Line endX="200.0" layoutX="140.0" layoutY="305.0" opacity="0.5" startX="-100.0" stroke="WHITE" AnchorPane.bottomAnchor="540.0" />
             <Line endX="200.0" layoutX="144.0" layoutY="363.0" opacity="0.5" startX="-100.0" stroke="WHITE" AnchorPane.bottomAnchor="475.0" />
-            <JFXToggleButton fx:id="togglePickup" contentDisplay="RIGHT" layoutX="40.0" layoutY="373.0" onAction="#handlePickup" selected="true" text="Pickup" toggleColor="STEELBLUE" AnchorPane.bottomAnchor="400.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="420.0">
+            <JFXToggleButton fx:id="togglePickup" contentDisplay="RIGHT" layoutX="43.0" layoutY="420.0" onAction="#handlePickup" selected="true" text="Pickup" toggleColor="STEELBLUE" AnchorPane.bottomAnchor="406.0" AnchorPane.leftAnchor="43.0" AnchorPane.topAnchor="420.0">
                <toggleGroup>
                   <ToggleGroup fx:id="deliveryMode" />
                </toggleGroup>
@@ -213,18 +213,18 @@
                   <Font size="18.0" />
                </font>
             </JFXToggleButton>
-            <JFXToggleButton fx:id="toggleDelivery" contentDisplay="RIGHT" layoutX="209.0" layoutY="376.0" onAction="#handleDelivery" text="Delivery" toggleColor="STEELBLUE" toggleGroup="$deliveryMode" AnchorPane.bottomAnchor="400.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="420.0">
+            <JFXToggleButton fx:id="toggleDelivery" contentDisplay="RIGHT" layoutX="215.0" layoutY="420.0" onAction="#handleDelivery" text="Delivery" toggleColor="STEELBLUE" toggleGroup="$deliveryMode" AnchorPane.bottomAnchor="406.0" AnchorPane.rightAnchor="43.0" AnchorPane.topAnchor="420.0">
                <font>
                   <Font size="18.0" />
                </font></JFXToggleButton>
-            <ChoiceBox fx:id="addressPicker" layoutX="74.0" layoutY="434.0" prefHeight="40.0" prefWidth="150.0" AnchorPane.bottomAnchor="320.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="529.0" />
-            <ChoiceBox fx:id="paymentPicker" layoutX="71.0" layoutY="531.0" prefHeight="40.0" prefWidth="150.0" AnchorPane.bottomAnchor="165.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="680.0" />
+            <ChoiceBox fx:id="addressPicker" layoutX="74.0" layoutY="434.0" prefHeight="40.0" prefWidth="150.0" AnchorPane.bottomAnchor="330.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="529.0" />
+            <ChoiceBox fx:id="paymentPicker" layoutX="43.0" layoutY="673.0" prefHeight="47.0" prefWidth="316.0" AnchorPane.bottomAnchor="191.0" AnchorPane.leftAnchor="42.0" AnchorPane.rightAnchor="42.0" AnchorPane.topAnchor="672.0" />
             <Label layoutX="46.0" layoutY="449.0" text="Pick an address for delivery:" AnchorPane.bottomAnchor="370.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="490.0">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="56.0" layoutY="459.0" text="Pick a card for payment:" AnchorPane.bottomAnchor="220.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="630.0">
+            <Label layoutX="56.0" layoutY="459.0" text="Pick a card for payment:" AnchorPane.bottomAnchor="240.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="620.0">
                <font>
                   <Font size="18.0" />
                </font>
@@ -243,12 +243,12 @@
                   </Label>
                </children>
             </AnchorPane>
-            <Hyperlink fx:id="linkToAddAddress" disable="true" layoutX="54.0" layoutY="563.0" prefHeight="23.0" prefWidth="300.0" text="Click here to add new address" underline="true" AnchorPane.bottomAnchor="276.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="580.0">
+            <Hyperlink fx:id="linkToAddAddress" disable="true" layoutX="54.0" layoutY="563.0" prefHeight="23.0" prefWidth="300.0" text="Click here to add new address" underline="true" AnchorPane.bottomAnchor="280.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="575.0">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Hyperlink>
-            <Hyperlink fx:id="linkToAddCard" contentDisplay="CENTER" layoutX="161.0" layoutY="753.0" text="Click here to add new card" underline="true" wrapText="true" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="753.0">
+            <Hyperlink fx:id="linkToAddCard" contentDisplay="CENTER" layoutX="41.0" layoutY="734.0" prefHeight="30.0" prefWidth="314.0" text="Click here to add new card" underline="true" wrapText="true" AnchorPane.bottomAnchor="147.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="46.0" AnchorPane.topAnchor="733.0">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -258,20 +258,20 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </JFXTextField>
-         </children>
-      </AnchorPane>
-      <AnchorPane fx:id="errorPane" layoutX="10.0" layoutY="10.0" prefHeight="50.0" prefWidth="300.0" visible="false" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="300.0">
-         <children>
-            <ImageView fitHeight="35.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0">
-               <image>
-                  <Image url="@../../../../../src/com/itm/food/images/icons8-error-96.png" />
-               </image>
-            </ImageView>
-            <Label fx:id="lblErrorMsg" layoutX="60.0" prefHeight="30.0" prefWidth="174.0" text="##Errormsg##" textFill="STEELBLUE" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="10.0">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Label>
+            <AnchorPane fx:id="errorPane" layoutX="45.0" layoutY="760.0" prefHeight="61.0" prefWidth="312.0" visible="false" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="44.0" AnchorPane.rightAnchor="44.0" AnchorPane.topAnchor="759.0">
+               <children>
+                  <ImageView fitHeight="35.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0">
+                     <image>
+                        <Image url="@../images/icons8-error-96.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="lblErrorMsg" layoutX="60.0" prefHeight="30.0" prefWidth="174.0" text="##Errormsg##" textFill="CRIMSON" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="10.0">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
    </children>

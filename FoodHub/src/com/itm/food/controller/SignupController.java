@@ -109,16 +109,16 @@ public class SignupController extends BaseController {
 			a1.setHeaderText(null);
 			a1.showAndWait();
 
-			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/Login.fxml"));
+			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/com/itm/food/views/Login.fxml"));
 			Scene scene = new Scene(root, 900, 500);
-			scene.getStylesheets().add(getClass().getResource("../application.css").toExternalForm());
+			scene.getStylesheets().add(getClass().getResource("/com/itm/food/application.css").toExternalForm());
 			ParentController.mainStage.setScene(scene);
 			ParentController.mainStage.setResizable(false);
 			ParentController.mainStage.centerOnScreen();
 			ParentController.mainStage.show();
 
 		} catch (Exception e) {
-			log.error(e.getMessage());
+			log.error(e.getMessage(),e);
 		}
 	}
 

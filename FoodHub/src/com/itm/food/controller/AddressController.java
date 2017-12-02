@@ -285,6 +285,7 @@ public class AddressController extends BaseController {
 		lbladdress1.prefHeight(30.0);
 		lbladdress1.prefWidth(600.0);
 		lbladdress1.setText(BaseController.authenticatedCustomer.getAddresses().get(addressIndex).getAddr1());
+		lbladdress1.setStyle("-fx-font-weight:bold;");
 		lbladdress1.setWrapText(true);
 		lbladdress1.setFont(new Font(15.0));
 		AnchorPane.setLeftAnchor(lbladdress1, 20.0);
@@ -299,6 +300,7 @@ public class AddressController extends BaseController {
 		lbladdress2.prefHeight(30.0);
 		lbladdress2.prefWidth(600.0);
 		lbladdress2.setText(BaseController.authenticatedCustomer.getAddresses().get(addressIndex).getAddr2());
+		lbladdress2.setStyle("-fx-font-weight:bold;");
 		lbladdress2.setWrapText(true);
 		lbladdress2.setFont(new Font(15.0));
 		AnchorPane.setLeftAnchor(lbladdress2, 20.0);
@@ -314,6 +316,8 @@ public class AddressController extends BaseController {
 		lblcity.prefWidth(600.0);
 		lblcity.setText(BaseController.authenticatedCustomer.getAddresses().get(addressIndex).getCity() + ",IL "
 				+ BaseController.authenticatedCustomer.getAddresses().get(addressIndex).getPincode());
+		lblcity.setStyle("-fx-font-weight:bold;");
+		
 		lblcity.setWrapText(true);
 		lblcity.setFont(new Font(15.0));
 		AnchorPane.setLeftAnchor(lblcity, 20.0);
@@ -330,6 +334,7 @@ public class AddressController extends BaseController {
 		lblcontact.setText(
 				"Phone: " + BaseController.authenticatedCustomer.getAddresses().get(addressIndex).getAddrphoneNo());
 		lblcontact.setWrapText(true);
+		lblcontact.setStyle("-fx-font-weight:bold;");
 		lblcontact.setStyle("-fx-font-style: italic");
 		lblcontact.setFont(new Font(15.0));
 		AnchorPane.setLeftAnchor(lblcontact, 20.0);

@@ -6,7 +6,6 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import com.itm.food.dao.Basket;
-import com.itm.food.dao.Coupon;
 import com.itm.food.dao.Customer;
 import com.itm.food.dao.CustomerOrder;
 import com.itm.food.dao.Restaurant;

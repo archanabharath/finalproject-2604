@@ -287,6 +287,7 @@ public class CardsController extends BaseController {
 		lblNameOnCard.prefWidth(600.0);
 		lblNameOnCard.setText(BaseController.authenticatedCustomer.getPayments().get(cardIndex).getNameOnCard());
 		lblNameOnCard.setTextFill(Color.CRIMSON);
+		lblNameOnCard.setStyle("-fx-font-weight:bold;");
 		lblNameOnCard.setWrapText(true);
 		lblNameOnCard.setFont(new Font(24.0));
 		AnchorPane.setLeftAnchor(lblNameOnCard, 10.0);
@@ -301,6 +302,7 @@ public class CardsController extends BaseController {
 		lblCardNo.prefWidth(600.0);
 		lblCardNo.setText("Card No: " + CardUtil.maskCardNo(
 				String.valueOf(BaseController.authenticatedCustomer.getPayments().get(cardIndex).getCardNo())));
+		lblCardNo.setStyle("-fx-font-weight:bold;");
 
 		lblCardNo.setWrapText(true);
 		lblCardNo.setFont(new Font(15.0));
@@ -317,6 +319,7 @@ public class CardsController extends BaseController {
 		lblCardType.prefWidth(600.0);
 		lblCardType.setText(
 				"Card Type: " + BaseController.authenticatedCustomer.getPayments().get(cardIndex).getCardType());
+		lblCardType.setStyle("-fx-font-weight:bold;");
 		lblCardType.setWrapText(true);
 		lblCardType.setFont(new Font(15.0));
 		AnchorPane.setLeftAnchor(lblCardType, 20.0);
@@ -332,6 +335,7 @@ public class CardsController extends BaseController {
 		lblCardExpiry.prefWidth(600.0);
 		lblCardExpiry.setText(
 				"Card Expiry: " + BaseController.authenticatedCustomer.getPayments().get(cardIndex).getCardExpDate());
+		lblCardExpiry.setStyle("-fx-font-weight:bold;");
 		lblCardExpiry.setWrapText(true);
 		lblCardExpiry.setFont(new Font(15.0));
 		AnchorPane.setLeftAnchor(lblCardExpiry, 20.0);
