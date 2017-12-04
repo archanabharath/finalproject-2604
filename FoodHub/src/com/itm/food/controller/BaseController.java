@@ -35,6 +35,12 @@ public abstract class BaseController {
 
 	public static final int SIGNUP_SCREEN_WIDTH = 900;
 	public static final int SIGNUP_SCREEN_HEIGHT = 900;
+	
+	public static final int PARENT_LOGIN_SCREEN_WIDTH = 1000;
+	public static final int PARENT_LOGIN_SCREEN_HEIGHT = 600;
+	
+	public static final int ADMIN_SCREEN_WIDTH = 850;
+	public static final int ADMIN_SCREEN_HEIGHT = 600;
 
 	// Operations
 	CustomerOperations customerOperation = new CustomerOperations();
@@ -219,8 +225,8 @@ public abstract class BaseController {
 
 	void handleSignout() {
 		cleanupSession();
-		this.launchScene("Login Screen", "/com/itm/food/views/Login.fxml", BaseController.LOGIN_SCREEN_WIDTH,
-				BaseController.LOGIN_SCREEN_HEIGHT);
+		this.launchScene("Login Screen", "/com/itm/food/views/ParentLogin.fxml", BaseController.PARENT_LOGIN_SCREEN_WIDTH,
+				BaseController.PARENT_LOGIN_SCREEN_HEIGHT);
 		log.debug("User successfully logged out.");
 	}
 

@@ -17,15 +17,15 @@ public class ParentController extends Application {
 	public static Stage mainStage;
 
 	@Override
-	public void start(Stage primaryStage) { 
+	public void start(Stage primaryStage) {
 		try {
 			mainStage = primaryStage;
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(getClass().getResource("/com/itm/food/views/Login.fxml"));
+			loader.setLocation(getClass().getResource("/com/itm/food/views/ParentLogin.fxml"));
 			AnchorPane root = loader.load();
 			BaseController controller = loader.getController();
 			controller.appInit();
-			Scene scene = new Scene(root, 900, 500);
+			Scene scene = new Scene(root, 1000, 600);
 			scene.getStylesheets().add(getClass().getResource("/com/itm/food/application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.setResizable(false);
@@ -43,9 +43,8 @@ public class ParentController extends Application {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		
+
 		launch(args);
-		
-		
+
 	}
 }

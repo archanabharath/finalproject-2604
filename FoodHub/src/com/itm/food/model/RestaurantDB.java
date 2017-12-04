@@ -11,6 +11,7 @@ import org.apache.log4j.Logger;
 import com.itm.food.dao.AbstractDomain;
 import com.itm.food.dao.Restaurant;
 import com.itm.food.model.db.MySQLQuery;
+import com.mysql.jdbc.Statement;
 
 public class RestaurantDB extends AbstractDB implements IDBAccess {
 
@@ -18,17 +19,56 @@ public class RestaurantDB extends AbstractDB implements IDBAccess {
 
 	@Override
 	public <T extends AbstractDomain> int add(T object) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		Restaurant restaurant = (Restaurant) object;
+		try {
+			PreparedStatement statement = this.getDBConnection()
+					.prepareStatement(MySQLQuery.SQL_ADMIN_RESTAURANT_INSERT, Statement.RETURN_GENERATED_KEYS);
+			statement.setString(1, restaurant.getRestaurantName());
+			statement.setString(2, restaurant.getRestaurantDescription());
+			statement.setString(3, restaurant.getAddress1());
+			statement.setString(4, restaurant.getAddress2());
+			statement.setString(5, restaurant.getCity());
+			statement.setInt(6, restaurant.getZipcode());
+			statement.setString(7, restaurant.getEmail());
+			statement.setString(8, restaurant.getPhone());
+
+			statement.executeUpdate();
+			ResultSet rs = statement.getGeneratedKeys();
+			while (rs.next()) {
+				restaurant.setRestaurantId(rs.getInt(1));
+			}
+			log.debug("Data inserted for restaurant ");
+		} catch (SQLException s) {
+			log.error(s.getMessage(), s);
+			throw s;
+		}
+		return restaurant.getRestaurantId();
 	}
 
 	@Override
 	public <T extends AbstractDomain> void update(T object) throws Exception {
-		// TODO Auto-generated method stub
+		Restaurant restaurant = (Restaurant) object;
+		try {
+			PreparedStatement statement = this.getDBConnection()
+					.prepareStatement(MySQLQuery.SQL_ADMIN_RESTAURANT_UPDATE);
+			statement.setString(1, restaurant.getRestaurantName());
+			statement.setString(2, restaurant.getRestaurantDescription());
+			statement.setString(3, restaurant.getAddress1());
+			statement.setString(4, restaurant.getAddress2());
+			statement.setString(5, restaurant.getCity());
+			statement.setInt(6, restaurant.getZipcode());
+			statement.setString(7, restaurant.getEmail());
+			statement.setString(8, restaurant.getPhone());
+			statement.setInt(9, restaurant.getRestaurantId());
+			statement.executeUpdate();
+			log.debug("Data updated for restaurant " + restaurant.getRestaurantId());
+		} catch (SQLException s) {
+			log.error(s.getMessage(), s);
+			throw s;
+		}
 
 	}
 
-	
 	@SuppressWarnings("unchecked")
 	@Override
 	public <T extends AbstractDomain> T find(int id) throws Exception {
@@ -62,14 +102,32 @@ public class RestaurantDB extends AbstractDB implements IDBAccess {
 
 	@Override
 	public <T extends AbstractDomain> void delete(T object) throws Exception {
-		// TODO Auto-generated method stub
+		Restaurant restaurant = (Restaurant) object;
+		try {
+			PreparedStatement statement = this.getDBConnection()
+					.prepareStatement(MySQLQuery.SQL_ADMIN_RESTAURANT_DELETE);
+			statement.setInt(1, restaurant.getRestaurantId());
+			statement.executeUpdate();
+			log.debug("Data deleted for restaurant " + restaurant.getRestaurantId());
+		} catch (SQLException s) {
+			log.error(s.getMessage(), s);
+			throw s;
+		}
 
 	}
 
 	@Override
-	public void delete(String id) throws Exception {
-		// TODO Auto-generated method stub
-
+	public void delete(int id) throws Exception {
+		try {
+			PreparedStatement statement = this.getDBConnection()
+					.prepareStatement(MySQLQuery.SQL_ADMIN_RESTAURANT_DELETE);
+			statement.setInt(1, id);
+			statement.executeUpdate();
+			log.debug("Data deleted for restaurant " + id);
+		} catch (SQLException s) {
+			log.error(s.getMessage(), s);
+			throw s;
+		}
 	}
 
 	public ArrayList<Restaurant> searchByZip(List<Integer> zipcodes) throws SQLException {
@@ -93,21 +151,18 @@ public class RestaurantDB extends AbstractDB implements IDBAccess {
 			parameterBuilder.append(")");
 
 			String sqlQuery = "SELECT R.RESTAURANT_ID,RESTAURANT_NAME,DESCRIPTION,ADDRESS1,ADDRESS2,CITY,ZIPCODE,AVG(UR.RATING) AS RATING,"
-					+ "PHONE,EMAIL,LATITUDE,LONGITUDE FROM ofod.ofod_restaurant R "
-					+ " LEFT JOIN  ofod.ofod_restaurant_rating RR ON R.RESTAURANT_ID = RR.RESTAURANT_ID " 
-                    + " LEFT JOIN ofod.ofod_user_rating UR ON UR.RATING_ID = RR.RATING_ID "
-					+ " WHERE ZIPCODE IN"
-					+ parameterBuilder.toString() 
-					+ "  GROUP BY R.RESTAURANT_ID "
-					+ " ORDER BY RATING DESC LIMIT ?";
+					+ "PHONE,EMAIL,LATITUDE,LONGITUDE FROM ofod_restaurant R "
+					+ " LEFT JOIN  ofod_restaurant_rating RR ON R.RESTAURANT_ID = RR.RESTAURANT_ID "
+					+ " LEFT JOIN ofod_user_rating UR ON UR.RATING_ID = RR.RATING_ID " + " WHERE ZIPCODE IN"
+					+ parameterBuilder.toString() + "  GROUP BY R.RESTAURANT_ID " + " ORDER BY RATING DESC LIMIT ?";
 
 			PreparedStatement preparedstatement = this.getDBConnection().prepareStatement(sqlQuery);
-		
+
 			for (int i = 1; i < zipcodes.size() + 1; i++) {
 				preparedstatement.setInt(i, (int) zipcodes.get(i - 1));
 			}
-			
-			preparedstatement.setInt(zipcodes.size()+1, searchLimit);
+
+			preparedstatement.setInt(zipcodes.size() + 1, searchLimit);
 			// preparedstatement.setString(1, StringUtils.join(zipcodes, ","));
 			ResultSet restaurantsResultSet;
 			restaurantsResultSet = preparedstatement.executeQuery();
@@ -165,7 +220,7 @@ public class RestaurantDB extends AbstractDB implements IDBAccess {
 				restaurant.setPhone(rsTopRestaurants.getString(8));
 				restaurant.setEmail(rsTopRestaurants.getString(9));
 				restaurant.setRating(rsTopRestaurants.getDouble(10));
-				
+
 				top3RestaurantsList.add(restaurant);
 
 			}
@@ -175,6 +230,38 @@ public class RestaurantDB extends AbstractDB implements IDBAccess {
 			log.error(e.getMessage());
 		}
 		return top3RestaurantsList;
+	}
+
+	public int getRestaurantCount() throws Exception {
+		ResultSet rs = null;
+		int count = 0;
+		try {
+			PreparedStatement statement = this.getDBConnection()
+					.prepareStatement(MySQLQuery.SQL_ADMIN_RESTAURANT_COUNT);
+			rs = statement.executeQuery();
+			log.debug(" count retrieved from restaurant");
+			if (rs.next())
+				count = rs.getInt(1);
+		} catch (SQLException s) {
+			log.error(s.getMessage(), s);
+			throw s;
+		} finally {
+			rs.close();
+		}
+		return count;
+	}
+
+	public ResultSet getAllRestaurants() throws Exception {
+		ResultSet rs = null;
+		try {
+			PreparedStatement statement = this.getDBConnection().prepareStatement(MySQLQuery.SQL_ADMIN_RESTAURANT_ALL);
+			rs = statement.executeQuery();
+			log.debug("Data selected from restaurants table");
+		} catch (SQLException s) {
+			log.error(s.getMessage(), s);
+			throw s;
+		}
+		return rs;
 	}
 
 }

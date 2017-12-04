@@ -9,6 +9,7 @@ import org.controlsfx.control.Rating;
 
 import com.itm.food.dao.ItemRating;
 import com.itm.food.dao.OrderItem;
+import com.itm.food.util.ImageUtil;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXButton.ButtonType;
 
@@ -81,11 +82,7 @@ public class ItemsController extends BaseController {
 
 	void renderRestaurantHeader() {
 		try {
-	/*		String url = "file:\\" + new File("").getCanonicalFile().getParent().toString() + File.separatorChar
-					+ "FoodHub" + File.separatorChar + "src" + File.separatorChar + "com" + File.separatorChar + "itm"
-					+ File.separatorChar + "food" + File.separatorChar + "images" + File.separatorChar
-					+ "default-restaurent.png";*/
-			String url = "file:\\E:\\Projects\\GitHub\\finalproject-2604\\FoodHub\\src\\com\\itm\\food\\images\\default-restaurant.jpg";
+			String url = ImageUtil.getImagePath() + "default-restaurant.jpg";
 			imgRestaurant.setImage(new Image(url));
 		} catch (Exception ex) {
 			log.error(ex.getMessage());
@@ -130,11 +127,7 @@ public class ItemsController extends BaseController {
 		AnchorPane.setLeftAnchor(imageView, 0.0);
 		AnchorPane.setTopAnchor(imageView, 0.0);
 		try {
-/*			String url = "file:\\" + new File("").getCanonicalFile().getParent().toString() + File.separatorChar
-					+ "FoodHub" + File.separatorChar + "src" + File.separatorChar + "com" + File.separatorChar + "itm"
-					+ File.separatorChar + "food" + File.separatorChar + "images" + File.separatorChar
-					+ "default-items.png";*/
-			String url = "file:\\E:\\Projects\\GitHub\\finalproject-2604\\FoodHub\\src\\com\\itm\\food\\images\\default-items.png";
+			String url = ImageUtil.getImagePath() + "default-items.png";
 			imageView.setImage(new Image(url));
 		} catch (Exception ex) {
 			log.error(ex.getMessage());

@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.itm.food.controller.admin.DriverController">
+	<children>
+		<ToolBar layoutY="72.0" orientation="VERTICAL" prefHeight="181.0" prefWidth="117.0">
+			<items>
+				<Button id="homeButton" fx:id="homeButton" mnemonicParsing="false" prefHeight="30.0" prefWidth="97.0" text="Home">
+					<font>
+						<Font name="System Bold" size="14.0" />
+					</font>
+				</Button>
+				<Button id="restaurantButton" fx:id="restaurantButton" mnemonicParsing="false" text="Restaurants">
+					<font>
+						<Font name="System Bold" size="14.0" />
+					</font>
+				</Button>
+				<Button id="menuButton" fx:id="menuButton" mnemonicParsing="false" prefHeight="30.0" prefWidth="97.0" text="Menu">
+					<font>
+						<Font name="System Bold" size="14.0" />
+					</font>
+				</Button>
+				<Button id="driverButton" fx:id="driverButton" mnemonicParsing="false" prefHeight="30.0" prefWidth="96.0" text="Drivers">
+					<font>
+						<Font name="System Bold" size="14.0" />
+					</font>
+				</Button>
+				<Button id="reviewButton" fx:id="reviewButton" mnemonicParsing="false" prefHeight="30.0" prefWidth="97.0" text="Orders">
+					<font>
+						<Font name="System Bold" size="14.0" />
+					</font>
+				</Button>
+			</items>
+		</ToolBar>
+		<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="75.0" prefWidth="129.0" />
+		<AnchorPane layoutX="127.0" minHeight="0.0" minWidth="0.0" prefHeight="75.0" prefWidth="686.0" AnchorPane.bottomAnchor="525.0" AnchorPane.leftAnchor="115.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+			<children>
+				<Button id="logoutButton" fx:id="logoutButton" layoutX="627.0" layoutY="2.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="70.0" text="Log Out" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+				<Button id="profileButton" fx:id="profileButton" layoutX="567.0" layoutY="2.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="70.0" text="Profile" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="5.0" />
+				<Label alignment="CENTER" layoutX="146.0" layoutY="15.0" prefHeight="30.0" prefWidth="284.0" text="FOODHUB ADMIN">
+					<font>
+						<Font name="Arial Black" size="24.0" />
+					</font>
+				</Label>
+			</children>
+		</AnchorPane>
+		<TitledPane animated="false" collapsible="false" layoutX="117.0" layoutY="72.0" prefHeight="500.0" prefWidth="700.0" text="Drivers">
+			<content>
+				<StackPane id="stackPaneDriver" fx:id="stackPaneDriver">
+					<children>
+						<AnchorPane id="driverAddPane" fx:id="driverAddPane">
+							<children>
+								<GridPane id="addGrid" fx:id="addGrid" layoutX="51.0" layoutY="110.0" prefHeight="285.0" prefWidth="456.0">
+									<columnConstraints>
+										<ColumnConstraints hgrow="SOMETIMES" maxWidth="165.0" minWidth="10.0" prefWidth="122.0" />
+										<ColumnConstraints hgrow="SOMETIMES" maxWidth="268.0" minWidth="10.0" prefWidth="268.0" />
+										<ColumnConstraints hgrow="SOMETIMES" maxWidth="170.0" minWidth="10.0" prefWidth="68.0" />
+									</columnConstraints>
+									<rowConstraints>
+										<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+										<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+										<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+										<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+										<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+										<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+									</rowConstraints>
+									<children>
+										<Label text="First Name" />
+										<Label text="Last Name" GridPane.rowIndex="1" />
+										<Label text="Email" GridPane.rowIndex="2" />
+										<Label text="Phone" GridPane.rowIndex="3" />
+										<Label text="Vehicle Number" GridPane.rowIndex="4" />
+										<Label text="License Number" GridPane.rowIndex="5" />
+										<TextField id="driverFirstName" fx:id="driverFirstName" GridPane.columnIndex="1" />
+										<TextField id="driverLastName" fx:id="driverLastName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+										<TextField id="driverEmail" fx:id="driverEmail" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+										<TextField id="driverPhone" fx:id="driverPhone" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+										<TextField id="vehicleNo" fx:id="vehicleNo" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+										<TextField id="licenseNo" fx:id="licenseNo" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+										<Label alignment="CENTER" prefHeight="35.0" prefWidth="51.0" text="*" textFill="#eb0707" GridPane.columnIndex="2">
+											<font>
+												<Font size="24.0" />
+											</font>
+										</Label>
+										<Label alignment="CENTER" prefHeight="35.0" prefWidth="47.0" text="*" textFill="#f20707" GridPane.columnIndex="2" GridPane.rowIndex="1">
+											<font>
+												<Font size="24.0" />
+											</font>
+										</Label>
+										<Label alignment="CENTER" prefHeight="35.0" prefWidth="46.0" text="*" textFill="#f20606" GridPane.columnIndex="2" GridPane.rowIndex="2">
+											<font>
+												<Font size="24.0" />
+											</font>
+										</Label>
+										<Label alignment="CENTER" prefHeight="35.0" prefWidth="45.0" text="*" textFill="#eb0505" GridPane.columnIndex="2" GridPane.rowIndex="3">
+											<font>
+												<Font size="24.0" />
+											</font>
+										</Label>
+										<Label alignment="CENTER" prefHeight="35.0" prefWidth="43.0" text="*" textFill="#f20404" GridPane.columnIndex="2" GridPane.rowIndex="4">
+											<font>
+												<Font size="24.0" />
+											</font>
+										</Label>
+										<Label alignment="CENTER" prefHeight="35.0" prefWidth="44.0" text="*" textFill="#eb0404" GridPane.columnIndex="2" GridPane.rowIndex="5">
+											<font>
+												<Font size="24.0" />
+											</font>
+										</Label>
+									</children>
+								</GridPane>
+								<Button id="addButton" fx:id="addButton" layoutX="609.0" layoutY="400.0" mnemonicParsing="false" text="Add" />
+								<Label alignment="CENTER" layoutX="213.0" layoutY="50.0" prefHeight="30.0" prefWidth="148.0" text="Add Driver Details">
+									<font>
+										<Font name="System Bold" size="14.0" />
+									</font>
+								</Label>
+							</children>
+						</AnchorPane>
+						<AnchorPane id="driverUpdatePane" fx:id="driverUpdatePane">
+							<children>
+								<GridPane id="updateGrid" fx:id="updateGrid" layoutX="49.0" layoutY="146.0" prefHeight="231.0" prefWidth="359.0">
+									<children>
+										<Label text="First Name" />
+										<Label text="Last Name" GridPane.rowIndex="1" />
+										<Label text="Email" GridPane.rowIndex="2" />
+										<Label text="Phone" GridPane.rowIndex="3" />
+										<Label text="Vehicle Number" GridPane.rowIndex="4" />
+										<Label text="License Number" GridPane.rowIndex="5" />
+										<TextField id="UdriverFirstName" fx:id="UdriverFirstName" prefHeight="11.0" prefWidth="153.0" GridPane.columnIndex="1" />
+										<TextField id="UdriverLastName" fx:id="UdriverLastName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+										<TextField id="UdriverEmail" fx:id="UdriverEmail" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+										<TextField id="UdriverPhone" fx:id="UdriverPhone" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+										<TextField id="UvehicleNo" fx:id="UvehicleNo" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+										<TextField id="UlicenseNo" fx:id="UlicenseNo" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+									</children>
+									<columnConstraints>
+										<ColumnConstraints hgrow="SOMETIMES" maxWidth="165.0" minWidth="10.0" prefWidth="122.0" />
+										<ColumnConstraints hgrow="SOMETIMES" maxWidth="170.0" minWidth="10.0" prefWidth="165.0" />
+									</columnConstraints>
+									<rowConstraints>
+										<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+										<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+										<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+										<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+										<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+										<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+									</rowConstraints>
+								</GridPane>
+								<Button id="updtSearchButton" fx:id="updtSearchButton" layoutX="556.0" layoutY="23.0" mnemonicParsing="false" text="Search" />
+								<Button id="updateButton" fx:id="updateButton" layoutX="510.0" layoutY="363.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="98.0" text="Save Changes" />
+								<Label layoutX="56.0" layoutY="27.0" text="Driver ID" />
+								<TextField id="updtdriver" fx:id="updtdriver" layoutX="224.0" layoutY="23.0" />
+								<Label id="UresultTitle" fx:id="UresultTitle" layoutX="267.0" layoutY="85.0" text="Driver Details">
+									<font>
+										<Font name="System Bold" size="14.0" />
+									</font>
+								</Label>
+							</children>
+						</AnchorPane>
+						<AnchorPane id="driverDeletePane" fx:id="driverDeletePane">
+							<children>
+								<Button id="deleteButton" fx:id="deleteButton" layoutX="549.0" layoutY="384.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="98.0" text="Delete" />
+								<Label layoutX="48.0" layoutY="27.0" text="Driver ID" />
+								<TextField id="deletedriver" fx:id="deletedriver" layoutX="219.0" layoutY="23.0" />
+								<Button id="deleteSearchButton" fx:id="deleteSearchButton" layoutX="582.0" layoutY="31.0" mnemonicParsing="false" text="Search" />
+								<GridPane id="deleteGrid" fx:id="deleteGrid" layoutX="39.0" layoutY="134.0" prefHeight="244.0" prefWidth="403.0">
+									<children>
+										<Label text="First Name" />
+										<Label text="Last Name" GridPane.rowIndex="1" />
+										<Label text="Email" GridPane.rowIndex="2" />
+										<Label text="Phone" GridPane.rowIndex="3" />
+										<Label text="Vehicle Number" GridPane.rowIndex="4" />
+										<Label text="License Number" GridPane.rowIndex="5" />
+										<TextField id="DdriverFirstName" fx:id="DdriverFirstName" GridPane.columnIndex="1" />
+										<TextField id="DdriverLastName" fx:id="DdriverLastName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+										<TextField id="DdriverEmail" fx:id="DdriverEmail" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+										<TextField id="DdriverPhone" fx:id="DdriverPhone" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+										<TextField id="DvehicleNo" fx:id="DvehicleNo" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+										<TextField id="DlicenseNo" fx:id="DlicenseNo" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+									</children>
+									<columnConstraints>
+										<ColumnConstraints hgrow="SOMETIMES" maxWidth="165.0" minWidth="10.0" prefWidth="122.0" />
+										<ColumnConstraints hgrow="SOMETIMES" maxWidth="170.0" minWidth="10.0" prefWidth="165.0" />
+									</columnConstraints>
+									<rowConstraints>
+										<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+										<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+										<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+										<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+										<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+										<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+									</rowConstraints>
+								</GridPane>
+								<Label id="DresultTitle" fx:id="DresultTitle" alignment="CENTER" contentDisplay="CENTER" layoutX="232.0" layoutY="80.0" prefHeight="30.0" prefWidth="129.0" text="Driver Details">
+									<font>
+										<Font name="System Bold" size="14.0" />
+									</font>
+								</Label>
+							</children>
+						</AnchorPane>
+						<AnchorPane id="driverViewPane" fx:id="driverViewPane" minHeight="0.0" minWidth="0.0">
+							<children>
+								<MenuButton id="actionButton" fx:id="actionButton" alignment="CENTER" layoutX="605.0" layoutY="2.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="74.0" text="Actions">
+									<items>
+										<MenuItem id="addDriverButton" fx:id="addDriverButton" mnemonicParsing="false" text="Add Driver" />
+										<MenuItem id="updateDriverButton" fx:id="updateDriverButton" mnemonicParsing="false" text="Update Driver Details" />
+										<MenuItem id="deleteDriverButton" fx:id="deleteDriverButton" mnemonicParsing="false" text="Delete Driver" />
+									</items>
+								</MenuButton>
+								<SplitPane id="splitPaneView" fx:id="splitPaneView" orientation="VERTICAL" prefHeight="454.0" prefWidth="597.0">
+									<items>
+										<AnchorPane id="resultsPane" fx:id="resultsPane" minHeight="0.0" minWidth="0.0" prefHeight="283.0" prefWidth="484.0">
+											<children>
+												<ScrollPane id="resultsScrollPane" fx:id="resultsScrollPane" prefHeight="452.0" prefWidth="596.0">
+													<content>
+														<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+													</content>
+												</ScrollPane>
+											</children>
+										</AnchorPane>
+									</items>
+								</SplitPane>
+							</children>
+						</AnchorPane>
+					</children>
+				</StackPane>
+			</content>
+			<font>
+				<Font name="System Bold" size="12.0" />
+			</font>
+		</TitledPane>
+	</children>
+</AnchorPane>

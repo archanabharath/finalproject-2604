@@ -67,7 +67,7 @@ public class RestaurantRatingDB extends AbstractDB implements IDBAccess {
 	}
 
 	@Override
-	public void delete(String id) throws Exception {
+	public void delete(int id) throws Exception {
 		// TODO Auto-generated method stub
 
 	}

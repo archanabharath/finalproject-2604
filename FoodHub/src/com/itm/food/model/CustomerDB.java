@@ -26,7 +26,8 @@ public class CustomerDB extends AbstractDB implements IDBAccess {
 		try {
 			PreparedStatement preparedStatement = this.getDBConnection()
 					.prepareStatement(MySQLQuery.SQL_CUSTOMER_INSERT, Statement.RETURN_GENERATED_KEYS);
-			// preparedStatement.setString(1, customerObj.getCustomerID()); // CUSTOMER_ID
+			// preparedStatement.setString(1, customerObj.getCustomerID()); //
+			// CUSTOMER_ID
 			preparedStatement.setString(1, customerObj.getFirstName()); // FIRST_NAME
 			preparedStatement.setString(2, customerObj.getLastName());// LAST_NAME
 			preparedStatement.setDate(3,
@@ -37,10 +38,10 @@ public class CustomerDB extends AbstractDB implements IDBAccess {
 			preparedStatement.setString(7, customerObj.getEncryptedPassword()); // PASSWORD
 			preparedStatement.executeUpdate();
 			ResultSet rsReturnKey = preparedStatement.getGeneratedKeys();
-			while(rsReturnKey.next()) {
+			while (rsReturnKey.next()) {
 				customerObj.setCustomerID(rsReturnKey.getInt(1));
 			}
-			
+
 			preparedStatement.close();
 
 		} catch (Exception ex) {
@@ -121,7 +122,7 @@ public class CustomerDB extends AbstractDB implements IDBAccess {
 	}
 
 	@Override
-	public void delete(String id) {
+	public void delete(int id) {
 		// TODO Auto-generated method stub
 
 	}
@@ -179,11 +180,11 @@ public class CustomerDB extends AbstractDB implements IDBAccess {
 	}
 
 	/*
-	 * Retrieve customer information from customer table to print it on profile page
+	 * Retrieve customer information from customer table to print it on profile
+	 * page
 	 */
 
-	public Customer pullCustomerDetails(int i) throws SQLException {
-
+	public Customer pullCustomerDetails(int i) throws Exception {
 		Customer userProfile = new Customer();
 		try {
 			PreparedStatement preparestatement = this.getDBConnection()
@@ -198,17 +199,33 @@ public class CustomerDB extends AbstractDB implements IDBAccess {
 				userProfile.setUsername(customerProfilers.getString(4));
 				userProfile.setEncryptedPassword(customerProfilers.getString(5));
 				userProfile.setDOB(customerProfilers.getDate(6).toString());
-
 			}
 		} catch (ClassNotFoundException e) {
 			log.error(e.getMessage());
-
+			throw e;
 		} catch (SQLException e) {
 			log.error(e.getMessage());
-
+			throw e;
 		}
 		return userProfile;
+	}
 
+	public int getCustomerCount() throws Exception {
+		ResultSet rs = null;
+		int count = 0;
+		try {
+			PreparedStatement statement = this.getDBConnection().prepareStatement(MySQLQuery.SQL_ADMIN_CUSTOMER_COUNT);
+			rs = statement.executeQuery();
+			if (rs.next())
+				count = rs.getInt(1);
+			log.debug(" count retrieved from customer");
+		} catch (SQLException s) {
+			log.error(s.getMessage(), s);
+			throw s;
+		} finally {
+			rs.close();
+		}
+		return count;
 	}
 
 }

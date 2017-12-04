@@ -11,233 +11,372 @@
 <?import javafx.scene.text.Font?>
 <?import org.controlsfx.control.Rating?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1500.0" style="-fx-background-color: aliceblue;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.itm.food.controller.HomeController">
-   <children>
-      <ImageView fitHeight="945.0" fitWidth="1500.0" layoutX="10.0" layoutY="10.0" opacity="0.47" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="55.0">
-         <image>
-            <Image url="@../images/main-bg.jpg" />
-         </image>
-         <effect>
-            <GaussianBlur />
-         </effect>
-      </ImageView>
-      <AnchorPane prefHeight="55.0" prefWidth="900.0" style="-fx-background-color: steelblue;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <Label prefHeight="20.0" prefWidth="80.0" text="FoodHub" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="15.0">
-               <font>
-                  <Font name="Arial Bold" size="18.0" />
-               </font>
-            </Label>
-            <Label fx:id="txtFullname" layoutX="1207.0" layoutY="19.0" prefHeight="35.0" prefWidth="174.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="10.0" />
-            <ImageView fitHeight="45.0" fitWidth="35.0" layoutX="1217.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="225.0" AnchorPane.topAnchor="10.0">
-               <image>
-                  <Image url="@../images/icons8-female-profile-96.png" />
-               </image>
-            </ImageView>
-         </children></AnchorPane>
-      <AnchorPane layoutX="200.0" layoutY="55.0" prefHeight="236.0" prefWidth="365.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="55.0">
-         <children>
-            <Separator layoutX="-1.0" layoutY="426.0" prefHeight="26.0" prefWidth="1299.0" />
-            <AnchorPane fx:id="anchorrestaurant1" layoutX="91.0" layoutY="129.0" onMouseClicked="#handleViewMenu1" prefHeight="246.0" prefWidth="300.0" style="-fx-background-color: salmon;" AnchorPane.bottomAnchor="560.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="920.0" AnchorPane.topAnchor="129.0">
-               <children>
-                  <ImageView fx:id="imgviewrestaurant1" fitHeight="206.0" fitWidth="297.0" pickOnBounds="true" AnchorPane.bottomAnchor="41.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                  <image>
-                  <Image url="@../images/restaur.jpg" />
-               </image>
-                  </ImageView>
-                  <Label fx:id="lblrestaurant1" layoutX="6.0" layoutY="203.0" prefHeight="41.0" prefWidth="294.0" style="-fx-background-color: darkorange;" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="205.0">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <Rating fx:id="rrating1" layoutX="110.0" layoutY="14.0" partialRating="true" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-               </children>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor></AnchorPane>
-            <AnchorPane fx:id="anchorrestaurant2" onMouseClicked="#handleViewMenu2" prefHeight="246.0" prefWidth="300.0" style="-fx-background-color: salmon;" AnchorPane.bottomAnchor="560.0" AnchorPane.leftAnchor="500.0" AnchorPane.rightAnchor="500.0" AnchorPane.topAnchor="129.0">
-               <children>
-                  <ImageView fx:id="imgviewrestaurant2" fitHeight="206.0" fitWidth="297.0" onMouseClicked="#handleViewMenu2" pickOnBounds="true" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                  <image>
-                  <Image url="@../images/fine_dining_image.jpg" />
-               </image>
-               </ImageView>
-                  <Label fx:id="lblrestaurant2" layoutX="68.0" layoutY="212.0" style="-fx-background-color: darkorange;" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="205.0">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <Rating fx:id="rrating2" layoutX="85.0" layoutY="17.0" partialRating="true" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-               </children>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor></AnchorPane>
-            <AnchorPane fx:id="anchorrestaurant3" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleViewMenu3" prefHeight="246.0" prefWidth="300.0" style="-fx-background-color: salmon;" AnchorPane.bottomAnchor="560.0" AnchorPane.leftAnchor="920.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="129.0">
-               <children>
-                  <ImageView fx:id="imgviewrestaurant3" fitHeight="206.0" fitWidth="280.0" onMouseClicked="#handleViewMenu3" pickOnBounds="true" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                  <image>
-                  <Image url="@../images/hotel.jpg" />
-               </image>
-               </ImageView>
-                  <Label fx:id="lblrestaurant3" style="-fx-background-color: darkorange;" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="205.0">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <Rating fx:id="rrating3" layoutX="87.0" layoutY="7.0" partialRating="true" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-               </children>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor></AnchorPane>
-            <AnchorPane fx:id="anchoritem1" layoutX="86.0" layoutY="552.0" onMouseClicked="#handleAddToCart1" prefHeight="246.0" prefWidth="300.0" style="-fx-background-color: lightseagreen;" AnchorPane.bottomAnchor="130.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="920.0" AnchorPane.topAnchor="550.0">
-               <children>
-                  <ImageView fx:id="imgviewitem1" fitHeight="206.0" fitWidth="300.0" pickOnBounds="true" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                  <image>
-                  <Image url="@../images/burger.jpg" />
-               </image>
-               </ImageView>
-                  <Label fx:id="lblitem1" layoutX="19.0" layoutY="212.0" style="-fx-background-color: darkorange;" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="205.0">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <Rating fx:id="irating1" layoutX="120.0" layoutY="24.0" partialRating="true" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-               </children>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </AnchorPane>
-            <AnchorPane fx:id="anchoritem2" onMouseClicked="#handleAddToCart2" prefHeight="246.0" prefWidth="300.0" style="-fx-background-color: lightseagreen;" AnchorPane.bottomAnchor="130.0" AnchorPane.leftAnchor="500.0" AnchorPane.topAnchor="550.0">
-               <children>
-                  <ImageView fx:id="imgviewitem2" fitHeight="206.0" fitWidth="300.0" pickOnBounds="true" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                  <image>
-                  <Image url="@../images/pizza.jpg" />
-               </image>
-               </ImageView>
-                  <Label fx:id="lblitem2" style="-fx-background-color: darkorange;" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="205.0">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <Rating fx:id="irating2" layoutX="120.0" layoutY="24.0" partialRating="true" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-               </children>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor></AnchorPane>
-            <AnchorPane fx:id="anchoritem3" onMouseClicked="#handleAddToCart3" prefHeight="246.0" prefWidth="300.0" style="-fx-background-color: lightseagreen;" AnchorPane.bottomAnchor="130.0" AnchorPane.leftAnchor="920.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="550.0">
-               <children>
-                  <ImageView fx:id="imgviewitem3" fitHeight="206.0" fitWidth="280.0" pickOnBounds="true" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                  <image>
-                  <Image url="@../images/blog1.jpg" />
-               </image>
-               </ImageView>
-                  <Label fx:id="lblitem3" style="-fx-background-color: darkorange;" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="205.0">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <Rating fx:id="irating3" layoutX="120.0" layoutY="24.0" partialRating="true" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-               </children>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor></AnchorPane>
-            <Label layoutX="29.0" layoutY="37.0" prefHeight="45.0" prefWidth="410.0" text="Top Restaurants to Enjoy Dining" textFill="CRIMSON" AnchorPane.bottomAnchor="870.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="870.0" AnchorPane.topAnchor="30.0">
-               <font>
-                  <Font name="System Bold" size="26.0" />
-               </font>
-            </Label>
-            <Label layoutX="25.0" layoutY="464.0" text="Top items to taste" textFill="CRIMSON" AnchorPane.bottomAnchor="430.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="1055.0" AnchorPane.topAnchor="470.0">
-               <font>
-                  <Font name="System Bold" size="26.0" />
-               </font>
-            </Label>
-         </children></AnchorPane>
-      <AnchorPane layoutY="55.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: deepskyblue;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1300.0" AnchorPane.topAnchor="55.0">
-         <children>
-            <JFXButton layoutX="20.0" layoutY="101.0" onMouseReleased="#handleMouseHome" prefHeight="50.0" prefWidth="135.0" style="-fx-background-color: aliceblue;" text="Home" textAlignment="RIGHT" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="0.0">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </JFXButton>
-            <ImageView fitHeight="45.0" fitWidth="35.0" layoutX="66.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="100.0">
-               <image>
-                  <Image url="@../images/icons8-home-96.png" />
-               </image>
-            </ImageView>
-            <JFXButton layoutX="20.0" layoutY="168.0" onMouseReleased="#handleMouseSearch" prefHeight="50.0" prefWidth="135.0" text="Search" textAlignment="RIGHT" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="0.0">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </JFXButton>
-            <ImageView fitHeight="45.0" fitWidth="35.0" layoutX="40.0" layoutY="175.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="125.0">
-               <image>
-                  <Image url="@../images/icons8-search-96.png" />
-               </image>
-            </ImageView>
-            <JFXButton fx:id="btnBasket" layoutX="20.0" layoutY="241.0" onMouseReleased="#handleMouseBasket" prefHeight="50.0" prefWidth="135.0" text="Basket" textAlignment="RIGHT" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="0.0">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </JFXButton>
-            <ImageView fitHeight="45.0" fitWidth="35.0" layoutX="40.0" layoutY="250.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="125.0">
-               <image>
-                  <Image url="@../images/icons8-food-96.png" />
-               </image>
-            </ImageView>
-            <JFXButton layoutX="20.0" layoutY="320.0" onMouseReleased="#handleMouseOrders" prefHeight="50.0" prefWidth="135.0" text="Orders" textAlignment="RIGHT" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="0.0">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </JFXButton>
-            <ImageView fitHeight="45.0" fitWidth="35.0" layoutX="40.0" layoutY="327.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="125.0">
-               <image>
-                  <Image url="@../images/icons8-order-history-96.png" />
-               </image>
-            </ImageView>
-            <JFXButton layoutX="33.0" layoutY="397.0" onMouseReleased="#handleMouseAddress" prefHeight="50.0" prefWidth="135.0" text="Address" textAlignment="RIGHT" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="0.0">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </JFXButton>
-            <ImageView fitHeight="45.0" fitWidth="35.0" layoutX="53.0" layoutY="404.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="100.0">
-               <image>
-                  <Image url="@../images/icons8-address-book-96.png" />
-               </image>
-            </ImageView>
-            <JFXButton layoutX="20.0" layoutY="478.0" onMouseReleased="#handleMouseCards" prefHeight="50.0" prefWidth="135.0" text="Cards" textAlignment="RIGHT" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="0.0">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </JFXButton>
-            <ImageView fitHeight="45.0" fitWidth="35.0" layoutX="40.0" layoutY="485.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="125.0">
-               <image>
-                  <Image url="@../images/icons8-credit-card-96.png" />
-               </image>
-            </ImageView>
-            <JFXButton layoutX="33.0" layoutY="557.0" onMouseReleased="#handleMouseProfile" prefHeight="50.0" prefWidth="135.0" text="Profile" textAlignment="RIGHT" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="0.0">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </JFXButton>
-            <ImageView fitHeight="45.0" fitWidth="35.0" layoutX="40.0" layoutY="564.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="125.0">
-               <image>
-                  <Image url="@../images/icons8-customer-96.png" />
-               </image>
-            </ImageView>
-            <JFXButton layoutX="42.0" layoutY="858.0" onMouseReleased="#handleMouseSignout" prefHeight="50.0" prefWidth="135.0" text="Sign out" textAlignment="RIGHT" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="0.0">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </JFXButton>
-            <ImageView fitHeight="45.0" fitWidth="35.0" layoutX="49.0" layoutY="865.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="100.0">
-               <image>
-                  <Image url="@../images/icons8-sign-out-96.png" />
-               </image>
-            </ImageView>
-         </children>
-      </AnchorPane>
-   </children>
-   <cursor>
-      <Cursor fx:constant="DEFAULT" />
-   </cursor>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity"
+	minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0"
+	prefWidth="1500.0" style="-fx-background-color: aliceblue;" xmlns="http://javafx.com/javafx/9.0.1"
+	xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.itm.food.controller.HomeController">
+	<children>
+		<ImageView fitHeight="945.0" fitWidth="1500.0" layoutX="10.0"
+			layoutY="10.0" opacity="0.47" pickOnBounds="true"
+			AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+			AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="55.0">
+			<image>
+				<Image url="@../images/main-bg.jpg" />
+			</image>
+			<effect>
+				<GaussianBlur />
+			</effect>
+		</ImageView>
+		<AnchorPane prefHeight="55.0" prefWidth="900.0"
+			style="-fx-background-color: steelblue;" AnchorPane.leftAnchor="0.0"
+			AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+			<children>
+				<Label prefHeight="20.0" prefWidth="80.0" text="FoodHub"
+					textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="20.0"
+					AnchorPane.topAnchor="15.0">
+					<font>
+						<Font name="Arial Bold" size="18.0" />
+					</font>
+				</Label>
+				<Label fx:id="txtFullname" layoutX="1207.0" layoutY="19.0"
+					prefHeight="35.0" prefWidth="174.0" AnchorPane.bottomAnchor="10.0"
+					AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="10.0" />
+				<ImageView fitHeight="45.0" fitWidth="35.0" layoutX="1217.0"
+					layoutY="12.0" pickOnBounds="true" preserveRatio="true"
+					AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="225.0"
+					AnchorPane.topAnchor="10.0">
+					<image>
+						<Image url="@../images/icons8-female-profile-96.png" />
+					</image>
+				</ImageView>
+			</children>
+		</AnchorPane>
+		<AnchorPane layoutX="200.0" layoutY="55.0" prefHeight="236.0"
+			prefWidth="365.0" AnchorPane.bottomAnchor="0.0"
+			AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="0.0"
+			AnchorPane.topAnchor="55.0">
+			<children>
+				<Separator layoutX="-1.0" layoutY="426.0" prefHeight="26.0"
+					prefWidth="1299.0" />
+				<AnchorPane fx:id="anchorrestaurant1" layoutX="91.0"
+					layoutY="129.0" onMouseClicked="#handleViewMenu1" prefHeight="246.0"
+					prefWidth="300.0" style="-fx-background-color: salmon;"
+					AnchorPane.bottomAnchor="560.0" AnchorPane.leftAnchor="80.0"
+					AnchorPane.rightAnchor="920.0" AnchorPane.topAnchor="129.0">
+					<children>
+						<ImageView fx:id="imgviewrestaurant1" fitHeight="206.0"
+							fitWidth="297.0" pickOnBounds="true" AnchorPane.bottomAnchor="41.0"
+							AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+							AnchorPane.topAnchor="0.0">
+							<image>
+								<Image url="@../images/restaur.jpg" />
+							</image>
+						</ImageView>
+						<Label fx:id="lblrestaurant1" layoutX="6.0" layoutY="203.0"
+							prefHeight="41.0" prefWidth="294.0" style="-fx-background-color: darkorange;"
+							textFill="WHITE" AnchorPane.bottomAnchor="0.0"
+							AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+							AnchorPane.topAnchor="205.0">
+							<font>
+								<Font name="System Bold" size="14.0" />
+							</font>
+						</Label>
+						<Rating fx:id="rrating1" layoutX="110.0" layoutY="14.0"
+							partialRating="true" AnchorPane.rightAnchor="0.0"
+							AnchorPane.topAnchor="0.0" />
+					</children>
+					<cursor>
+						<Cursor fx:constant="HAND" />
+					</cursor>
+				</AnchorPane>
+				<AnchorPane fx:id="anchorrestaurant2" onMouseClicked="#handleViewMenu2"
+					prefHeight="246.0" prefWidth="300.0" style="-fx-background-color: salmon;"
+					AnchorPane.bottomAnchor="560.0" AnchorPane.leftAnchor="500.0"
+					AnchorPane.rightAnchor="500.0" AnchorPane.topAnchor="129.0">
+					<children>
+						<ImageView fx:id="imgviewrestaurant2" fitHeight="206.0"
+							fitWidth="297.0" onMouseClicked="#handleViewMenu2" pickOnBounds="true"
+							AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0"
+							AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+							<image>
+								<Image url="@../images/fine_dining_image.jpg" />
+							</image>
+						</ImageView>
+						<Label fx:id="lblrestaurant2" layoutX="68.0" layoutY="212.0"
+							style="-fx-background-color: darkorange;" textFill="WHITE"
+							AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+							AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="205.0">
+							<font>
+								<Font name="System Bold" size="14.0" />
+							</font>
+						</Label>
+						<Rating fx:id="rrating2" layoutX="85.0" layoutY="17.0"
+							partialRating="true" AnchorPane.rightAnchor="0.0"
+							AnchorPane.topAnchor="0.0" />
+					</children>
+					<cursor>
+						<Cursor fx:constant="HAND" />
+					</cursor>
+				</AnchorPane>
+				<AnchorPane fx:id="anchorrestaurant3" minHeight="-Infinity"
+					minWidth="-Infinity" onMouseClicked="#handleViewMenu3" prefHeight="246.0"
+					prefWidth="300.0" style="-fx-background-color: salmon;"
+					AnchorPane.bottomAnchor="560.0" AnchorPane.leftAnchor="920.0"
+					AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="129.0">
+					<children>
+						<ImageView fx:id="imgviewrestaurant3" fitHeight="206.0"
+							fitWidth="280.0" onMouseClicked="#handleViewMenu3" pickOnBounds="true"
+							AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0"
+							AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+							<image>
+								<Image url="@../images/hotel.jpg" />
+							</image>
+						</ImageView>
+						<Label fx:id="lblrestaurant3" style="-fx-background-color: darkorange;"
+							textFill="WHITE" AnchorPane.bottomAnchor="0.0"
+							AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+							AnchorPane.topAnchor="205.0">
+							<font>
+								<Font name="System Bold" size="14.0" />
+							</font>
+						</Label>
+						<Rating fx:id="rrating3" layoutX="87.0" layoutY="7.0"
+							partialRating="true" AnchorPane.rightAnchor="0.0"
+							AnchorPane.topAnchor="0.0" />
+					</children>
+					<cursor>
+						<Cursor fx:constant="HAND" />
+					</cursor>
+				</AnchorPane>
+				<AnchorPane fx:id="anchoritem1" layoutX="86.0" layoutY="552.0"
+					onMouseClicked="#handleAddToCart1" prefHeight="246.0" prefWidth="300.0"
+					style="-fx-background-color: lightseagreen;"
+					AnchorPane.bottomAnchor="130.0" AnchorPane.leftAnchor="80.0"
+					AnchorPane.rightAnchor="920.0" AnchorPane.topAnchor="550.0">
+					<children>
+						<ImageView fx:id="imgviewitem1" fitHeight="206.0"
+							fitWidth="300.0" pickOnBounds="true" AnchorPane.bottomAnchor="40.0"
+							AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+							AnchorPane.topAnchor="0.0">
+							<image>
+								<Image url="@../images/burger.jpg" />
+							</image>
+						</ImageView>
+						<Label fx:id="lblitem1" layoutX="19.0" layoutY="212.0"
+							style="-fx-background-color: darkorange;" textFill="WHITE"
+							AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+							AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="205.0">
+							<font>
+								<Font name="System Bold" size="14.0" />
+							</font>
+						</Label>
+						<Rating fx:id="irating1" layoutX="120.0" layoutY="24.0"
+							partialRating="true" AnchorPane.rightAnchor="0.0"
+							AnchorPane.topAnchor="0.0" />
+					</children>
+					<cursor>
+						<Cursor fx:constant="HAND" />
+					</cursor>
+				</AnchorPane>
+				<AnchorPane fx:id="anchoritem2" onMouseClicked="#handleAddToCart2"
+					prefHeight="246.0" prefWidth="300.0" style="-fx-background-color: lightseagreen;"
+					AnchorPane.bottomAnchor="130.0" AnchorPane.leftAnchor="500.0"
+					AnchorPane.topAnchor="550.0">
+					<children>
+						<ImageView fx:id="imgviewitem2" fitHeight="206.0"
+							fitWidth="300.0" pickOnBounds="true" AnchorPane.bottomAnchor="40.0"
+							AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+							AnchorPane.topAnchor="0.0">
+							<image>
+								<Image url="@../images/pizza.jpg" />
+							</image>
+						</ImageView>
+						<Label fx:id="lblitem2" style="-fx-background-color: darkorange;"
+							textFill="WHITE" AnchorPane.bottomAnchor="0.0"
+							AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+							AnchorPane.topAnchor="205.0">
+							<font>
+								<Font name="System Bold" size="14.0" />
+							</font>
+						</Label>
+						<Rating fx:id="irating2" layoutX="120.0" layoutY="24.0"
+							partialRating="true" AnchorPane.rightAnchor="0.0"
+							AnchorPane.topAnchor="0.0" />
+					</children>
+					<cursor>
+						<Cursor fx:constant="HAND" />
+					</cursor>
+				</AnchorPane>
+				<AnchorPane fx:id="anchoritem3" onMouseClicked="#handleAddToCart3"
+					prefHeight="246.0" prefWidth="300.0" style="-fx-background-color: lightseagreen;"
+					AnchorPane.bottomAnchor="130.0" AnchorPane.leftAnchor="920.0"
+					AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="550.0">
+					<children>
+						<ImageView fx:id="imgviewitem3" fitHeight="206.0"
+							fitWidth="280.0" pickOnBounds="true" AnchorPane.bottomAnchor="40.0"
+							AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+							AnchorPane.topAnchor="0.0">
+							<image>
+								<Image url="@../images/blog1.jpg" />
+							</image>
+						</ImageView>
+						<Label fx:id="lblitem3" style="-fx-background-color: darkorange;"
+							textFill="WHITE" AnchorPane.bottomAnchor="0.0"
+							AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+							AnchorPane.topAnchor="205.0">
+							<font>
+								<Font name="System Bold" size="14.0" />
+							</font>
+						</Label>
+						<Rating fx:id="irating3" layoutX="120.0" layoutY="24.0"
+							partialRating="true" AnchorPane.rightAnchor="0.0"
+							AnchorPane.topAnchor="0.0" />
+					</children>
+					<cursor>
+						<Cursor fx:constant="HAND" />
+					</cursor>
+				</AnchorPane>
+				<Label layoutX="29.0" layoutY="37.0" prefHeight="45.0"
+					prefWidth="410.0" text="Top Restaurants to Enjoy Dining" textFill="CRIMSON"
+					AnchorPane.bottomAnchor="870.0" AnchorPane.leftAnchor="20.0"
+					AnchorPane.rightAnchor="870.0" AnchorPane.topAnchor="30.0">
+					<font>
+						<Font name="System Bold" size="26.0" />
+					</font>
+				</Label>
+				<Label layoutX="25.0" layoutY="464.0" text="Top items to taste"
+					textFill="CRIMSON" AnchorPane.bottomAnchor="430.0"
+					AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="1055.0"
+					AnchorPane.topAnchor="470.0">
+					<font>
+						<Font name="System Bold" size="26.0" />
+					</font>
+				</Label>
+			</children>
+		</AnchorPane>
+		<AnchorPane layoutY="55.0" prefHeight="200.0" prefWidth="200.0"
+			style="-fx-background-color: deepskyblue;" AnchorPane.bottomAnchor="0.0"
+			AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1300.0"
+			AnchorPane.topAnchor="55.0">
+			<children>
+				<JFXButton layoutX="20.0" layoutY="101.0" onMouseReleased="#handleMouseHome"
+					prefHeight="50.0" prefWidth="135.0" style="-fx-background-color: aliceblue;"
+					text="Home" textAlignment="RIGHT" AnchorPane.leftAnchor="20.0"
+					AnchorPane.rightAnchor="0.0">
+					<font>
+						<Font name="System Bold" size="18.0" />
+					</font>
+				</JFXButton>
+				<ImageView fitHeight="45.0" fitWidth="35.0" layoutX="66.0"
+					layoutY="107.0" pickOnBounds="true" preserveRatio="true"
+					AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="100.0">
+					<image>
+						<Image url="@../images/icons8-home-96.png" />
+					</image>
+				</ImageView>
+				<JFXButton layoutX="20.0" layoutY="168.0" onMouseReleased="#handleMouseSearch"
+					prefHeight="50.0" prefWidth="135.0" text="Search" textAlignment="RIGHT"
+					AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="0.0">
+					<font>
+						<Font name="System Bold" size="18.0" />
+					</font>
+				</JFXButton>
+				<ImageView fitHeight="45.0" fitWidth="35.0" layoutX="40.0"
+					layoutY="175.0" pickOnBounds="true" preserveRatio="true"
+					AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="125.0">
+					<image>
+						<Image url="@../images/icons8-search-96.png" />
+					</image>
+				</ImageView>
+				<JFXButton fx:id="btnBasket" layoutX="20.0" layoutY="241.0"
+					onMouseReleased="#handleMouseBasket" prefHeight="50.0" prefWidth="135.0"
+					text="Basket" textAlignment="RIGHT" AnchorPane.leftAnchor="20.0"
+					AnchorPane.rightAnchor="0.0">
+					<font>
+						<Font name="System Bold" size="18.0" />
+					</font>
+				</JFXButton>
+				<ImageView fitHeight="45.0" fitWidth="35.0" layoutX="40.0"
+					layoutY="250.0" pickOnBounds="true" preserveRatio="true"
+					AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="125.0">
+					<image>
+						<Image url="@../images/icons8-food-96.png" />
+					</image>
+				</ImageView>
+				<JFXButton layoutX="20.0" layoutY="320.0" onMouseReleased="#handleMouseOrders"
+					prefHeight="50.0" prefWidth="135.0" text="Orders" textAlignment="RIGHT"
+					AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="0.0">
+					<font>
+						<Font name="System Bold" size="18.0" />
+					</font>
+				</JFXButton>
+				<ImageView fitHeight="45.0" fitWidth="35.0" layoutX="40.0"
+					layoutY="327.0" pickOnBounds="true" preserveRatio="true"
+					AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="125.0">
+					<image>
+						<Image url="@../images/icons8-order-history-96.png" />
+					</image>
+				</ImageView>
+				<JFXButton layoutX="33.0" layoutY="397.0" onMouseReleased="#handleMouseAddress"
+					prefHeight="50.0" prefWidth="135.0" text="Address" textAlignment="RIGHT"
+					AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="0.0">
+					<font>
+						<Font name="System Bold" size="18.0" />
+					</font>
+				</JFXButton>
+				<ImageView fitHeight="45.0" fitWidth="35.0" layoutX="53.0"
+					layoutY="404.0" pickOnBounds="true" preserveRatio="true"
+					AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="100.0">
+					<image>
+						<Image url="@../images/icons8-address-book-96.png" />
+					</image>
+				</ImageView>
+				<JFXButton layoutX="20.0" layoutY="478.0" onMouseReleased="#handleMouseCards"
+					prefHeight="50.0" prefWidth="135.0" text="Cards" textAlignment="RIGHT"
+					AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="0.0">
+					<font>
+						<Font name="System Bold" size="18.0" />
+					</font>
+				</JFXButton>
+				<ImageView fitHeight="45.0" fitWidth="35.0" layoutX="40.0"
+					layoutY="485.0" pickOnBounds="true" preserveRatio="true"
+					AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="125.0">
+					<image>
+						<Image url="@../images/icons8-credit-card-96.png" />
+					</image>
+				</ImageView>
+				<JFXButton layoutX="33.0" layoutY="557.0" onMouseReleased="#handleMouseProfile"
+					prefHeight="50.0" prefWidth="135.0" text="Profile" textAlignment="RIGHT"
+					AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="0.0">
+					<font>
+						<Font name="System Bold" size="18.0" />
+					</font>
+				</JFXButton>
+				<ImageView fitHeight="45.0" fitWidth="35.0" layoutX="40.0"
+					layoutY="564.0" pickOnBounds="true" preserveRatio="true"
+					AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="125.0">
+					<image>
+						<Image url="@../images/icons8-customer-96.png" />
+					</image>
+				</ImageView>
+				<JFXButton layoutX="42.0" layoutY="858.0" onMouseReleased="#handleMouseSignout"
+					prefHeight="50.0" prefWidth="135.0" text="Sign out" textAlignment="RIGHT"
+					AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="0.0">
+					<font>
+						<Font name="System Bold" size="18.0" />
+					</font>
+				</JFXButton>
+				<ImageView fitHeight="45.0" fitWidth="35.0" layoutX="49.0"
+					layoutY="865.0" pickOnBounds="true" preserveRatio="true"
+					AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="100.0">
+					<image>
+						<Image url="@../images/icons8-sign-out-96.png" />
+					</image>
+				</ImageView>
+			</children>
+		</AnchorPane>
+	</children>
+	<cursor>
+		<Cursor fx:constant="DEFAULT" />
+	</cursor>
 </AnchorPane>

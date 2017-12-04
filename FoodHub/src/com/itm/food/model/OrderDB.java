@@ -29,7 +29,7 @@ public class OrderDB extends AbstractDB implements IDBAccess {
 		try {
 			PreparedStatement preparedStatement = this.getDBConnection().prepareStatement(MySQLQuery.SQL_ORDER_INSERT,
 					Statement.RETURN_GENERATED_KEYS);
-			//preparedStatement.setString(1, order.getOrderId());
+			// preparedStatement.setString(1, order.getOrderId());
 			preparedStatement.setInt(1, order.getCustomerId());
 			preparedStatement.setInt(2, order.getCardId());
 			preparedStatement.setInt(3, order.getAddressId());
@@ -39,7 +39,7 @@ public class OrderDB extends AbstractDB implements IDBAccess {
 
 			preparedStatement.executeUpdate();
 			ResultSet rsReturnOrderKey = preparedStatement.getGeneratedKeys();
-			while(rsReturnOrderKey.next()) {
+			while (rsReturnOrderKey.next()) {
 				order.setOrderId(rsReturnOrderKey.getInt(1));
 			}
 			preparedStatement.close();
@@ -71,7 +71,7 @@ public class OrderDB extends AbstractDB implements IDBAccess {
 	}
 
 	@Override
-	public void delete(String id) throws Exception {
+	public void delete(int id) throws Exception {
 		// TODO Auto-generated method stub
 
 	}
@@ -152,9 +152,8 @@ public class OrderDB extends AbstractDB implements IDBAccess {
 				orderdata.setOrderStatus(rsCustomerOrder.getInt(16));
 				orderdata.setOrderTime(rsCustomerOrder.getTimestamp(17).toString());
 				orderdata.setDeliveryMode(rsCustomerOrder.getInt(18));
-				orderdata.setOrderFulfilment(
-						null != rsCustomerOrder.getTimestamp(19) ? rsCustomerOrder.getTimestamp(19).toString()
-								: StringUtils.EMPTY);
+				orderdata.setOrderFulfilment(null != rsCustomerOrder.getTimestamp(19)
+						? rsCustomerOrder.getTimestamp(19).toString() : StringUtils.EMPTY);
 
 				orderCustomerInfo.setPaymentData(paymentdata);
 				orderCustomerInfo.setAddressData(addressdata);
@@ -210,6 +209,123 @@ public class OrderDB extends AbstractDB implements IDBAccess {
 		}
 
 		return orderItemsList;
+	}
+
+	public int getOrderCount() throws Exception {
+		ResultSet rs = null;
+		int count = 0;
+		try {
+			PreparedStatement statement = this.getDBConnection().prepareStatement(MySQLQuery.SQL_ADMIN_ORDER_COUNT);
+			rs = statement.executeQuery();
+			log.debug(" count retrieved from customer");
+			if (rs.next()) {
+				count = rs.getInt(1);
+			}
+			statement.close();
+		} catch (SQLException s) {
+			log.error(s.getMessage(), s);
+			throw s;
+		} finally {
+			rs.close();
+		}
+		return count;
 
 	}
+
+	public int getFullFilledOrderCount() throws Exception {
+		ResultSet rs = null;
+		int count = 0;
+		try {
+			PreparedStatement statement = this.getDBConnection()
+					.prepareStatement(MySQLQuery.SQL_ADMIN_ORDER_FULLFILMENT_COUNT);
+			rs = statement.executeQuery();
+			log.debug(" count retrieved from customer");
+			if (rs.next())
+				count = rs.getInt(1);
+		} catch (SQLException s) {
+			log.error(s.getMessage());
+			throw s;
+		} finally {
+			rs.close();
+		}
+		return count;
+	}
+
+	public int getTodayOrderCount() throws Exception {
+		ResultSet rs = null;
+		int count = 0;
+		try {
+			PreparedStatement statement = this.getDBConnection()
+					.prepareStatement(MySQLQuery.SQL_ADMIN_ORDER_TODAY_COUNT);
+			rs = statement.executeQuery();
+			log.debug(" count retrieved from customer");
+			if (rs.next())
+				count = rs.getInt(1);
+		} catch (SQLException s) {
+			log.error(s.getMessage(), s);
+			throw s;
+		} finally {
+			rs.close();
+		}
+		return count;
+	}
+
+	public ResultSet validateOrder(int orderID) throws Exception {
+		ResultSet rs = null;
+		try {
+			PreparedStatement statement = this.getDBConnection().prepareStatement(MySQLQuery.SQL_ADMIN_ORDER_EXIST);
+			statement.setInt(1, orderID);
+			rs = statement.executeQuery();
+			log.debug(orderID + " restaurant exists");
+		} catch (SQLException s) {
+			log.error(s.getMessage(), s);
+			throw s;
+		}
+		return rs;
+	}
+
+	public ResultSet getOrderDetails(int orderID) throws Exception {
+		ResultSet rs = null;
+		try {
+			PreparedStatement statement = this.getDBConnection().prepareStatement(MySQLQuery.SQL_ADMIN_ORDER_DETAILS);
+			statement.setInt(1, orderID);
+			rs = statement.executeQuery();
+			log.debug("Data selected from table for order " + orderID);
+		} catch (SQLException s) {
+			log.error(s.getMessage(), s);
+			throw s;
+		}
+		return rs;
+	}
+
+	public ResultSet getOrderList() throws Exception {
+		ResultSet rs = null;
+		try {
+			// order by order_time desc
+			PreparedStatement statement = this.getDBConnection().prepareStatement(MySQLQuery.SQL_ADMIN_ORDER_LIST);
+			rs = statement.executeQuery();
+			log.debug("Data selected from table order");
+		} catch (SQLException s) {
+			log.error(s.getMessage(), s);
+			throw s;
+		}
+		return rs;
+
+	}
+
+	public ResultSet getOrderDetailsofCustomer(int custID) throws Exception {
+		ResultSet rs = null;
+		try {
+			PreparedStatement statement = this.getDBConnection()
+					.prepareStatement(MySQLQuery.SQL_ADMIN_ORDER_DETAIL_CUSTOMER);
+			statement.setInt(1, custID);
+			rs = statement.executeQuery();
+			log.debug("Data selected from table for order " + custID);
+		} catch (SQLException s) {
+			log.error(s.getMessage(), s);
+			throw s;
+		}
+		return rs;
+	}
+
 }

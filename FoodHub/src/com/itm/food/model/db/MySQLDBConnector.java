@@ -14,16 +14,16 @@ public class MySQLDBConnector implements IDBConnector {
 
 	public void createConnection() throws ClassNotFoundException, SQLException {
 		String driver = "com.mysql.jdbc.Driver";
-		String url = "jdbc:mysql://localhost:3306/ofod?autoReconnect=true&useSSL=false";
-		String username = "root";
-		String password = "password";
+		String url = "jdbc:mysql://www.papademas.net:3306/fp510?autoReconnect=true&useSSL=false";
+		String username = "fpuser";
+		String password = "510";
 
 		log.debug("Connection URL - " + url);
 
 		try {
 			Class.forName(driver);
 			mySqlConnection = DriverManager.getConnection(url, username, password);
-			
+
 		} catch (ClassNotFoundException e) {
 			log.error(e.getMessage());
 			throw e;

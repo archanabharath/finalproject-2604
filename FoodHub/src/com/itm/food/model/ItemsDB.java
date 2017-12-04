@@ -13,6 +13,7 @@ import com.itm.food.dao.Item;
 import com.itm.food.dao.ItemRestaurant;
 import com.itm.food.dao.Restaurant;
 import com.itm.food.model.db.MySQLQuery;
+import com.mysql.jdbc.Statement;
 
 public class ItemsDB extends AbstractDB implements IDBAccess {
 
@@ -20,15 +21,45 @@ public class ItemsDB extends AbstractDB implements IDBAccess {
 
 	@Override
 	public <T extends AbstractDomain> int add(T object) throws Exception {
-		return 0;
-		// TODO Auto-generated method stub
-		//return null;
+		Item item = (Item) object;
+		int id = 0;
+		try {
+
+			PreparedStatement statement = this.getDBConnection().prepareStatement(MySQLQuery.SQL_ADMIN_ITEM_INSERT,
+					Statement.RETURN_GENERATED_KEYS);
+			statement.setString(1, item.getItemName());
+			statement.setString(2, item.getItemDesc());
+			statement.setDouble(3, item.getItemPrice());
+			statement.setInt(4, item.getRestaurantId());
+			statement.executeUpdate();
+			ResultSet rs = statement.getGeneratedKeys();
+			if (rs.next()) {
+				id = rs.getInt(1);
+				log.debug("Data inserted for item " + item);
+			}
+		} catch (Exception s) {
+			log.error(s.getMessage(), s);
+		}
+		return id;
 	}
 
 	@Override
 	public <T extends AbstractDomain> void update(T object) throws Exception {
-		// TODO Auto-generated method stub
+		try {
+			Item item = (Item) object;
+			PreparedStatement statement = this.getDBConnection().prepareStatement(MySQLQuery.SQL_ADMIN_ITEM_UPDATE);
+			statement.setString(1, item.getItemName());
+			statement.setString(2, item.getItemDesc());
+			statement.setDouble(3, item.getItemPrice());
+			statement.setInt(4, item.getRestaurantId());
+			statement.setInt(5, item.getItemId());
 
+			statement.executeUpdate();
+			log.debug("Data updated for restaurant " + item.getItemId());
+			statement.close();
+		} catch (Exception s) {
+			log.error(s.getMessage(), s);
+		}
 	}
 
 	@SuppressWarnings("unchecked")
@@ -59,14 +90,31 @@ public class ItemsDB extends AbstractDB implements IDBAccess {
 
 	@Override
 	public <T extends AbstractDomain> void delete(T object) throws Exception {
-		// TODO Auto-generated method stub
-
+		try {
+			Item item = (Item) object;
+			PreparedStatement statement = this.getDBConnection().prepareStatement(MySQLQuery.SQL_ADMIN_ITEM_DELETE);
+			statement.setInt(1, item.getItemId());
+			statement.executeUpdate();
+			log.debug("Data deleted for restaurant " + item.getItemId());
+			statement.close();
+		} catch (Exception s) {
+			log.error(s.getMessage(), s);
+			throw s;
+		}
 	}
 
 	@Override
-	public void delete(String id) throws Exception {
-		// TODO Auto-generated method stub
-
+	public void delete(int id) throws Exception {
+		try {
+			PreparedStatement statement = this.getDBConnection().prepareStatement(MySQLQuery.SQL_ADMIN_ITEM_DELETE);
+			statement.setInt(1, id);
+			statement.executeUpdate();
+			log.debug("Data deleted for restaurant " + id);
+			statement.close();
+		} catch (Exception s) {
+			log.error(s.getMessage(), s);
+			throw s;
+		}
 	}
 
 	public List<Item> getItemsByRestaurantId(int i) throws Exception {
@@ -98,13 +146,15 @@ public class ItemsDB extends AbstractDB implements IDBAccess {
 	public ItemRestaurant getTop3HighRatedItems() {
 		log.debug("Fetching the high rated top 3 items");
 
-		// List<ItemRestaurant> itemRestaurantsList = new ArrayList<ItemRestaurant>();
+		// List<ItemRestaurant> itemRestaurantsList = new
+		// ArrayList<ItemRestaurant>();
 		List<Item> itemsList = new ArrayList<Item>();
 		List<Restaurant> restaurantsList = new ArrayList<Restaurant>();
 
 		ItemRestaurant itemrestaurantobj = new ItemRestaurant();
 
-		try {// I.ITEM_ID, I.ITEM_NAME, I.ITEM_RATING, R.RESTAURANT_ID, R.RESTAURANT_NAME,
+		try {// I.ITEM_ID, I.ITEM_NAME, I.ITEM_RATING, R.RESTAURANT_ID,
+				// R.RESTAURANT_NAME,
 				// R.RATING
 			PreparedStatement preparestatement = this.getDBConnection()
 					.prepareStatement(MySQLQuery.SQL_FETCH_TOP_3_ITEMS);
@@ -138,7 +188,19 @@ public class ItemsDB extends AbstractDB implements IDBAccess {
 		}
 
 		return itemrestaurantobj;
+	}
 
+	public ResultSet getAllItems(int restID) throws Exception {
+		ResultSet rs = null;
+		try {
+			PreparedStatement statement = this.getDBConnection().prepareStatement(MySQLQuery.SQL_ADMIN_ITEM_FETCH);
+			statement.setInt(1, restID);
+			rs = statement.executeQuery();
+			log.debug("Data selected from items table for restaurant " + restID);
+		} catch (SQLException s) {
+			log.error(s.getMessage(), s);
+		}
+		return rs;
 	}
 
 }

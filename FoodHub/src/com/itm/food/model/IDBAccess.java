@@ -12,6 +12,6 @@ public interface IDBAccess {
 
 	<T extends AbstractDomain> void delete(T object) throws Exception;
 
-	void delete(String id) throws Exception;
+	void delete(int id) throws Exception;
 
 }

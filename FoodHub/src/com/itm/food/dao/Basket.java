@@ -4,6 +4,7 @@ package com.itm.food.dao;
 import java.util.ArrayList;
 
 import org.apache.commons.math3.util.Precision;
+import org.apache.log4j.Logger;
 
 public class Basket {
 
@@ -23,6 +24,8 @@ public class Basket {
 	private ArrayList<Coupon> allCoupons;
 
 	public static double TAX_AMOUNT = 7.0;
+	
+	private static final Logger log = Logger.getLogger(Basket.class);
 
 	/**
 	 * @return the itemsTotal
@@ -254,11 +257,11 @@ public class Basket {
 		// this.setCouponsApplied(0.0);
 		if (this.getCouponobj() != null) {
 			if (this.getCouponobj().getCouponType() == 1) {
-				System.out.println("coupon-type-1" + this.getCouponobj().getCouponValue());
+				log.debug("coupon-type-1" + this.getCouponobj().getCouponValue());
 				this.setCouponsApplied(Precision.round(Math.abs(this.itemsTotal * (this.getCouponobj().getCouponValue()) / 100.0),2));
-				System.out.println("coupon-applied-pct:" + this.getCouponsApplied());
+				log.debug("coupon-applied-pct:" + this.getCouponsApplied());
 			} else if (this.getCouponobj().getCouponType() == 2) {
-				System.out.println("coupon-type-2" + this.getCouponobj().getCouponValue());
+				log.debug("coupon-type-2" + this.getCouponobj().getCouponValue());
 				this.setCouponsApplied(Precision.round(Math.abs(this.getCouponobj().getCouponValue()), 2));
 			}
 		} else {
